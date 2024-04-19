@@ -1,4 +1,4 @@
-package org.example.GestionConso.GestionConsommation.Connexion;
+package org.example.Connexion;
 
 import java.sql.Connection;
 import java.sql.SQLException;

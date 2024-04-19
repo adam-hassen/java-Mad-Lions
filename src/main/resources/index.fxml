@@ -11,7 +11,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.layout.StackPane?>
-<VBox alignment="CENTER" prefHeight="600.0" prefWidth="1000.0" stylesheets="@/CSS/Home.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.GestionConso.GestionConsommation.controller.HomeController">
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="1000.0" stylesheets="@/CSS/Home.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.HomeController">
    <children>
       <HBox alignment="CENTER_LEFT" spacing="20.0" prefHeight="400.0" prefWidth="800.0">
          <children>

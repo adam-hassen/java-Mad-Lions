@@ -1,4 +1,4 @@
-package org.example.GestionConso.GestionConsommation.controller;
+package org.example.controller;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
