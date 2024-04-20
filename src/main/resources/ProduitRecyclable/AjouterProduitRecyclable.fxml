@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="527.0" prefWidth="1035.0" stylesheets="@../css/AjouterProduitRecyclable.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Recyclage.controllers.AjouterProduitRecyclable">
+<AnchorPane prefHeight="527.0" prefWidth="1035.0" stylesheets="@../CSS/AjouterProduitRecyclable.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Recyclage.controllers.AjouterProduitRecyclable">
    <children>
       <TextField fx:id="nomTFP" layoutX="754.0" layoutY="67.0" prefHeight="40.0" promptText="nom" />
       <TextField fx:id="DiscriptionTFP" layoutX="754.0" layoutY="125.0" prefHeight="40.0" promptText="Discription" />
@@ -20,7 +20,7 @@
       <DatePicker fx:id="dateP" layoutX="752.0" layoutY="301.0" prefHeight="32.0" prefWidth="202.0" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="829.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../css/Images/logo.png" />
+            <Image url="@../CSS/Images/logo.png" />
          </image>
       </ImageView>
       <Button layoutX="775.0" layoutY="474.0" mnemonicParsing="false" onAction="#réinitialiser" prefHeight="46.0" prefWidth="131.0" style="-fx-background-color: #955149;" text="réinitialiser" />

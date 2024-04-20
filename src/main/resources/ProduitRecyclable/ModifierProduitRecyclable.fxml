@@ -20,13 +20,13 @@
       <DatePicker fx:id="datePM" disable="true" layoutX="752.0" layoutY="311.0" prefHeight="32.0" prefWidth="202.0" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="829.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../css/Images/logo.png" />
+            <Image url="@../CSS/Images/logo.png" />
          </image>
       </ImageView>
       <TextField fx:id="idFxM" layoutX="-13.0" layoutY="-70.0" style="-fx-background-color: transparent;" />
    </children>
    <stylesheets>
-      <URL value="@../css/AjouterProduitRecyclable.css" />
-      <URL value="@../css/ModifierProduitRecyclable.css" />
+      <URL value="@../CSS/AjouterProduitRecyclable.css" />
+      <URL value="@../CSS/ModifierProduitRecyclable.css" />
    </stylesheets>
 </AnchorPane>
