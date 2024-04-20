@@ -62,7 +62,7 @@ public class AfficherProduitRecyclable {
     @FXML
     void initialize() {
      //   String videoPath = "src/main/resources/css/Images/VIDEO3.mp4";
-       //Media media = new Media(new File(videoPath).toURI().toString());
+       // Media = new Media(new File(videoPath).toURI().toString());
        // MediaPlayer mediaPlayer = new MediaPlayer(media);
         //mediaView.setMediaPlayer(mediaPlayer);
         //mediaPlayer.setVolume(0);

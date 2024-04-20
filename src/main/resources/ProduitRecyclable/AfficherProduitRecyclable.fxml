@@ -11,7 +11,7 @@
     <children>
       <ImageView fitHeight="664.0" fitWidth="1330.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../css/Images/Affichage3.jpg" />
+            <Image url="@../CSS/Images/environnement-societe-gouvernance-constituent-concept-esgun-bloc-bois-icone-esg-represente_912524-2188.jpg" />
          </image>
       </ImageView>
         <VBox fx:id="carteContainer" layoutX="180.0" layoutY="153.0" prefHeight="466.0" prefWidth="906.0">

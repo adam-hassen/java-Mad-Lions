@@ -14,47 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EcoDepotMethodes implements EcodepotService<EcoDepot> {
-    private boolean estEcoDepotValide(EcoDepot ecoDepot) {
-        if (ecoDepot.getNom() == null || ecoDepot.getNom().isEmpty()) {
-            System.out.println("Le champ nom est obligatoire.");
-            return false;
-        }
-
-        if (!ecoDepot.getNom().matches("[a-zA-Z]+")) {
-            System.out.println("Le champ nom doit contenir uniquement des lettres.");
-            return false;
-        }
-
-        if (ecoDepot.getAdresse() == null || ecoDepot.getAdresse().isEmpty()) {
-            System.out.println("Le champ adresse est obligatoire.");
-            return false;
-        }
-        if(ecoDepot.getType().isEmpty()) {
-            System.out.println("Le champ Type est obligatoire.");
-            return false;
-        }
-
-        if(ecoDepot.getStatut_point_collecte().isEmpty()) {
-            System.out.println("Le champ Statut_point_collecte est obligatoire.");
-            return false;
-        }
-
-        if (!ecoDepot.getAdresse().matches("[a-zA-Z0-9 ]+")) {
-            System.out.println("Le champ adresse doit contenir uniquement des lettres, des chiffres et des espaces.");
-            return false;
-        }
-
-        if (ecoDepot.getCapacite_stockage() <= 0) {
-            System.out.println("Le champ capacite_stockage doit être un nombre positif.");
-            return false;
-        }
-
-        return true;
-    }
 
     @Override
     public void ajouterEcodepot(EcoDepot ecoDepot) {
-        if (estEcoDepotValide(ecoDepot)) {
+
             String requete = "INSERT INTO ECO_DEPOT (nom , adresse ,type ,capacite_stockage, statut_point_collecte)" +
                     "VALUES (? , ? ,? ,? ,?)";
             try {
@@ -78,10 +41,8 @@ public class EcoDepotMethodes implements EcodepotService<EcoDepot> {
                 alert.showAndWait();
             }
         }
-        else {
-            System.out.println("La saisie de l'éco-dépôt est invalide. Veuillez vérifier les champs et réessayer.");
-        }
-    }
+
+
 
     @Override
     public void supprimerEcodepot(EcoDepot ecoDepot) {
