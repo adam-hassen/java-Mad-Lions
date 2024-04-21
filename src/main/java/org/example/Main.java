@@ -1,22 +1,40 @@
 package org.example;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.scene.Parent;
-import javafx.application.Application;
+import org.example.entity.Workshop;
+import org.example.service.WorkshopMethode;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
 
 
-public class Main extends Application{
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/index.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
+public class Main {
 
     public static void main(String[] args) {
-        launch();
+        Workshop w=new Workshop();
+        w.setNom("assil");
+        w.setType("tenin");
+        w.setDate(LocalDate.of(2002,01,11));
+        w.setHeure(LocalTime.of(11,00,00));
+        w.setCours("mehdi test workshop braa");
+        WorkshopMethode wm=new WorkshopMethode();
+       wm.ajouterWorkshop(w);
+        w.setNom("mimou");
+        w.setType("tiwtiw");
+        wm.modifierWorkshop(w, w.getId());
+
+        List<Workshop> data=wm.listeDesWorkshop();
+int i=0;
+        for (Workshop workshop : data) {
+            i++;
+            System.out.println("workshop number :"+i);
+            System.out.println("workshop ID: " + workshop.getId());
+            System.out.println("workshop nom: " + workshop.getNom());
+            System.out.println("workshop type: " + workshop.getType());
+            System.out.println("workshop date: " + workshop.getDate());
+            System.out.println("workshop heure: " + workshop.getHeure());
+            System.out.println("workshop Cours: " + workshop.getCours());
+            // Print other details as needed
+            System.out.println(); // Add an empty line for better readability
+        }
+        wm.supprimerWorkshop(w);
     }
 }

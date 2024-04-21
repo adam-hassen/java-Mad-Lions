@@ -61,14 +61,14 @@
                   <ListView fx:id="sidebarListView" styleClass="sidebar-list" prefHeight="160.0" />
                   <VBox styleClass="image-container" alignment="CENTER">
                      <StackPane styleClass="image-wrapper">
-                     <ImageView>
-                        <image>
-                           <Image url="/CSS/Images/ecogardien.png" />
-                        </image>
-                        <fitHeight>130.0</fitHeight>
-                        <fitWidth>130.0</fitWidth>
-                        <preserveRatio>true</preserveRatio>
-                     </ImageView>
+                        <ImageView>
+                           <image>
+                              <Image url="/CSS/Images/ecogardien.png" />
+                           </image>
+                           <fitHeight>130.0</fitHeight>
+                           <fitWidth>130.0</fitWidth>
+                           <preserveRatio>true</preserveRatio>
+                        </ImageView>
                      </StackPane>
                   </VBox>
                </children>
