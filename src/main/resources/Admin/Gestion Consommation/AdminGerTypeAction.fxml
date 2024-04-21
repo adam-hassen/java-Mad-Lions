@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600" prefWidth="1000" stylesheets="@/CSS/Home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.AdminGestType">
+    <children>
+        <Label layoutX="20.0" layoutY="20.0" text="Nom:" />
+        <TextField fx:id="nomField" layoutX="120.0" layoutY="20.0" promptText="Enter Nom" />
+
+        <Label layoutX="20.0" layoutY="80.0" text="Score:" />
+        <TextField fx:id="scoreField" layoutX="120.0" layoutY="80.0" promptText="Enter Score" />
+
+        <Label layoutX="20.0" layoutY="140.0" text="Materiel:" />
+        <TextField fx:id="materielField" layoutX="120.0" layoutY="138.0" promptText="Enter Materiel" />
+
+        <Label layoutX="20.0" layoutY="186.0" text="Type:" />
+        <TextField fx:id="typeField" layoutX="120.0" layoutY="185.0" promptText="Enter Type" />
+
+        <Label layoutX="20.0" layoutY="226.0" text="Util Max:" />
+        <TextField fx:id="utilMaxField" layoutX="120.0" layoutY="230.0" promptText="Enter Util Max" />
+
+        <Button fx:id="ValiderTypeAction" layoutX="340.0" layoutY="16.0" onAction="#AjouterTypeAction" prefHeight="40.0" prefWidth="115.0" text="Ajouter" />
+        <Button fx:id="ModifierValiderTypeAction" layoutX="340.0" layoutY="60.0" onAction="#handleModifierAct" prefHeight="40.0" prefWidth="115.0" text="Modifier" />
+        <Button fx:id="réinitialisationButton" layoutX="340.0" layoutY="105.0" prefHeight="40.0" prefWidth="115.0" text="Réinitialisation" />
+        <TableView fx:id="tableView" layoutX="14.0" layoutY="300.0" prefHeight="245.0" prefWidth="914.0">
+            <columns>
+                <TableColumn fx:id="colId" prefWidth="55.2000093460083" text="ID" />
+                <TableColumn fx:id="colActionTypeId" prefWidth="194.40000915527344" text="Action Type ID" />
+                <TableColumn fx:id="colNom" prefWidth="140.0" text="Nom" />
+                <TableColumn fx:id="colScore" minWidth="6.4000244140625" prefWidth="127.99993896484375" text="Score" />
+                <TableColumn fx:id="colMateriel" prefWidth="112.00006103515625" text="Materiel" />
+                <TableColumn fx:id="colType" prefWidth="122.39990234375" text="Type" />
+                <TableColumn fx:id="colUtilMax" prefWidth="165.5999755859375" text="Util Max" />
+            </columns>
+        </TableView>
+        <Button fx:id="modifierButton" layoutX="511.0" layoutY="242.0" onAction="#handleModifierButton" prefHeight="40.0" prefWidth="115.0" text="Modifier" />
+        <Button fx:id="supprimerButton" layoutX="634.0" layoutY="242.0" onAction="#handleSupprimerButton" prefHeight="40.0" prefWidth="115.0" text="Supprimer" />
+      <Button fx:id="home" layoutX="162.0" layoutY="550.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="101.0" text="Home" />
+    </children>
+</AnchorPane>

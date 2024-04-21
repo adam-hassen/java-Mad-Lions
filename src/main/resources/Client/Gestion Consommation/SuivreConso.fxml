@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@/CSS/Home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.SuivreConsoController">
+   <children>
+      <PieChart fx:id="Chart_danger" layoutX="158.0" layoutY="42.0" prefHeight="200.0" prefWidth="300.0" />
+      <TableView fx:id="tableView" layoutX="102.0" layoutY="260.0" prefHeight="120.0" prefWidth="412.0">
+         <columns>
+            <TableColumn id="TypeName" fx:id="ColTypeName" prefWidth="119.20001220703125" text="TypeName" />
+            <TableColumn id="Danger" fx:id="ColDanger" prefWidth="95.20001220703125" text="Danger" />
+            <TableColumn id="Date" fx:id="ColDate" prefWidth="95.20001220703125" text="Date" />
+            <TableColumn id="Description" fx:id="ColDescription" prefWidth="95.20001220703125" text="Description" />
+         </columns>
+      </TableView>
+      <Button fx:id="home" layoutX="22.0" layoutY="307.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="68.0" text="Home" />
+   </children>
+</AnchorPane>

@@ -46,12 +46,13 @@
 }
 .middle-container {
     -fx-background-color: rgba(128, 128, 128, 0.5);
-    -fx-padding: 20px 20px;
+    -fx-padding: 200px 20px;
     -fx-border-radius: 15px;
 }
 .image-container {
     -fx-padding: 10px;
 }
+
 .image-wrapper {
     -fx-background-color: white;
     -fx-background-radius: 10%;
@@ -59,8 +60,8 @@
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: contain;
-    -fx-pref-width: 350px;
-    -fx-pref-height: 350px;
+    -fx-pref-width: 300px;
+    -fx-pref-height: 300px;
 }
 .button-home {
     -fx-font-size: 18px;
@@ -118,38 +119,5 @@
     -fx-font-size: 18px;
 }
 
-.item-container {
-    -fx-background-color: #ddd;
-    -fx-padding: 10px;
-    -fx-border-radius: 5px;
-    -fx-border-color: #ccc;
-    -fx-border-width: 1px;
-}
-
-/* Style for the text fields within the item container */
-.container-view {
-
-    -fx-padding: 20px;
-    -fx-spacing: 20px;
-}
-#itemBox {
-    -fx-background-color: linear-gradient(to bottom, #8BC34A, #4CAF50);
-    -fx-padding: 10px; /* Add padding */
-    -fx-spacing: 15px; /* Add spacing between children */
-    -fx-border-color: #fff; /* Set border color */
-    -fx-border-width: 2px; /* Set border width */
-    -fx-border-radius: 5px; /* Set border radius */
-}
-
-#itemBox TextField {
-    -fx-background-color: transparent; /* Make TextField background transparent */
-    -fx-text-fill: white; /* Set text color to white */
-    -fx-font-size: 14px; /* Adjust font size */
-    -fx-prompt-text-fill: #999999; /* Set prompt text color */
-    -fx-border-color: #CCCCCC; /* Add border color */
-    -fx-border-radius: 5px; /* Add border radius */
-    -fx-border-width: 1px; /* Add border width */
-    -fx-padding: 5px; /* Add padding */
-}
 /* Rest of the CSS code */
 /* ... */
