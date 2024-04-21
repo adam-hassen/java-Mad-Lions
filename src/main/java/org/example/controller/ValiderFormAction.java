@@ -51,7 +51,7 @@ public class ValiderFormAction {
     @FXML
     private VBox vboxside;
     @FXML
-    public void initialize() {
+    public void initialize(boolean isUpdatePage) {
         query2 = new TypeNameService();
         query = new ActionService();
         ObservableList<Integer> hours = FXCollections.observableArrayList();
@@ -78,15 +78,44 @@ public class ValiderFormAction {
         quantiteToggle.setToggleGroup(toggleGroup);
         // reset show quantity type
         timeLabel.setVisible(false);
+        quantiteToggle.setVisible(false);
+        timeToggle.setVisible(false);
         hourComboBox.setVisible(false);
         minuteComboBox.setVisible(false);
         secondComboBox.setVisible(false);
         quantiteLabel.setVisible(true);
         Quantite.setVisible(true);
+        if (isUpdatePage) {
+            ModifierAction.setVisible(true);
+            ValiderAction.setVisible(false);
+        } else {
+            ModifierAction.setVisible(false);
+            ValiderAction.setVisible(true);
+        }
     }
     public void showtypes(){
         ObservableList<TypeName> types = FXCollections.observableArrayList(query2.afficherTypeName());;
         Type.setItems(types);
+        // sssssssss
+        Type.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                if (newValue.getMateriel().equals("temps")) {
+                    timeLabel.setVisible(true);
+                    hourComboBox.setVisible(true);
+                    minuteComboBox.setVisible(true);
+                    secondComboBox.setVisible(true);
+                    quantiteLabel.setVisible(false);
+                    Quantite.setVisible(false);
+                } else if (newValue.getMateriel().equals("solid")) {
+                    timeLabel.setVisible(false);
+                    hourComboBox.setVisible(false);
+                    minuteComboBox.setVisible(false);
+                    secondComboBox.setVisible(false);
+                    quantiteLabel.setVisible(true);
+                    Quantite.setVisible(true);
+                }
+            }
+        });
     }
     @FXML
     private void handleToggle() {
@@ -109,6 +138,25 @@ public class ValiderFormAction {
             secondComboBox.setVisible(false);
             quantiteLabel.setVisible(true);
             Quantite.setVisible(true);
+        }
+
+        TypeName selectedType = Type.getSelectionModel().getSelectedItem();
+        if (selectedType != null) {
+            if (selectedType.getMateriel().equals("temps")) {
+                timeLabel.setVisible(true);
+                hourComboBox.setVisible(true);
+                minuteComboBox.setVisible(true);
+                secondComboBox.setVisible(true);
+                quantiteLabel.setVisible(false);
+                Quantite.setVisible(false);
+            } else if (selectedType.getMateriel().equals("solid")) {
+                timeLabel.setVisible(false);
+                hourComboBox.setVisible(false);
+                minuteComboBox.setVisible(false);
+                secondComboBox.setVisible(false);
+                quantiteLabel.setVisible(true);
+                Quantite.setVisible(true);
+            }
         }
     }
     public void ModifierForm(Action action){

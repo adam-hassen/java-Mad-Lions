@@ -3,8 +3,7 @@ package org.example.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -13,6 +12,7 @@ import org.example.service.ActionService;
 import org.example.service.TypeNameService;
 
 import java.util.List;
+import java.util.Optional;
 
 public class showActions {
     @FXML
@@ -81,7 +81,37 @@ public class showActions {
             descriptionTextField.setText(action.getDescription());
             descriptionBox.getChildren().addAll(descriptionLabel, descriptionTextField);
 
-            itemBox.getChildren().addAll(typeNameBox, dangerBox, dateBox, descriptionBox);
+            HBox buttonBox = new HBox();
+            Button supprimeButton = new Button("Supprimer");
+            Button modifierButton = new Button("Modifier");
+            supprimeButton.getStyleClass().add("button-liste");
+            modifierButton.getStyleClass().add("button-liste");
+            GestionnerConsoController gestionnerConsoController = new GestionnerConsoController();
+            modifierButton.setOnAction(event -> {
+                gestionnerConsoController.Modification(action);
+                containerView.getChildren().clear();
+                //refreshUI(containerView,observableList);
+                // gestionnerConsoController.handleSupprimerButton(action);
+            });
+            supprimeButton.setOnAction(event -> {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation");
+                alert.setHeaderText(null);
+                alert.setContentText("Êtes-vous sûr de vouloir supprimer cette action?");
+
+                ButtonType buttonTypeYes = new ButtonType("Oui");
+                ButtonType buttonTypeNo = new ButtonType("Non");
+
+                alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.isPresent() && result.get() == buttonTypeYes) {
+                    query.supprimerAction(action.getId());
+                    containerView.getChildren().remove(itemBox);
+                    observableList.remove(action);
+                }
+            });
+            buttonBox.getChildren().addAll(supprimeButton, modifierButton);
+            itemBox.getChildren().addAll(typeNameBox, dangerBox, dateBox, descriptionBox, buttonBox);
             containerView.getChildren().add(itemBox);
         }
     }

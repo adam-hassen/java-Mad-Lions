@@ -7,49 +7,49 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Button?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.controller.ValiderFormAction"
-            prefHeight="400.0" prefWidth="600.0" stylesheets="@/CSS/Home.css" >
+<?import javafx.scene.layout.VBox?>
+<AnchorPane xmlns="http://javafx.com/javafx" styleClass="form" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.controller.ValiderFormAction" prefHeight="400.0" prefWidth="600.0" stylesheets="@/CSS/GestConso.css" >
     <children>
-        <!-- Type Name -->
-        <HBox spacing="10.0" layoutX="10.0" layoutY="10.0">
-            <Label text="Type Name:" />
-            <ComboBox fx:id="Type" promptText="Select Type Name" />
-        </HBox>
+            <!-- Type Name -->
+            <HBox spacing="10.0" layoutX="10.0" layoutY="10.0">
+                <Label text="Type Name:" />
+                <ComboBox fx:id="Type" promptText="Select Type Name" />
+            </HBox>
 
-        <!-- Time/Quantity Toggles -->
-        <HBox spacing="20.0" layoutX="10.0" layoutY="50.0">
-            <ToggleButton fx:id="timeToggle" onAction="#handleToggle" prefHeight="40.0" prefWidth="94.0" text="Time" />
-            <ToggleButton fx:id="quantiteToggle" onAction="#handleToggle" text="Quantite" />
-        </HBox>
+            <!-- Time/Quantity Toggles -->
+            <HBox spacing="20.0" layoutX="10.0" layoutY="70.0">
+                <ToggleButton fx:id="timeToggle" onAction="#handleToggle" prefHeight="40.0" prefWidth="94.0" text="Time" />
+                <ToggleButton fx:id="quantiteToggle" onAction="#handleToggle" text="Quantite" />
+            </HBox>
 
-        <!-- Time Selection -->
-        <HBox spacing="10.0" layoutX="10.0" layoutY="100.0">
-            <Label fx:id="timeLabel" text="Time:" />
-            <ComboBox fx:id="hourComboBox" promptText="Hour" />
-            <ComboBox fx:id="minuteComboBox" promptText="Minute" />
-            <ComboBox fx:id="secondComboBox" promptText="Second" />
-        </HBox>
+            <!-- Time Selection -->
+            <HBox spacing="10.0" layoutX="10.0" layoutY="70.0">
+                <Label fx:id="timeLabel" text="Time:" />
+                <ComboBox fx:id="hourComboBox" promptText="Hour" />
+                <ComboBox fx:id="minuteComboBox" promptText="Minute" />
+                <ComboBox fx:id="secondComboBox" promptText="Second" />
+            </HBox>
 
-        <!-- Quantity Selection -->
-        <HBox spacing="10.0" layoutX="10.0" layoutY="150.0">
-            <Label fx:id="quantiteLabel" text="Quantite:" />
-            <TextField fx:id="Quantite" promptText="Select Quantity" />
-        </HBox>
+            <!-- Quantity Selection -->
+            <HBox spacing="10.0" layoutX="10.0" layoutY="70.0">
+                <Label fx:id="quantiteLabel" text="Quantite:" />
+                <TextField fx:id="Quantite" promptText="Select Quantity" />
+            </HBox>
 
-        <!-- Date and Description -->
-        <HBox spacing="10.0" layoutX="10.0" layoutY="200.0">
-            <Label text="Date:" />
-            <DatePicker fx:id="Date" promptText="Select Date" />
-            <Label text="Description:" />
-            <TextField fx:id="Description" promptText="Select Description" />
-        </HBox>
+            <!-- Date and Description -->
+            <HBox spacing="10.0" layoutX="10.0" layoutY="120.0">
+                <Label text="Date:" />
+                <DatePicker fx:id="Date" promptText="Select Date" />
+            </HBox>
+            <HBox spacing="10.0" layoutX="10.0" layoutY="190.0">
+                <Label text="Description:" />
+                <TextField fx:id="Description" promptText="Select Description" />
+            </HBox>
 
-        <!-- Buttons -->
-        <HBox spacing="10.0" layoutX="10.0" layoutY="250.0">
-            <Button fx:id="ValiderAction" prefHeight="40.0" prefWidth="118.0" text="Ajouter" styleClass="button-home"/>
-            <Button fx:id="ModifierAction" prefHeight="40.0" prefWidth="118.0" text="Modifier" styleClass="button-home"/>
-        </HBox>
+            <!-- Buttons -->
+            <HBox spacing="10" layoutX="100" layoutY="270">
+                <Button fx:id="ValiderAction" prefHeight="40.0" prefWidth="118.0" text="Ajouter" styleClass="button-home"/>
+                <Button fx:id="ModifierAction" prefHeight="40.0" prefWidth="118.0" text="Modifier" styleClass="button-home"/>
+            </HBox>
     </children>
 </AnchorPane>

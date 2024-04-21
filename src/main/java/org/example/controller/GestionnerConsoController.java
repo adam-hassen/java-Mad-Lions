@@ -1,9 +1,6 @@
 package org.example.controller;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.ScaleTransition;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -59,26 +56,33 @@ public class GestionnerConsoController {
         query = new ActionService();
         AjouterAction.setOnAction(this::AjouterAction);
        // modifierButton.setOnAction(this::handleModifierButton);
-        //show tables of actions
-        /*itemBox.getChildren().clear();
-        itemBox.getChildren().addAll(
-                typeNameTextField,
-                dangerTextField,
-                dateTextField,
-                descriptionTextField
-        );*/
         showAction();
-        // sssssssssssssssssssssss
-        double totalWidth = containerView.getChildren().stream()
-                .mapToDouble(node -> node.getBoundsInLocal().getWidth())
-                .sum();
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.ZERO, new KeyValue(scrollPane.hvalueProperty(), 0)),
-                new KeyFrame(Duration.seconds(10), new KeyValue(scrollPane.hvalueProperty(), 1)),
-                new KeyFrame(Duration.seconds(20), new KeyValue(scrollPane.hvalueProperty(), 0))
-        );
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
+        //frame animation
+            double totalWidth = containerView.getChildren().stream()
+                    .mapToDouble(node -> node.getBoundsInLocal().getWidth())
+                    .sum();
+            Timeline timeline = new Timeline(
+                    new KeyFrame(Duration.ZERO, new KeyValue(scrollPane.hvalueProperty(), 0)),
+                    new KeyFrame(Duration.seconds(10), new KeyValue(scrollPane.hvalueProperty(), 1)),
+                    new KeyFrame(Duration.seconds(20), new KeyValue(scrollPane.hvalueProperty(), 0))
+            );
+        scrollPane.setOnMouseClicked(event -> {
+            if (timeline.getStatus() == Animation.Status.RUNNING) {
+                double currentHvalue = scrollPane.getHvalue();
+                timeline.pause();
+                PauseTransition pause = new PauseTransition(Duration.seconds(6));
+                pause.setOnFinished(e -> {
+                    scrollPane.setHvalue(currentHvalue);
+                    timeline.play();
+                });
+                pause.play();
+            } else {
+                timeline.play();
+            }
+        });
+
+            timeline.setCycleCount(Timeline.INDEFINITE);
+            timeline.play();
         //sidebar animation
         VBox sidebar = vboxside;
         sidebar.getChildren().forEach(node -> {
@@ -102,12 +106,10 @@ public class GestionnerConsoController {
     }
     public void AjouterAction(ActionEvent event){
         try {
-            // Load the new scene
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Client/Gestion Consommation/ActionForm.fxml"));
+            loader.setController(new ValiderFormAction());
             Parent root = loader.load();
             Scene newScene = new Scene(root);
-
-            // Create a new stage and set the new scene
             Stage newStage = new Stage();
             newStage.setScene(newScene);
             newStage.show();
@@ -117,9 +119,8 @@ public class GestionnerConsoController {
         }
     }
 
-   /* @FXML
+
     private void handleModifierButton(ActionEvent event) {
-        // Get the selected item from the container
         Node selectedNode = containerView.getChildren().get(containerView.getChildren().size() - 1);
         if (selectedNode instanceof HBox) {
             HBox selectedRow = (HBox) selectedNode;
@@ -129,55 +130,64 @@ public class GestionnerConsoController {
             String date = ((TextField) selectedRow.getChildren().get(2)).getText();
             String description = ((TextField) selectedRow.getChildren().get(3)).getText();
             TypeName tpn = query2.cherchertypename(typeName);
-            LocalDate date;
+            LocalDate actionDate;
             try {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                date = LocalDate.parse(date, formatter);
+                actionDate = LocalDate.parse(date, formatter);
             } catch (DateTimeParseException e) {
                 e.printStackTrace();
-                // Handle the error, e.g., set a default date or show an error message
-                date = LocalDate.now();
+                actionDate = LocalDate.now();
             }
-            // Create an Action object with the extracted data
-            Action selectedAction = new Action(tpn,0.0, date, danger, description);
-
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Client/Gestion Consommation/ActionForm.fxml"));
-                Parent root = loader.load();
-                ValiderFormAction controller = loader.getController();
-                controller.ModifierForm(selectedAction);
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.setScene(scene);
-                stage.setTitle("Action Details");
-                stage.show();
-                showAction();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Action selectedAction = new Action(tpn, 0.0, actionDate, danger, description);
+            Modification(selectedAction);
         }
-        }*/
-  /*  @FXML
-    private void handleSupprimerButton(ActionEvent event) {
+    }
+    public void Modification(Action selectedAction) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Client/Gestion Consommation/ActionForm.fxml"));
+            Parent root = loader.load();
+            ValiderFormAction controller = loader.getController();
+            controller.ModifierForm(selectedAction);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Action Details");
+            stage.show();
+            showAction();
+            showAction();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+   /* @FXML
+    public void handleSupprimerButton(ActionEvent event) {
         Action selectedRow = (Action) tableView.getSelectionModel().getSelectedItem();
         if (selectedRow != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
             alert.setHeaderText(null);
             alert.setContentText("Êtes-vous sûr de vouloir supprimer cette action?");
+
             ButtonType buttonTypeYes = new ButtonType("Oui");
             ButtonType buttonTypeNo = new ButtonType("Non");
+
             alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
             Optional<ButtonType> result = alert.showAndWait();
+
             if (result.isPresent() && result.get() == buttonTypeYes) {
-                query.supprimerAction(selectedRow.getId());
+                int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+                int selectedId = selectedRow.getId();
+
+                query.supprimerAction(selectedId);
+
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                 successAlert.setTitle("Gestion De Consommation Alert!");
                 successAlert.setHeaderText(null);
                 successAlert.setContentText("Action supprimée avec succès");
                 successAlert.showAndWait();
+
                 ObservableList<Action> items = tableView.getItems();
-                items.remove(selectedRow);
+                items.remove(selectedIndex);
                 tableView.refresh();
             }
         }
