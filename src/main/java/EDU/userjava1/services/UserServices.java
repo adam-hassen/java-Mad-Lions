@@ -19,15 +19,16 @@ public class UserServices implements Userinterface {
 
     private Statement ste;
     Connection cnx = MyConnexion.getInstance().getCnx();
+
     public void ajouteruser(User1 p) {
-        String mdp= EncryptMdp(p.getPassword());
+        String mdp = EncryptMdp(p.getPassword());
 
         String req = "INSERT INTO `user1`(`prenom`, `name`, `numero`, `username`, `adress`, `password`, `genre`,`roles`) VALUES (?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, p.getPrenom());
             ps.setString(2, p.getName());
-            ps.setInt   (3, p.getNumero());
+            ps.setInt(3, p.getNumero());
             ps.setString(4, p.getUsername());
             ps.setString(5, p.getAdress());
             ps.setString(6, mdp);
@@ -41,6 +42,7 @@ public class UserServices implements Userinterface {
             System.out.println(ex.getMessage());
         }
     }
+
     @Override
     public List<User1> afficheruser() {
 
@@ -61,8 +63,13 @@ public class UserServices implements Userinterface {
         return personnes;
 
     }
+
+
+
     private User1 adduser(ResultSet rs) {
         User1 p = new User1();
+
+
         try {
             p.setId(rs.getInt(1));
             p.setUsername(rs.getString(2));
@@ -75,9 +82,11 @@ public class UserServices implements Userinterface {
             p.setPrenom(rs.getString(9));
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());        }
+            System.out.println(ex.getMessage());
+        }
         return p;
     }
+
     @Override
     public User1 getbyid_user(int id) {
         return null;
@@ -104,7 +113,7 @@ public class UserServices implements Userinterface {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, p.getPrenom());
             ps.setString(2, p.getName());
-            ps.setInt   (3, p.getNumero());
+            ps.setInt(3, p.getNumero());
             ps.setString(4, p.getUsername());
             ps.setString(5, p.getAdress());
             ps.setString(6, p.getPassword());
@@ -118,6 +127,7 @@ public class UserServices implements Userinterface {
         }
 
     }
+
     public boolean test_used_email(User1 u1) {
         int a;
         String req = "select id from user1 WHERE email = '" + u1.getUsername() + "'";
@@ -141,8 +151,8 @@ public class UserServices implements Userinterface {
         try {
             Statement st = MyConnexion.getInstance().getCnx().createStatement();
             ResultSet rs = st.executeQuery(requete);
-            while (rs.next()){
-                User1 p =new User1();
+            while (rs.next()) {
+                User1 p = new User1();
                 p.setName(rs.getString("Name"));
                 p.setPrenom(rs.getString("prenom"));
                 p.setUsername(rs.getString("Username"));
@@ -154,55 +164,57 @@ public class UserServices implements Userinterface {
                 data.add(p);
 
             }
-        }catch(SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
         return data;
     }
+
     @Override
     public int Login(String email, String password) {
-        String mdp_enc =  EncryptMdp(password) ;
-
-        int id;
-        String req = "SELECT * FROM user1 WHERE Username ='" + email + "'AND password ='" + mdp_enc  + "' AND roles = '[\"ROLE_USER\"]'";
+        String mdp_enc = EncryptMdp(password);
+        System.out.println("Mot de passe encodé : " + mdp_enc);
+        int id = -1; // Initialisez à une valeur par défaut
+        String req = "SELECT * FROM user1 WHERE username ='" + email + "' AND password ='" + mdp_enc + "' AND roles = '[\"ROLE_USER\"]'";
+        System.out.println("Requête SQL : " + req);
         try {
             ste = cnx.createStatement();
-            // ResultSet rs = st.executeQuery(request);
             ResultSet rs = ste.executeQuery(req);
-            rs.next();
-            id = rs.getInt(1);
-
-            System.out.println(id);
-            return id;
+            if (rs.next()) { // Vérifiez s'il y a des résultats
+                id = rs.getInt(1); // Extrait l'ID seulement si des résultats sont trouvés
+                System.out.println("Connexion réussie pour l'utilisateur avec l'ID : " + id);
+            } else {
+                System.out.println("Aucun utilisateur correspondant trouvé.");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
-            //  System.out.println("l'utilisateur n'existe pas ");
-            return -1;
         }
-
+        return id;
     }
+
+
+
 
     public int Login1(String email, String password) {
-        String mdp_enc =  EncryptMdp(password) ;
-        int id1;
-        String req = "SELECT * FROM user1 WHERE username ='" + email + "'AND password ='" + mdp_enc  + "' AND roles = '[\"ROLE_ADMIN\"]'";
+        String mdp_enc = EncryptMdp(password);
+        int id1 = -1; // Initialisez à une valeur par défaut
+        String req = "SELECT * FROM user1 WHERE username ='" + email + "' AND password ='" + mdp_enc + "' AND roles = '[\"ROLE_ADMIN\"]'";
         try {
             ste = cnx.createStatement();
-            // ResultSet rs = st.executeQuery(request);
             ResultSet rs = ste.executeQuery(req);
-            rs.next();
-            id1 = rs.getInt(1);
-
-            System.out.println(id1);
-            return id1;
+            if (rs.next()) { // Vérifiez s'il y a des résultats
+                id1 = rs.getInt(1); // Extrait l'ID seulement si des résultats sont trouvés
+                System.out.println(id1);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
-            //  System.out.println("l'utilisateur n'existe pas ");
-            return -1;
         }
-
+        return id1;
     }
+
+
+
     public User1 getbyemail_user(String a) {
         User1 c = new User1();
         String request;

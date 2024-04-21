@@ -3,6 +3,8 @@ package EDU.userjava1.controllers;
 import EDU.userjava1.entities.User1;
 import EDU.userjava1.interfaces.MyListener;
 import EDU.userjava1.services.UserServices;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -62,8 +65,7 @@ public class userliste implements Initializable {
     @FXML
     private ScrollPane scroll;
 
-    @FXML
-    private Button supprimer;
+
     private List<User1> fruits = new ArrayList<>();
     private Image image;
     private MyListener myListener;
@@ -72,12 +74,12 @@ public class userliste implements Initializable {
     private List<User1> getData() {
         List<User1> fruits = new ArrayList<>();
 
-        fruits =gs.afficheruser();
-
+        fruits = gs.afficheruser();
 
 
         return fruits;
     }
+
     private void setChosenFruit(User1 fruit) {
         role.setText(fruit.getRoles());
         //image = new Image(getClass().getResourceAsStream(fruit.getImgSrc()));
@@ -85,11 +87,12 @@ public class userliste implements Initializable {
         nom.setText(fruit.getName());
         prenom.setText(fruit.getPrenom());
         email.setText(fruit.getUsername());
-      //  adresse.setText(fruit.getAdress());
+        //  adresse.setText(fruit.getAdress());
         jeton.setText(String.valueOf(fruit.getNumero()));
 
 
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fruits.addAll(getData());
@@ -115,7 +118,7 @@ public class userliste implements Initializable {
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 ItemController itemController = fxmlLoader.getController();
-                itemController.setData(fruits.get(i),myListener);
+                itemController.setData(fruits.get(i), myListener);
 
                 if (column == 3) {
                     column = 0;
@@ -137,17 +140,16 @@ public class userliste implements Initializable {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }}
+        }
+    }
 
     @FXML
     void profile(ActionEvent event) {
 
     }
 
-    @FXML
-    void supprimer(ActionEvent event) {
-        gs.supprimeruser(Integer.valueOf(id.getText()));
 
-    }
+
+
 
 }
