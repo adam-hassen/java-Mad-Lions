@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="452.0" prefWidth="659.0" stylesheets="@../css/AjouterEcoDepot.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Recyclage.controllers.AjouterEcodepot">
+<AnchorPane prefHeight="452.0" prefWidth="659.0" stylesheets="@../CSS/AjouterEcoDepot.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Recyclage.controllers.AjouterEcodepot">
    <children>
       <TextField fx:id="nomTF" layoutX="225.0" layoutY="76.0" prefHeight="40.0" promptText="nom" />
       <TextField fx:id="adresseTF" layoutX="225.0" layoutY="124.0" prefHeight="40.0" promptText="adresse" />

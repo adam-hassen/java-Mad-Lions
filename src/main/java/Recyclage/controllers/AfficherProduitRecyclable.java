@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import Recyclage.entities.ProduitRecyclable;
 import Recyclage.services.ProduitRecyclableMethodes;
+import Recyclage.tests.HelloApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,12 +19,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image.ImageType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AfficherProduitRecyclable {
@@ -38,7 +39,11 @@ public class AfficherProduitRecyclable {
     @FXML
     private Button ajouterButton;
     @FXML
-    private MediaView mediaView;
+    private TextField BarreDeRecherche;
+
+    @FXML
+    private Button Diagnistique;
+
 
     @FXML
     void AjouterProduitRecyclable(ActionEvent event) {
@@ -61,39 +66,53 @@ public class AfficherProduitRecyclable {
 
     @FXML
     void initialize() {
-     //   String videoPath = "src/main/resources/css/Images/VIDEO3.mp4";
-       // Media = new Media(new File(videoPath).toURI().toString());
-       // MediaPlayer mediaPlayer = new MediaPlayer(media);
-        //mediaView.setMediaPlayer(mediaPlayer);
-        //mediaPlayer.setVolume(0);
-       // mediaView.toBack();
-       // mediaPlayer.play();
-      // mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
-
         // Obtenir la liste des produits recyclables
         ProduitRecyclableMethodes produitRecyclableMethodes = new ProduitRecyclableMethodes();
         listeProduits = produitRecyclableMethodes.listeDesProduits();
 
         // Créer et configurer la pagination
         pagination = new Pagination((int) Math.ceil(listeProduits.size() / (double) ITEMS_PER_PAGE), 0);
-        pagination.setPageFactory(this::createPage);
+        pagination.setPageFactory(pageIndex -> createPage(pageIndex, listeProduits));
 
         // Ajouter la pagination à votre conteneur
         carteContainer.getChildren().add(pagination);
+        BarreDeRecherche.textProperty().addListener((observable, oldValue, newValue) -> {
+            rechercheProduit(newValue);
+        });
     }
 
-    private VBox createPage(int pageIndex) {
+
+    private void rechercheProduit(String terme) {
+        // Créer une liste temporaire pour stocker les résultats de la recherche
+        List<ProduitRecyclable> produitsTrouves = new ArrayList<>();
+
+        // Parcourir la liste des produits et ajouter ceux correspondant au terme de recherche à la liste temporaire
+        for (ProduitRecyclable produit : listeProduits) {
+            if (produit.getNom().toLowerCase().contains(terme.toLowerCase())) {
+                produitsTrouves.add(produit);
+            }
+        }
+
+        // Mettre à jour les cartes affichées avec les résultats de la recherche
+        carteContainer.getChildren().clear(); // Effacer les cartes précédentes
+        pagination = new Pagination((int) Math.ceil(produitsTrouves.size() / (double) ITEMS_PER_PAGE), 0);
+        pagination.setPageFactory(pageIndex -> createPage(pageIndex, produitsTrouves));
+        carteContainer.getChildren().add(pagination);
+    }
+
+    private VBox createPage(int pageIndex, List<ProduitRecyclable> produits) {
         VBox vbox = new VBox(10);
         int startIndex = pageIndex * ITEMS_PER_PAGE;
-        int endIndex = Math.min(startIndex + ITEMS_PER_PAGE, listeProduits.size());
+        int endIndex = Math.min(startIndex + ITEMS_PER_PAGE, produits.size());
 
         for (int i = startIndex; i < endIndex; i++) {
-            AnchorPane carteProduit = createCarteProduit(listeProduits.get(i));
+            AnchorPane carteProduit = createCarteProduit(produits.get(i));
             vbox.getChildren().add(carteProduit);
         }
 
         return vbox;
     }
+
 
     private AnchorPane createCarteProduit(ProduitRecyclable produit) {
         // Créer le conteneur principal de la carte produit
@@ -281,5 +300,20 @@ public class AfficherProduitRecyclable {
         alert.setHeaderText(null);
         alert.setContentText(s);
         alert.showAndWait();
+    }
+    @FXML
+    void Diagnostique(ActionEvent event) {
+        Stage stage = new Stage();
+        // Charger la nouvelle vue ou créer une nouvelle fenêtre
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/ProduitRecyclable/Diagnosrique.fxml"));
+        try {
+            stage.setScene(new Scene(fxmlLoader.load()));
+            stage.show();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

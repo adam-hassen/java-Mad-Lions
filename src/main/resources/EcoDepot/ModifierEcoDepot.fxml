@@ -8,17 +8,17 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Recyclage.controllers.ModifierEcodepot">
    <children>
-      <TextField fx:id="nomTFM" layoutX="199.0" layoutY="56.0" prefHeight="40.0" promptText="nom" stylesheets="@../css/Style.css" />
-      <TextField fx:id="adresseTFM" layoutX="199.0" layoutY="104.0" prefHeight="40.0" promptText="adresse" stylesheets="@../css/Style.css" />
-      <TextField fx:id="capaciteStockageTFM" layoutX="199.0" layoutY="217.0" prefHeight="40.0" promptText="capacite_stockage " stylesheets="@../css/Style.css" />
-      <ComboBox fx:id="ComboBoxTFM" layoutX="200.0" layoutY="157.0" prefHeight="46.0" prefWidth="201.0" promptText="type" stylesheets="@../css/Style.css" />
-      <ComboBox fx:id="ComboBoxTF1M" layoutX="199.0" layoutY="277.0" prefHeight="46.0" prefWidth="202.0" promptText="statut_point_collecte" stylesheets="@../css/Style.css" />
+      <TextField fx:id="nomTFM" layoutX="199.0" layoutY="56.0" prefHeight="40.0" promptText="nom" stylesheets="@../CSS/AfficherEcodepot.css" />
+      <TextField fx:id="adresseTFM" layoutX="199.0" layoutY="104.0" prefHeight="40.0" promptText="adresse" stylesheets="@../CSS/AfficherEcodepot.css" />
+      <TextField fx:id="capaciteStockageTFM" layoutX="199.0" layoutY="217.0" prefHeight="40.0" promptText="capacite_stockage " stylesheets="@../CSS/AfficherEcodepot.css" />
+      <ComboBox fx:id="ComboBoxTFM" layoutX="200.0" layoutY="157.0" prefHeight="46.0" prefWidth="201.0" promptText="type" stylesheets="@../CSS/AfficherEcodepot.css" />
+      <ComboBox fx:id="ComboBoxTF1M" layoutX="199.0" layoutY="277.0" prefHeight="46.0" prefWidth="202.0" promptText="statut_point_collecte" stylesheets="@../CSS/AfficherEcodepot.css" />
       <Button layoutX="199.0" layoutY="347.0" mnemonicParsing="false" onAction="#Modifier" style="-fx-background-color: #212E53;" text="Modifier" />
       <Button layoutX="308.0" layoutY="347.0" mnemonicParsing="false" onAction="#Supprimer" style="-fx-background-color: #A7001E;" text="Supprimer" />
       <TextField fx:id="idFx" disable="true" layoutX="-22.0" layoutY="-18.0" prefHeight="0.0" prefWidth="21.0" style="-fx-background-color: transparent;" />
    </children>
    <stylesheets>
-      <URL value="@../css/Style.css" />
-      <URL value="@../css/AjouterEcoDepot.css" />
+      <URL value="@../CSS/AfficherEcodepot.css" />
+      <URL value="@../CSS/AjouterEcoDepot.css" />
    </stylesheets>
 </AnchorPane>

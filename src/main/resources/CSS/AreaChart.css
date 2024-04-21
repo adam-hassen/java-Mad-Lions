@@ -1,0 +1,62 @@
+/* Styling the background of the chart */
+.chart {
+    -fx-background-color: #A3BBAE; /* Couleur de fond sombre */
+}
+
+/* Styling the area fill of the data series */
+.default-color0.chart-series-area-fill {
+    -fx-fill: linear-gradient(to bottom, #003E1C, #75BB99); /* Dégradé de violet à bleu */
+}
+
+/* Styling the axes labels */
+.chart-axis-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff; /* Texte en blanc */
+}
+
+/* Styling the chart title */
+.chart-title {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+/* Styling the chart legend */
+.chart-legend {
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+    -fx-text-fill: #cccccc; /* Légende en gris clair */
+}
+
+/* Styling the tooltip */
+.chart-area-tooltip {
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: rgba(0, 0, 0, 0.8); /* Fond noir semi-transparent */
+    -fx-background-radius: 5;
+    -fx-padding: 5px;
+}
+
+/* Styling the grid lines */
+.chart-vertical-grid-lines {
+    -fx-stroke: #555555; /* Lignes de grille gris foncé */
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: #555555;
+}
+
+/* Styling the symbol used for data points */
+.default-color0.chart-line-symbol {
+    -fx-background-color: #3498db, #292929; /* Symbole bleu, fond sombre */
+    -fx-shape: "M -5 -5 L 5 5 M -5 5 L 5 -5";
+    -fx-opacity: 0;
+    -fx-transition: opacity 2s;
+}
+
+.default-color0.chart-line-symbol:hover {
+    -fx-opacity: 1;
+}
+
