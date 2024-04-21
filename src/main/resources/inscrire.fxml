@@ -6,9 +6,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.inscrire">
    <children>
@@ -21,6 +22,16 @@
                </stylesheets>
                <children>
                   <Button fx:id="login111" layoutX="144.0" layoutY="495.0" mnemonicParsing="false" onAction="#login" prefHeight="44.0" prefWidth="143.0" style="-fx-background-color: ffff;" styleClass="btn_workbench11" stylesheets="@style/style.css" text="login" />
+                  <ImageView fitHeight="332.0" fitWidth="332.0" layoutX="88.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/banner-01.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="81.0" fitWidth="389.0" layoutX="18.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/Sans%20titre-1.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
             <Label layoutX="169.0" layoutY="20.0" text="sign up" textFill="WHITE">

@@ -13,10 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.profile">
    <children>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="636.0" prefWidth="1230.0" style="-fx-background-color: #5e9833;">
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="636.0" prefWidth="1230.0" style="-fx-background-color: edf5eb;">
          <left>
             <VBox prefHeight="628.0" prefWidth="329.0" style="-fx-background-color: #71b63e;" BorderPane.alignment="CENTER">
                <children>
@@ -107,9 +106,9 @@
             </VBox>
          </left>
          <center>
-            <VBox prefHeight="662.0" prefWidth="880.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="662.0" prefWidth="880.0" style="-fx-background-color: edf5eb;" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="TOP_RIGHT" prefHeight="42.0" prefWidth="880.0">
+                  <HBox alignment="TOP_RIGHT" prefHeight="42.0" prefWidth="880.0" style="-fx-background-color: edf5eb;">
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -118,19 +117,19 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="80.0" prefWidth="880.0">
+                  <HBox alignment="CENTER" prefHeight="80.0" prefWidth="880.0" style="-fx-background-color: edf5eb;">
                      <children>
-                        <Label text="Bienvenue!  " textFill="#aec9d9">
+                        <Label text="Bienvenue!  " textFill="#757647">
                            <font>
                               <Font name="System Italic" size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="nom" prefHeight="35.0" prefWidth="143.0" text="NAME " textFill="#aec9d9">
+                        <Label fx:id="nom" prefHeight="35.0" prefWidth="106.0" text="NAME " textFill="#757647">
                            <font>
                               <Font name="System Italic" size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="prenom" prefHeight="33.0" prefWidth="230.0" text="PRENOM" textFill="#aec9d9">
+                        <Label fx:id="prenom" prefHeight="33.0" prefWidth="230.0" text="PRENOM" textFill="#757647">
                            <font>
                               <Font name="System Italic" size="24.0" />
                            </font>
@@ -139,7 +138,7 @@
                   </HBox>
                   <HBox prefHeight="287.0" prefWidth="880.0">
                      <children>
-                        <VBox prefHeight="246.0" prefWidth="250.0">
+                        <VBox prefHeight="246.0" prefWidth="250.0" style="-fx-background-color: edf5eb;">
                            <children>
                               <Pane fx:id="pane_131" prefHeight="74.0" prefWidth="250.0" style="-fx-background-color: #afc885;" styleClass="pane_11" stylesheets="@style/style.css">
                                  <children>
@@ -182,10 +181,10 @@
                               </Pane>
                            </children>
                         </VBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: edf5eb;" />
                         <VBox prefHeight="287.0" prefWidth="435.0">
                            <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="92.0" prefWidth="434.0" />
+                              <HBox alignment="CENTER_LEFT" prefHeight="92.0" prefWidth="434.0" style="-fx-background-color: edf5eb;" />
                               <HBox prefHeight="179.0" prefWidth="434.0">
                                  <children>
                                     <Pane fx:id="pane_132" prefHeight="179.0" prefWidth="454.0" style="-fx-border-color: #000000; -fx-background-color: green;" styleClass="pane_11" stylesheets="@../../../../../Downloads/Compressed/Utilisateur%20(integration)_2/Utilisateur/src/main/resources/style/style.css">
@@ -213,7 +212,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="178.0" prefWidth="880.0">
+                  <HBox prefHeight="178.0" prefWidth="880.0" style="-fx-background-color: edf5eb;">
                      <children>
                         <Pane fx:id="pane_1111" prefHeight="175.0" prefWidth="307.0" style="-fx-background-color: #afc885;" styleClass="pane_1111" stylesheets="@style/style.css">
                            <children>

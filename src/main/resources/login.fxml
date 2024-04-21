@@ -7,6 +7,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -20,7 +22,6 @@
                   <Button fx:id="LoginButton1" layoutX="102.0" layoutY="216.0" mnemonicParsing="false" onAction="#LoginButtonOnAction" prefHeight="44.0" prefWidth="249.0" style="-fx-background-color: ffff;" styleClass="btn_workbench11" stylesheets="@style/style.css" text="Login" />
                   <Label fx:id="LoginMessageLabel1" layoutX="61.0" layoutY="321.0" prefHeight="21.0" prefWidth="284.0" textAlignment="CENTER" textFill="#bf1b1b" />
                   <PasswordField fx:id="PasswordLabel1" layoutX="100.0" layoutY="129.0" prefHeight="35.0" prefWidth="256.0" promptText="           Password" style="-fx-background-color: #f3fafa; -fx-border-color: 0;" styleClass="pane_1111" stylesheets="@style/style.css" />
-                  <Button fx:id="SignupButton1" layoutX="106.0" layoutY="265.0" mnemonicParsing="false" onAction="#openSignUpInterface" prefHeight="44.0" prefWidth="249.0" style="-fx-background-color: ffff;" styleClass="btn_workbench11" stylesheets="@style/style.css" text="Sign up" />
                   <CheckBox fx:id="showPasswordCheckbox1" layoutX="231.0" layoutY="182.0" mnemonicParsing="false" styleClass="btn_workbench11" text="Show password" textFill="WHITE" />
                   <Hyperlink fx:id="forget1" layoutX="161.0" layoutY="317.0" onAction="#openForgetPassword" prefHeight="29.0" prefWidth="194.0" text="Forget Password?" />
                   <Label layoutX="101.0" layoutY="14.0" prefHeight="39.0" prefWidth="119.0" text="Email" textAlignment="CENTER" textFill="WHITE" wrapText="true">
@@ -35,11 +36,24 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="side_ankerpane1" prefHeight="595.0" prefWidth="430.0" style="-fx-background-color: #f3fafa;" styleClass="side_ankerpane">
+            <AnchorPane fx:id="side_ankerpane1" prefHeight="595.0" prefWidth="418.0" style="-fx-background-color: #f3fafa;" styleClass="side_ankerpane">
                <stylesheets>
                   <URL value="@../../../../../Downloads/Compressed/Utilisateur%20(integration)_2/Utilisateur/src/main/resources/style/style.css" />
                   <URL value="@style/style.css" />
                </stylesheets>
+               <children>
+                  <ImageView fitHeight="81.0" fitWidth="373.0" layoutX="29.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/Sans%20titre-1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="332.0" fitWidth="332.0" layoutX="58.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/banner-01.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="SignupButton1" layoutX="69.0" layoutY="445.0" mnemonicParsing="false" onAction="#openSignUpInterface" prefHeight="44.0" prefWidth="249.0" style="-fx-background-color: ffff;" styleClass="btn_workbench11" stylesheets="@style/style.css" text="Sign up" />
+               </children>
             </AnchorPane>
             <Label layoutX="545.0" layoutY="64.0" text="Login" textFill="WHITE">
                <font>
