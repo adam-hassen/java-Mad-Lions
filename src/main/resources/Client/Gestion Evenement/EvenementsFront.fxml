@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.ScrollPane?>
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="1000.0" stylesheets="@/CSS/Home.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.EvenementsFrontController">
+    <children>
+        <HBox alignment="CENTER_LEFT" spacing="20.0" prefHeight="400.0" prefWidth="800.0">
+            <children>
+                <VBox  styleClass="sidebar" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <children>
+                        <VBox fx:id="vboxside" styleClass="sidebar-container" spacing="10.0" >
+                            <Label text="Home" styleClass="sidebar-label">
+                                <font>
+                                    <Font name="System Bold" size="16.0" />
+                                </font>
+                            </Label>
+                            <Line startX="0.0" startY="0.0" endX="140.0" endY="0.0" stroke="white" strokeWidth="2.0" />
+                            <Label text="Consommation" styleClass="sidebar-label">
+                                <font>
+                                    <Font name="System Bold" size="16.0" />
+                                </font>
+                            </Label>
+                            <Line startX="0.0" startY="0.0" endX="140.0" endY="0.0" stroke="white" strokeWidth="2.0" />
+                            <Label text="Evenements" styleClass="sidebar-label">
+                                <font>
+                                    <Font name="System Bold" size="16.0" />
+                                </font>
+                            </Label>
+                            <Line startX="0.0" startY="0.0" endX="140.0" endY="0.0" stroke="white" strokeWidth="2.0" />
+                            <Label text="Produits" styleClass="sidebar-label">
+                                <font>
+                                    <Font name="System Bold" size="16.0" />
+                                </font>
+                            </Label>
+                            <Line startX="0.0" startY="0.0" endX="140.0" endY="0.0" stroke="white" strokeWidth="2.0" />
+                            <Label text="Recyclages" styleClass="sidebar-label">
+                                <font>
+                                    <Font name="System Bold" size="16.0" />
+                                </font>
+                            </Label>
+                            <Line startX="0.0" startY="0.0" endX="140.0" endY="0.0" stroke="white" strokeWidth="2.0" />
+                            <Label text="Workshops" styleClass="sidebar-label">
+                                <font>
+                                    <Font name="System Bold" size="16.0" />
+                                </font>
+                            </Label>
+                            <Line startX="0.0" startY="0.0" endX="140.0" endY="0.0" stroke="white" strokeWidth="2.0" />
+                        </VBox>
+                        <ListView fx:id="sidebarListView" styleClass="sidebar-list" prefHeight="160.0" />
+                        <VBox styleClass="image-container" alignment="CENTER">
+                            <StackPane styleClass="image-wrapper">
+                                <ImageView>
+                                    <image>
+                                        <Image url="/CSS/Images/ecogardien.png" />
+                                    </image>
+                                    <fitHeight>130.0</fitHeight>
+                                    <fitWidth>130.0</fitWidth>
+                                    <preserveRatio>true</preserveRatio>
+                                </ImageView>
+                            </StackPane>
+                        </VBox>
+                    </children>
+                </VBox>
+                <ScrollPane fitToWidth="true" styleClass="scroll-gestion" VBox.vgrow="ALWAYS">
+                <VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" stylesheets="@/CSS/Home.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" >
+                    <children>
+                        <VBox styleClass="middle-container" alignment="CENTER" spacing="20.0" prefHeight="600.0" prefWidth="800.0">
+                        <children>
+                            <ImageView fitHeight="33.0" fitWidth="155.0">
+                                <image>
+                                    <Image url="@../../CSS/Images/ecogardien.png" />
+                                </image>
+
+                            </ImageView>
+                            <Label alignment="CENTER" text="Liste Des Evenements Disponibles" textFill="#218d00" textOverrun="CENTER_WORD_ELLIPSIS">
+                                <font>
+                                    <Font name="System Italic" size="26.0" />
+                                </font>
+                                <style>
+                                    -fx-font-family: "Arial";
+                                    -fx-font-weight: bold;
+                                    -fx-background-color: #f0f0f0; /* Couleur de fond */
+                                    -fx-padding: 10px; /* Espacement interne */
+                                    -fx-border-color: #ddd; /* Couleur de la bordure */
+                                    -fx-border-width: 1px; /* Largeur de la bordure */
+                                    -fx-border-radius: 5px; /* Rayon de la bordure */
+                                </style>
+                                <VBox.margin>
+                                    <Insets bottom="70.0" />
+                                </VBox.margin></Label>
+                            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                                <children>
+                                    <TextField fx:id="searchField" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="216.0" promptText="Rechercher par titre...">
+                                        <HBox.margin>
+                                            <Insets right="10.0" />
+                                        </HBox.margin>
+                                    </TextField>
+                                    <ComboBox fx:id="triComboBox" prefHeight="30.0" prefWidth="216.0">
+                                        <items>
+                                            <FXCollections fx:factory="observableArrayList">
+                                                <String fx:value="Date" />
+                                                <String fx:value="Titre" />
+                                                <String fx:value="Lieu" />
+                                            </FXCollections>
+                                        </items>
+                                        <opaqueInsets>
+                                            <Insets />
+                                        </opaqueInsets>
+                                        <HBox.margin>
+                                            <Insets left="10.0" />
+                                        </HBox.margin>
+                                    </ComboBox>
+                                </children>
+                            </HBox>
+                            <FlowPane fx:id="flowPane" prefHeight="239.0" prefWidth="617.0">
+                                <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                </VBox.margin>
+                                <padding>
+                                    <Insets left="65.0" />
+                                </padding></FlowPane>
+                            <HBox alignment="CENTER">
+                                <Button fx:id="prevButton" text="Précédent">
+                                    <HBox.margin>
+                                        <Insets right="30.0" />
+                                    </HBox.margin></Button>
+                                <Label fx:id="lblPage" alignment="CENTER" prefHeight="17.0" prefWidth="20.0" text="" textFill="#386523" />
+                                <Label fx:id="lblTotalPages" alignment="CENTER" prefHeight="17.0" prefWidth="100.0" text="" textFill="#124d06" />
+                                <Button fx:id="nextButton" text="Suivant" />
+                            </HBox>
+                            <VBox fx:id="vbox" alignment="CENTER" prefHeight="47.0" prefWidth="698.0">
+                                <Label fx:id="lblJoursRestants" text="Label">
+
+                                </Label>
+                            </VBox>
+                        </children>
+
+                    </VBox>
+                    </children>
+                </VBox>
+                </ScrollPane>
+            </children>
+        </HBox>
+    </children>
+</VBox>
+

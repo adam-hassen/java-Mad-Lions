@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.ButtonBar?>
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="1000.0" stylesheets="@/CSS/Home.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.EvenementsController">
+    <children>
+        <HBox alignment="CENTER_LEFT" spacing="20.0" prefHeight="400.0" prefWidth="800.0">
+            <children>
+                <VBox  styleClass="sidebar" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <children>
+                        <VBox fx:id="vboxside" styleClass="sidebar-container" spacing="10.0" >
+                            <Label text="Home" styleClass="sidebar-label">
+                                <font>
+                                    <Font name="System Bold" size="16.0" />
+                                </font>
+                            </Label>
+                            <Line startX="0.0" startY="0.0" endX="140.0" endY="0.0" stroke="white" strokeWidth="2.0" />
+                            <Label text="Consommation" styleClass="sidebar-label">
+                                <font>
+                                    <Font name="System Bold" size="16.0" />
+                                </font>
+                            </Label>
+                            <Line startX="0.0" startY="0.0" endX="140.0" endY="0.0" stroke="white" strokeWidth="2.0" />
+                            <Label text="Evenements" styleClass="sidebar-label">
+                                <font>
+                                    <Font name="System Bold" size="16.0" />
+                                </font>
+                            </Label>
+                            <Line startX="0.0" startY="0.0" endX="140.0" endY="0.0" stroke="white" strokeWidth="2.0" />
+                            <Label text="Produits" styleClass="sidebar-label">
+                                <font>
+                                    <Font name="System Bold" size="16.0" />
+                                </font>
+                            </Label>
+                            <Line startX="0.0" startY="0.0" endX="140.0" endY="0.0" stroke="white" strokeWidth="2.0" />
+                            <Label text="Recyclages" styleClass="sidebar-label">
+                                <font>
+                                    <Font name="System Bold" size="16.0" />
+                                </font>
+                            </Label>
+                            <Line startX="0.0" startY="0.0" endX="140.0" endY="0.0" stroke="white" strokeWidth="2.0" />
+                            <Label text="Workshops" styleClass="sidebar-label">
+                                <font>
+                                    <Font name="System Bold" size="16.0" />
+                                </font>
+                            </Label>
+                            <Line startX="0.0" startY="0.0" endX="140.0" endY="0.0" stroke="white" strokeWidth="2.0" />
+                        </VBox>
+                        <ListView fx:id="sidebarListView" styleClass="sidebar-list" prefHeight="160.0" />
+                        <VBox styleClass="image-container" alignment="CENTER">
+                            <StackPane styleClass="image-wrapper">
+                                <ImageView>
+                                    <image>
+                                        <Image url="/CSS/Images/ecogardien.png" />
+                                    </image>
+                                    <fitHeight>130.0</fitHeight>
+                                    <fitWidth>130.0</fitWidth>
+                                    <preserveRatio>true</preserveRatio>
+                                </ImageView>
+                            </StackPane>
+                        </VBox>
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" stylesheets="@/CSS/Home.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" >
+                    <children>
+                        <AnchorPane styleClass="middle-container" prefHeight="600.0" prefWidth="800.0">
+                            <children>
+                                <VBox layoutX="33.0" layoutY="35.0" prefHeight="100.0" prefWidth="300.0" spacing="5.0" AnchorPane.bottomAnchor="99.0" AnchorPane.rightAnchor="357.0" AnchorPane.topAnchor="100.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="Titre de l'evenement" wrappingWidth="190.3359375" />
+                                        <TextField fx:id="tTitre" promptText="Écrivez ici le titre de votre événement" />
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="Lieu de l'evenement" />
+                                        <TextField fx:id="tLieu" prefHeight="25.0" prefWidth="252.0" promptText="Écrivez ici le lieu de votre événement" />
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="Date de l'evenement" />
+                                        <DatePicker fx:id="tDate" prefHeight="25.0" prefWidth="301.0" promptText="Choisissez ici la date de votre événement" />
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="Description de l'evenement" />
+                                        <TextArea fx:id="tDescription" prefHeight="69.0" prefWidth="300.0" promptText="Écrivez ici la description de votre événement" />
+                                    </children>
+                                </VBox>
+                                <TableView fx:id="table" layoutX="368.0" layoutY="111.0" onMouseClicked="#getData" prefHeight="267.0" prefWidth="300.0" AnchorPane.topAnchor="120.0">
+                                    <columns>
+                                        <TableColumn fx:id="colTitre" prefWidth="62.0" text="Titre" />
+                                        <TableColumn fx:id="colLieu" prefWidth="74.0" text="Lieu" />
+                                        <TableColumn fx:id="colDate" prefWidth="67.0" text="Date" />
+                                        <TableColumn fx:id="colDescription" prefWidth="97.0" text="Description" />
+                                    </columns>
+                                </TableView>
+                                <ButtonBar layoutX="10.0" layoutY="409.0" prefHeight="38.0" prefWidth="658.0">
+                                    <buttons>
+                                        <Button fx:id="btnEnregistrer" mnemonicParsing="false" onAction="#createEvenement" prefHeight="47.0" text="Enregistrer">
+                                            <graphic>
+                                                <Label style="-fx-font-size: 16px; -fx-text-fill: white;" text="💾" />
+                                            </graphic>
+                                        </Button>
+
+                                        <Button fx:id="btnModifier" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" onAction="#updateEvenement" text="Modifier">
+                                            <graphic>
+                                                <Label style="-fx-font-size: 16px; -fx-text-fill: white;" text="✏" />
+                                            </graphic>
+                                        </Button>
+
+                                        <Button fx:id="btnSupprimer" layoutX="50.0" layoutY="18.0" mnemonicParsing="false" onAction="#deleteEvenement" text="Supprimer">
+                                            <graphic>
+                                                <Label style="-fx-font-size: 16px; -fx-text-fill: white;" text="🗑" />
+                                            </graphic>
+                                        </Button>
+
+                                        <Button fx:id="btnEffacer" layoutX="30.0" layoutY="18.0" mnemonicParsing="false" onAction="#clearField" text="Effacer">
+                                            <graphic>
+                                                <Label style="-fx-font-size: 16px; -fx-text-fill: white;" text="🔄" />
+                                            </graphic>
+                                        </Button>
+
+                                        <Button fx:id="btnCalendrier" layoutX="30.0" layoutY="18.0" onAction="#openCalendarPage" text="Calendrier des événements">
+                                            <graphic>
+                                                <Label style="-fx-font-size: 16px; -fx-text-fill: white;" text="📅" />
+                                            </graphic>
+                                        </Button>
+
+                                    </buttons>
+                                </ButtonBar>
+                                <Label layoutX="247.0" layoutY="25.0" prefHeight="62.0" prefWidth="230.0" styleClass="title-label" text="Evenements" />
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</VBox>
+

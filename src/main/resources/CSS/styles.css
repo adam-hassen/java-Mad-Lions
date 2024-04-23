@@ -1,0 +1,200 @@
+.root {
+    -fx-background-image: url('Images/back.jpg');
+    -fx-background-size: cover;
+}
+
+/* side bar */
+.sidebar {
+    -fx-background-color: linear-gradient(to bottom, #8BC34A, #4CAF50);
+    -fx-background-radius: 10;
+    -fx-pref-height: 300.0;
+    -fx-pref-width: 150.0;
+}
+.sidebar-label {
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-padding: 5 0 5 5;
+    -fx-cursor: hand;
+    -fx-background-radius: 5;
+    -fx-background-insets: 0;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0);
+    -fx-transition-duration: 0.3s;
+    -fx-font-size: 16px;
+}
+
+.sidebar-label:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-effect: dropshadow(three-pass-box, rgb(169, 169, 169), 10, 0, 0, 0);
+}
+
+.sidebar-list {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-max-height: 250.0;
+}
+
+.sidebar-list .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-padding: 10 20 10 20;
+}
+
+.sidebar-list .list-cell:hover {
+    -fx-background-color: #34495e;
+    -fx-cursor: hand;
+}
+.middle-container {
+    -fx-background-color: rgba(128, 128, 128, 0.5);
+    -fx-padding: 200px 20px;
+    -fx-border-radius: 15px;
+}
+.image-wrapper {
+    -fx-background-color: white;
+    -fx-background-radius: 5%;
+    -fx-padding: 10px;
+}
+.button-home {
+    -fx-font-size: 18px;
+    -fx-padding: 10px 20px;
+    -fx-background-color: #28a745;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px;
+    -fx-border-color: #28a745;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 1);
+    -fx-transition: all 0.5s;
+}
+
+.button-home:hover {
+    -fx-background-color: transparent;
+    -fx-text-fill: #28a745;
+    -fx-border-color: #28a745;
+}
+/* Style pour les DatePicker */
+/* Style pour les DatePicker */
+.date-picker .date-cell {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333; /* Couleur de texte gris */
+}
+
+/* Style pour les éléments de date sélectionnés */
+.date-picker .selected-date-cell {
+    -fx-background-color: #4CAF50; /* Fond vert pour les dates sélectionnées */
+    -fx-text-fill: #fff; /* Texte blanc pour les dates sélectionnées */
+}
+/* Style des listes déroulantes */
+.combo-box {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 16px;
+    -fx-background-color: #fff; /* Fond blanc */
+    -fx-background-radius: 25px; /* Coins arrondis */
+    -fx-border-color: #ccc; /* Bordure gris clair */
+    -fx-border-width: 1px; /* Épaisseur de la bordure */
+    -fx-border-radius: 25px; /* Coins arrondis */
+}
+
+/* Style des options de la liste déroulante */
+.combo-box .list-cell {
+    -fx-text-fill: #555; /* Texte gris foncé */
+}
+
+/* Style des options de la liste déroulante au survol */
+.combo-box .list-cell:hover {
+    -fx-background-color: #f0f0f0; /* Fond gris très clair au survol */
+}
+/* Style des étiquettes */
+.label {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 18px;
+}
+
+/* Rest of the CSS code */
+/* ... */
+/* Style pour le champ de texte */
+.text-field {
+    -fx-background-color: #fff; /* Couleur de fond */
+    -fx-text-fill: #333; /* Couleur du texte */
+    -fx-font-size: 14px; /* Taille de la police */
+    -fx-padding: 8px; /* Espacement interne */
+    -fx-border-color: #2c3e31; /* Couleur de la bordure */
+    -fx-border-radius: 5px; /* Bord arrondi */
+}
+
+/* Style pour le bouton */
+.button {
+    -fx-background-color: #2c3e31; /* Couleur de fond */
+    -fx-text-fill: #fff; /* Couleur du texte */
+    -fx-font-size: 14px; /* Taille de la police */
+    -fx-padding: 10px 20px; /* Espacement interne */
+    -fx-border-color: #4a6351; /* Couleur de la bordure */
+    -fx-border-radius: 5px; /* Bord arrondi */
+}
+
+/* Style pour le label */
+.label {
+    -fx-text-fill: #2c3e31; /* Couleur du texte */
+    -fx-font-size: 16px; /* Taille de la police */
+}
+
+/* Style pour la zone de texte (TextArea) */
+.text-area {
+    -fx-background-color: #fff; /* Couleur de fond */
+    -fx-text-fill: #333; /* Couleur du texte */
+    -fx-font-size: 14px; /* Taille de la police */
+    -fx-padding: 8px; /* Espacement interne */
+    -fx-border-color: #2c3e31; /* Couleur de la bordure */
+    -fx-border-radius: 5px; /* Bord arrondi */
+}
+
+/* Style pour la liste déroulante (ComboBox) */
+.combo-box {
+    -fx-background-color: #fff; /* Couleur de fond */
+    -fx-text-fill: #333; /* Couleur du texte */
+    -fx-font-size: 14px; /* Taille de la police */
+    -fx-padding: 8px; /* Espacement interne */
+    -fx-border-color: #2c3e31; /* Couleur de la bordure */
+    -fx-border-radius: 5px; /* Bord arrondi */
+}
+
+/* Style pour la table */
+.table-view {
+    -fx-background-color: #fff; /* Couleur de fond */
+    -fx-text-fill: #333; /* Couleur du texte */
+    -fx-font-size: 14px; /* Taille de la police */
+}
+
+/* Style pour les cellules de la table */
+.table-cell {
+    -fx-background-color: #fff; /* Couleur de fond */
+    -fx-text-fill: #333; /* Couleur du texte */
+}
+
+/* Style pour la barre de défilement */
+.scroll-bar {
+    -fx-background-color: #2c3e31; /* Couleur de fond */
+}
+
+/* Style pour la barre de défilement (hover) */
+.scroll-bar:hover {
+    -fx-background-color: #4a6351; /* Couleur de fond au survol */
+}
+/* Style pour le titre */
+.title-label {
+    -fx-text-fill: #fff; /* Couleur du texte en blanc */
+    -fx-font-size: 28px; /* Taille de la police */
+    -fx-font-family: "Arial Black", sans-serif; /* Police de caractères */
+    -fx-padding: 10px 20px; /* Espacement interne */
+    -fx-background-color: #2c3e31; /* Couleur de fond verte sombre */
+    -fx-border-radius: 5px; /* Bord arrondi */
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,2,2 ); /* Ombre portée */
+}
+/* Style pour le texte */
+.text {
+    color: #333; /* Couleur du texte */
+    font-size: 16px; /* Taille de la police */
+    font-family: Arial, sans-serif; /* Police de caractères */
+    line-height: 1.5; /* Hauteur de ligne */
+    text-align: left; /* Alignement du texte */
+}

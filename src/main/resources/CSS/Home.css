@@ -46,13 +46,26 @@
 }
 .middle-container {
     -fx-background-color: rgba(128, 128, 128, 0.5);
-    -fx-padding: 200px 20px;
-    -fx-border-radius: 15px;
+    -fx-padding: 20px 20px;
+}
+.image-container {
+    -fx-padding: 10px;
 }
 .image-wrapper {
     -fx-background-color: white;
-    -fx-background-radius: 5%;
-    -fx-padding: 10px;
+    -fx-background-radius: 10%;
+    -fx-background-image: url('Images/ecogardien.png');
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-pref-width: 50px;
+    -fx-pref-height: 50px;
+}
+.scroll-gestion{
+    -fx-background-color: transparent;
+}
+.scroll-gestion .viewport{
+    -fx-background-color: transparent;
 }
 .button-home {
     -fx-font-size: 18px;
@@ -66,7 +79,24 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 1);
     -fx-transition: all 0.5s;
 }
-
+.button-liste {
+    -fx-font-size: 14px;
+    -fx-padding: 5px 5px;
+    -fx-background-color: #28a745;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px;
+    -fx-border-color: #28a745;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 1);
+    -fx-transition: all 0.5s;
+}
+.containerView {
+    -fx-background-color: rgba(128, 128, 128, 0.1);
+    -fx-border-radius: 10px;
+    -fx-border-color: grey;
+    -fx-border-width: 1px;
+}
 .button-home:hover {
     -fx-background-color: transparent;
     -fx-text-fill: #28a745;
@@ -110,5 +140,47 @@
     -fx-font-size: 18px;
 }
 
+.item-container {
+    -fx-background-color: #ddd;
+    -fx-padding: 10px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
+}
+
+/* Style for the text fields within the item container */
+.container-view {
+    -fx-background-color: rgba(128, 128, 128, 0.1);
+    -fx-border-radius: 10px;
+    -fx-border-width: 0px;
+    -fx-border-color: grey;
+    -fx-border-width: 1px;
+    -fx-padding: 10px;
+    -fx-spacing: 20px;
+}
+.Titre {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 36px;
+    -fx-text-fill: #FFFFF0;
+}
+#itemBox {
+    -fx-background-color: linear-gradient(to bottom, #8BC34A, #4CAF50);
+    -fx-padding: 10px; /* Add padding */
+    -fx-spacing: 15px; /* Add spacing between children */
+    -fx-border-color: #fff; /* Set border color */
+    -fx-border-width: 1px; /* Set border width */
+    -fx-border-radius: 5px; /* Set border radius */
+}
+
+#itemBox TextField {
+    -fx-background-color: transparent; /* Make TextField background transparent */
+    -fx-text-fill: white; /* Set text color to white */
+    -fx-font-size: 14px; /* Adjust font size */
+    -fx-prompt-text-fill: #999999; /* Set prompt text color */
+    -fx-border-color: #CCCCCC; /* Add border color */
+    -fx-border-radius: 5px; /* Add border radius */
+    -fx-border-width: 1px; /* Add border width */
+    -fx-padding: 5px; /* Add padding */
+}
 /* Rest of the CSS code */
 /* ... */
