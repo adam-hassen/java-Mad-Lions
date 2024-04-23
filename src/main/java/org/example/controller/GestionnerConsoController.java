@@ -107,7 +107,7 @@ public class GestionnerConsoController {
     public void AjouterAction(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Client/Gestion Consommation/ActionForm.fxml"));
-            loader.setController(new ValiderFormAction());
+            //loader.setController(new ValiderFormAction());
             Parent root = loader.load();
             Scene newScene = new Scene(root);
             Stage newStage = new Stage();

@@ -17,6 +17,7 @@ import org.example.service.TypeNameService;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public class AdminGestAction {
     @FXML
@@ -91,10 +92,12 @@ public class AdminGestAction {
         quantiteToggle.setToggleGroup(toggleGroup);
         // reset show quantity type
         timeLabel.setVisible(false);
+        quantiteToggle.setVisible(false);
+        timeToggle.setVisible(false);
         hourComboBox.setVisible(false);
         minuteComboBox.setVisible(false);
         secondComboBox.setVisible(false);
-        quantiteLabel.setVisible(true);
+        quantiteLabel.setVisible(false);
         Quantite.setVisible(true);
         //show tables of actions
         showAction();
@@ -132,6 +135,25 @@ public class AdminGestAction {
             quantiteLabel.setVisible(true);
             Quantite.setVisible(true);
         }
+        //toggle metric type
+        TypeName selectedType = Type.getSelectionModel().getSelectedItem();
+        if (selectedType != null) {
+            if (selectedType.getMateriel().equals("temps")) {
+                timeLabel.setVisible(true);
+                hourComboBox.setVisible(true);
+                minuteComboBox.setVisible(true);
+                secondComboBox.setVisible(true);
+                quantiteLabel.setVisible(false);
+                Quantite.setVisible(false);
+            } else if (selectedType.getMateriel().equals("solid")) {
+                timeLabel.setVisible(false);
+                hourComboBox.setVisible(false);
+                minuteComboBox.setVisible(false);
+                secondComboBox.setVisible(false);
+                quantiteLabel.setVisible(true);
+                Quantite.setVisible(true);
+            }
+        }
     }
     public void AjouterAction(ActionEvent event){
         int hour = 0;
@@ -164,16 +186,40 @@ public class AdminGestAction {
             alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == buttonTypeYes) {
-                query.ajouterAction(act);
-                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                successAlert.setTitle("Gestion De Consommation Alert!");
-                successAlert.setHeaderText(null);
-                successAlert.setContentText("Action ajoutée avec succès!");
-                successAlert.showAndWait();
-                List<Action> actionList = query.afficherActions();
-                ObservableList<Action> observableList = FXCollections.observableArrayList(actionList);
-                tableView.setItems(observableList);
-                tableView.refresh();
+                double quantite = 0.0;
+                if (!Pattern.matches("^[a-zA-Z0-9\\s]+$", Description.getText())) {
+                    Alert validationAlert = new Alert(Alert.AlertType.ERROR);
+                    validationAlert.setTitle("Gestion De Consommation :");
+                    validationAlert.setHeaderText(null);
+                    validationAlert.setContentText("Description doit contenir que des lettes, des nombres et des escpaces!");
+                    validationAlert.showAndWait();
+                    return;
+                }
+                else if (!Quantite.getText().isEmpty()) {
+                    try {
+                        quantite = Double.parseDouble(Quantite.getText());
+                        if (quantite <= 0) {
+                            throw new NumberFormatException();
+                        }
+                    } catch (NumberFormatException e) {
+                        Alert validationAlert = new Alert(Alert.AlertType.ERROR);
+                        validationAlert.setTitle("Gestion Consommation :");
+                        validationAlert.setHeaderText(null);
+                        validationAlert.setContentText("Quantite dois contenir que des nombres strictement positives!");
+                        validationAlert.showAndWait();
+                        return;
+                    }
+                }
+                    query.ajouterAction(act);
+                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                    successAlert.setTitle("Gestion De Consommation Alert!");
+                    successAlert.setHeaderText(null);
+                    successAlert.setContentText("Action ajoutée avec succès!");
+                    successAlert.showAndWait();
+                    List<Action> actionList = query.afficherActions();
+                    ObservableList<Action> observableList = FXCollections.observableArrayList(actionList);
+                    tableView.setItems(observableList);
+                    tableView.refresh();
             }
         }
         else{
@@ -295,6 +341,30 @@ public class AdminGestAction {
             alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == buttonTypeYes) {
+                double quantite = 0.0;
+                if (!Pattern.matches("^[a-zA-Z0-9\\s]+$", Description.getText())) {
+                    Alert validationAlert = new Alert(Alert.AlertType.ERROR);
+                    validationAlert.setTitle("Gestion De Consommation :");
+                    validationAlert.setHeaderText(null);
+                    validationAlert.setContentText("Description doit contenir que des lettes, des nombres et des escpaces!");
+                    validationAlert.showAndWait();
+                    return;
+                }
+                else if (!Quantite.getText().isEmpty()) {
+                    try {
+                        quantite = Double.parseDouble(Quantite.getText());
+                        if (quantite <= 0) {
+                            throw new NumberFormatException();
+                        }
+                    } catch (NumberFormatException e) {
+                        Alert validationAlert = new Alert(Alert.AlertType.ERROR);
+                        validationAlert.setTitle("Gestion Consommation :");
+                        validationAlert.setHeaderText(null);
+                        validationAlert.setContentText("Quantite dois contenir que des nombres strictement positives!");
+                        validationAlert.showAndWait();
+                        return;
+                    }
+                }
                 query.modifierAction(act.getId(), act);
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                 successAlert.setTitle("Gestion De Consommation Alert!");

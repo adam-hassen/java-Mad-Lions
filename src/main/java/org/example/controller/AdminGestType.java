@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public class AdminGestType {
     @FXML
@@ -96,6 +97,47 @@ public class AdminGestType {
             alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == buttonTypeYes) {
+                if (!Pattern.matches("^[a-zA-Z\\s]+$", nomField.getText())) {
+                    Alert validationAlert = new Alert(Alert.AlertType.ERROR);
+                    validationAlert.setTitle("Gestoin Consommation :");
+                    validationAlert.setHeaderText(null);
+                    validationAlert.setContentText("Le nom doit etre composé que des lettre!");
+                    validationAlert.showAndWait();
+                    return;
+                }
+                double score = 0.0;
+                if (!scoreField.getText().isEmpty()) {
+                    try {
+                        score = Double.parseDouble(scoreField.getText());
+                        if (score <= 0) {
+                            throw new NumberFormatException();
+                        }
+                    } catch (NumberFormatException e) {
+                        Alert validationAlert = new Alert(Alert.AlertType.ERROR);
+                        validationAlert.setTitle("Gestion Consommation :");
+                        validationAlert.setHeaderText(null);
+                        validationAlert.setContentText("Score doit etre un entier strictement positive!");
+                        validationAlert.showAndWait();
+                        return;
+                    }
+                }
+                score = 0.0;
+                if (!utilMaxField.getText().isEmpty()) {
+                    try {
+                        score = Double.parseDouble(utilMaxField.getText());
+                        if (score <= 0) {
+                            throw new NumberFormatException();
+                        }
+                    } catch (NumberFormatException e) {
+                        Alert validationAlert = new Alert(Alert.AlertType.ERROR);
+                        validationAlert.setTitle("Gestion Consommation :");
+                        validationAlert.setHeaderText(null);
+                        validationAlert.setContentText("L'utilisation maximal doit etre un entier strictement positive!");
+                        validationAlert.showAndWait();
+                        return;
+                    }
+                }
+
                 query2.ajouterTypeName(act);
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                 successAlert.setTitle("Gestion De Consommation Alert!");
