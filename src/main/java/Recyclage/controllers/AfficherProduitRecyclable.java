@@ -114,7 +114,7 @@ public class AfficherProduitRecyclable {
     }
 
 
-    private AnchorPane createCarteProduit(ProduitRecyclable produit) {
+        private AnchorPane createCarteProduit(ProduitRecyclable produit) {
         // Créer le conteneur principal de la carte produit
         AnchorPane anchorPane = new AnchorPane();
         anchorPane.setPrefSize(100, 100);

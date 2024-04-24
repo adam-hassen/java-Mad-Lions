@@ -34,6 +34,9 @@
             <Image url="@../CSS/Images/magnifier_105027.png" />
          </image>
       </ImageView>
-      <Button fx:id="Diagnistique" layoutX="1123.0" layoutY="496.0" mnemonicParsing="false" onAction="#Diagnostique" prefHeight="59.0" prefWidth="159.0" style="-fx-background-color: #7AA95C;" text="Diagnistique" />
+      <Button fx:id="Diagnistique" layoutX="1123.0" layoutY="496.0" mnemonicParsing="false" onAction="#Diagnostique" prefHeight="59.0" prefWidth="159.0" style="-fx-background-color: #7AA95C;" text="Diagnistique">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
     </children>
 </AnchorPane>
