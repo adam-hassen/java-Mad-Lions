@@ -78,17 +78,49 @@ public class inscrire {
             return;}
         String NAME = name.getText();
         String PRENOM = prenom.getText();
-        int NUMERO = Integer.valueOf(numero.getText());
+        String NUMERO = numero.getText(); // Numéro en tant que String
+
+        //int NUMERO = Integer.valueOf(numero.getText());
         String USERNAME = username.getText();
         String ADRESS = adress.getText();
         String PASSWORD= Password.getText();
         String CONFIRME= confirme.getText();
         String GENRE = genre.getText();
         if(Password.getText().toString().equals(confirme.getText().toString())){
+            if (!NUMERO.matches("\\d{8}")) {
+                // Afficher une alerte si le numéro n'a pas 8 chiffres
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Erreur !");
+                alert.setHeaderText(null);
+                alert.setContentText("Le numéro doit avoir exactement 8 chiffres  !");
+                alert.showAndWait();
+                return;
+            }
+            int numeroInt = Integer.parseInt(NUMERO);
 
+
+            if (!PASSWORD.matches("^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")) {
+                // Afficher une alerte si le mot de passe ne respecte pas les critères
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Erreur !");
+                alert.setHeaderText(null);
+                alert.setContentText("Le mot de passe doit contenir au moins 8 caractères et au moins un symbole !");
+                alert.showAndWait();
+                return;
+            }
+
+            if (!USERNAME.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")) {
+                // Afficher une alerte si le mot de passe ne respecte pas les critères
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Erreur !");
+                alert.setHeaderText(null);
+                alert.setContentText("Veuillez saisir une adresse e-mail valide !");
+                alert.showAndWait();
+                return;
+            }
             UserServices pcd = new UserServices();
 
-            User1 t = new User1(USERNAME,PASSWORD,NAME,ADRESS,NUMERO,GENRE,PRENOM);
+            User1 t = new User1(USERNAME,PASSWORD,NAME,ADRESS,numeroInt,GENRE,PRENOM);
             if (pcd.test_used_email(t)) {  pcd.ajouteruser(t);}
             else {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -97,6 +129,8 @@ public class inscrire {
                 alert.setContentText("used email!");
                 alert.showAndWait();
             }
+
+
 
             System.out.println("Done!");
             Parent root2 = FXMLLoader.load(getClass().getResource("/login.fxml"));

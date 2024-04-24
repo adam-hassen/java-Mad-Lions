@@ -86,7 +86,7 @@ public class User1 {
         return adress;
     }
 
-    public void setAdress(String adresse) {
+    public void setAdress(String adress) {
         this.adress = adress;
     }
 

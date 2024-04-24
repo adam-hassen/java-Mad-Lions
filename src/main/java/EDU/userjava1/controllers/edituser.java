@@ -76,6 +76,6 @@ public class edituser implements Initializable {
         genre.setText(Login.v.getGenre());
         email.setText(Login.v.getUsername());
         mdp.setText(Login.v.getGenre());
-        adress.setText(Login.v.getUsername());
+        adress.setText(Login.v.getAdress());
     }
 }

@@ -106,6 +106,7 @@ public class UserServices implements Userinterface {
 
     @Override
     public void modifieruser(User1 p, int x) {
+        String mdp = EncryptMdp(p.getPassword());
 
         try {
             String req;
@@ -116,7 +117,7 @@ public class UserServices implements Userinterface {
             ps.setInt(3, p.getNumero());
             ps.setString(4, p.getUsername());
             ps.setString(5, p.getAdress());
-            ps.setString(6, p.getPassword());
+            ps.setString(6, mdp);
             ps.setString(7, p.getGenre());
 
 
@@ -130,7 +131,7 @@ public class UserServices implements Userinterface {
 
     public boolean test_used_email(User1 u1) {
         int a;
-        String req = "select id from user1 WHERE email = '" + u1.getUsername() + "'";
+        String req = "select id from user1 WHERE username = '" + u1.getUsername() + "'";
         try {
             ste = cnx.createStatement();
             ResultSet rs = ste.executeQuery(req);
