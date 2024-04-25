@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ModifierEcodepot implements Initializable {
@@ -32,9 +33,49 @@ public class ModifierEcodepot implements Initializable {
     private TextField nomTFM;
     @FXML
     private TextField idFx;
+    private AfficherEcoDepot afficherEcoDepotController;
+    @FXML
+    void Supprimer(ActionEvent event) {
+        // Créer une boîte de dialogue de confirmation
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation de suppression");
+        alert.setHeaderText("Confirmation de suppression");
+        alert.setContentText("Êtes-vous sûr de vouloir supprimer cet éco-dépôt ?");
+
+        // Afficher la boîte de dialogue et attendre la réponse de l'utilisateur
+        ButtonType buttonType = alert.showAndWait().orElse(ButtonType.CANCEL);
+        if (buttonType == ButtonType.OK){
+        // Récupérer l'ID de l'EcoDepot à supprimer
+        EcoDepot ecoDepot = new EcoDepot();
+        int ecoDepotId = Integer.parseInt(idFx.getText());
+         ecoDepot.setId(ecoDepotId);
+        // Appeler la méthode de service pour supprimer l'EcoDepot
+        EcoDepotMethodes ecoDepotMethodes = new EcoDepotMethodes();
+        ecoDepotMethodes.supprimerEcodepot(ecoDepot);
+
+        // Fermer la fenêtre de modification
+        Stage stage = (Stage) nomTFM.getScene().getWindow();
+        stage.close();
+        afficherEcoDepotController.rafraichirTableView();
+        }
+    }
+
+    public void initData(EcoDepot ecoDepot,AfficherEcoDepot afficherEcoDepotController) {
+        // Mettez à jour les champs de texte avec les données de l'EcoDepot sélectionné
+        nomTFM.setText(ecoDepot.getNom());
+        adresseTFM.setText(ecoDepot.getAdresse());
+        capaciteStockageTFM.setText(String.valueOf(ecoDepot.getCapacite_stockage()));
+        idFx.setText(String.valueOf(ecoDepot.getId()));
+        ComboBoxTFM.setValue(ecoDepot.getType());
+        ComboBoxTF1M.setValue(ecoDepot.getStatut_point_collecte());
+        this.afficherEcoDepotController = afficherEcoDepotController;
+
+        // Assurez-vous de mettre à jour d'autres champs de texte de manière similaire
+    }
 
     @FXML
     void Modifier(ActionEvent event) {
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation de Modification");
         alert.setHeaderText("Confirmation de Modification");
@@ -59,59 +100,23 @@ public class ModifierEcodepot implements Initializable {
             return;
         }
         if (buttonType == ButtonType.OK) {
-        EcoDepotMethodes ecoDepotMethodes = new EcoDepotMethodes();
-        EcoDepot ecoDepot = new EcoDepot();
-        ecoDepot.setNom(nomTFM.getText());
-        ecoDepot.setAdresse(adresseTFM.getText());
-        ecoDepot.setType(ComboBoxTFM.getValue());
-        ecoDepot.setCapacite_stockage(Integer.parseInt(capaciteStockageTFM.getText()));
-        ecoDepot.setStatut_point_collecte(ComboBoxTF1M.getValue());
-        ecoDepot.setId(Integer.parseInt(idFx.getText()));
-        ecoDepotMethodes.modifierEcodepot(ecoDepot, ecoDepot.getId());
+            EcoDepotMethodes ecoDepotMethodes = new EcoDepotMethodes();
+            EcoDepot ecoDepot = new EcoDepot();
+            ecoDepot.setNom(nomTFM.getText());
+            ecoDepot.setAdresse(adresseTFM.getText());
+            ecoDepot.setType(ComboBoxTFM.getValue());
+            ecoDepot.setCapacite_stockage(Integer.parseInt(capaciteStockageTFM.getText()));
+            ecoDepot.setStatut_point_collecte(ComboBoxTF1M.getValue());
+            ecoDepot.setId(Integer.parseInt(idFx.getText()));
+            ecoDepotMethodes.modifierEcodepot(ecoDepot, ecoDepot.getId());
+            afficherAlerteInformation("L'éco-dépôt a été modifié avec succès");
+            // Fermer la fenêtre de modification
 
-        // Fermer la fenêtre de modification
+            Stage stage = (Stage) nomTFM.getScene().getWindow();
+            stage.close();
+            afficherEcoDepotController.rafraichirTableView();
 
-        Stage stage = (Stage) nomTFM.getScene().getWindow();
-        stage.close();
-    }
-    }
-
-    @FXML
-    void Supprimer(ActionEvent event) {
-        // Créer une boîte de dialogue de confirmation
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation de suppression");
-        alert.setHeaderText("Confirmation de suppression");
-        alert.setContentText("Êtes-vous sûr de vouloir supprimer cet éco-dépôt ?");
-
-        // Afficher la boîte de dialogue et attendre la réponse de l'utilisateur
-        ButtonType buttonType = alert.showAndWait().orElse(ButtonType.CANCEL);
-        if (buttonType == ButtonType.OK){
-        // Récupérer l'ID de l'EcoDepot à supprimer
-        EcoDepot ecoDepot = new EcoDepot();
-        int ecoDepotId = Integer.parseInt(idFx.getText());
-         ecoDepot.setId(ecoDepotId);
-        // Appeler la méthode de service pour supprimer l'EcoDepot
-        EcoDepotMethodes ecoDepotMethodes = new EcoDepotMethodes();
-        ecoDepotMethodes.supprimerEcodepot(ecoDepot);
-
-        // Fermer la fenêtre de modification
-        Stage stage = (Stage) nomTFM.getScene().getWindow();
-        stage.close();
         }
-    }
-
-    public void initData(EcoDepot ecoDepot) {
-        // Mettez à jour les champs de texte avec les données de l'EcoDepot sélectionné
-        nomTFM.setText(ecoDepot.getNom());
-        adresseTFM.setText(ecoDepot.getAdresse());
-        capaciteStockageTFM.setText(String.valueOf(ecoDepot.getCapacite_stockage()));
-        idFx.setText(String.valueOf(ecoDepot.getId()));
-        ComboBoxTFM.setValue(ecoDepot.getType());
-        ComboBoxTF1M.setValue(ecoDepot.getStatut_point_collecte());
-
-
-        // Assurez-vous de mettre à jour d'autres champs de texte de manière similaire
     }
 
     @Override
@@ -127,5 +132,13 @@ public class ModifierEcodepot implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
+    private void afficherAlerteInformation(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 
 }

@@ -5,7 +5,7 @@
 
 /* Style de la MenuBar */
 .menu-bar {
-    -fx-background-color: #333; /* Couleur de fond */
+    -fx-background-color:  white; /* Couleur de fond */
     -fx-text-fill: white; /* Couleur du texte */
 }
 
@@ -20,15 +20,31 @@
     -fx-text-fill: white; /* Couleur du texte */
     -fx-font-weight: bold; /* Texte en gras */
     -fx-padding: 10px 20px; /* Espacement intérieur */
-    -fx-border-radius: 10px; /* Coins arrondis */
-    -fx-background-radius: 10px; /* Coins arrondis */
-    -fx-border-color: #4CAF50; /* Couleur de la bordure */
+    -fx-border-radius: 5px; /* Coins arrondis */
+    -fx-background-radius: 5px; /* Coins arrondis */
+    -fx-border-color: transparent; /* Couleur de la bordure */
     -fx-border-width: 2px; /* Largeur de la bordure */
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0); /* Effet d'ombre */
+    -fx-cursor: hand; /* Curseur de la souris en forme de main */
 }
 
 /* Style des boutons au survol */
 .button:hover {
     -fx-background-color: #45a049; /* Changement de couleur au survol */
-    -fx-border-color: #45a049; /* Changement de couleur de la bordure au survol */
+    -fx-border-color: transparent; /* Changement de couleur de la bordure au survol */
+}
+
+/* Style des boutons lorsque pressés */
+.button:pressed {
+    -fx-background-color: #388e3c; /* Changement de couleur lorsque pressé */
+    -fx-border-color: transparent; /* Changement de couleur de la bordure lorsque pressé */
+    -fx-effect: none; /* Supprimer l'effet d'ombre lorsque pressé */
+}
+
+/* Style des titres */
+.label.title {
+    -fx-font-size: 24px; /* Taille de la police */
+    -fx-font-weight: bold; /* Texte en gras */
+    -fx-text-fill: #333333; /* Couleur du texte */
+    -fx-padding: 10px; /* Espacement intérieur */
 }

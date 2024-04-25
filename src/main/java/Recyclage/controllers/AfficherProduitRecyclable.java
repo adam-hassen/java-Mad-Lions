@@ -224,7 +224,13 @@ public class AfficherProduitRecyclable {
                 controller.initData1(produit); // Passer les informations du produit au contrôleur de la page de modification
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
-                stage.show();
+                stage.showAndWait(); // Attendre la fermeture de la fenêtre de modification
+
+                // Mettre à jour la liste des produits après la modification
+                updateProduitsList();
+
+                // Mettre à jour l'affichage
+                rafraichirAnchorPane(anchorPane);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -248,6 +254,8 @@ public class AfficherProduitRecyclable {
                 // Afficher une confirmation dans l'interface
                 if (isDeleted) {
                     afficherMessage("Le produit a été supprimer avec succès.", Alert.AlertType.INFORMATION);
+                    updateProduitsList();
+                    rafraichirAnchorPane(anchorPane);
                 } else {
                     afficherMessage("La suppression du produit a échoué.", Alert.AlertType.ERROR);
                 }
@@ -316,4 +324,55 @@ public class AfficherProduitRecyclable {
         }
 
     }
+    private void rafraichirAnchorPane(AnchorPane anchorPane) {
+        // Effacer le contenu actuel de l'AnchorPane
+        anchorPane.getChildren().clear();
+
+        // Réinitialiser la liste des produits recyclables
+        ProduitRecyclableMethodes produitRecyclableMethodes = new ProduitRecyclableMethodes();
+        List<ProduitRecyclable> produits = produitRecyclableMethodes.listeDesProduits();
+
+        // Calculer le nouveau nombre total de pages
+        int totalPages = (int) Math.ceil(produits.size() / (double) ITEMS_PER_PAGE);
+
+        // Mettre à jour la pagination avec le nouveau nombre total de pages
+        pagination.setPageCount(totalPages);
+
+        // Réinitialiser le numéro de page actuel à zéro
+        pagination.setCurrentPageIndex(0);
+
+        // Vérifier si la liste des produits est vide
+        if (!produits.isEmpty()) {
+            // Créer une liste pour stocker les produits à afficher sur la page courante
+            List<ProduitRecyclable> produitsPageCourante = new ArrayList<>();
+
+            // Calculer l'index de début et de fin des produits à afficher sur la page courante
+            int startIndex = pagination.getCurrentPageIndex() * ITEMS_PER_PAGE;
+            int endIndex = Math.min(startIndex + ITEMS_PER_PAGE, produits.size());
+
+            // Ajouter les produits à afficher sur la page courante à la liste
+            for (int i = startIndex; i < endIndex; i++) {
+                produitsPageCourante.add(produits.get(i));
+            }
+
+            // Créer et configurer la pagination avec le nouveau nombre total de pages
+            pagination = new Pagination(totalPages, 0);
+            pagination.setPageFactory(pageIndex -> createPage(pageIndex, produitsPageCourante));
+
+            // Ajouter la pagination à votre conteneur
+            anchorPane.getChildren().add(pagination);
+        } else {
+            // Afficher un message si la liste est vide
+            Label label = new Label("Aucun produit recyclable disponible.");
+            anchorPane.getChildren().add(label);
+            // Positionner le label au centre de l'AnchorPane
+            AnchorPane.setTopAnchor(label, (anchorPane.getHeight() - label.getHeight()) / 2);
+            AnchorPane.setLeftAnchor(label, (anchorPane.getWidth() - label.getWidth()) / 2);
+        }
+    }
+    private void updateProduitsList() {
+        ProduitRecyclableMethodes produitRecyclableMethodes = new ProduitRecyclableMethodes();
+        listeProduits = produitRecyclableMethodes.listeDesProduits();
+    }
+
 }

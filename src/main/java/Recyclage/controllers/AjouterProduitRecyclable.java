@@ -62,7 +62,10 @@ public class AjouterProduitRecyclable implements Initializable {
             afficherAlerteErreur("Tous les champs doivent être remplis");
             return;
         }
-
+        if (!nomTFP.getText().matches("[a-zA-ZÀ-ÿ\\s]+")) {
+            afficherAlerteErreur("Le nom ne doit contenir que des lettres et des espaces");
+            return;
+        }
         // Vérifier si la capacité de stockage est un entier valide
         int quantite;
         try {

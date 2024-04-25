@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="460.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Recyclage.controllers.Diagnostique">
    <stylesheets>
       <URL value="@../CSS/AfficherProduitRecyclable.css" />
@@ -29,7 +28,7 @@
       </Button>
       <ImageView fitHeight="120.0" fitWidth="322.0" layoutX="1003.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../CSS/Images/logo.png" />
+            <Image url="@../CSS/Images/ecogardien.png" />
          </image>
       </ImageView>
       <AreaChart fx:id="areaChart" layoutX="137.0" layoutY="80.0" prefHeight="539.0" prefWidth="950.0" stylesheets="@../CSS/AreaChart.css" title="Chart">

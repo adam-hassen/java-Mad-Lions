@@ -25,7 +25,7 @@
         </Button>
         <ImageView fitHeight="120.0" fitWidth="322.0" layoutX="993.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../CSS/Images/logo.png" />
+                <Image url="@../CSS/Images/ecogardien.png" />
             </image>
         </ImageView>
       <TextField fx:id="BarreDeRecherche" layoutX="189.0" layoutY="97.0" prefHeight="44.0" prefWidth="285.0" promptText="Recherche" stylesheets="@../CSS/AjouterProduitRecyclable.css" />

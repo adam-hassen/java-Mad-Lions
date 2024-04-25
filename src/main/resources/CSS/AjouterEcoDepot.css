@@ -3,7 +3,7 @@
 /* Style de fond de la racine */
 .root {
     -fx-background-color: #9FCDA8; /* Couleur de fond gris très clair */
-    -fx-background-image: url('Images/logo.png');
+
     -fx-background-position: top right;
     -fx-background-repeat: no-repeat;
 }

@@ -85,7 +85,7 @@ public class AfficherEcoDepot {
                 root = loader.load();
                 ModifierEcodepot modifierController = loader.getController();
                 // Transférer les données EcoDepot sélectionnées à la fenêtre de modification
-                modifierController.initData(ecoDepot);
+                modifierController.initData(ecoDepot,this);
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.show();
@@ -95,6 +95,12 @@ public class AfficherEcoDepot {
         }
 
         }
+    public void rafraichirTableView() {
+        EcoDepotMethodes ecoDepotMethodes = new EcoDepotMethodes();
+        List<EcoDepot> list = ecoDepotMethodes.listeDesEcodepots();
+        ObservableList<EcoDepot> ob = FXCollections.observableList(list);
+        tableView.setItems(ob);
+    }
 
     }
 

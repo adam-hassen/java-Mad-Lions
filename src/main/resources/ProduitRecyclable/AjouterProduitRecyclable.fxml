@@ -18,9 +18,9 @@
       <ComboBox fx:id="ComboBoxTFP" layoutX="752.0" layoutY="234.0" prefHeight="46.0" prefWidth="201.0" promptText="type" />
       <ComboBox fx:id="ComboBoxTF1P" layoutX="751.0" layoutY="355.0" prefHeight="46.0" prefWidth="202.0" promptText="EcoDepot" />
       <DatePicker fx:id="dateP" disable="true" layoutX="752.0" layoutY="301.0" prefHeight="32.0" prefWidth="202.0" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="829.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="40.0" fitWidth="213.0" layoutX="815.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../CSS/Images/logo.png" />
+            <Image url="@../CSS/Images/ecogardien.png" />
          </image>
       </ImageView>
       <Button layoutX="775.0" layoutY="474.0" mnemonicParsing="false" onAction="#réinitialiser" prefHeight="46.0" prefWidth="131.0" style="-fx-background-color: #955149;" text="réinitialiser" />

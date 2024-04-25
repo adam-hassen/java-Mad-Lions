@@ -174,5 +174,35 @@ public class EcoDepotMethodes implements EcodepotService<EcoDepot> {
         }
         return -1; // Retourne -1 si aucun éco-dépôt correspondant n'a été trouvé
     }
+    public EcoDepot getEcoDepotByAttributes(EcoDepot ecoDepotToCheck) {
+        String requete = "SELECT * FROM ECO_DEPOT WHERE nom = ? AND adresse = ? AND type = ? AND capacite_stockage = ? AND statut_point_collecte = ?";
+        try {
+            PreparedStatement pst = MyConnection.getInsatance().getCnx().prepareStatement(requete);
+            pst.setString(1, ecoDepotToCheck.getNom());
+            pst.setString(2, ecoDepotToCheck.getAdresse());
+            pst.setString(3, ecoDepotToCheck.getType());
+            pst.setInt(4, ecoDepotToCheck.getCapacite_stockage());
+            pst.setString(5, ecoDepotToCheck.getStatut_point_collecte());
+
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                EcoDepot existingEcoDepot = new EcoDepot();
+                existingEcoDepot.setId(rs.getInt("id"));
+                existingEcoDepot.setNom(rs.getString("nom"));
+                existingEcoDepot.setAdresse(rs.getString("adresse"));
+                existingEcoDepot.setType(rs.getString("type"));
+                existingEcoDepot.setCapacite_stockage(rs.getInt("capacite_stockage"));
+                existingEcoDepot.setStatut_point_collecte(rs.getString("statut_point_collecte"));
+
+                return existingEcoDepot;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération de l'éco-dépôt par ses attributs : " + e.getMessage());
+        }
+
+        return null;
+    }
+
 
 }
