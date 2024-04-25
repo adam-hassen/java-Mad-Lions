@@ -31,8 +31,10 @@ public class donnerpwd implements Initializable {
         id = GS.Login(email.getText(), password.getText());
         if (id > 0) { // Modification de la condition
             // Fermer la fenêtre actuelle (profil)
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.close();
+            Stage stage = (Stage) confirmer.getScene().getWindow();
+            // Fermer la fenêtre du profil
+            stage.close();
+
 
             // Supprimer l'utilisateur
             GS.supprimeruser(Login.v.getId());
@@ -67,5 +69,14 @@ public class donnerpwd implements Initializable {
         email.setText(Login.v.getUsername());
 
 
+    }
+    @FXML
+    void back(ActionEvent event) throws IOException {
+        Parent root2 = FXMLLoader.load(getClass().getResource("/account.fxml"));
+        Scene scene2 = new Scene(root2);
+        Stage stage2;
+        stage2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage2.setScene(scene2);
+        stage2.show();
     }
 }

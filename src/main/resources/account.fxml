@@ -109,6 +109,22 @@
                               </Button>
                            </children>
                         </HBox>
+                        <HBox alignment="CENTER" prefHeight="56.0" prefWidth="330.0">
+                           <children>
+                              <Button fx:id="logout" mnemonicParsing="false" onAction="#logout" prefHeight="51.0" prefWidth="211.0" style="-fx-background-color: #71b63e;" stylesheets="@style/style.css" text="logout" textFill="#3b1e1e">
+                                 <styleClass>
+                                    <String fx:value="blue-btn" />
+                                    <String fx:value="blue-btn" />
+                                 </styleClass>
+                                 <cursor>
+                                    <Cursor fx:constant="SE_RESIZE" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                </children>
@@ -159,6 +175,11 @@
                                     <ImageView fitHeight="37.0" fitWidth="38.0" layoutX="203.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@img/location-crosshairs.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="14.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@img/phone-call.png" />
                                        </image>
                                     </ImageView>
                                  </children>

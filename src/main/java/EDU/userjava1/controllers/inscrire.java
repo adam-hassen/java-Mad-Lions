@@ -2,9 +2,11 @@ package EDU.userjava1.controllers;
 
 import EDU.userjava1.entities.User1;
 import EDU.userjava1.services.UserServices;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,9 +15,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class inscrire {
-
+public class inscrire implements Initializable {
+    @FXML
+    private ComboBox<String> Combobox;
     @FXML
     private Label LoginMessageLabel1;
 
@@ -62,13 +67,16 @@ public class inscrire {
     void cancelButtonOnAction(ActionEvent event) {
 
     }
+@Override
+public void initialize (URL url , ResourceBundle resourceBundle){
+        Combobox.setItems(FXCollections.observableArrayList("femme","homme"));}
 
     @FXML
     void inscrire(ActionEvent event)throws IOException {
         if (name.getText().isEmpty() || prenom.getText().isEmpty() ||
                 numero.getText().isEmpty()||
                 Password.getText().isEmpty()||
-                confirme.getText().isEmpty() || username.getText().isEmpty() || genre.getText().isEmpty()  || adress.getText().isEmpty()  ) {
+                confirme.getText().isEmpty() || username.getText().isEmpty() || Combobox.getValue().isEmpty()  || adress.getText().isEmpty()  ) {
             // Alert user to fill in all fields
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
@@ -85,7 +93,7 @@ public class inscrire {
         String ADRESS = adress.getText();
         String PASSWORD= Password.getText();
         String CONFIRME= confirme.getText();
-        String GENRE = genre.getText();
+        String GENRE = Combobox.getValue();
         if(Password.getText().toString().equals(confirme.getText().toString())){
             if (!NUMERO.matches("\\d{8}")) {
                 // Afficher une alerte si le numéro n'a pas 8 chiffres

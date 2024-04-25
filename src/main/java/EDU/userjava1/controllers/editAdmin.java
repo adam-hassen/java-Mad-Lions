@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class edituser implements Initializable {
+public class editAdmin implements Initializable {
 
     @FXML
     private TextField email;
@@ -31,8 +31,7 @@ public class edituser implements Initializable {
     @FXML
     private TextField prenom;
 
-    private profile profileController;
-
+    private profile profileAdminController;
 
     @FXML
     void modifier(ActionEvent event) {
@@ -53,7 +52,7 @@ public class edituser implements Initializable {
         userServices.modifieruser(utilisateurModifie, Login.v.getId());
 
         System.out.println("Utilisateur modifié avec succès");
-        profileController.rafraichirInformationsUtilisateur(utilisateurModifie);
+        profileAdminController.rafraichirInformationsUtilisateur(utilisateurModifie);
 
         // Vider les champs du formulaire
         clearFields();
@@ -73,10 +72,9 @@ public class edituser implements Initializable {
         adress.setText(Login.v.getAdress());
     }
 
-    public void setProfileController(profile profileController) {
-        this.profileController = profileController;
+    public void setProfileController(profile profileAdminController) {
+        this.profileAdminController = profileAdminController;
     }
-
 
     public void clearFields() {
         nom.clear();
