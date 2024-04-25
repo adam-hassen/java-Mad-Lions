@@ -87,6 +87,7 @@ public class showActions {
             supprimeButton.getStyleClass().add("button-liste");
             modifierButton.getStyleClass().add("button-liste");
             GestionnerConsoController gestionnerConsoController = new GestionnerConsoController();
+            action.setQuantite_time(query.checrherAction(action.getId()).getQuantite_time());
             modifierButton.setOnAction(event -> {
                 gestionnerConsoController.Modification(action);
                 containerView.getChildren().clear();

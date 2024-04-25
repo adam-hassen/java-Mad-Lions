@@ -167,7 +167,7 @@ public class ValiderFormAction {
             Type.setValue(action.getType_id());
             Description.setText(action.getDescription());
             Date.setValue(action.getDate());
-            if (action.getQuantite_time() != null) {
+            if (action.getType_id().getMateriel().equals("temps") ) {
                 String[] timeParts = action.getQuantite_time().split(":");
                 int hour = Integer.parseInt(timeParts[0]);
                 int minute = Integer.parseInt(timeParts[1]);
@@ -209,27 +209,15 @@ public class ValiderFormAction {
         if (secondComboBox.getValue() != null) {
             second=secondComboBox.getValue();
         }
-        String time = String.format("%02d:%02d:%02d", hour, minute, second);
+            String time = String.format("%02d:%02d:%02d", hour, minute, second);
         Double k = 0.0;
-        if (!Quantite.getText().isEmpty()) {
-            k = Double.parseDouble(Quantite.getText());
-        }
         if ((!Quantite.getText().isEmpty() || time!=null) && (Type.getValue()!=null) && (Date.getValue()!=null)) {
             Action act = new Action(Type.getValue(), k, Date.getValue(), Description.getText(), time);
             act = query.calculerScoreEtDanger(act);
             act.setUser_id(1);
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation");
-            alert.setHeaderText(null);
-            alert.setContentText("Êtes-vous sûr de vouloir ajouter cette action?");
-            ButtonType buttonTypeYes = new ButtonType("Oui");
-            ButtonType buttonTypeNo = new ButtonType("Non");
-            alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
-            Optional<ButtonType> result = alert.showAndWait();
             double quantite = 0.0;
-            if (result.isPresent() && result.get() == buttonTypeYes) {
                 // Validate Description: Only letters, numbers, and spaces allowed
-                if (!Pattern.matches("^[a-zA-Z0-9\\s]+$", Description.getText())) {
+                if (!Pattern.matches("[a-zA-Z0-9\\s]*", Description.getText())){
                     Alert validationAlert = new Alert(Alert.AlertType.ERROR);
                     validationAlert.setTitle("Gestion De Consommation :");
                     validationAlert.setHeaderText(null);
@@ -237,12 +225,13 @@ public class ValiderFormAction {
                     validationAlert.showAndWait();
                     return; // Stop further processing
                 }
-                else if (!Quantite.getText().isEmpty()) {
+                else if(!Quantite.getText().isEmpty()){
                     try {
                         quantite = Double.parseDouble(Quantite.getText());
                         if (quantite <= 0) {
                             throw new NumberFormatException();
                         }
+                        else act.setQuantite(quantite);
                     } catch (NumberFormatException e) {
                         Alert validationAlert = new Alert(Alert.AlertType.ERROR);
                         validationAlert.setTitle("Gestion Consommation :");
@@ -251,24 +240,51 @@ public class ValiderFormAction {
                         validationAlert.showAndWait();
                         return; // Stop further processing
                     }
-                }
-                else {
-                    query.ajouterAction(act);
-                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                    successAlert.setTitle("Gestion De Consommation Alert!");
-                    successAlert.setHeaderText(null);
-                    successAlert.setContentText("Action ajoutée avec succès!");
-                    successAlert.showAndWait();
-                    List<Action> actionList = query.afficherActions();
-                    ObservableList<Action> observableList = FXCollections.observableArrayList(actionList);
-                }
             }
+                else {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmation");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Êtes-vous sûr de vouloir ajouter cette action?");
+                    ButtonType buttonTypeYes = new ButtonType("Oui");
+                    ButtonType buttonTypeNo = new ButtonType("Non");
+                    alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.isPresent() && result.get() == buttonTypeYes) {
+                        query.ajouterAction(act);
+                        List<Action> actionList = query.afficherActions();
+                        ObservableList<Action> observableList = FXCollections.observableArrayList(actionList);
+                    }
+                }
         }
-        else{
+        if (Date.getValue()==null){
             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
             successAlert.setTitle("Gestion De Consommation Alert!");
             successAlert.setHeaderText(null);
-            successAlert.setContentText("Ajout invalide ");
+            successAlert.setContentText("Date Null ");
+            successAlert.showAndWait();
+        }
+        if (Quantite.getText().isEmpty() && time.equals("00:00:00")){
+            if (Quantite.getText().isEmpty()) {
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Gestion De Consommation Alert!");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Quantite Null");
+                successAlert.showAndWait();
+            }
+            if (time.equals("00:00:00")){
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Gestion De Consommation Alert!");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Time Null");
+                successAlert.showAndWait();
+            }
+        }
+        if (Type.getValue()==null){
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Gestion De Consommation Alert!");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Type Null");
             successAlert.showAndWait();
         }
     }
@@ -288,24 +304,11 @@ public class ValiderFormAction {
         }
         String time = String.format("%02d:%02d:%02d", hour, minute, second);
         Double k = 0.0;
-        if (!Quantite.getText().isEmpty()) {
-            k = Double.parseDouble(Quantite.getText());
-        }
         if ((!Quantite.getText().isEmpty() || time!=null) && (Type.getValue()!=null) && (Date.getValue()!=null)) {
             Action act = new Action(Type.getValue(), k, Date.getValue(), Description.getText(), time);
-            act = query.calculerScoreEtDanger(act);
             act.setId(mod);
             act.setUser_id(userId);
             act.setLocation_id(loc);
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation");
-            alert.setHeaderText(null);
-            alert.setContentText("Êtes-vous sûr de vouloir modifier cette action?");
-            ButtonType buttonTypeYes = new ButtonType("Yes");
-            ButtonType buttonTypeNo = new ButtonType("No");
-            alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == buttonTypeYes) {
                 double quantite=0.0;
                 if (!Pattern.matches("^[a-zA-Z0-9\\s]+$", Description.getText())) {
                     Alert validationAlert = new Alert(Alert.AlertType.ERROR);
@@ -321,6 +324,7 @@ public class ValiderFormAction {
                         if (quantite <= 0) {
                             throw new NumberFormatException();
                         }
+                        else act.setQuantite(quantite);
                     } catch (NumberFormatException e) {
                         Alert validationAlert = new Alert(Alert.AlertType.ERROR);
                         validationAlert.setTitle("Gestion Consommation :");
@@ -331,15 +335,55 @@ public class ValiderFormAction {
                     }
                 }
                 else {
-                    query.modifierAction(act.getId(), act);
-                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                    successAlert.setTitle("Gestion De Consommation Alert!");
-                    successAlert.setHeaderText(null);
-                    successAlert.setContentText("Action modifiée avec succès!");
-                    successAlert.showAndWait();
-                    List<Action> actionList = query.afficherActions();
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmation");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Êtes-vous sûr de vouloir modifier cette action?");
+                    ButtonType buttonTypeYes = new ButtonType("Yes");
+                    ButtonType buttonTypeNo = new ButtonType("No");
+                    alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.isPresent() && result.get() == buttonTypeYes) {
+                        act = query.calculerScoreEtDanger(act);
+                        query.modifierAction(act.getId(), act);
+                        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                        successAlert.setTitle("Gestion De Consommation Alert!");
+                        successAlert.setHeaderText(null);
+                        successAlert.setContentText("Action modifiée avec succès!");
+                        successAlert.showAndWait();
+                        List<Action> actionList = query.afficherActions();
                 }
             }
+        }
+        if (Date.getValue()==null){
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Gestion De Consommation Alert!");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Date Null ");
+            successAlert.showAndWait();
+        }
+        if (Quantite.getText().isEmpty() && time.equals("00:00:00")){
+            if (Quantite.getText().isEmpty()) {
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Gestion De Consommation Alert!");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Quantite Null");
+                successAlert.showAndWait();
+            }
+            if (time.equals("00:00:00")){
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Gestion De Consommation Alert!");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Time Null");
+                successAlert.showAndWait();
+            }
+        }
+        if (Type.getValue()==null){
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Gestion De Consommation Alert!");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Type Null");
+            successAlert.showAndWait();
         }
     }
 

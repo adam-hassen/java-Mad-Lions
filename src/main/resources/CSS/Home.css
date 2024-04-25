@@ -114,26 +114,7 @@
     -fx-background-color: #4CAF50; /* Fond vert pour les dates sélectionnées */
     -fx-text-fill: #fff; /* Texte blanc pour les dates sélectionnées */
 }
-/* Style des listes déroulantes */
-.combo-box {
-    -fx-font-family: "Segoe UI", sans-serif;
-    -fx-font-size: 16px;
-    -fx-background-color: #fff; /* Fond blanc */
-    -fx-background-radius: 25px; /* Coins arrondis */
-    -fx-border-color: #ccc; /* Bordure gris clair */
-    -fx-border-width: 1px; /* Épaisseur de la bordure */
-    -fx-border-radius: 25px; /* Coins arrondis */
-}
 
-/* Style des options de la liste déroulante */
-.combo-box .list-cell {
-    -fx-text-fill: #555; /* Texte gris foncé */
-}
-
-/* Style des options de la liste déroulante au survol */
-.combo-box .list-cell:hover {
-    -fx-background-color: #f0f0f0; /* Fond gris très clair au survol */
-}
 /* Style des étiquettes */
 .label {
     -fx-font-family: "Segoe UI", sans-serif;
@@ -181,6 +162,55 @@
     -fx-border-radius: 5px; /* Add border radius */
     -fx-border-width: 1px; /* Add border width */
     -fx-padding: 5px; /* Add padding */
+}
+
+/* Style des listes déroulantes */
+.combo-box {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 16px;
+    -fx-background-color: #fff; /* Fond blanc */
+    -fx-background-radius: 25px; /* Coins arrondis */
+    -fx-border-color: #ccc; /* Bordure gris clair */
+    -fx-border-width: 1px; /* Épaisseur de la bordure */
+    -fx-border-radius: 25px; /* Coins arrondis */
+}
+
+/* Style des options de la liste déroulante */
+.combo-box .list-cell {
+    -fx-text-fill: #555; /* Texte gris foncé */
+}
+
+/* Style des options de la liste déroulante au survol */
+.combo-box .list-cell:hover {
+    -fx-background-color: #f0f0f0; /* Fond gris très clair au survol */
+}
+/* Style pour les DatePicker */
+.date-picker .date-cell {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333; /* Couleur de texte gris */
+}
+
+/* Style pour les éléments de date sélectionnés */
+.date-picker .selected-date-cell {
+    -fx-background-color: #4CAF50; /* Fond vert pour les dates sélectionnées */
+    -fx-text-fill: #fff; /* Texte blanc pour les dates sélectionnées */
+}
+/* Style des étiquettes */
+.label {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 18px;
+}
+
+/* Style des champs de texte */
+.text-field {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 16px;
+    -fx-prompt-text-fill: #999; /* Couleur de texte gris clair pour l'invite */
+    -fx-background-color: #fff; /* Fond blanc */
+    -fx-background-radius: 25px; /* Coins arrondis */
+    -fx-border-color: #ccc; /* Bordure gris clair */
+    -fx-border-width: 1px; /* Épaisseur de la bordure */
+    -fx-border-radius: 25px; /* Coins arrondis */
 }
 /* Rest of the CSS code */
 /* ... */

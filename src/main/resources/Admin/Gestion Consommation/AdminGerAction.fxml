@@ -2,21 +2,21 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.layout.AnchorPane?>
 <VBox alignment="CENTER" prefHeight="600.0" prefWidth="1000.0" stylesheets="@/CSS/Home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.AdminGestAction">
     <children>
         <HBox alignment="CENTER_LEFT" prefHeight="542.0" prefWidth="1000.0" spacing="20.0">
@@ -75,36 +75,46 @@
                 <VBox prefHeight="600.0" prefWidth="800.0" stylesheets="@/CSS/Home.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
                     <children>
                         <AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="middle-container">
-                        <Label layoutX="20" layoutY="20" text="Type :" />
-                        <ComboBox fx:id="Type" layoutX="151.0" layoutY="20.0" promptText="Choisir un type" />
-                        <HBox spacing="20.0" layoutX="10.0" layoutY="70.0">
+                            <!-- Type Name -->
+                            <HBox layoutX="10.0" layoutY="10.0" spacing="10.0">
+                                <Label text="Type Name:" />
+                                <ComboBox fx:id="Type" promptText="Select Type Name" />
+                            </HBox>
+
+                            <!-- Time/Quantity Toggles -->
+                            <HBox layoutX="10.0" layoutY="70.0" spacing="20.0">
+   
+                               <!-- Time Selection -->
+                               <HBox spacing="10.0">
+                                   <Label fx:id="timeLabel" text="Time:" />
+                                   <ComboBox fx:id="hourComboBox" promptText="Hour" />
+                                   <ComboBox fx:id="minuteComboBox" promptText="Minute" />
+                                   <ComboBox fx:id="secondComboBox" promptText="Second" />
+                               </HBox>
                                 <ToggleButton fx:id="timeToggle" onAction="#handleToggle" prefHeight="40.0" prefWidth="94.0" text="Time" />
                                 <ToggleButton fx:id="quantiteToggle" onAction="#handleToggle" text="Quantite" />
-                        </HBox>
-
-                            <!-- Time Selection -->
-                            <HBox spacing="10.0" layoutX="10.0" layoutY="70.0">
-                                <Label fx:id="timeLabel" text="Time:" />
-                                <ComboBox fx:id="hourComboBox" promptText="Hour" />
-                                <ComboBox fx:id="minuteComboBox" promptText="Minute" />
-                                <ComboBox fx:id="secondComboBox" promptText="Second" />
                             </HBox>
 
                             <!-- Quantity Selection -->
-                            <HBox spacing="10.0" layoutX="10.0" layoutY="70.0">
+                            <HBox layoutX="11.0" layoutY="121.0" spacing="10.0">
                                 <Label fx:id="quantiteLabel" text="Quantite:" />
                                 <TextField fx:id="Quantite" promptText="Select Quantity" />
                             </HBox>
-                        <Label layoutX="21.0" layoutY="158.0" text="Date:" />
-                        <DatePicker fx:id="Date" layoutX="152.0" layoutY="157.0" promptText="Select Date" />
 
-                        <Label layoutX="21.0" layoutY="198.0" text="Description:" />
-                        <TextField fx:id="Description" layoutX="152.0" layoutY="186.0" promptText="Select Description" />
+                            <!-- Date and Description -->
+                            <HBox layoutX="19.0" layoutY="174.0" spacing="10.0">
+                                <Label text="Date:" />
+                                <DatePicker fx:id="Date" promptText="Select Date" />
+                            </HBox>
+                            <HBox layoutX="14.0" layoutY="221.0" spacing="10.0">
+                                <Label text="Description:" />
+                                <TextField fx:id="Description" promptText="Select Description" />
+                            </HBox>
 
-                        <Button fx:id="ValiderAction" layoutX="498.0" layoutY="20.0" prefHeight="40.0" prefWidth="118.0" text="Ajouter" styleClass="button-home"/>
-                        <Button fx:id="ModifierAction" layoutX="498.0" layoutY="66.0" onAction="#handleModifierAct" prefHeight="40.0" prefWidth="118.0" text="Modifier" styleClass="button-home"/>
-                        <Button fx:id="réinitialisationButton" layoutX="498.0" layoutY="110.0" onAction="#handleRéinitialisationButton" prefHeight="40.0" prefWidth="118.0" text="Réinitialisation" styleClass="button-home"/>
-                        <TableView fx:id="tableView" layoutX="18.0" layoutY="329.0" prefHeight="223.0" prefWidth="690.0">
+                            <!-- Buttons -->
+                            <HBox layoutX="100" layoutY="270" spacing="10" />
+                        <Button fx:id="réinitialisationButton" layoutX="395.0" layoutY="134.0" onAction="#handleRéinitialisationButton" prefHeight="40.0" prefWidth="118.0" styleClass="button-home" text="Réinitialisation" />
+                        <TableView fx:id="tableView" layoutX="26.0" layoutY="260.0" prefHeight="223.0" prefWidth="690.0">
                             <columns>
                                 <TableColumn id="TypeName" fx:id="ColTypeName" prefWidth="208.00003051757812" text="TypeName" />
                                 <TableColumn id="Danger" fx:id="ColDanger" prefWidth="95.99996948242188" text="Danger" />
@@ -112,9 +122,10 @@
                                 <TableColumn id="Description" fx:id="ColDescription" prefWidth="250.40008544921875" text="Description" />
                             </columns>
                         </TableView>
-                        <Button fx:id="modifierButton" layoutX="455.0" layoutY="280.0" onAction="#handleModifierButton" prefHeight="40.0" prefWidth="118.0" text="Modifier" styleClass="button-home"/>
-                        <Button fx:id="supprimerButton" layoutX="580.0" layoutY="280.0" onAction="#handleSupprimerButton" prefHeight="40.0" prefWidth="118.0" text="Supprimer" styleClass="button-home"/>
-                        <Button fx:id="home" layoutX="715.0" layoutY="405.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="81.0" text="Home" styleClass="button-home"/>
+                        <Button fx:id="ModifierAction" layoutX="395.0" layoutY="77.0"  prefHeight="40.0" prefWidth="118.0" styleClass="button-home" text="Modifier" />
+                        <Button fx:id="supprimerButton" layoutX="502.0" layoutY="496.0" onAction="#handleSupprimerButton" prefHeight="40.0" prefWidth="118.0" styleClass="button-home" text="Supprimer" />
+                             <Button fx:id="ValiderAction" layoutX="395.0" layoutY="17.0" prefHeight="40.0" prefWidth="118.0" styleClass="button-home" text="Ajouter" />
+                             <Button fx:id="modifierButton" layoutX="365.0" layoutY="496.0" prefHeight="40.0" onAction="#handleModifierButton" prefWidth="118.0" styleClass="button-home" text="Modifier" />
                         </AnchorPane>
                     </children>
                 </VBox>

@@ -55,7 +55,7 @@ public class GestionnerConsoController {
         query2 = new TypeNameService();
         query = new ActionService();
         AjouterAction.setOnAction(this::AjouterAction);
-       // modifierButton.setOnAction(this::handleModifierButton);
+        //modifierButton.setOnAction(this::handleModifierButton);
         showAction();
         //frame animation
             double totalWidth = containerView.getChildren().stream()
@@ -63,8 +63,8 @@ public class GestionnerConsoController {
                     .sum();
             Timeline timeline = new Timeline(
                     new KeyFrame(Duration.ZERO, new KeyValue(scrollPane.hvalueProperty(), 0)),
-                    new KeyFrame(Duration.seconds(10), new KeyValue(scrollPane.hvalueProperty(), 1)),
-                    new KeyFrame(Duration.seconds(20), new KeyValue(scrollPane.hvalueProperty(), 0))
+                    new KeyFrame(Duration.seconds(20), new KeyValue(scrollPane.hvalueProperty(), 1)),
+                    new KeyFrame(Duration.seconds(30), new KeyValue(scrollPane.hvalueProperty(), 0))
             );
         scrollPane.setOnMouseClicked(event -> {
             if (timeline.getStatus() == Animation.Status.RUNNING) {
@@ -129,6 +129,7 @@ public class GestionnerConsoController {
             String danger = ((TextField) selectedRow.getChildren().get(1)).getText();
             String date = ((TextField) selectedRow.getChildren().get(2)).getText();
             String description = ((TextField) selectedRow.getChildren().get(3)).getText();
+            String quantiteTime = ((TextField) selectedRow.getChildren().get(4)).getText();
             TypeName tpn = query2.cherchertypename(typeName);
             LocalDate actionDate;
             try {
@@ -139,7 +140,9 @@ public class GestionnerConsoController {
                 actionDate = LocalDate.now();
             }
             Action selectedAction = new Action(tpn, 0.0, actionDate, danger, description);
-            Modification(selectedAction);
+            selectedAction.setQuantite_time(quantiteTime);
+            System.out.println("sssssssssss" + selectedAction);
+           // Modification(selectedAction);
         }
     }
     public void Modification(Action selectedAction) {

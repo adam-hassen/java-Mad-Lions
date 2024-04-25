@@ -16,6 +16,7 @@ import org.example.service.TypeNameService;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -44,9 +45,9 @@ public class AdminGestType {
     @FXML
     private TextField scoreField;
     @FXML
-    private TextField materielField;
+    private ComboBox<String> materielField;
     @FXML
-    private TextField typeField;
+    private ComboBox<String> typeField;
     @FXML
     private TextField utilMaxField;
     private ActionService query;
@@ -57,9 +58,15 @@ public class AdminGestType {
     private VBox vboxside;
     @FXML
     public void initialize() {
-        home.setOnAction(this::naviguerVersHome);
+        //home.setOnAction(this::naviguerVersHome);
         query2 = new TypeNameService();
         query = new ActionService();
+
+        List<String> materielValues = Arrays.asList("solid", "temps");
+        materielField.setItems(FXCollections.observableArrayList(materielValues));
+        showAction();
+        List<String> typeValues = Arrays.asList("electrique", "carburant", "plastique", "gaz");
+        typeField.setItems(FXCollections.observableArrayList(typeValues));
         showAction();
     }
     @FXML
@@ -85,9 +92,61 @@ public class AdminGestType {
         colUtilMax.setCellValueFactory(new PropertyValueFactory<>("util_max"));
         tableView.setItems(observableList);
     }
-    public void AjouterTypeAction(ActionEvent event){
-        if ( (nomField.getText()!=null) || (scoreField.getText()!=null) || (materielField.getText()!=null) || (typeField.getText()!=null) || (utilMaxField.getText()!=null)) {
-            TypeName act = new TypeName(1,nomField.getText(), Double.parseDouble(scoreField.getText()), materielField.getText(), typeField.getText() ,Double.parseDouble(utilMaxField.getText()));
+
+        public void AjouterTypeAction(ActionEvent event) {
+            if (nomField.getText().isEmpty() || scoreField.getText().isEmpty() || materielField.getValue().isEmpty() || typeField.getValue().isEmpty() || utilMaxField.getText().isEmpty()) {
+                Alert validationAlert = new Alert(Alert.AlertType.ERROR);
+                validationAlert.setTitle("Gestion Consommation :");
+                validationAlert.setHeaderText(null);
+                validationAlert.setContentText("Tous les champs doivent être remplis!");
+                validationAlert.showAndWait();
+                return;
+            }
+
+            TypeName act = new TypeName(1, nomField.getText(), 0, materielField.getValue(), typeField.getValue(), 0);
+            double score = 0.0;
+
+            if (!Pattern.matches("^[a-zA-Z\\s]+$", nomField.getText())) {
+                Alert validationAlert = new Alert(Alert.AlertType.ERROR);
+                validationAlert.setTitle("Gestion Consommation :");
+                validationAlert.setHeaderText(null);
+                validationAlert.setContentText("Le nom doit être composé uniquement de lettres!");
+                validationAlert.showAndWait();
+                return;
+            }
+
+            if (!scoreField.getText().isEmpty()) {
+                try {
+                    score = Double.parseDouble(scoreField.getText());
+                    if (score <= 0) {
+                        throw new NumberFormatException();
+                    }
+                    act.setScore(score);
+                } catch (NumberFormatException e) {
+                    Alert validationAlert = new Alert(Alert.AlertType.ERROR);
+                    validationAlert.setTitle("Gestion Consommation :");
+                    validationAlert.setHeaderText(null);
+                    validationAlert.setContentText("Le score doit être un nombre positif!");
+                    validationAlert.showAndWait();
+                    return;
+                }
+            }
+            if (!utilMaxField.getText().isEmpty()) {
+                try {
+                    score = Double.parseDouble(utilMaxField.getText());
+                    if (score <= 0) {
+                        throw new NumberFormatException();
+                    }
+                    act.setUtil_max(score);
+                } catch (NumberFormatException e) {
+                    Alert validationAlert = new Alert(Alert.AlertType.ERROR);
+                    validationAlert.setTitle("Gestion Consommation :");
+                    validationAlert.setHeaderText(null);
+                    validationAlert.setContentText("L'utilisation maximale doit être un nombre positif!");
+                    validationAlert.showAndWait();
+                    return;
+                }
+            }
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
             alert.setHeaderText(null);
@@ -97,47 +156,6 @@ public class AdminGestType {
             alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == buttonTypeYes) {
-                if (!Pattern.matches("^[a-zA-Z\\s]+$", nomField.getText())) {
-                    Alert validationAlert = new Alert(Alert.AlertType.ERROR);
-                    validationAlert.setTitle("Gestoin Consommation :");
-                    validationAlert.setHeaderText(null);
-                    validationAlert.setContentText("Le nom doit etre composé que des lettre!");
-                    validationAlert.showAndWait();
-                    return;
-                }
-                double score = 0.0;
-                if (!scoreField.getText().isEmpty()) {
-                    try {
-                        score = Double.parseDouble(scoreField.getText());
-                        if (score <= 0) {
-                            throw new NumberFormatException();
-                        }
-                    } catch (NumberFormatException e) {
-                        Alert validationAlert = new Alert(Alert.AlertType.ERROR);
-                        validationAlert.setTitle("Gestion Consommation :");
-                        validationAlert.setHeaderText(null);
-                        validationAlert.setContentText("Score doit etre un entier strictement positive!");
-                        validationAlert.showAndWait();
-                        return;
-                    }
-                }
-                score = 0.0;
-                if (!utilMaxField.getText().isEmpty()) {
-                    try {
-                        score = Double.parseDouble(utilMaxField.getText());
-                        if (score <= 0) {
-                            throw new NumberFormatException();
-                        }
-                    } catch (NumberFormatException e) {
-                        Alert validationAlert = new Alert(Alert.AlertType.ERROR);
-                        validationAlert.setTitle("Gestion Consommation :");
-                        validationAlert.setHeaderText(null);
-                        validationAlert.setContentText("L'utilisation maximal doit etre un entier strictement positive!");
-                        validationAlert.showAndWait();
-                        return;
-                    }
-                }
-
                 query2.ajouterTypeName(act);
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                 successAlert.setTitle("Gestion De Consommation Alert!");
@@ -149,16 +167,14 @@ public class AdminGestType {
                 tableView.setItems(observableList);
                 tableView.refresh();
             }
+            else {
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Gestion De Consommation Alert!");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Action annulée!");
+                successAlert.showAndWait();
+            }
         }
-        else{
-            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-            successAlert.setTitle("Gestion De Consommation Alert!");
-            successAlert.setHeaderText(null);
-            successAlert.setContentText("Ajout invalide ");
-            successAlert.showAndWait();
-        }
-
-    }
     @FXML
     private void handleModifierButton(ActionEvent event) {
         TypeName selectedRow = (TypeName) tableView.getSelectionModel().getSelectedItem();
@@ -166,36 +182,95 @@ public class AdminGestType {
             ObservableList<TypeName> items = tableView.getItems();
             nomField.setText(selectedRow.getNom());
             scoreField.setText(String.valueOf(selectedRow.getScore()));
-            materielField.setText(selectedRow.getMateriel());
-            typeField.setText(selectedRow.getType());
+            materielField.setValue(selectedRow.getMateriel());
+            typeField.setValue(selectedRow.getType());
             utilMaxField.setText(String.valueOf(selectedRow.getUtil_max()));
             tableView.refresh();
         }
     }
     public void handleModifierAct(ActionEvent event){
         TypeName selectedRow = (TypeName) tableView.getSelectionModel().getSelectedItem();
-        if ( (nomField.getText()!=null) || (scoreField.getText()!=null) || (materielField.getText()!=null) || (typeField.getText()!=null) || (utilMaxField.getText()!=null)) {
-            TypeName act = new TypeName(1,nomField.getText(), Double.parseDouble(scoreField.getText()), materielField.getText(), typeField.getText() ,Double.parseDouble(utilMaxField.getText()));
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation");
-            alert.setHeaderText(null);
-            alert.setContentText("Êtes-vous sûr de vouloir modifier cette action?");
-            ButtonType buttonTypeYes = new ButtonType("Yes");
-            ButtonType buttonTypeNo = new ButtonType("No");
-            alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == buttonTypeYes) {
-                query2.modifierTypename(selectedRow.getId(), act);
-                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                successAlert.setTitle("Gestion De Consommation Alert!");
-                successAlert.setHeaderText(null);
-                successAlert.setContentText("Action modifiée avec succès!");
-                successAlert.showAndWait();
-                List<TypeName> actionList = query2.afficherTypeName();
-                ObservableList<TypeName> observableList = FXCollections.observableArrayList(actionList);
-                tableView.setItems(observableList);
-                tableView.refresh();
+
+        if (nomField.getText().isEmpty() || scoreField.getText().isEmpty() || materielField.getValue() == null || typeField.getValue() == null || utilMaxField.getText().isEmpty()) {
+            Alert validationAlert = new Alert(Alert.AlertType.ERROR);
+            validationAlert.setTitle("Gestion Consommation :");
+            validationAlert.setHeaderText(null);
+            validationAlert.setContentText("Tous les champs doivent être remplis!");
+            validationAlert.showAndWait();
+            return;
+        }
+
+        if (!Pattern.matches("^[a-zA-Z\\s]+$", nomField.getText())) {
+            Alert validationAlert = new Alert(Alert.AlertType.ERROR);
+            validationAlert.setTitle("Gestoin Consommation :");
+            validationAlert.setHeaderText(null);
+            validationAlert.setContentText("Le nom doit être composé uniquement de lettres!");
+            validationAlert.showAndWait();
+            return;
+        }
+
+        double score = 0.0;
+        if (!utilMaxField.getText().isEmpty()) {
+            try {
+                score = Double.parseDouble(utilMaxField.getText());
+                if (score <= 0) {
+                    throw new NumberFormatException();
+                }
+            } catch (NumberFormatException e) {
+                Alert validationAlert = new Alert(Alert.AlertType.ERROR);
+                validationAlert.setTitle("Gestion Consommation :");
+                validationAlert.setHeaderText(null);
+                validationAlert.setContentText("L'utilisation maximal doit être un entier strictement positif!");
+                validationAlert.showAndWait();
+                return;
             }
+        }
+
+        score = 0.0;
+        if (!scoreField.getText().isEmpty()) {
+            try {
+                score = Double.parseDouble(scoreField.getText());
+                if (score <= 0) {
+                    throw new NumberFormatException();
+                }
+            } catch (NumberFormatException e) {
+                Alert validationAlert = new Alert(Alert.AlertType.ERROR);
+                validationAlert.setTitle("Gestion Consommation :");
+                validationAlert.setHeaderText(null);
+                validationAlert.setContentText("Score doit être un entier strictement positif!");
+                validationAlert.showAndWait();
+                return;
+            }
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText("Êtes-vous sûr de vouloir modifier cette action?");
+        ButtonType buttonTypeYes = new ButtonType("Yes");
+        ButtonType buttonTypeNo = new ButtonType("No");
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == buttonTypeYes) {
+            TypeName act = new TypeName(1, nomField.getText(), Double.parseDouble(scoreField.getText()), materielField.getValue(), typeField.getValue(), Double.parseDouble(utilMaxField.getText()));
+            query2.modifierTypename(selectedRow.getId(), act);
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Gestion De Consommation Alert!");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Action modifiée avec succès!");
+            successAlert.showAndWait();
+            List<TypeName> actionList = query2.afficherTypeName();
+            ObservableList<TypeName> observableList = FXCollections.observableArrayList(actionList);
+            tableView.setItems(observableList);
+            tableView.refresh();
+        }
+        else {
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Gestion De Consommation Alert!");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Action annulée!");
+            successAlert.showAndWait();
         }
     }
     @FXML

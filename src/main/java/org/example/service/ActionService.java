@@ -1,10 +1,12 @@
 package org.example.service;
 
+import javafx.scene.control.Alert;
 import org.example.Connexion.connexion;
 import org.example.entity.Action;
 import org.example.entity.TypeName;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -29,10 +31,19 @@ public class ActionService {
             pst.setDouble(7, act.getAction_score());
             pst.setInt(8,act.getNiveau_danger());
             pst.executeUpdate();
-            System.out.println("Add succeed!");
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Gestion De Consommation Alert!");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Action ajoutée avec succès!");
+            successAlert.showAndWait();
         }
         catch(SQLException e){
             System.out.println(e.getMessage());
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Gestion De Consommation Alert!");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Ajout echoué!");
+            successAlert.showAndWait();
         }
     }
 
@@ -106,9 +117,10 @@ public class ActionService {
 
     public Action calculerScoreEtDanger(Action act){
         Double score;
-        if (act.getQuantite() != 0) {
+        if (act.getQuantite() > 0.0) {
             score = act.getType_id().getScore() * act.getQuantite();
             act.setAction_score(score);
+            System.out.println(act.getAction_score() + "sssss" + score);
            // System.out.println("\n score quantite =  " + score + "\n");
         }
         else {
@@ -130,6 +142,38 @@ public class ActionService {
             act.setNiveau_danger(5);
         } else if (score == act.getType_id().getUtil_max()) {
             act.setNiveau_danger(6);
+        }
+        return act;
+    }
+    public Action checrherAction(int id){
+        Action act = new Action();
+        try {
+            String requete = "SELECT * FROM ACTION WHERE ID=?";
+            PreparedStatement pst = cn.prepareStatement(requete);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            while(rs.next()){
+                act.setId(rs.getInt("id"));
+                int a = rs.getInt("type_id");
+                TypeNameService typenameService = new TypeNameService();
+                TypeName tp = typenameService.cherchertypename(a);
+                act.setType_id(tp);
+                act.setUser_id(rs.getInt("user_id"));
+                act.setQuantite(rs.getDouble("quantite"));
+                act.setAction_score(rs.getDouble("action_score"));
+                act.setNiveau_danger(rs.getInt("niveau_danger"));
+                act.setLocation_id(rs.getInt("location_id"));
+                act.setDescription(rs.getString("description"));
+                act.setDate(rs.getDate("date").toLocalDate());
+                LocalTime quantiteTime = rs.getTime("quantite_time").toLocalTime();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+                String quantiteTimeString = quantiteTime.format(formatter);
+                act.setQuantite_time(quantiteTimeString);
+                System.out.println(tp);
+            }
+        }
+        catch(SQLException e){
+            System.out.println(e.getMessage());
         }
         return act;
     }
