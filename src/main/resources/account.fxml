@@ -66,11 +66,15 @@
                                     <Image url="@img/key.png" />
                                  </image>
                               </ImageView>
-                              <Label text="changer mot de passe">
-                                 <font>
-                                    <Font name="System Italic" size="14.0" />
-                                 </font>
-                              </Label>
+                              <Button fx:id="changer" mnemonicParsing="false" onAction="#changer" style="-fx-background-color: #71b63e;" stylesheets="@style/style.css" text="Changer mot de passe" textFill="#3b1e1e">
+                                 <styleClass>
+                                    <String fx:value="blue-btn" />
+                                    <String fx:value="blue-btn" />
+                                 </styleClass>
+                                 <cursor>
+                                    <Cursor fx:constant="SE_RESIZE" />
+                                 </cursor>
+                              </Button>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="60.0" prefWidth="340.0">

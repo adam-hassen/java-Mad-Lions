@@ -110,15 +110,14 @@ public class UserServices implements Userinterface {
 
         try {
             String req;
-            req = "UPDATE `User1` SET `prenom`=?,`name`=?,`numero`=?,`username`=?,`adress`=?,`password`=?,`genre`=?  WHERE id='" + x + "'";
+            req = "UPDATE `User1` SET `prenom`=?,`name`=?,`numero`=?,`username`=?,`adress`=?,`genre`=?  WHERE id='" + x + "'";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, p.getPrenom());
             ps.setString(2, p.getName());
             ps.setInt(3, p.getNumero());
             ps.setString(4, p.getUsername());
             ps.setString(5, p.getAdress());
-            ps.setString(6, mdp);
-            ps.setString(7, p.getGenre());
+            ps.setString(6, p.getGenre());
 
 
             ps.executeUpdate();
@@ -128,7 +127,24 @@ public class UserServices implements Userinterface {
         }
 
     }
+    public void modifierMDP(User1 p, int x) {
+        String mdp = EncryptMdp(p.getPassword());
 
+        try {
+            String req;
+            req = "UPDATE `User1` SET `password`=?  WHERE id='" + x + "'";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, mdp);
+
+
+
+            ps.executeUpdate();
+            System.out.println("le mot de passe est modifié");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
     public boolean test_used_email(User1 u1) {
         int a;
         String req = "select id from user1 WHERE username = '" + u1.getUsername() + "'";

@@ -1,34 +1,41 @@
 package EDU.userjava1.controllers;
 
-import EDU.userjava1.controllers.Login;
-import EDU.userjava1.controllers.profile;
 import EDU.userjava1.entities.User1;
 import EDU.userjava1.services.UserServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class edituser implements Initializable {
+public class changerMdp implements Initializable {
+    @FXML
+    private TextField adress;
+
+    @FXML
+    private Button confirmer1;
 
     @FXML
     private TextField email;
-    @FXML
-    private TextField mdp;
-    @FXML
-    private TextField adress;
+
     @FXML
     private TextField genre;
 
     @FXML
-    private Button modifier;
+    private TextField mdp;
+
+    @FXML
+    private TextField mdp1;
 
     @FXML
     private TextField nom;
@@ -38,56 +45,59 @@ public class edituser implements Initializable {
 
     @FXML
     private TextField prenom;
-
     @FXML
-    void modifier(ActionEvent event) {
+    void confirmer(ActionEvent event) throws IOException  {
+        UserServices GS = new UserServices();
         UserServices userServices = new UserServices();
-        if (nom.getText().isEmpty() || prenom.getText().isEmpty() ||
-                num.getText().isEmpty()||
-                mdp.getText().isEmpty()||
-              email.getText().isEmpty() || genre.getText().isEmpty()  || adress.getText().isEmpty()  ) {
-            // Alert user to fill in all fields
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setHeaderText(null);
-            alert.setContentText("Veuillez remplir tous les champs!");
-            alert.showAndWait();
-            return;}
+        int id;
+        id = GS.Login(email.getText(),mdp.getText());
+    if (id > 0) {
         // Récupérer les valeurs modifiées depuis les champs de texte
         String nouveauNom = nom.getText();
         String nouveauPrenom = prenom.getText();
         int nouveauNum = Integer.parseInt(num.getText());
         String nouveauGenre = genre.getText();
         String nouvelEmail = email.getText();
-        String nouveaumdp = mdp.getText();
+        String nouveaumdp = mdp1.getText();
         String nouveladress = adress.getText();
-
         // Créer un nouvel utilisateur avec les valeurs modifiées
         User1 utilisateurModifie = new User1(nouvelEmail,nouveaumdp, nouveauNom,nouveladress,   nouveauNum, nouveauGenre, nouveauPrenom);
 
-        userServices.modifieruser(utilisateurModifie, Login.v.getId());
 
-        System.out.println("Utilisateur modifié avec succès");
+        // Supprimer l'utilisateur
+        userServices.modifierMDP(utilisateurModifie, Login.v.getId());
 
-        // Rafraîchir l'affichage dans la page profile avec les nouvelles informations de l'utilisateur modifié
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/account.fxml"));
-            Parent root = loader.load();
-            profile controller = loader.getController();
-            controller.rafraichirAffichage(utilisateurModifie);
-        } catch (IOException e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Le mot de passe changer!");
+            alert.showAndWait();
+
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur !");
+            alert.setHeaderText(null);
+            alert.setContentText("Mot de passe incorrect !");
+            alert.showAndWait();
         }
     }
-
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle rb) {
+
+        UserServices GS = new UserServices();
+
+
+        email.setText(Login.v.getUsername());
         nom.setText(Login.v.getName());
         prenom.setText(Login.v.getPrenom());
         num.setText(String.valueOf(Login.v.getNumero()));
         genre.setText(Login.v.getGenre());
         email.setText(Login.v.getUsername());
-        mdp.setText(Login.v.getGenre());
         adress.setText(Login.v.getAdress());
+
     }
-}
+
+    }
+
+

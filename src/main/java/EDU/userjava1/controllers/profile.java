@@ -106,6 +106,15 @@ public class profile implements Initializable {
         prenom.setText(utilisateurModifie.getPrenom());
         genre.setText(utilisateurModifie.getGenre());
     }
+    @FXML
+    void changer(ActionEvent event) throws IOException  {
+        Parent root2 = FXMLLoader.load(getClass().getResource("/changerMdp.fxml"));
+        Scene scene2 = new Scene(root2);
+        Stage stage2 = new Stage();
+        stage2.setScene(scene2);
+        stage2.show();
+
+    }
     }
 
 
