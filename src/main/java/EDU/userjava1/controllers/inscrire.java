@@ -64,7 +64,13 @@ public class inscrire implements Initializable {
     private TextField username;
 
     @FXML
-    void cancelButtonOnAction(ActionEvent event) {
+    void cancelButtonOnAction(ActionEvent event) throws IOException {
+        Parent root1 = FXMLLoader.load(getClass().getResource("/Home.fxml"));
+        Scene scene1 = new Scene(root1);
+        Stage stage1;
+        stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage1.setScene(scene1);
+        stage1.show();
 
     }
 @Override
