@@ -62,6 +62,11 @@ public class editAdmin implements Initializable {
         String nouveaumdp = mdp.getText();
         String nouvelAdress = adress.getText();
 
+        if (nouveauNom.isEmpty() || nouveauPrenom.isEmpty() || nouveauNumString.isEmpty() || nouvelEmail.isEmpty() ||
+                nouveaumdp.isEmpty() || nouvelAdress.isEmpty() || nouveauGenre.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Erreur de saisie", "Champs vides", "Veuillez remplir tous les champs.");
+            return;
+        }
         // Vérifier les saisies avec des expressions régulières
         if (!nouvelEmail.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")) {
             showAlert(Alert.AlertType.ERROR, "Erreur de saisie", "Adresse e-mail invalide", "Veuillez saisir une adresse e-mail valide.");

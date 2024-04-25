@@ -60,6 +60,15 @@ public class changerMdp implements Initializable {
         String nouvelEmail = email.getText();
         String nouveaumdp = mdp1.getText();
         String nouveladress = adress.getText();
+        if (!nouveaumdp.matches("^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")) {
+            // Afficher une alerte si le mot de passe ne respecte pas les critères
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur !");
+            alert.setHeaderText(null);
+            alert.setContentText("Le mot de passe doit contenir au moins 8 caractères et au moins un symbole !");
+            alert.showAndWait();
+            return;
+        }
         // Créer un nouvel utilisateur avec les valeurs modifiées
         User1 utilisateurModifie = new User1(nouvelEmail,nouveaumdp, nouveauNom,nouveladress,   nouveauNum, nouveauGenre, nouveauPrenom);
 
