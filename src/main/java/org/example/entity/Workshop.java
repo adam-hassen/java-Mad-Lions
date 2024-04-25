@@ -45,7 +45,13 @@ public class Workshop {
         this.heure = heure;
         this.cours = cours;
     }
-
+    public Workshop( String nom, String type, LocalDate date, LocalTime heure, String cours) {
+        this.nom = nom;
+        this.type = type;
+        this.date = date;
+        this.heure = heure;
+        this.cours = cours;
+    }
     public String getNom() {
         return nom;
     }
