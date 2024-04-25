@@ -145,7 +145,7 @@ public class userliste implements Initializable {
 
     @FXML
     void profile(ActionEvent event) throws IOException{
-        Parent root1 = FXMLLoader.load(getClass().getResource("/ProfilAdmin.fxml"));
+        Parent root1 = FXMLLoader.load(getClass().getResource("/profilAdmin.fxml"));
         Scene scene1 = new Scene(root1);
         Stage stage1;
         stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();

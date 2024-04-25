@@ -33,9 +33,6 @@ public class ProfilAdmin implements Initializable {
     private Label email;
 
     @FXML
-    private Label prenom;
-
-    @FXML
     private Label genre;
 
     @FXML
@@ -59,20 +56,21 @@ public class ProfilAdmin implements Initializable {
     @FXML
     private Pane pane_132;
 
-    private editAdmin editAdminController1;
+    @FXML
+    private Label prenom;
+
+    private editAdmin editAdminController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        afficherInformationsUtilisateur();
-    }
-
-    private void afficherInformationsUtilisateur() {
         nom.setText(Login.v.getName());
         email.setText(Login.v.getUsername());
         num.setText(String.valueOf(Login.v.getNumero()));
         prenom.setText(Login.v.getPrenom());
         genre.setText(Login.v.getGenre());
     }
+
+
 
     @FXML
     void delete(ActionEvent event) throws IOException {
@@ -85,10 +83,10 @@ public class ProfilAdmin implements Initializable {
 
     @FXML
     void edit(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/edituser.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/editAdmin.fxml"));
         Parent root2 = loader.load();
-      //  editAdminController1 = loader.getController();
-
+        editAdminController = loader.getController();
+        editAdminController.setProfilAdminController(this); // Pass instance of profile controller
         Scene scene2 = new Scene(root2);
         Stage stage2 = new Stage();
         stage2.setScene(scene2);
@@ -118,21 +116,16 @@ public class ProfilAdmin implements Initializable {
         stage2.show();
     }
 
-    public void rafraichirInformationsUtilisateur(User1 utilisateur) {
-        nom.setText(utilisateur.getName());
-        email.setText(utilisateur.getUsername());
-        num.setText(String.valueOf(utilisateur.getNumero()));
-        prenom.setText(utilisateur.getPrenom());
-        genre.setText(utilisateur.getGenre());
+    public void rafraichirInformations(User1 admin) {
+        nom.setText(admin.getName());
+        email.setText(admin.getUsername());
+        num.setText(String.valueOf(admin.getNumero()));
+        prenom.setText(admin.getPrenom());
+        genre.setText(admin.getGenre());
     }
-
-
-
     @FXML
     void home(ActionEvent event) {
 
     }
-
-
 
 }
