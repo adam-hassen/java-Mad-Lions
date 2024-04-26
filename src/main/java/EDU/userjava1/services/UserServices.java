@@ -160,7 +160,7 @@ public class UserServices implements Userinterface {
         return true;
     }
 
-
+/*
     public List<User1> getAllData() {
 
         List<User1> data = new ArrayList<>();
@@ -186,7 +186,7 @@ public class UserServices implements Userinterface {
         }
 
         return data;
-    }
+    }*/
 
     @Override
     public int Login(String email, String password) {

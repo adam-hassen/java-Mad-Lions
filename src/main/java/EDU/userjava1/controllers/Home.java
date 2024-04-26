@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Home {
+public class Home  {
 
     @FXML
     private Button login;
