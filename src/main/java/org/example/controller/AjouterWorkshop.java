@@ -1,5 +1,5 @@
 package org.example.controller;
-
+import javafx.scene.input.MouseEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,6 +53,15 @@ public class AjouterWorkshop  implements Initializable {
                 @FXML
                 private TextField type;
         @FXML
+        void liste(MouseEvent event) throws IOException {
+                Parent root2 = FXMLLoader.load(getClass().getResource("/Workshop/AfficherWorkshop.fxml"));
+                Scene scene2 = new Scene(root2);
+                Stage stage2;
+                stage2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage2.setScene(scene2);
+                stage2.show();
+        }
+        @FXML
         void getDate1() {
                 // Get today's date
                 LocalDate today = LocalDate.now();
@@ -85,7 +94,7 @@ public class AjouterWorkshop  implements Initializable {
                         String HeureString = heure.getText();
                         String Cours = cours.getText();
 
-                        if (!Nom.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*")) {
+                        if (!Nom.matches("^[a-zA-Z]+$")) {
                                 Alert alert = new Alert(Alert.AlertType.WARNING);
                                 alert.setTitle("Erreur !");
                                 alert.setHeaderText(null);

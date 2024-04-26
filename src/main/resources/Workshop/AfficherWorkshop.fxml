@@ -39,7 +39,19 @@
                                         <Insets left="50.0" right="50.0" />
                                     </VBox.margin>
                                 </VBox>
-                                <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
+                                <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Button layoutX="86.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#suprimer" text="suprimer" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="322.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#modifier" text="modifier" textFill="#0e2273">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Button>
+                           </children></Pane>
                             </children>
                         </VBox>
                     </left>

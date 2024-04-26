@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.AjouterWorkshop">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.modifierWorkshop">
     <children>
         <AnchorPane prefHeight="605.0" prefWidth="881.0" style="-fx-background-color: green;">
             <children>
@@ -19,8 +19,8 @@
                         <URL value="@../style/style.css" />
                     </stylesheets>
                     <children>
-                        <Button fx:id="login111" layoutX="147.0" layoutY="537.0" mnemonicParsing="false" onAction="#login" onMouseClicked="#liste" prefHeight="44.0" prefWidth="143.0" style="-fx-background-color: ffff;" styleClass="btn_workbench11" stylesheets="@../style/style.css" text="liste" />
-                        <ImageView fitHeight="354.0" fitWidth="345.0" layoutX="39.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+                        <Button fx:id="login111" layoutX="144.0" layoutY="495.0" mnemonicParsing="false" onAction="#login" onMouseClicked="#liste" prefHeight="44.0" prefWidth="143.0" style="-fx-background-color: ffff;" styleClass="btn_workbench11" stylesheets="@../style/style.css" text="liste" />
+                        <ImageView fitHeight="332.0" fitWidth="332.0" layoutX="88.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/wz.png" />
                             </image>
@@ -32,7 +32,7 @@
                         </ImageView>
                     </children>
                 </AnchorPane>
-                <Label layoutX="93.0" layoutY="20.0" text="Ajouter workshop" textFill="WHITE">
+                <Label layoutX="93.0" layoutY="20.0" text="modifier workshop" textFill="WHITE">
                     <font>
                         <Font name="Century Gothic Bold" size="34.0" />
                     </font>
@@ -58,20 +58,20 @@
                                 <Font name="Century Gothic Bold" size="17.0" />
                             </font>
                         </Label>
-                      <Label layoutX="48.0" layoutY="197.0" prefHeight="39.0" prefWidth="119.0" text="heure" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-                          <font>
-                              <Font name="Century Gothic Bold" size="17.0" />
-                          </font>
-                      </Label>
-                      <TextField fx:id="heure" layoutX="80.0" layoutY="230.0" prefHeight="30.0" prefWidth="200.0" promptText="heure" style="-fx-background-color: #f3fafa; -fx-border-color: 0;" styleClass="pane_1111" stylesheets="@../style/style.css" />
-                    <Label layoutX="35.0" layoutY="260.0" prefHeight="39.0" prefWidth="119.0" text="cours" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-                        <font>
-                            <Font name="Century Gothic Bold" size="17.0" />
-                        </font>
-                    </Label>
-                    <TextField fx:id="cours" layoutX="32.0" layoutY="288.0" prefHeight="163.0" prefWidth="389.0" promptText="cours" style="-fx-background-color: #f3fafa; -fx-border-color: 0;" styleClass="pane_1111" stylesheets="@../style/style.css" />
-                      <Button fx:id="inscrire" layoutX="128.0" layoutY="451.0" mnemonicParsing="false" onAction="#inscrire" prefHeight="44.0" prefWidth="150.0" style="-fx-background-color: ffff;" styleClass="btn_workbench11" stylesheets="@../style/style.css" text="Ajouter" />
-                  <DatePicker fx:id="date" layoutX="92.0" layoutY="167.0" />
+                        <Label layoutX="48.0" layoutY="197.0" prefHeight="39.0" prefWidth="119.0" text="heure" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                            <font>
+                                <Font name="Century Gothic Bold" size="17.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="heure" layoutX="80.0" layoutY="230.0" prefHeight="30.0" prefWidth="200.0" promptText="heure" style="-fx-background-color: #f3fafa; -fx-border-color: 0;" styleClass="pane_1111" stylesheets="@../style/style.css" />
+                        <Label layoutX="35.0" layoutY="260.0" prefHeight="39.0" prefWidth="119.0" text="cours" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                            <font>
+                                <Font name="Century Gothic Bold" size="17.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="cours" layoutX="32.0" layoutY="288.0" prefHeight="163.0" prefWidth="389.0" promptText="cours" style="-fx-background-color: #f3fafa; -fx-border-color: 0;" styleClass="pane_1111" stylesheets="@../style/style.css" />
+                        <Button fx:id="inscrire" layoutX="128.0" layoutY="451.0" mnemonicParsing="false" onAction="#inscrire" onMouseClicked="#inscrire" prefHeight="44.0" prefWidth="150.0" style="-fx-background-color: ffff;" styleClass="btn_workbench11" stylesheets="@../style/style.css" text="modifier" />
+                        <DatePicker fx:id="date" layoutX="92.0" layoutY="167.0" />
                     </children>
                 </AnchorPane>
             </children>
