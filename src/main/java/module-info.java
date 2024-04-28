@@ -4,7 +4,10 @@ module GestionRecyclage {
     requires javafx.fxml;
     requires javafx.media;
     requires java.sql;
-    requires qrgen; // Ajout de la bibliothèque net.glxn.qrgen
+    requires qrgen;
+    requires com.gluonhq.maps;
+    requires javafx.web;
+    requires jdk.jsobject; // Ajout de la bibliothèque net.glxn.qrgen
 
     opens Recyclage.entities;
     opens Recyclage.controllers;

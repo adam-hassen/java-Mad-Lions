@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Maps JavaScript API Example</title>
+    <style>
+        /* Styling for the map container */
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<h1>My Google Map</h1>
+<div id="map"></div>
+
+<script>
+    var mymap;
+    // Initialize and display the map
+    function initMap() {
+        // Coordinates for the initial map center (Tunisia)
+        var initialPosition = {lat: 33.8869, lng: 9.5375};
+
+        // Create a new map object
+        mymap = new google.maps.Map(document.getElementById('map'), {
+            center: initialPosition,
+            zoom: 7 // Initial zoom level
+        });
+    }
+    function searchEcoDepotAddress(address) {
+        if (address.trim() !== '') {
+            var geocoder = new google.maps.Geocoder();
+
+            geocoder.geocode({ 'address': address }, function (results, status) {
+                if (status === 'OK') {
+                    var location = results[0].geometry.location;
+                    mymap.setCenter(location);
+                    mymap.setZoom(12);
+                } else {
+                    alert('La recherche d\'adresse a échoué : ' + status);
+                }
+            });
+        }
+    }
+</script>
+
+<!-- Load the Google Maps JavaScript API with your API key -->
+ <script src="js/mapsJavaScriptAPI.js"></script>>
+</body>
+</html>

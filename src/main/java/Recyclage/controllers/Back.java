@@ -36,8 +36,9 @@ public class Back {
     }
 
     @FXML
-    void carte(ActionEvent event) {
-
+    void carte(ActionEvent event) throws IOException {
+        AnchorPane view= FXMLLoader.load((getClass().getResource("/EcoDepot/Carte.fxml")));
+        BorderPane.setCenter(view);
     }
 
 }
