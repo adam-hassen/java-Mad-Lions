@@ -84,7 +84,7 @@ public class AdminGestAction {
             seconds.add(i);
         }
         secondComboBox.setItems(seconds);
-        ValiderAction.setOnAction(this::AjouterAction);
+      //  ValiderAction.setOnAction(this::AjouterAction);
         ModifierAction.setOnAction(this::handleModifierAct);
         showtypes();
         //toggle quantite
@@ -219,7 +219,7 @@ public class AdminGestAction {
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.isPresent() && result.get() == buttonTypeYes) {
                     query.ajouterAction(act);
-                    List<Action> actionList = query.afficherActions();
+                    List<Action> actionList = query.afficherActions(1);
                     ObservableList<Action> observableList = FXCollections.observableArrayList(actionList);
                     tableView.setItems(observableList);
                     tableView.refresh();
@@ -348,7 +348,7 @@ public class AdminGestAction {
 
     }
     public void showAction() {
-        List<Action> actionList = query.afficherActions();
+        List<Action> actionList = query.afficherActions(1);
         ObservableList<Action> observableList = FXCollections.observableArrayList(actionList);
         ColTypeName.setCellValueFactory(new PropertyValueFactory<Action,Integer>("type_id"));
         ColDanger.setCellValueFactory(new PropertyValueFactory<Action,Integer>("niveau_danger"));
@@ -420,7 +420,7 @@ public class AdminGestAction {
                 successAlert.setHeaderText(null);
                 successAlert.setContentText("Action modifiée avec succès!");
                 successAlert.showAndWait();
-                List<Action> actionList = query.afficherActions();
+                List<Action> actionList = query.afficherActions(1);
                 ObservableList<Action> observableList = FXCollections.observableArrayList(actionList);
                 tableView.setItems(observableList);
                 tableView.refresh();

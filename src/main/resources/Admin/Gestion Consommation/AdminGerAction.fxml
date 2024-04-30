@@ -124,7 +124,7 @@
                         </TableView>
                         <Button fx:id="ModifierAction" layoutX="395.0" layoutY="77.0"  prefHeight="40.0" prefWidth="118.0" styleClass="button-home" text="Modifier" />
                         <Button fx:id="supprimerButton" layoutX="502.0" layoutY="496.0" onAction="#handleSupprimerButton" prefHeight="40.0" prefWidth="118.0" styleClass="button-home" text="Supprimer" />
-                             <Button fx:id="ValiderAction" layoutX="395.0" layoutY="17.0" prefHeight="40.0" prefWidth="118.0" styleClass="button-home" text="Ajouter" />
+
                              <Button fx:id="modifierButton" layoutX="365.0" layoutY="496.0" prefHeight="40.0" onAction="#handleModifierButton" prefWidth="118.0" styleClass="button-home" text="Modifier" />
                         </AnchorPane>
                     </children>

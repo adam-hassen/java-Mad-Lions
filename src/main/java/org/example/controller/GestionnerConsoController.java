@@ -63,8 +63,8 @@ public class GestionnerConsoController {
                     .sum();
             Timeline timeline = new Timeline(
                     new KeyFrame(Duration.ZERO, new KeyValue(scrollPane.hvalueProperty(), 0)),
-                    new KeyFrame(Duration.seconds(20), new KeyValue(scrollPane.hvalueProperty(), 1)),
-                    new KeyFrame(Duration.seconds(30), new KeyValue(scrollPane.hvalueProperty(), 0))
+                    new KeyFrame(Duration.seconds(30), new KeyValue(scrollPane.hvalueProperty(), 1)),
+                    new KeyFrame(Duration.seconds(40), new KeyValue(scrollPane.hvalueProperty(), 0))
             );
         scrollPane.setOnMouseClicked(event -> {
             if (timeline.getStatus() == Animation.Status.RUNNING) {
@@ -113,6 +113,7 @@ public class GestionnerConsoController {
             Stage newStage = new Stage();
             newStage.setScene(newScene);
             newStage.show();
+            showAction();
             showAction();
         } catch (IOException e) {
             e.printStackTrace();
@@ -200,6 +201,7 @@ public class GestionnerConsoController {
            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Client/Gestion Consommation/showAction.fxml"));
            Parent root = loader.load();
            showActions showactioncontroller = loader.getController();
+           containerView.getChildren().clear();
            showactioncontroller.showAction(containerView);
        } catch (IOException e) {
            e.printStackTrace();

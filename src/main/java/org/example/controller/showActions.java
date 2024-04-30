@@ -46,7 +46,7 @@ public class showActions {
         //showAction();
     }
     public void showAction(Pane containerView) {
-        List<Action> actionList = query.afficherActions();
+        List<Action> actionList = query.afficherActions(1);
         ObservableList<Action> observableList = FXCollections.observableArrayList(actionList);
         containerView.getChildren().clear();
         for (Action action : observableList) {

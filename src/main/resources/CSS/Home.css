@@ -179,7 +179,12 @@
 .combo-box .list-cell {
     -fx-text-fill: #555; /* Texte gris foncé */
 }
-
+.suivre-label{
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 40px;
+}
 /* Style des options de la liste déroulante au survol */
 .combo-box .list-cell:hover {
     -fx-background-color: #f0f0f0; /* Fond gris très clair au survol */

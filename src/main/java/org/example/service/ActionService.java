@@ -10,7 +10,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ActionService {
     Connection cn;
@@ -47,13 +49,16 @@ public class ActionService {
         }
     }
 
-    public List<Action> afficherActions(){
+    public List<Action> afficherActions(int id) {
         List<Action> ListeAct = new ArrayList<>();
         try {
-            String requete = "SELECT * FROM ACTION";
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(requete);
-            while(rs.next()){
+            String requete = "SELECT * FROM ACTION WHERE user_id=?";
+            PreparedStatement pst = cn.prepareStatement(requete);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                // Retrieve the data from the result set and create Action objects
                 Action act = new Action();
                 act.setId(rs.getInt("id"));
                 int a = rs.getInt("type_id");
@@ -70,8 +75,7 @@ public class ActionService {
                 ListeAct.add(act);
                 System.out.println(tp);
             }
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return ListeAct;
@@ -113,6 +117,86 @@ public class ActionService {
         catch(SQLException e){
             System.out.println(e.getMessage());
         }
+    }
+    public class ChartData {
+        private List<Double> data;
+        private List<String> labels;
+
+        public ChartData(List<Double> data, List<String> labels) {
+            this.data = data;
+            this.labels = labels;
+        }
+
+        public List<Double> getData() {
+            return data;
+        }
+
+        public List<String> getLabels() {
+            return labels;
+        }
+    }
+
+    public ChartData firstChart(int id) {
+        LocalDate currentDate = LocalDate.now();
+        List<Action> actions = this.afficherActions(id);
+
+        Map<String, Double> sums = new HashMap<>();
+        List<String> labels = new ArrayList<>();
+        List<Double> data = new ArrayList<>();
+
+        for (Action action : actions) {
+            String type = action.getType_id().getNom();
+            double score = action.getAction_score();
+
+            if (!sums.containsKey(type)) {
+                sums.put(type, 0.0);
+            }
+
+            if (action.getDate().isEqual(currentDate)) {
+                sums.put(type, sums.get(type) + score);
+                LocalDate date = action.getDate();
+                String formattedDate = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                labels.add(formattedDate);
+            }
+
+            data.add(action.getAction_score());
+        }
+
+        List<Double> data2 = new ArrayList<>(sums.values());
+        List<String> labels2 = new ArrayList<>(labels);
+        return new ChartData(data2, labels2);
+    }
+    public ChartData scatterchart(int id) {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate tenDaysEarlier = currentDate.minusDays(10); // 10 days earlier
+
+        List<Action> actions = this.afficherActions(id);
+
+        Map<String, Double> sums = new HashMap<>();
+        List<String> labels = new ArrayList<>();
+        List<Double> data = new ArrayList<>();
+
+        for (Action action : actions) {
+            String type = action.getType_id().getNom();
+            double score = action.getAction_score();
+            LocalDate date = action.getDate();
+
+            if (!sums.containsKey(type)) {
+                sums.put(type, 0.0);
+            }
+
+            if (date.isAfter(tenDaysEarlier) && date.isBefore(currentDate.plusDays(1))) {
+                sums.put(type, sums.get(type) + score);
+                String formattedDate = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                labels.add(formattedDate);
+            }
+
+            data.add(score);
+        }
+
+        List<Double> data2 = new ArrayList<>(sums.values());
+        List<String> labels2 = new ArrayList<>(labels);
+        return new ChartData(data2, labels2);
     }
 
     public Action calculerScoreEtDanger(Action act){

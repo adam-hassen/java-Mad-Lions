@@ -216,7 +216,6 @@ public class ValiderFormAction {
             act = query.calculerScoreEtDanger(act);
             act.setUser_id(1);
             double quantite = 0.0;
-                // Validate Description: Only letters, numbers, and spaces allowed
                 if (!Pattern.matches("[a-zA-Z0-9\\s]*", Description.getText())){
                     Alert validationAlert = new Alert(Alert.AlertType.ERROR);
                     validationAlert.setTitle("Gestion De Consommation :");
@@ -252,7 +251,7 @@ public class ValiderFormAction {
                     Optional<ButtonType> result = alert.showAndWait();
                     if (result.isPresent() && result.get() == buttonTypeYes) {
                         query.ajouterAction(act);
-                        List<Action> actionList = query.afficherActions();
+                        List<Action> actionList = query.afficherActions(1);
                         ObservableList<Action> observableList = FXCollections.observableArrayList(actionList);
                     }
                 }
@@ -306,17 +305,27 @@ public class ValiderFormAction {
         Double k = 0.0;
         if ((!Quantite.getText().isEmpty() || time!=null) && (Type.getValue()!=null) && (Date.getValue()!=null)) {
             Action act = new Action(Type.getValue(), k, Date.getValue(), Description.getText(), time);
+            act = query.calculerScoreEtDanger(act);
             act.setId(mod);
             act.setUser_id(userId);
             act.setLocation_id(loc);
-                double quantite=0.0;
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText(null);
+            alert.setContentText("Êtes-vous sûr de vouloir modifier cette action?");
+            ButtonType buttonTypeYes = new ButtonType("Yes");
+            ButtonType buttonTypeNo = new ButtonType("No");
+            alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == buttonTypeYes) {
+                double quantite = 0.0;
                 if (!Pattern.matches("^[a-zA-Z0-9\\s]+$", Description.getText())) {
                     Alert validationAlert = new Alert(Alert.AlertType.ERROR);
                     validationAlert.setTitle("Gestion De Consommation :");
                     validationAlert.setHeaderText(null);
                     validationAlert.setContentText("Description doit contenir que des lettes, des nombres et des escpaces!");
                     validationAlert.showAndWait();
-                    return; // Stop further processing
+                    return;
                 }
                 else if (!Quantite.getText().isEmpty()) {
                     try {
@@ -324,35 +333,22 @@ public class ValiderFormAction {
                         if (quantite <= 0) {
                             throw new NumberFormatException();
                         }
-                        else act.setQuantite(quantite);
                     } catch (NumberFormatException e) {
                         Alert validationAlert = new Alert(Alert.AlertType.ERROR);
                         validationAlert.setTitle("Gestion Consommation :");
                         validationAlert.setHeaderText(null);
                         validationAlert.setContentText("Quantite dois contenir que des nombres strictement positives!");
                         validationAlert.showAndWait();
-                        return; // Stop further processing
+                        return;
                     }
                 }
-                else {
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setTitle("Confirmation");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Êtes-vous sûr de vouloir modifier cette action?");
-                    ButtonType buttonTypeYes = new ButtonType("Yes");
-                    ButtonType buttonTypeNo = new ButtonType("No");
-                    alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
-                    Optional<ButtonType> result = alert.showAndWait();
-                    if (result.isPresent() && result.get() == buttonTypeYes) {
-                        act = query.calculerScoreEtDanger(act);
-                        query.modifierAction(act.getId(), act);
-                        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                        successAlert.setTitle("Gestion De Consommation Alert!");
-                        successAlert.setHeaderText(null);
-                        successAlert.setContentText("Action modifiée avec succès!");
-                        successAlert.showAndWait();
-                        List<Action> actionList = query.afficherActions();
-                }
+                query.modifierAction(act.getId(), act);
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Gestion De Consommation Alert!");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Action modifiée avec succès!");
+                successAlert.showAndWait();
+                List<Action> actionList = query.afficherActions(1);
             }
         }
         if (Date.getValue()==null){
