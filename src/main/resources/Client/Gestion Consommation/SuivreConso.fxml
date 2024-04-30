@@ -86,7 +86,7 @@
                               </children>
                            </StackPane>
                            <Line endX="140.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />
-                           <Label styleClass="suivre-label" text="CONSOMMATION D'AUJOURD'HUI :" />
+                           <Label styleClass="suivre-label" text="VOTRE DANGER ENVER L'ENVIRONNEMENT POUR LES 15J PRÉCÉDENTES :" />
                            <Line endX="140.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />
                            <StackPane fx:id="scatterPanel" styleClass="chart-pane">
                               <children>

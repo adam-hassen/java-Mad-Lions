@@ -6,14 +6,15 @@ import org.example.entity.Action;
 import org.example.entity.TypeName;
 
 import java.sql.*;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import java.util.*;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
 public class ActionService {
     Connection cn;
 
@@ -73,7 +74,6 @@ public class ActionService {
                 act.setDescription(rs.getString("description"));
                 act.setDate(rs.getDate("date").toLocalDate());
                 ListeAct.add(act);
-                System.out.println(tp);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -168,35 +168,29 @@ public class ActionService {
     }
     public ChartData scatterchart(int id) {
         LocalDate currentDate = LocalDate.now();
-        LocalDate tenDaysEarlier = currentDate.minusDays(10); // 10 days earlier
+        LocalDate tenDaysEarlier = currentDate.minusDays(15);
 
         List<Action> actions = this.afficherActions(id);
 
-        Map<String, Double> sums = new HashMap<>();
-        List<String> labels = new ArrayList<>();
+        Map<LocalDate, Double> dailyAverages = new HashMap<>();
+        Set<String> labels = new HashSet<>();
         List<Double> data = new ArrayList<>();
 
         for (Action action : actions) {
-            String type = action.getType_id().getNom();
-            double score = action.getAction_score();
+            double dangerLevel = action.getNiveau_danger();
             LocalDate date = action.getDate();
 
-            if (!sums.containsKey(type)) {
-                sums.put(type, 0.0);
-            }
-
             if (date.isAfter(tenDaysEarlier) && date.isBefore(currentDate.plusDays(1))) {
-                sums.put(type, sums.get(type) + score);
+                dailyAverages.merge(date, dangerLevel, (prev, current) -> (prev + current) / 2.0);
                 String formattedDate = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 labels.add(formattedDate);
             }
-
-            data.add(score);
         }
 
-        List<Double> data2 = new ArrayList<>(sums.values());
+        data.addAll(dailyAverages.values());
+
         List<String> labels2 = new ArrayList<>(labels);
-        return new ChartData(data2, labels2);
+        return new ChartData(data, labels2);
     }
 
     public Action calculerScoreEtDanger(Action act){
@@ -260,5 +254,31 @@ public class ActionService {
             System.out.println(e.getMessage());
         }
         return act;
+    }
+    public void sendEmail(String recipient, String subject, String body) throws MessagingException {
+        // Set up mail server properties
+        Properties properties = new Properties();
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.socketFactory.port", "465");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+
+        // Create a mail session
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("youssefbenarous2@gmail.com", "wklk etxr ocab kihn");
+            }
+        });
+
+        // Create a new email message
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress("youssefbenarous2@gmail.com"));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
+        message.setSubject(subject);
+        message.setText(body);
+
+        // Send the email
+        Transport.send(message);
     }
 }

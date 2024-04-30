@@ -1,5 +1,6 @@
 package org.example.controller;
 import javafx.fxml.FXML;
+import javafx.scene.chart.ScatterChart;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import org.example.entity.Action;
@@ -7,6 +8,7 @@ import org.example.entity.TypeName;
 import org.example.service.ActionService;
 import org.example.service.TypeNameService;
 import org.jfree.chart.*;
+import org.jfree.chart.axis.SymbolAxis;
 import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.fx.ChartViewer;
 import org.jfree.chart.plot.PiePlot;
@@ -35,6 +37,7 @@ import org.jfree.data.general.DefaultPieDataset;
 import javafx.scene.control.Label;
 import org.jfree.data.xy.DefaultXYDataset;
 
+import javax.mail.MessagingException;
 import java.awt.*;
 
 public class SuivreConsoController {
@@ -49,9 +52,28 @@ public class SuivreConsoController {
     @FXML
     private Label firstcharterror;
     @FXML
+    private Label scattercharterror;
+    @FXML
     public void initialize() {
         query2 = new TypeNameService();
         query = new ActionService();
+        //email
+        try {
+            query.sendEmail("youssefbenarous@gmail.com", "Alerte : Dépassement du seuil de danger pour l'environnement", "Cher/Chère [Nom du destinataire],\n" +
+                    "\n" +
+                    "Nos systèmes de surveillance ont détecté une augmentation significative des indicateurs environnementaux, indiquant un dépassement du seuil de danger.\n" +
+                    "\n" +
+                    "Nous vous exhortons à agir immédiatement pour faire face à cette situation <b>cruciale</b>. Il est impératif que nous trouvions ensemble des solutions viables afin d'atténuer les défis environnementaux auxquels nous sommes confrontés.\n" +
+                    "\n" +
+                    "Merci pour votre attention à cette demande. Nous attendons votre réponse et votre collaboration.\n" +
+                    "\n" +
+                    "Cordialement,\n" +
+                    "Votre nom");
+            System.out.println("Email sent successfully.");
+        } catch (MessagingException e) {
+            System.out.println("Failed to send email: " + e.getMessage());
+        }
+        //end emaim
         //first chart
         ActionService.ChartData chartData = query.firstChart(1);
         List<Double> data2 = chartData.getData();
@@ -70,15 +92,31 @@ public class SuivreConsoController {
             firstcharterror.setVisible(false);
         }
         //end first chart
-        //scatter chart
-        ActionService.ChartData scatterData = query.scatterchart(1);
-        List<Double> data3 = chartData.getData();
-        List<String> labels3 = scatterData.getLabels();
-        DefaultXYDataset dataset = new DefaultXYDataset();
-        JFreeChart chart = createStyledScatterPlot(dataset);
-        ChartViewer chartViewer = new ChartViewer(chart);
-        scatterPanel.getChildren().add(chartViewer);
-        //end scatter chart
+        // Scatter chart
+        ActionService.ChartData chartData2 = query.scatterchart(1);
+        List<Double> data3 = chartData2.getData();
+        List<String> labels3 = chartData2.getLabels();
+        if ((data2!=null) && (labels2!=null)) {
+            scattercharterror.setVisible(false);
+            DefaultXYDataset dataset = new DefaultXYDataset();
+            double[][] data = new double[2][data3.size()];
+            for (int i = 0; i < data3.size(); i++) {
+                data[0][i] = i;
+                data[1][i] = data3.get(i);
+            }
+            dataset.addSeries("Niveau de Danger", data);
+            JFreeChart chart = createStyledScatterPlot(dataset);
+            XYPlot plot = chart.getXYPlot();
+            SymbolAxis xAxis = new SymbolAxis("Date", labels3.toArray(new String[0]));
+            xAxis.setTickLabelFont(new Font("Arial", Font.BOLD, 10));
+            xAxis.setTickLabelPaint(Color.BLACK);
+            plot.setDomainAxis(xAxis);
+            ChartViewer chartViewer = new ChartViewer(chart);
+            scatterPanel.getChildren().add(chartViewer);
+        }
+        else{
+            scattercharterror.setVisible(true);
+        }
     }
 
     private static class ModernColorGenerator {
