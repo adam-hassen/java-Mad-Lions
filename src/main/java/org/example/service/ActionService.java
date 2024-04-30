@@ -15,6 +15,8 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
+import java.util.stream.Collectors;
+
 public class ActionService {
     Connection cn;
 
@@ -152,11 +154,10 @@ public class ActionService {
                 sums.put(type, 0.0);
             }
 
+            labels.add(type);
+
             if (action.getDate().isEqual(currentDate)) {
                 sums.put(type, sums.get(type) + score);
-                LocalDate date = action.getDate();
-                String formattedDate = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                labels.add(formattedDate);
             }
 
             data.add(action.getAction_score());
@@ -173,7 +174,7 @@ public class ActionService {
         List<Action> actions = this.afficherActions(id);
 
         Map<LocalDate, Double> dailyAverages = new HashMap<>();
-        Set<String> labels = new HashSet<>();
+        List<LocalDate> sortedDates = new ArrayList<>();
         List<Double> data = new ArrayList<>();
 
         for (Action action : actions) {
@@ -182,45 +183,51 @@ public class ActionService {
 
             if (date.isAfter(tenDaysEarlier) && date.isBefore(currentDate.plusDays(1))) {
                 dailyAverages.merge(date, dangerLevel, (prev, current) -> (prev + current) / 2.0);
-                String formattedDate = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                labels.add(formattedDate);
             }
         }
 
-        data.addAll(dailyAverages.values());
+        sortedDates.addAll(dailyAverages.keySet());
+        sortedDates.sort(Comparator.naturalOrder());
 
-        List<String> labels2 = new ArrayList<>(labels);
-        return new ChartData(data, labels2);
+        for (LocalDate date : sortedDates) {
+            data.add(dailyAverages.get(date));
+        }
+
+        List<String> labels = sortedDates.stream()
+                .map(date -> date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+                .collect(Collectors.toList());
+
+        return new ChartData(data, labels);
     }
 
-    public Action calculerScoreEtDanger(Action act){
+    public Action calculerScoreEtDanger(Action act) {
         Double score;
         if (act.getQuantite() > 0.0) {
             score = act.getType_id().getScore() * act.getQuantite();
             act.setAction_score(score);
-            System.out.println(act.getAction_score() + "sssss" + score);
-           // System.out.println("\n score quantite =  " + score + "\n");
-        }
-        else {
+        } else {
             Double typescore = act.getType_id().getScore();
             String quantiteTimeStr = act.getQuantite_time();
             LocalTime quantiteTime = LocalTime.parse(quantiteTimeStr, DateTimeFormatter.ofPattern("HH:mm:ss"));
-            int time = quantiteTime.getHour() * 3600 + quantiteTime.getMinute() * 60 + quantiteTime.getSecond();
+            int time = quantiteTime.toSecondOfDay();
             score = typescore * time;
             act.setAction_score(score);
         }
-        act.setNiveau_danger(1);
-        if (score < (2 * act.getType_id().getUtil_max() / 5) && score >= (act.getType_id().getUtil_max() / 5)) {
+
+        if (score < (act.getType_id().getUtil_max() / 5)) {
+            act.setNiveau_danger(1);
+        } else if ((score < (2 * act.getType_id().getUtil_max() / 5)) && (score >= (act.getType_id().getUtil_max() / 5))) {
             act.setNiveau_danger(2);
-        } else if (score < (3 * act.getType_id().getUtil_max() / 5) && score >= (2 * act.getType_id().getUtil_max() / 5)) {
+        } else if ((score < (3 * act.getType_id().getUtil_max() / 5)) && (score >= (2 * act.getType_id().getUtil_max() / 5))) {
             act.setNiveau_danger(3);
-        } else if (score < (4 * act.getType_id().getUtil_max() / 5) && score >= (3 * act.getType_id().getUtil_max() / 5)) {
+        } else if ((score < (4 * act.getType_id().getUtil_max() / 5)) && (score >= (3 * act.getType_id().getUtil_max() / 5))) {
             act.setNiveau_danger(4);
-        } else if (score < act.getType_id().getUtil_max() && score >= (4 * act.getType_id().getUtil_max() / 5)) {
+        } else if ((score < act.getType_id().getUtil_max()) && (score >= ((4 * act.getType_id().getUtil_max()) / 5))) {
             act.setNiveau_danger(5);
         } else if (score == act.getType_id().getUtil_max()) {
             act.setNiveau_danger(6);
         }
+
         return act;
     }
     public Action checrherAction(int id){
@@ -280,5 +287,24 @@ public class ActionService {
 
         // Send the email
         Transport.send(message);
+    }
+    public double moyenneDanger(int id) {
+        LocalDate today = LocalDate.now();
+        double averageDangerLevel=0.0;
+        try {
+            String query = "SELECT AVG(niveau_danger) AS average_danger_level " +
+                    "FROM ACTION " +
+                    "WHERE user_id = ? AND date = ?";
+            PreparedStatement preparedStatement = cn.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            preparedStatement.setDate(2, java.sql.Date.valueOf(today));
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                averageDangerLevel = resultSet.getDouble("average_danger_level");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return averageDangerLevel;
     }
 }

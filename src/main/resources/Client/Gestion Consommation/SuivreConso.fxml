@@ -82,7 +82,7 @@
                            <StackPane fx:id="chartPanel" styleClass="chart-pane">
                               <children>
                                     <Label fx:id="firstcharterror" text="VOUS AVEZ AUCUN ACTIONS AUJOURD'HUI" />
-                                    <PieChart fx:id="chart" styleClass="chart" prefHeight="300.0" prefWidth="400.0" />
+                                    <PieChart fx:id="chart" styleClass="chart" prefHeight="450.0" prefWidth="550.0" />
                               </children>
                            </StackPane>
                            <Line endX="140.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />

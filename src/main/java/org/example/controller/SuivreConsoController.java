@@ -36,6 +36,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import javafx.scene.control.Label;
 import org.jfree.data.xy.DefaultXYDataset;
+import org.jfree.data.xy.DefaultXYZDataset;
 
 import javax.mail.MessagingException;
 import java.awt.*;
@@ -57,64 +58,67 @@ public class SuivreConsoController {
     public void initialize() {
         query2 = new TypeNameService();
         query = new ActionService();
-        //email
-        try {
-            query.sendEmail("youssefbenarous@gmail.com", "Alerte : Dépassement du seuil de danger pour l'environnement", "Cher/Chère [Nom du destinataire],\n" +
-                    "\n" +
-                    "Nos systèmes de surveillance ont détecté une augmentation significative des indicateurs environnementaux, indiquant un dépassement du seuil de danger.\n" +
-                    "\n" +
-                    "Nous vous exhortons à agir immédiatement pour faire face à cette situation <b>cruciale</b>. Il est impératif que nous trouvions ensemble des solutions viables afin d'atténuer les défis environnementaux auxquels nous sommes confrontés.\n" +
-                    "\n" +
-                    "Merci pour votre attention à cette demande. Nous attendons votre réponse et votre collaboration.\n" +
-                    "\n" +
-                    "Cordialement,\n" +
-                    "Votre nom");
-            System.out.println("Email sent successfully.");
-        } catch (MessagingException e) {
-            System.out.println("Failed to send email: " + e.getMessage());
-        }
-        //end emaim
         //first chart
         ActionService.ChartData chartData = query.firstChart(1);
         List<Double> data2 = chartData.getData();
         List<String> labels2 = chartData.getLabels();
         if ((data2!=null) && (labels2!=null)){
             DefaultPieDataset dataset = new DefaultPieDataset();
-            for (int i = 0; i < labels2.size(); i++) {
+            for (int i = 0; i < data2.size(); i++) {
                 dataset.setValue(labels2.get(i), data2.get(i));
             }
-            firstcharterror.setVisible(true);
+            firstcharterror.setVisible(false);
             JFreeChart chart = createStyledPieChart(dataset);
             ChartViewer chartViewer = new ChartViewer(chart);
             chartPanel.getChildren().add(chartViewer);
         }
         else {
-            firstcharterror.setVisible(false);
+            firstcharterror.setVisible(true);
         }
         //end first chart
         // Scatter chart
         ActionService.ChartData chartData2 = query.scatterchart(1);
         List<Double> data3 = chartData2.getData();
         List<String> labels3 = chartData2.getLabels();
-        if ((data2!=null) && (labels2!=null)) {
+
+        if (data3 != null && labels3 != null) {
             scattercharterror.setVisible(false);
-            DefaultXYDataset dataset = new DefaultXYDataset();
-            double[][] data = new double[2][data3.size()];
+            DefaultXYZDataset dataset = new DefaultXYZDataset();
+            double[][] data = new double[3][data3.size()];
             for (int i = 0; i < data3.size(); i++) {
                 data[0][i] = i;
                 data[1][i] = data3.get(i);
+                data[2][i] = 0.5;
             }
             dataset.addSeries("Niveau de Danger", data);
-            JFreeChart chart = createStyledScatterPlot(dataset);
+            XYBubbleRenderer renderer = new XYBubbleRenderer() {
+                @Override
+                public Paint getSeriesPaint(int series) {
+                    return Color.RED;
+                }
+            };
+            JFreeChart chart = ChartFactory.createBubbleChart(
+                    null, "Dates", "Niveau De Danger", dataset, PlotOrientation.VERTICAL, true, true, false);
             XYPlot plot = chart.getXYPlot();
+            plot.setRenderer(renderer);
             SymbolAxis xAxis = new SymbolAxis("Date", labels3.toArray(new String[0]));
             xAxis.setTickLabelFont(new Font("Arial", Font.BOLD, 10));
             xAxis.setTickLabelPaint(Color.BLACK);
             plot.setDomainAxis(xAxis);
+            double aspectRatio = (double) plot.getDomainAxis().getRange().getLength()
+                    / (double) plot.getRangeAxis().getRange().getLength();
+            double bubbleSize = 0.5;
+            double adjustedBubbleSize = bubbleSize * aspectRatio;
+
+            chart.setBackgroundPaint(new Color(0,0,0,0));
+            LegendTitle legend = chart.getLegend();
+            legend.setBackgroundPaint(new Color(0, 0, 0, 0));
+            plot.setBackgroundPaint(new Color(0,0,0,0));
+            renderer.setSeriesShape(0, new Ellipse2D.Double(-adjustedBubbleSize / 2, -adjustedBubbleSize / 2, adjustedBubbleSize, adjustedBubbleSize));
+
             ChartViewer chartViewer = new ChartViewer(chart);
             scatterPanel.getChildren().add(chartViewer);
-        }
-        else{
+        } else {
             scattercharterror.setVisible(true);
         }
     }
