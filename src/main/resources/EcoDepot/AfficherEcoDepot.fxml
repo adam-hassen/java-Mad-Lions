@@ -7,9 +7,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="598.0" prefWidth="949.0" stylesheets="@../CSS/AfficherEcodepot.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Recyclage.controllers.AfficherEcoDepot">
+<AnchorPane prefHeight="735.0" prefWidth="1152.0" stylesheets="@../CSS/AfficherEcodepot.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Recyclage.controllers.AfficherEcoDepot">
    <children>
-      <TableView fx:id="tableView" layoutX="47.0" layoutY="111.0" onMouseClicked="#getData" prefHeight="376.0" prefWidth="842.0" style="-fx-background-color: transparent;" stylesheets="@../CSS/AfficherEcodepot.css">
+      <TableView fx:id="tableView" layoutX="150.0" layoutY="130.0" onMouseClicked="#getData" prefHeight="413.0" prefWidth="845.0" style="-fx-background-color: transparent;" stylesheets="@../CSS/AfficherEcodepot.css">
         <columns>
           <TableColumn fx:id="nomCol" prefWidth="124.79999089241028" text="Nom" />
           <TableColumn fx:id="adresseCol" prefWidth="104.79998779296875" text="Adresse" />
@@ -19,8 +19,8 @@
             <TableColumn fx:id="idCol" minWidth="0.0" prefWidth="0.0" />
         </columns>
       </TableView>
-      <Button layoutX="769.0" layoutY="487.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="46.0" prefWidth="120.0" style="-fx-background-color: #212E53;" stylesheets="@../CSS/AfficherEcodepot.css" text="Ajouter" />
-      <ImageView fitHeight="101.0" fitWidth="311.0" layoutX="638.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <Button layoutX="882.0" layoutY="562.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="46.0" prefWidth="120.0" style="-fx-background-color: #212E53;" stylesheets="@../CSS/AfficherEcodepot.css" text="Ajouter" />
+      <ImageView fitHeight="101.0" fitWidth="311.0" layoutX="818.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../CSS/Images/ecogardien.png" />
          </image>

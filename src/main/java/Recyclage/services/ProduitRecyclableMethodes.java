@@ -5,6 +5,9 @@ import Recyclage.interfaces.ProduitRecyclableService;
 import Recyclage.tools.MyConnection;
 import javafx.scene.control.Alert;
 import Recyclage.entities.EcoDepot;
+import javafx.scene.control.DialogPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -34,9 +37,23 @@ public class ProduitRecyclableMethodes implements ProduitRecyclableService<Produ
             pst.setString(6, produitRecyclable.getType().toString());
 
             pst.executeUpdate();
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Success");
-            alert.setContentText("Produit recyclable ajouté");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("succès");
+            alert.setHeaderText("succès");
+            alert.setContentText("Produit Ajouter avec succès");
+
+            // Charger l'image à partir du chemin spécifié
+            Image image = new Image("/css/Images/aa.png");
+            ImageView imageView = new ImageView(image);
+            imageView.setFitWidth(100); // Ajuster la largeur de l'image si nécessaire
+            imageView.setPreserveRatio(true);
+            alert.setGraphic(imageView);
+
+            // Appliquer un style CSS personnalisé à l'alerte
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(getClass().getResource("/CSS/succes.css").toExternalForm());
+            dialogPane.getStyleClass().add("custom-alert");
+
             alert.showAndWait();
         } catch (SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -56,6 +73,24 @@ public class ProduitRecyclableMethodes implements ProduitRecyclableService<Produ
             int rowsDeleted = pst.executeUpdate();
             if (rowsDeleted > 0) {
                 System.out.println("Produit recyclable supprimé");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("succès");
+                alert.setHeaderText("succès");
+                alert.setContentText("Produit recyclable supprimé avec succès");
+
+                // Charger l'image à partir du chemin spécifié
+                Image image = new Image("/css/Images/aa.png");
+                ImageView imageView = new ImageView(image);
+                imageView.setFitWidth(100); // Ajuster la largeur de l'image si nécessaire
+                imageView.setPreserveRatio(true);
+                alert.setGraphic(imageView);
+
+                // Appliquer un style CSS personnalisé à l'alerte
+                DialogPane dialogPane = alert.getDialogPane();
+                dialogPane.getStylesheets().add(getClass().getResource("/CSS/succes.css").toExternalForm());
+                dialogPane.getStyleClass().add("custom-alert");
+
+                alert.showAndWait();
                 return true; // Retourne true si au moins une ligne a été supprimée
             } else {
                 System.out.println("Aucun produit recyclable trouvé avec cet ID");
@@ -83,6 +118,7 @@ public class ProduitRecyclableMethodes implements ProduitRecyclableService<Produ
             int rowsUpdated = pst.executeUpdate();
             if (rowsUpdated > 0) {
                 System.out.println("Produit recyclable modifié avec succès");
+
                 return true;
             } else {
                 System.out.println("Aucun produit recyclable trouvé avec cet ID");
@@ -133,6 +169,10 @@ public class ProduitRecyclableMethodes implements ProduitRecyclableService<Produ
                 ecoDepot = new EcoDepot();
                 ecoDepot.setId(rs.getInt("id"));
                 ecoDepot.setNom(rs.getString("nom"));
+                ecoDepot.setAdresse(rs.getString("adresse"));
+                ecoDepot.setType(rs.getString("type"));
+                ecoDepot.setCapacite_stockage(rs.getInt("capacite_stockage"));
+                ecoDepot.setStatut_point_collecte(rs.getString("statut_point_collecte"));
                 // Définir les autres attributs de l'EcoDepot si nécessaire
             }
         } catch (SQLException e) {

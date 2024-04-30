@@ -8,10 +8,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@CSS/Back.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Recyclage.controllers.Back">
    <children>
-      <BorderPane fx:id="BorderPane" prefHeight="570.0" prefWidth="1062.0">
+      <BorderPane fx:id="BorderPane" prefHeight="762.0" prefWidth="1240.0">
          <top>
             <MenuBar BorderPane.alignment="CENTER">
               <menus>
@@ -36,9 +35,9 @@
          <left>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="Affichage" mnemonicParsing="false" onAction="#Afficher" prefHeight="187.0" prefWidth="111.0" text="Affichage" />
-                  <Button fx:id="Ajouter" mnemonicParsing="false" onAction="#ajouter" prefHeight="186.0" prefWidth="185.0" text="Ajouter" />
-                  <Button fx:id="Carte" mnemonicParsing="false" onAction="#carte" prefHeight="172.0" prefWidth="158.0" text="Carte" />
+                  <Button fx:id="Affichage" mnemonicParsing="false" onAction="#Afficher" prefHeight="256.0" prefWidth="100.0" text="Affichage" />
+                  <Button fx:id="Ajouter" mnemonicParsing="false" onAction="#ajouter" prefHeight="258.0" prefWidth="99.0" text="Ajouter" />
+                  <Button fx:id="Carte" mnemonicParsing="false" onAction="#carte" prefHeight="233.0" prefWidth="110.0" text="Carte" />
                </children>
             </VBox>
          </left>

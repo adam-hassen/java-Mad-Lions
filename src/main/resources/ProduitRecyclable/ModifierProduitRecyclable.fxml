@@ -13,10 +13,10 @@
    <children>
       <TextField fx:id="nomTFPM" layoutX="754.0" layoutY="77.0" prefHeight="40.0" promptText="nom" />
       <TextField fx:id="DiscriptionTFPM" layoutX="754.0" layoutY="135.0" prefHeight="40.0" promptText="Discription" />
-      <TextField fx:id="quantiteTFPM" layoutX="753.0" layoutY="189.0" prefHeight="40.0" promptText="Quantiter" />
+      <TextField fx:id="quantiteTFPM" disable="true" layoutX="753.0" layoutY="189.0" prefHeight="40.0" promptText="Quantiter" />
       <Button layoutX="810.0" layoutY="432.0" mnemonicParsing="false" onAction="#ModifierProduitRecyclable" prefHeight="53.0" prefWidth="118.0" style="-fx-background-color: #212E53;" text="Modifier" />
       <ComboBox fx:id="ComboBoxTFPM" layoutX="752.0" layoutY="244.0" prefHeight="46.0" prefWidth="201.0" promptText="type" />
-      <ComboBox fx:id="ComboBoxTF1PM" layoutX="751.0" layoutY="365.0" prefHeight="46.0" prefWidth="202.0" promptText="EcoDepot" />
+      <ComboBox fx:id="ComboBoxTF1PM" disable="true" layoutX="751.0" layoutY="365.0" prefHeight="46.0" prefWidth="202.0" promptText="EcoDepot" />
       <DatePicker fx:id="datePM" disable="true" layoutX="752.0" layoutY="311.0" prefHeight="32.0" prefWidth="202.0" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="829.0" pickOnBounds="true" preserveRatio="true">
          <image>

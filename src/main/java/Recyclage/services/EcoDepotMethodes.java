@@ -159,21 +159,30 @@ public class EcoDepotMethodes implements EcodepotService<EcoDepot> {
             alert.showAndWait();
         }
     }
-    public long getIdEcoDepotByNom(String nom) {
-        String requete = "SELECT id FROM eco_depot WHERE nom = ?";
+    public EcoDepot getEcoDepotByNom(String nom) {
+        String requete = "SELECT * FROM eco_depot WHERE nom = ?";
         try {
             PreparedStatement pst = MyConnection.getInsatance().getCnx().prepareStatement(requete);
             pst.setString(1, nom);
             ResultSet rs = pst.executeQuery();
 
             if (rs.next()) {
-                return rs.getLong("id");
+                EcoDepot ecoDepot = new EcoDepot();
+                ecoDepot.setId(rs.getInt("id"));
+                ecoDepot.setNom(rs.getString("nom"));
+                ecoDepot.setAdresse(rs.getString("adresse"));
+                ecoDepot.setType(rs.getString("type"));
+                ecoDepot.setCapacite_stockage(rs.getInt("capacite_stockage"));
+                ecoDepot.setStatut_point_collecte(rs.getString("statut_point_collecte"));
+
+                return ecoDepot;
             }
         } catch (SQLException e) {
-            System.out.println("Erreur lors de la récupération de l'ID de l'éco-dépôt par nom : " + e.getMessage());
+            System.out.println("Erreur lors de la récupération de l'éco-dépôt par nom : " + e.getMessage());
         }
-        return -1; // Retourne -1 si aucun éco-dépôt correspondant n'a été trouvé
+        return null; // Retourne null si aucun éco-dépôt correspondant n'a été trouvé
     }
+
     public EcoDepot getEcoDepotByAttributes(EcoDepot ecoDepotToCheck) {
         String requete = "SELECT * FROM ECO_DEPOT WHERE nom = ? AND adresse = ? AND type = ? AND capacite_stockage = ? AND statut_point_collecte = ?";
         try {
@@ -203,6 +212,42 @@ public class EcoDepotMethodes implements EcodepotService<EcoDepot> {
 
         return null;
     }
+    public int getCapaciteStockageByNom(String nomEcoDepot) {
+        int capaciteStockage = -1; // Initialiser la capacité de stockage à -1 par défaut
 
+        String requete = "SELECT capacite_stockage FROM eco_depot WHERE nom = ?";
+        try {
+            PreparedStatement pst = MyConnection.getInsatance().getCnx().prepareStatement(requete);
+            pst.setString(1, nomEcoDepot);
+            ResultSet rs = pst.executeQuery();
 
+            if (rs.next()) {
+                capaciteStockage = rs.getInt("capacite_stockage");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération de la capacité de stockage : " + e.getMessage());
+        }
+
+        return capaciteStockage;
+    }
+    public void updateCapaciteStockage(String nomEcoDepot, int nouvelleCapaciteStockage) {
+        String requete = "UPDATE eco_depot SET capacite_stockage = ? WHERE nom = ?";
+        try {
+            PreparedStatement pst = MyConnection.getInsatance().getCnx().prepareStatement(requete);
+            pst.setInt(1, nouvelleCapaciteStockage);
+            pst.setString(2, nomEcoDepot);
+            int rowsUpdated = pst.executeUpdate();
+
+            if (rowsUpdated > 0) {
+                System.out.println("Capacité de stockage mise à jour avec succès pour l'éco-dépôt : " + nomEcoDepot);
+            } else {
+                System.out.println("Aucun éco-dépôt trouvé avec le nom : " + nomEcoDepot);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la mise à jour de la capacité de stockage : " + e.getMessage());
+        }
+    }
 }
+
+
+

@@ -4,8 +4,12 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import Recyclage.entities.ProduitRecyclable;
+import Recyclage.services.EcoDepotMethodes;
 import Recyclage.services.ProduitRecyclableMethodes;
 import Recyclage.tests.HelloApplication;
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,11 +25,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
+import javafx.util.Duration;
 import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image.ImageType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class AfficherProduitRecyclable {
 
@@ -36,30 +42,37 @@ public class AfficherProduitRecyclable {
     private final int ITEMS_PER_PAGE = 1; // Nombre d'éléments par page
     private Pagination pagination;
 
-    @FXML
-    private Button ajouterButton;
+
     @FXML
     private TextField BarreDeRecherche;
 
-    @FXML
-    private Button Diagnistique;
+    EcoDepotMethodes ecoDepotMethodes = new EcoDepotMethodes();
 
 
     @FXML
     void AjouterProduitRecyclable(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ProduitRecyclable/AjouterProduitRecyclable.fxml"));
-        Parent root;
         try {
-            root = loader.load();
+            Parent root = loader.load();
             Stage stage = new Stage();
+
+            // Créer une transition de fondu pour la nouvelle scène
+            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+            fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
+            fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
+
+            // Démarrer la transition de fondu
+            fadeTransition.play();
+
+            // Afficher la nouvelle scène dans une nouvelle fenêtre
             stage.setScene(new Scene(root));
             stage.show();
 
-            // Fermer la fenêtre d'affichage actuelle
+            // Fermer la fenêtre actuelle après la transition
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.close();
+            fadeTransition.setOnFinished(e -> currentStage.close());
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -217,43 +230,54 @@ public class AfficherProduitRecyclable {
         // Gérer l'événement de clic sur le bouton "Modifier"
         modifierButton.setOnAction(event -> {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ProduitRecyclable/ModifierProduitRecyclable.fxml"));
-            Parent root;
             try {
-                root = loader.load();
+                Parent root = loader.load();
                 ModifierProduitRecyclable controller = loader.getController();
                 controller.initData1(produit); // Passer les informations du produit au contrôleur de la page de modification
                 Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.showAndWait(); // Attendre la fermeture de la fenêtre de modification
 
+                // Créer une transition de fondu pour la nouvelle scène
+                FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+                fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
+                fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
+
+                // Démarrer la transition de fondu
+                fadeTransition.play();
+
+                stage.setScene(new Scene(root));
+                stage.showAndWait();
                 // Mettre à jour la liste des produits après la modification
                 updateProduitsList();
 
-                // Mettre à jour l'affichage
-                rafraichirAnchorPane(anchorPane);
+
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
+
+
+
         });
 
         // Gérer l'événement de clic sur le bouton "Supprimer"
         supprimerButton.setOnAction(event -> {
             // Créer une boîte de dialogue de confirmation
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation de suppression");
-            alert.setHeaderText("Confirmation de suppression");
-            alert.setContentText("Êtes-vous sûr de vouloir supprimer ce produit recyclable ?");
+            if (confirmerAjoutProduit()) {
+                int quantiteProduitSupprime = produit.getQuantite();
 
-            // Afficher la boîte de dialogue et attendre la réponse de l'utilisateur
-            ButtonType buttonType = alert.showAndWait().orElse(ButtonType.CANCEL);
-            if (buttonType == ButtonType.OK) {
-                // Supprimer le produit recyclable
+                // Récupérer la capacité de stockage de l'éco-dépôt associé au produit supprimé
+                int capaciteStockageEcoDepot = produit.getEcoDepot().getCapacite_stockage();
+                System.out.println(capaciteStockageEcoDepot);
+
+                // Ajouter la quantité du produit supprimé à la capacité de stockage de l'éco-dépôt
+                int nouvelleCapaciteStockage = capaciteStockageEcoDepot + quantiteProduitSupprime;
+
+                // Mettre à jour la capacité de stockage de l'éco-dépôt dans la base de données
+                ecoDepotMethodes.updateCapaciteStockage(produit.getEcoDepot().getNom(), nouvelleCapaciteStockage);
                 ProduitRecyclableMethodes produitRecyclableMethodes = new ProduitRecyclableMethodes();
                 boolean isDeleted = produitRecyclableMethodes.supprimerProduit(produit);
 
                 // Afficher une confirmation dans l'interface
                 if (isDeleted) {
-                    afficherMessage("Le produit a été supprimer avec succès.", Alert.AlertType.INFORMATION);
                     updateProduitsList();
                     rafraichirAnchorPane(anchorPane);
                 } else {
@@ -267,12 +291,12 @@ public class AfficherProduitRecyclable {
 
         // Ajouter les boutons à la HBox
         buttonBox.getChildren().addAll(supprimerButton, modifierButton);
-        if (produit.getEcoDepot().getNom() != null && !produit.getEcoDepot().getNom().isEmpty()) {
+        if (produit.getEcoDepot().getAdresse() != null && !produit.getEcoDepot().getAdresse().isEmpty()) {
             // Créer le code QR avec l'adresse de l'éco-dépôt
-            String adresseEcoDepot = produit.getEcoDepot().getNom();
+            String adresseEcoDepot = produit.getEcoDepot().getAdresse();
             ByteArrayOutputStream out = QRCode.from(adresseEcoDepot).to(ImageType.PNG).stream();
             ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());
-            javafx.scene.image.Image qrImage = new javafx.scene.image.Image(in);
+            Image qrImage = new Image(in);
 
             // Créer un ImageView pour afficher le code QR
             ImageView qrImageView = new ImageView(qrImage);
@@ -315,10 +339,22 @@ public class AfficherProduitRecyclable {
         // Charger la nouvelle vue ou créer une nouvelle fenêtre
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/ProduitRecyclable/Diagnosrique.fxml"));
         try {
-            stage.setScene(new Scene(fxmlLoader.load()));
+            Parent root = fxmlLoader.load();
+            stage.setScene(new Scene(root));
+
+            // Créer une transition de fondu pour la nouvelle scène
+            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+            fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
+            fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
+
+            // Démarrer la transition de fondu
+            fadeTransition.play();
+
             stage.show();
+
+            // Fermer la fenêtre actuelle après la transition
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.close();
+            fadeTransition.setOnFinished(e -> currentStage.close());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -374,5 +410,31 @@ public class AfficherProduitRecyclable {
         ProduitRecyclableMethodes produitRecyclableMethodes = new ProduitRecyclableMethodes();
         listeProduits = produitRecyclableMethodes.listeDesProduits();
     }
+    private boolean confirmerAjoutProduit() {
+        // Créer une nouvelle alerte de type CONFIRMATION
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation de suppression");
+        alert.setHeaderText("Confirmer la suppression du produit recyclable");
+        alert.setContentText("Êtes-vous sûr de vouloir supprimer ce produit recyclable ?");
+
+        // Obtenir le bouton de type OK
+        Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+        // Appliquer un style CSS personnalisé au bouton OK
+        okButton.getStyleClass().add("custom-ok-button");
+
+        // Obtenir le bouton de type Annuler
+        Button cancelButton = (Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL);
+        // Appliquer un style CSS personnalisé au bouton Annuler
+        cancelButton.getStyleClass().add("custom-cancel-button");
+
+        // Charger la feuille de style CSS pour l'alerte
+        alert.getDialogPane().getStylesheets().add(
+                getClass().getResource("/CSS/confirmation.css").toExternalForm());
+
+        // Afficher l'alerte et attendre la réponse de l'utilisateur
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == ButtonType.OK;
+    }
+
 
 }
