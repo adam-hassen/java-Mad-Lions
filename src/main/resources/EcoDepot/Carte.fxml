@@ -8,15 +8,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="698.0" prefWidth="960.0" stylesheets="@../CSS/AjouterEcoDepot.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Recyclage.controllers.Carte">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1045.0" style="-fx-background-color: #D9D9D9;" stylesheets="@../CSS/carte.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Recyclage.controllers.Carte">
    <children>
-      <VBox alignment="CENTER" layoutX="27.0" layoutY="53.0" prefHeight="638.0" prefWidth="922.0">
+      <VBox alignment="CENTER" layoutX="43.0" layoutY="86.0" prefHeight="638.0" prefWidth="922.0">
          <children>
-            <WebView fx:id="webView" prefHeight="638.0" prefWidth="922.0" />
+            <WebView fx:id="webView" prefHeight="637.0" prefWidth="925.0" />
          </children>
       </VBox>
-      <TextField fx:id="searchField" layoutX="14.0" prefHeight="48.0" prefWidth="209.0" stylesheets="@../CSS/AjouterEcoDepot.css" />
-      <Button layoutX="224.0" mnemonicParsing="false" onAction="#searchAddress" prefHeight="27.0" prefWidth="67.0">
+      <TextField fx:id="searchField" layoutX="43.0" layoutY="35.0" prefHeight="48.0" prefWidth="209.0" promptText="Recherche" stylesheets="@../CSS/AjouterEcoDepot.css" />
+      <Button layoutX="343.0" layoutY="35.0" mnemonicParsing="false" onAction="#searchAddress" prefHeight="39.0" prefWidth="70.0">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <image>

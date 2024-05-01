@@ -16,10 +16,17 @@
             <Image url="@../CSS/Images/environnement-societe-gouvernance-constituent-concept-esgun-bloc-bois-icone-esg-represente_912524-2188.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="1133.0" layoutY="590.0" mnemonicParsing="false" onAction="#Affichage" prefHeight="59.0" prefWidth="159.0" style="-fx-background-color: #212E53;" text="Affichage" textFill="WHITE">
+      <Button layoutX="1127.0" layoutY="585.0" mnemonicParsing="false" onAction="#Affichage" prefHeight="64.0" prefWidth="185.0" style="-fx-background-color: #212E53;" text="Affichage" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="37.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../CSS/Images/72647.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
       <ImageView fitHeight="120.0" fitWidth="322.0" layoutX="1003.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
          <image>

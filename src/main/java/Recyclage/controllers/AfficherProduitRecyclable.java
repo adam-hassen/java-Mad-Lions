@@ -212,16 +212,21 @@ public class AfficherProduitRecyclable {
         HBox buttonBox = new HBox(10);
         buttonBox.setAlignment(Pos.CENTER_RIGHT);
         buttonBox.setPadding(new Insets(10));
-
+        ImageView supprimerIcon = new ImageView(new Image("/css/Images/1214428.png"));
+            supprimerIcon.setFitWidth(20); // Ajuster la largeur de l'icône
+            supprimerIcon.setFitHeight(20); // Ajuster la hauteur de l'icône
         // Créer un bouton "Supprimer"
-        Button supprimerButton = new Button("Supprimer");
+        Button supprimerButton = new Button("Supprimer", supprimerIcon);
         supprimerButton.setStyle("-fx-background-color: #ff6666; " +
                 "-fx-text-fill: white; " +
                 "-fx-font-size: 14pt; " +
                 "-fx-border-radius: 5px;");
 
         // Créer un bouton "Modifier"
-        Button modifierButton = new Button("Modifier");
+            ImageView modifierIcon = new ImageView(new Image("/css/Images/860814.png"));
+            modifierIcon.setFitWidth(20); // Ajuster la largeur de l'icône
+            modifierIcon.setFitHeight(20); // Ajuster la hauteur de l'icône
+        Button modifierButton = new Button("Modifier",modifierIcon);
         modifierButton.setStyle("-fx-background-color: #3399ff; " +
                 "-fx-text-fill: white; " +
                 "-fx-font-size: 14pt; " +

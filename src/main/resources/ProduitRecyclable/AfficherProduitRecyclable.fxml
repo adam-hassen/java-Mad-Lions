@@ -18,10 +18,17 @@
         <VBox fx:id="carteContainer" layoutX="180.0" layoutY="153.0" prefHeight="466.0" prefWidth="906.0">
             <!-- Les cartes des produits recyclables seront ajoutées ici -->
         </VBox>
-        <Button layoutX="1123.0" layoutY="580.0" mnemonicParsing="false" onAction="#AjouterProduitRecyclable" prefHeight="59.0" prefWidth="159.0" style="-fx-background-color: #212E53;" text="Ajouter" textFill="WHITE">
+        <Button layoutX="1123.0" layoutY="580.0" mnemonicParsing="false" onAction="#AjouterProduitRecyclable" prefHeight="59.0" prefWidth="188.0" style="-fx-background-color: #212E53;" text="Ajouter" textFill="WHITE">
             <font>
                 <Font size="18.0" />
             </font>
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../CSS/Images/images-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </graphic>
         </Button>
         <ImageView fitHeight="120.0" fitWidth="322.0" layoutX="993.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -34,9 +41,16 @@
             <Image url="@../CSS/Images/magnifier_105027.png" />
          </image>
       </ImageView>
-      <Button fx:id="Diagnistique" layoutX="1123.0" layoutY="496.0" mnemonicParsing="false" onAction="#Diagnostique" prefHeight="59.0" prefWidth="159.0" style="-fx-background-color: #7AA95C;" text="Diagnistique">
+      <Button fx:id="Diagnistique" layoutX="1123.0" layoutY="496.0" mnemonicParsing="false" onAction="#Diagnostique" prefHeight="59.0" prefWidth="188.0" style="-fx-background-color: #7AA95C;" text="Diagnistique">
          <font>
             <Font size="18.0" />
-         </font></Button>
+         </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../CSS/Images/4692089.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
     </children>
 </AnchorPane>

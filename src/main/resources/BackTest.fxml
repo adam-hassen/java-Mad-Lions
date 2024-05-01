@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="BorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="793.0" prefWidth="1318.0" stylesheets="@CSS/AfficherProduitRecyclable.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Recyclage.controllers.BakTest">
+   <top>
+      <HBox prefHeight="60.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="67.0" prefWidth="1330.0" style="-fx-background-color: #7E9591;">
+               <children>
+                  <HBox layoutX="461.0" layoutY="10.0" prefHeight="47.0" prefWidth="550.0">
+                     <children>
+                        <Button fx:id="Ajouter" mnemonicParsing="false" onAction="#ajouter" prefHeight="46.0" prefWidth="178.0" style="-fx-background-color: #9EAD84;" text="Ajouter">
+                           <graphic>
+                              <ImageView fitHeight="26.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@CSS/Images/images-removebg-preview.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button fx:id="Affichage" mnemonicParsing="false" onAction="#Afficher" prefHeight="46.0" prefWidth="175.0" style="-fx-background-color: #9EAD84;" text="Afficher">
+                           <graphic>
+                              <ImageView fitHeight="26.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@CSS/Images/72647.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button fx:id="Carte" mnemonicParsing="false" onAction="#carte" prefHeight="47.0" prefWidth="180.0" style="-fx-background-color: #9EAD84;" text="Carte">
+                           <graphic>
+                              <ImageView fitHeight="26.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@CSS/Images/722013.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                     </children>
+                  </HBox>
+                  <ImageView fitHeight="62.0" fitWidth="302.0" layoutX="16.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@CSS/Images/ecogardien.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <AnchorPane prefHeight="584.0" prefWidth="273.0" style="-fx-background-color: #7E9591;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox layoutY="92.0" prefHeight="568.0" prefWidth="274.0">
+               <children>
+                  <Button fx:id="Utilisateur" mnemonicParsing="false" prefHeight="82.0" prefWidth="266.0" style="-fx-background-color: #2E714A;" text="Utilisateur" textFill="#fafafa">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@CSS/Images/376666-icone-de-vecteur-de-gestion-des-utilisateurs-gratuit-vectoriel-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="Recyclage" mnemonicParsing="false" prefHeight="84.0" prefWidth="266.0" style="-fx-background-color: #2E714A;" text="Recyclage" textFill="#fafafa">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@CSS/Images/46080.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="consommation" mnemonicParsing="false" prefHeight="84.0" prefWidth="266.0" style="-fx-background-color: #2E714A;" text="Consommation" textFill="#fafafa">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@CSS/Images/2959570.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="workshop" mnemonicParsing="false" prefHeight="82.0" prefWidth="266.0" style="-fx-background-color: #2E714A;" text="Workshop" textFill="#fafafa">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@CSS/Images/4804803.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="produit" mnemonicParsing="false" prefHeight="82.0" prefWidth="264.0" style="-fx-background-color: #2E714A;" text="Produit" textFill="#fafafa">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@CSS/Images/4805318.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="evenemment" mnemonicParsing="false" prefHeight="86.0" prefWidth="264.0" style="-fx-background-color: #2E714A;" text="Evenemment" textFill="#fafafa">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@CSS/Images/6994019.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #D9D9D9;" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

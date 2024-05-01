@@ -10,15 +10,29 @@
 
 <AnchorPane prefHeight="567.0" prefWidth="856.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Recyclage.controllers.ModifierEcodepot">
    <children>
-      <TextField fx:id="nomTFM" layoutX="336.0" layoutY="111.0" prefHeight="40.0" promptText="nom" stylesheets="@../CSS/AfficherEcodepot.css" />
-      <TextField fx:id="adresseTFM" layoutX="336.0" layoutY="159.0" prefHeight="40.0" promptText="adresse" stylesheets="@../CSS/AfficherEcodepot.css" />
-      <TextField fx:id="capaciteStockageTFM" layoutX="336.0" layoutY="272.0" prefHeight="40.0" promptText="capacite_stockage " stylesheets="@../CSS/AfficherEcodepot.css" />
-      <ComboBox fx:id="ComboBoxTFM" layoutX="337.0" layoutY="212.0" prefHeight="46.0" prefWidth="201.0" promptText="type" stylesheets="@../CSS/AfficherEcodepot.css" />
-      <ComboBox fx:id="ComboBoxTF1M" layoutX="336.0" layoutY="332.0" prefHeight="46.0" prefWidth="202.0" promptText="statut_point_collecte" stylesheets="@../CSS/AfficherEcodepot.css" />
-      <Button layoutX="336.0" layoutY="402.0" mnemonicParsing="false" onAction="#Modifier" style="-fx-background-color: #212E53;" text="Modifier" />
-      <Button layoutX="445.0" layoutY="402.0" mnemonicParsing="false" onAction="#Supprimer" style="-fx-background-color: #A7001E;" text="Supprimer" />
+      <TextField fx:id="nomTFM" layoutX="264.0" layoutY="81.0" prefHeight="40.0" promptText="nom" stylesheets="@../CSS/AfficherEcodepot.css" />
+      <TextField fx:id="adresseTFM" layoutX="265.0" layoutY="141.0" prefHeight="40.0" promptText="adresse" stylesheets="@../CSS/AfficherEcodepot.css" />
+      <TextField fx:id="capaciteStockageTFM" layoutX="264.0" layoutY="268.0" prefHeight="40.0" promptText="capacite_stockage " stylesheets="@../CSS/AfficherEcodepot.css" />
+      <ComboBox fx:id="ComboBoxTFM" layoutX="265.0" layoutY="204.0" prefHeight="46.0" prefWidth="201.0" promptText="type" stylesheets="@../CSS/AfficherEcodepot.css" />
+      <ComboBox fx:id="ComboBoxTF1M" layoutX="264.0" layoutY="337.0" prefHeight="46.0" prefWidth="202.0" promptText="statut_point_collecte" stylesheets="@../CSS/AfficherEcodepot.css" />
+      <Button layoutX="203.0" layoutY="422.0" mnemonicParsing="false" onAction="#Modifier" style="-fx-background-color: #212E53;" text="Modifier">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../CSS/Images/860814.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button layoutX="428.0" layoutY="422.0" mnemonicParsing="false" onAction="#Supprimer" style="-fx-background-color: #A7001E;" text="Supprimer">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../CSS/Images/1214428.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
       <TextField fx:id="idFx" disable="true" layoutX="3.0" layoutY="-32.0" prefHeight="0.0" prefWidth="21.0" style="-fx-background-color: transparent;" />
-      <ImageView fitHeight="109.0" fitWidth="322.0" layoutX="534.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="293.0" layoutX="565.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../CSS/Images/ecogardien.png" />
          </image>

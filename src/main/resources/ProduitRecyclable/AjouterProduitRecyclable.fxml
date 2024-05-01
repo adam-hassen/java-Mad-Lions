@@ -13,8 +13,22 @@
       <TextField fx:id="nomTFP" layoutX="754.0" layoutY="67.0" prefHeight="40.0" promptText="nom" />
       <TextField fx:id="DiscriptionTFP" layoutX="754.0" layoutY="125.0" prefHeight="40.0" promptText="Discription" />
       <TextField fx:id="quantiteTFP" layoutX="753.0" layoutY="179.0" prefHeight="40.0" promptText="Quantiter" />
-      <Button layoutX="725.0" layoutY="421.0" mnemonicParsing="false" onAction="#AjouterProduitRecyclable" prefHeight="46.0" prefWidth="110.0" text="Ajouter" />
-      <Button layoutX="853.0" layoutY="421.0" mnemonicParsing="false" onAction="#AfficherLesProduitRecyclable" prefHeight="46.0" prefWidth="116.0" style="-fx-background-color: #2a9d8f;" text="Afficher" />
+      <Button layoutX="709.0" layoutY="421.0" mnemonicParsing="false" onAction="#AjouterProduitRecyclable" prefHeight="49.0" prefWidth="131.0" text="Ajouter">
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../CSS/Images/images-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button layoutX="854.0" layoutY="421.0" mnemonicParsing="false" onAction="#AfficherLesProduitRecyclable" prefHeight="46.0" prefWidth="131.0" style="-fx-background-color: #2a9d8f;" text="Afficher">
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../CSS/Images/72647.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
       <ComboBox fx:id="ComboBoxTFP" layoutX="752.0" layoutY="234.0" prefHeight="46.0" prefWidth="201.0" promptText="type" />
       <ComboBox fx:id="ComboBoxTF1P" layoutX="751.0" layoutY="355.0" prefHeight="46.0" prefWidth="202.0" promptText="EcoDepot" />
       <DatePicker fx:id="dateP" disable="true" layoutX="752.0" layoutY="301.0" prefHeight="32.0" prefWidth="202.0" />
@@ -23,6 +37,13 @@
             <Image url="@../CSS/Images/ecogardien.png" />
          </image>
       </ImageView>
-      <Button layoutX="775.0" layoutY="474.0" mnemonicParsing="false" onAction="#réinitialiser" prefHeight="46.0" prefWidth="131.0" style="-fx-background-color: #955149;" text="réinitialiser" />
+      <Button layoutX="766.0" layoutY="480.0" mnemonicParsing="false" onAction="#réinitialiser" prefHeight="46.0" prefWidth="148.0" style="-fx-background-color: #955149;" text="réinitialiser">
+         <graphic>
+            <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../CSS/Images/2618245.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
    </children>
 </AnchorPane>
