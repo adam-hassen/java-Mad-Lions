@@ -131,4 +131,32 @@ public class reclamationService implements reclamationInterface {
         }
         return p;
     }
+    public List<Reclamation> getReclamationsByUserId(int userId) {
+        List<Reclamation> reclamations = new ArrayList<>();
+        String req = "SELECT * FROM reclamation WHERE user1_id = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Reclamation reclamation = new Reclamation();
+                reclamation.setId(rs.getInt("id"));
+                reclamation.setUser1_id(rs.getInt("user1_id"));
+                reclamation.setMessage(rs.getString("message"));
+                reclamation.setDate(rs.getDate("date"));
+                reclamation.setType(rs.getString("type"));
+                reclamation.setReponse(rs.getString("reponse"));
+
+                // Récupérer le nom d'utilisateur associé à partir de l'ID utilisateur
+                String userName = getUserNameById(reclamation.getUser1_id());
+                reclamation.setUserName(userName);
+
+                reclamations.add(reclamation);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération des réclamations: " + e.getMessage());
+        }
+        return reclamations;
+    }
+
 }

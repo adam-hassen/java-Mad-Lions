@@ -25,6 +25,8 @@ public class AfficheReclamationFront {
 
     @FXML
     private Label usermail;
+    @FXML
+    private Label type;
     private Reclamation fruit;
     private MyListener1 myListener1;
 
@@ -35,6 +37,8 @@ public class AfficheReclamationFront {
         date.setText(reclamation.getDate().toString());
         usermail.setText(reclamation.getUserName());
         reponse.setText(reclamation.getReponse());
+        type.setText(reclamation.getType());
+
 
     }
 }

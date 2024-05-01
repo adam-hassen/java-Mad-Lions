@@ -72,12 +72,10 @@ public class profile implements Initializable {
     reclamationService gs = new reclamationService();
 
     private List<Reclamation> getData() {
-        List<Reclamation> fruits = new ArrayList<>();
-
-        fruits = gs.afficherreclamation();
-
-
-        return fruits;
+        List<Reclamation> reclamations = new ArrayList<>();
+        int userId = Login.v.getId(); // Récupérer l'ID de l'utilisateur actuel
+        reclamations = gs.getReclamationsByUserId(userId); // Modifier la méthode pour récupérer les réclamations par ID utilisateur
+        return reclamations;
     }
     private edituser editUserController;
 
