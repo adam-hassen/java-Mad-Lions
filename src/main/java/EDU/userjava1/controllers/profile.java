@@ -1,22 +1,31 @@
 package EDU.userjava1.controllers;
 
+import EDU.userjava1.entities.Reclamation;
 import EDU.userjava1.entities.User1;
+import EDU.userjava1.interfaces.MyListener;
+import EDU.userjava1.interfaces.MyListener1;
+import EDU.userjava1.services.UserServices;
+import EDU.userjava1.services.reclamationService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class profile implements Initializable {
@@ -38,6 +47,10 @@ public class profile implements Initializable {
     @FXML
     private Label num;
     @FXML
+    private ScrollPane scroll;
+    @FXML
+    private GridPane grid;
+    @FXML
     private Pane pane_1111;
     @FXML
     private Pane pane_11111;
@@ -53,12 +66,67 @@ public class profile implements Initializable {
     private Pane pane_132;
     @FXML
     private HBox root;
+    private List<Reclamation> fruits = new ArrayList<>();
 
+    private MyListener1 myListener1;
+    reclamationService gs = new reclamationService();
+
+    private List<Reclamation> getData() {
+        List<Reclamation> fruits = new ArrayList<>();
+
+        fruits = gs.afficherreclamation();
+
+
+        return fruits;
+    }
     private edituser editUserController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         afficherInformationsUtilisateur();
+        afficheReclamation();
+    }
+
+    private void afficheReclamation() {
+        fruits.addAll(getData());
+        if (fruits.size() > 0) {
+
+        }
+        int column = 0;
+        int row = 1;
+        try {
+            for (int i = 0; i < fruits.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/afficheReclamationFront.fxml"));
+
+
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                AfficheReclamationFront controller = fxmlLoader.getController();
+
+                controller.setData(fruits.get(i), myListener1);
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void afficherInformationsUtilisateur() {
@@ -88,7 +156,7 @@ public class profile implements Initializable {
         Stage stage2 = new Stage();
         stage2.setScene(scene2);
         stage2.show();
-    }
+    } 
 
     @FXML
     void changer(ActionEvent event) throws IOException {

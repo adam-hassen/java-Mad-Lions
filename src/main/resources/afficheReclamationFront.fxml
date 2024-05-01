@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="294.0" style="-fx-background-color: E0EBD0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.AfficheReclamationFront">
+   <children>
+      <Label fx:id="usermail" layoutX="17.0" layoutY="28.0" prefHeight="49.0" prefWidth="137.0" text="user" textFill="#d45050">
+         <font>
+            <Font name="Cambria" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="date" layoutX="188.0" layoutY="3.0" prefHeight="49.0" prefWidth="101.0" text="date">
+         <font>
+            <Font name="Cambria Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameLabel1" layoutX="42.0" layoutY="64.0" prefHeight="49.0" prefWidth="137.0" text="Reclamation" textFill="#209c4e">
+         <font>
+            <Font name="Arial Italic" size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameLabel2" layoutX="42.0" layoutY="212.0" prefHeight="49.0" prefWidth="137.0" text="Reponse" textFill="#209c4e">
+         <font>
+            <Font name="Arial Italic" size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="reclamation1" layoutX="10.0" layoutY="114.0" prefHeight="74.0" prefWidth="313.0" text="ff" textFill="#d45050">
+         <font>
+            <Font name="Cambria" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="reponse" layoutX="10.0" layoutY="251.0" prefHeight="96.0" prefWidth="314.0" text="gg" textFill="#d45050">
+         <font>
+            <Font name="Cambria" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
