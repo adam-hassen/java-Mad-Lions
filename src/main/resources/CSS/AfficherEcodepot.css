@@ -4,7 +4,7 @@
 
 /* Styles pour les boutons */
 .button {
-    -fx-background-color: #4CAF50; /* Couleur de fond verte */
+    -fx-background-color:  #2E714A; /* Couleur de fond verte */
     -fx-text-fill: white; /* Couleur du texte blanc */
     -fx-font-weight: bold; /* Texte en gras */
     -fx-padding: 10px 20px; /* Espacement intérieur */
@@ -15,8 +15,8 @@
 }
 
 .button:hover {
-    -fx-background-color: #45a049; /* Changement de couleur au survol */
-    -fx-transform: translateY(-5px); /* Animation de translation */
+    -fx-background-color:  #2E714A; /* Changement de couleur au survol */
+    -fx-translate-y: -5px; /* Animation de translation */
 }
 
 /* Styles pour les titres */
@@ -29,31 +29,31 @@
 /* Styles pour les tableaux */
 .table-view {
     -fx-background-color: #ffffff; /* Couleur de fond blanc */
-    -fx-border-color: #4CAF50; /* Couleur de la bordure */
+    -fx-border-color:  #2E714A; /* Couleur de la bordure */
     -fx-border-width: 2px; /* Largeur de la bordure */
     -fx-border-radius: 10px; /* Coins arrondis */
 }
 
 .table-view .column-header-background {
-    -fx-background-color: #4CAF50; /* Couleur de fond verte pour l'en-tête de colonne */
+    -fx-background-color:  #2E714A; /* Couleur de fond verte pour l'en-tête de colonne */
     -fx-background-radius: 10px 10px 0px 0px; /* Coins arrondis */
     -fx-transition: all 0.3s; /* Animation de transition */
 }
 
 .table-view .column-header:hover {
-    -fx-background-color: #45a049; /* Changement de couleur au survol */
-    -fx-transform: translateY(-5px); /* Animation de translation */
+    -fx-background-color:  #2E714A; /* Changement de couleur au survol */
+    -fx-translate-y: -5px; /* Animation de translation */
 }
 
 .table-view .column-header {
-    -fx-background-color: #4CAF50; /* Couleur de fond verte pour l'en-tête de colonne */
+    -fx-background-color:  #2E714A; /* Couleur de fond verte pour l'en-tête de colonne */
     -fx-text-fill: white; /* Couleur du texte blanc */
     -fx-font-weight: bold; /* Texte en gras */
 }
 
 .table-view .table-cell {
     -fx-background-color: transparent; /* Couleur de fond semi-transparente pour les cellules */
-    -fx-border-color: #4CAF50; /* Couleur de la bordure */
+    -fx-border-color:  #2E714A; /* Couleur de la bordure */
     -fx-border-width: 0px 0px 2px 0px; /* Largeur de la bordure (bas) */
     -fx-padding: 15px; /* Espacement intérieur */
     -fx-text-fill: #333333; /* Couleur du texte */
@@ -64,34 +64,24 @@
 }
 
 
-/* Style pour les messages d'alerte */
-.alert {
-    -fx-background-color: #ffc107; /* Couleur de fond pour l'alerte */
-    -fx-border-color: #ffc107; /* Couleur de la bordure */
-    -fx-border-width: 1px; /* Largeur de la bordure */
-    -fx-border-radius: 5px; /* Coins arrondis */
-    -fx-padding: 10px 15px; /* Espacement intérieur */
-    -fx-text-fill: #333333; /* Couleur du texte */
-}
 .chart {
-    -fx-background-color: #ffffff; /* Couleur de fond blanc */
-    -fx-border-color: #4CAF50; /* Couleur de la bordure */
+    -fx-background-color: transparent; /* Couleur de fond blanc */
+    -fx-border-color:  #2E714A; /* Couleur de la bordure */
     -fx-border-width: 2px; /* Largeur de la bordure */
     -fx-border-radius: 10px; /* Coins arrondis */
 }
 
 .chart-legend {
-    -fx-background-color: #ffffff; /* Couleur de fond blanc */
-    -fx-border-color: #4CAF50; /* Couleur de la bordure */
+    -fx-background-color: transparent; /* Couleur de fond blanc */
+    -fx-border-color:  #2E714A; /* Couleur de la bordure */
     -fx-border-width: 2px; /* Largeur de la bordure */
     -fx-border-radius: 10px; /* Coins arrondis */
 }
 
 .chart-legend-item-symbol {
-    -fx-background-color: #4CAF50; /* Couleur des symboles de légende */
+    -fx-background-color:  #2E714A; /* Couleur des symboles de légende */
 }
 
 .chart-legend-item-text {
     -fx-text-fill: #333333; /* Couleur du texte de légende */
 }
-

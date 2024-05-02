@@ -15,7 +15,7 @@
     -fx-text-fill: #242423; /* Couleur de texte gris foncé */
     -fx-font-weight: bold; /* Texte en gras */
     -fx-padding: 10px; /* Ajout de marge interne */
-    -fx-background-color: #f0f0f0; /* Couleur de fond gris clair */
+    -fx-background-color:  #2E714A; /* Couleur de fond gris clair */
     -fx-border-color: #ccc; /* Couleur de la bordure grise */
     -fx-border-width: 2px; /* Épaisseur de la bordure */
     -fx-border-radius: 5px; /* Rayon des coins de la bordure */
@@ -61,7 +61,7 @@
     -fx-font-family: "Segoe UI", sans-serif;
     -fx-font-size: 16px;
     -fx-text-fill: #fff; /* Texte blanc */
-    -fx-background-color: #4CAF50; /* Fond vert */
+    -fx-background-color:  #2E714A; /* Fond vert */
     -fx-background-radius: 25px; /* Coins arrondis */
     -fx-border: none; /* Pas de bordure */
     -fx-cursor: hand; /* Curseur de la main au survol */

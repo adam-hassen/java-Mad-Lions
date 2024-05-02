@@ -1,50 +1,30 @@
-/* Style du BorderPane */
-#borderPane {
-    -fx-background-color: #f5f5f5; /* Couleur de fond */
+/* Style pour le bouton "Home" */
+#home {
+    -fx-cursor: pointer; /* Définir le curseur sur pointer */
+    -fx-background-color: #2C3E50; /* Couleur de fond par défaut */
 }
 
-/* Style de la MenuBar */
-.menu-bar {
-    -fx-background-color:  white; /* Couleur de fond */
-    -fx-text-fill: white; /* Couleur du texte */
+/* Changer la couleur du bouton lorsqu'il est appuyé */
+#home:pressed {
+    -fx-background-color: #34495E; /* Nouvelle couleur de fond lorsqu'il est appuyé */
 }
 
-/* Style des MenuItem */
-.menu-bar .menu-item {
-    -fx-text-fill: white; /* Couleur du texte */
+/* Appliquer les mêmes styles pour les autres boutons */
+#Utilisateur,
+#Recyclage,
+#consommation,
+#workshop,
+#produit,
+#evenemment {
+    -fx-cursor: pointer; /* Définir le curseur sur pointer */
 }
 
-/* Style des boutons */
-.button {
-    -fx-background-color: #4CAF50; /* Couleur de fond */
-    -fx-text-fill: white; /* Couleur du texte */
-    -fx-font-weight: bold; /* Texte en gras */
-    -fx-padding: 10px 20px; /* Espacement intérieur */
-    -fx-border-radius: 5px; /* Coins arrondis */
-    -fx-background-radius: 5px; /* Coins arrondis */
-    -fx-border-color: transparent; /* Couleur de la bordure */
-    -fx-border-width: 2px; /* Largeur de la bordure */
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0); /* Effet d'ombre */
-    -fx-cursor: hand; /* Curseur de la souris en forme de main */
-}
-
-/* Style des boutons au survol */
-.button:hover {
-    -fx-background-color: #45a049; /* Changement de couleur au survol */
-    -fx-border-color: transparent; /* Changement de couleur de la bordure au survol */
-}
-
-/* Style des boutons lorsque pressés */
-.button:pressed {
-    -fx-background-color: #388e3c; /* Changement de couleur lorsque pressé */
-    -fx-border-color: transparent; /* Changement de couleur de la bordure lorsque pressé */
-    -fx-effect: none; /* Supprimer l'effet d'ombre lorsque pressé */
-}
-
-/* Style des titres */
-.label.title {
-    -fx-font-size: 24px; /* Taille de la police */
-    -fx-font-weight: bold; /* Texte en gras */
-    -fx-text-fill: #333333; /* Couleur du texte */
-    -fx-padding: 10px; /* Espacement intérieur */
+/* Changer la couleur du bouton lorsqu'il est appuyé */
+#Utilisateur:pressed,
+#Recyclage:pressed,
+#consommation:pressed,
+#workshop:pressed,
+#produit:pressed,
+#evenemment:pressed {
+    -fx-background-color: #2C3E50; /* Nouvelle couleur de fond */
 }
