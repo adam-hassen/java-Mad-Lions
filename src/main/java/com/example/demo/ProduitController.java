@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -7,6 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -115,6 +120,8 @@ public class ProduitController implements Initializable{
     private Button menu_btn;
     @FXML
     private TextField menu_amount;
+    @FXML
+    private TextField filterField;
 
 
     @FXML
@@ -170,6 +177,19 @@ public class ProduitController implements Initializable{
     private Button command_btn;
     @FXML
     private Label dashboard_NC;
+
+    @FXML
+    private Label dashboard_NSP;
+
+    @FXML
+    private Label dashboard_TI;
+
+    @FXML
+    private Label dashboard_TotalI;
+
+    @FXML
+    private AreaChart<?, ?> dashboard_incomeChart;
+
     private Alert alert;
 
     private Connection connect;
@@ -178,6 +198,8 @@ public class ProduitController implements Initializable{
     private ResultSet result;
 
     private Image image;
+
+
     public void dashboardDisplayNC() {
 
         String sql = "SELECT COUNT(id) FROM command";
@@ -196,6 +218,92 @@ public class ProduitController implements Initializable{
             e.printStackTrace();
         }
 
+    }
+
+    public void dashboardDisplayTI() {
+        Date date = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+        String sql = "SELECT SUM(total) FROM command WHERE date = '"
+                + sqlDate + "'";
+
+        connect = database.connectDB();
+
+        try {
+            double ti = 0;
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                ti = result.getDouble("SUM(total)");
+            }
+
+            dashboard_TI.setText("$" + ti);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void dashboardTotalI() {
+        String sql = "SELECT SUM(total) FROM command";
+
+        connect = database.connectDB();
+
+        try {
+            float ti = 0;
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                ti = result.getFloat("SUM(total)");
+            }
+            dashboard_TotalI.setText("$" + ti);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void dashboardNSP() {
+
+        String sql = "SELECT COUNT(quantity) FROM produit_command";
+
+        connect = database.connectDB();
+
+        try {
+            int q = 0;
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                q = result.getInt("COUNT(quantity)");
+            }
+            dashboard_NSP.setText(String.valueOf(q));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void dashboardIncomeChart() {
+        dashboard_incomeChart.getData().clear();
+
+        String sql = "SELECT date, SUM(total) FROM command GROUP BY date ORDER BY TIMESTAMP(date)";
+        connect = database.connectDB();
+        XYChart.Series chart = new XYChart.Series();
+        try {
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while (result.next()) {
+                chart.getData().add(new XYChart.Data<>(result.getString(1), result.getFloat(2)));
+            }
+
+            dashboard_incomeChart.getData().add(chart);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     private ObservableList<produit> cardListData = FXCollections.observableArrayList();
 
@@ -848,12 +956,11 @@ public class ProduitController implements Initializable{
             menu_form.setVisible(false);
             commande_form.setVisible(false);
 
-            //dashboardDisplayNC();
-            //dashboardDisplayTI();
-            //dashboardTotalI();
-            //dashboardNSP();
-            //dashboardIncomeChart();
-            //dashboardCustomerChart();
+            dashboardDisplayNC();
+            dashboardDisplayTI();
+            dashboardTotalI();
+            dashboardNSP();
+            dashboardIncomeChart();
 
         } else if (event.getSource() == inventory_btn) {
             dashboard_form.setVisible(false);
@@ -883,6 +990,7 @@ public class ProduitController implements Initializable{
         }
 
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         inventoryTypeList();
@@ -891,6 +999,40 @@ public class ProduitController implements Initializable{
         menuShowOrderData();
         menuDisplayTotal();
         commandeShowData();
+        dashboardDisplayNC();
+        dashboardDisplayTI();
+        dashboardTotalI();
+        dashboardNSP();
+        dashboardIncomeChart();
+        search_prod();
     }
+    void search_prod(){
+        inventoryListData = inventoryDataList();
 
+        inventory_col_productID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        inventory_col_productName.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        inventory_col_productDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        inventory_col_productPrice.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        inventory_col_productStock.setCellValueFactory(new PropertyValueFactory<>("quantité_stock"));
+        inventory_col_productCategorie.setCellValueFactory(new PropertyValueFactory<>("categorie"));
+
+        inventory_tableView.setItems(inventoryListData);
+        FilteredList<produit> filteredData = new FilteredList<>(inventoryListData,b -> true);
+        filterField.textProperty().addListener((observable, oldValue, newValue)->{
+            filteredData.setPredicate(produit -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+               String lowerCaseFilter = newValue.toLowerCase();
+                if (produit.getNom().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches username
+                }
+                return false; // Does not match
+            });
+        });
+        SortedList<produit> sorteddata = new SortedList<>(filteredData);
+        sorteddata.comparatorProperty().bind(inventory_tableView.comparatorProperty());
+        inventory_tableView.setItems(sorteddata);
+    }
 }
+

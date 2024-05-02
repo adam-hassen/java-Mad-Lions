@@ -2,6 +2,9 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -75,7 +78,7 @@
                                         <Font size="15.0" />
                                       </font>
                                     </Label>
-                                    <Label alignment="TOP_RIGHT" layoutX="85.0" layoutY="27.0" prefHeight="18.0" prefWidth="152.0" text="0" textFill="WHITE">
+                                    <Label fx:id="dashboard_NC" alignment="TOP_RIGHT" layoutX="85.0" layoutY="27.0" prefHeight="18.0" prefWidth="152.0" text="0" textFill="WHITE">
                                       <font>
                                         <Font size="16.0" />
                                       </font>
@@ -91,7 +94,7 @@
                                         <Font size="15.0" />
                                       </font>
                                     </Label>
-                                    <Label alignment="TOP_RIGHT" layoutX="85.0" layoutY="27.0" prefHeight="18.0" prefWidth="152.0" text="TND 0.0" textFill="WHITE">
+                                    <Label fx:id="dashboard_TI" alignment="TOP_RIGHT" layoutX="85.0" layoutY="27.0" prefHeight="18.0" prefWidth="152.0" text="TND 0.0" textFill="WHITE">
                                       <font>
                                         <Font size="16.0" />
                                       </font>
@@ -106,7 +109,7 @@
                                                             <Font size="15.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="TOP_RIGHT" layoutX="85.0" layoutY="27.0" prefHeight="18.0" prefWidth="152.0" text="TND 0.0" textFill="WHITE">
+                                                      <Label fx:id="dashboard_TotalI" alignment="TOP_RIGHT" layoutX="85.0" layoutY="27.0" prefHeight="18.0" prefWidth="152.0" text="TND 0.0" textFill="WHITE">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
@@ -121,7 +124,7 @@
                                                             <Font size="15.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="TOP_RIGHT" layoutX="85.0" layoutY="27.0" prefHeight="18.0" prefWidth="152.0" text="0" textFill="WHITE">
+                                                      <Label fx:id="dashboard_NSP" alignment="TOP_RIGHT" layoutX="85.0" layoutY="27.0" prefHeight="18.0" prefWidth="152.0" text="0" textFill="WHITE">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
@@ -140,13 +143,32 @@
                         <String fx:value="radius" />
                         <String fx:value="shadow" />
                       </styleClass>
+                                 <children>
+                                    <AnchorPane layoutX="14.0" layoutY="15.2" prefHeight="350.0" prefWidth="758.0" stylesheets="@mainFormCss.css" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="15.0">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="shadow" />
+                                          <String fx:value="radius" />
+                                       </styleClass>
+                                       <children>
+                                          <AreaChart fx:id="dashboard_incomeChart" layoutX="-80.0" layoutY="-15.0" prefHeight="350.0" prefWidth="758.0" title="chart des revenus" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <xAxis>
+                                              <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis side="LEFT" />
+                                            </yAxis>
+                                          </AreaChart>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
                     </AnchorPane>
                     <Separator layoutX="21.0" layoutY="206.0" prefHeight="2.0" prefWidth="778.0" AnchorPane.leftAnchor="20.799999999999955" AnchorPane.rightAnchor="25.399999999999977" AnchorPane.topAnchor="206.0" />
                   </children>
                 </AnchorPane>
-                <AnchorPane fx:id="inventory_form" layoutX="178.0" layoutY="109.0" prefHeight="600.0" prefWidth="824.8" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <AnchorPane fx:id="inventory_form" layoutX="178.0" layoutY="109.0" prefHeight="600.0" prefWidth="824.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <children>
-                    <AnchorPane layoutX="15.2" layoutY="14.0" prefHeight="254.0" prefWidth="798.0" stylesheets="@mainFormCss.css" AnchorPane.bottomAnchor="332.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="14.0">
+                    <AnchorPane layoutX="15.0" layoutY="50.0" prefHeight="226.0" prefWidth="798.0" stylesheets="@mainFormCss.css" AnchorPane.bottomAnchor="324.4" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="12.199999999999932" AnchorPane.topAnchor="50.0">
                       <styleClass>
                         <String fx:value="white-bg" />
                         <String fx:value="radius" />
@@ -168,7 +190,7 @@
                         </TableView>
                       </children>
                     </AnchorPane>
-                    <AnchorPane layoutX="15.2" layoutY="312.0" prefHeight="300.0" prefWidth="798.0" stylesheets="@mainFormCss.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="12.0">
+                    <AnchorPane layoutX="15.2" layoutY="312.0" prefHeight="285.0" prefWidth="798.0" stylesheets="@mainFormCss.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="12.0">
                       <styleClass>
                         <String fx:value="white-bg" />
                         <String fx:value="radius" />
@@ -243,10 +265,16 @@
                         </Button>
                       </children>
                     </AnchorPane>
-                    <Separator layoutX="14.0" layoutY="276.0" prefHeight="5.0" prefWidth="795.0" AnchorPane.bottomAnchor="318.4" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="15.600000000000023" />
+                    <Separator layoutX="17.0" layoutY="286.0" prefHeight="5.0" prefWidth="795.0" AnchorPane.bottomAnchor="308.4" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="13.399999999999977" />
+                              <TextField fx:id="filterField" layoutX="340.0" layoutY="14.0" stylesheets="@mainFormCss.css">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="radius" />
+                                 </styleClass>
+                              </TextField>
                   </children>
                 </AnchorPane>
-                        <AnchorPane fx:id="menu_form" layoutX="-10.0" prefHeight="600.0" prefWidth="835.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="0.39999999999997726" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="menu_form" layoutX="-10.0" prefHeight="600.0" prefWidth="835.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="0.39999999999997726" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="15.2" prefHeight="566.0" prefWidth="537.0" stylesheets="@mainFormCss.css" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="283.0" AnchorPane.topAnchor="15.0">
                                  <styleClass>

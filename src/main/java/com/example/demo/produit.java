@@ -37,7 +37,7 @@ public class produit {
         this.id = id;
     }
 
-    public String getNom() {
+    public  String getNom() {
         return nom;
     }
 
