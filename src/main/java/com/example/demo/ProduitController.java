@@ -5,6 +5,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -25,10 +27,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.*;
+import java.util.Date;
+
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 public class ProduitController implements Initializable{
 
@@ -36,6 +42,8 @@ public class ProduitController implements Initializable{
     private Button dashboard_btn;
     @FXML
     private AnchorPane dashboard_form;
+    @FXML
+    private AnchorPane commande_form;
 
     @FXML
     private Button inventory_addBtn;
@@ -140,10 +148,28 @@ public class ProduitController implements Initializable{
     private ScrollPane menu_scrollPane;
 
     @FXML
-    private TableView<?> menu_tableView;
+    private TableView<produit> menu_tableView;
 
     @FXML
     private Label menu_total;
+    @FXML
+    private TableView<commande> command_tableview;
+
+    @FXML
+    private TableColumn<?, ?> commande_col_commandeID;
+
+    @FXML
+    private TableColumn<?, ?> commande_col_customerID;
+
+    @FXML
+    private TableColumn<?, ?> commande_col_date;
+
+    @FXML
+    private TableColumn<?, ?> commande_col_total;
+    @FXML
+    private Button command_btn;
+    @FXML
+    private Label dashboard_NC;
     private Alert alert;
 
     private Connection connect;
@@ -152,7 +178,25 @@ public class ProduitController implements Initializable{
     private ResultSet result;
 
     private Image image;
+    public void dashboardDisplayNC() {
 
+        String sql = "SELECT COUNT(id) FROM command";
+        connect = database.connectDB();
+
+        try {
+            int nc = 0;
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                nc = result.getInt("COUNT(id)");
+            }
+            dashboard_NC.setText(String.valueOf(nc));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
     private ObservableList<produit> cardListData = FXCollections.observableArrayList();
 
     // LETS MAKE A BEHAVIOR FOR IMPORT BTN FIRST
@@ -181,7 +225,7 @@ public class ProduitController implements Initializable{
                 || data.path == null) {
 
             // Show error alert if any required field is empty
-            showAlert("Please fill all blank fields", AlertType.ERROR);
+            showAlert("Veuillez remplir tous les champs vides", AlertType.ERROR);
 
         } else {
             try {
@@ -191,18 +235,18 @@ public class ProduitController implements Initializable{
 
                 // Check if quantite_stock and prix are not less than 0
                 if (stock < 0 || price < 0) {
-                    showAlert("Quantite Stock and Prix must not be less than 0", AlertType.ERROR);
+                    showAlert("La quantité de stock et le prix ne doivent pas être inférieurs à 0", AlertType.ERROR);
                     return; // Stop further execution
                 }
 
                 // Check if quantite_stock and prix contain only digits
                 if (!inventory_productStock.getText().matches("\\d+") || !inventory_productPrice.getText().matches("\\d+(\\.\\d+)?")) {
-                    showAlert("Quantite Stock and Prix must contain only digits", AlertType.ERROR);
+                    showAlert("Quantite Stock et Prix doivent contenir uniquement des chiffres", AlertType.ERROR);
                     return; // Stop further execution
                 }
 
                 // CHECK PRODUCT ID
-                String checkProdID = "SELECT nom FROM produit WHERE id = '"
+                String checkProdID = "SELECT nom FROM produit WHERE nom = '"
                         + inventory_productName.getText() + "'";
 
                 connect = database.connectDB();
@@ -211,7 +255,7 @@ public class ProduitController implements Initializable{
 
                 if (result.next()) {
                     // Show error alert if product ID is already taken
-                    showAlert(inventory_productName.getText() + " is already taken", AlertType.ERROR);
+                    showAlert(inventory_productName.getText() + " est déjà pris", AlertType.ERROR);
                 } else {
                     // Insert new product data into the database
                     String insertData = "INSERT INTO produit "
@@ -234,7 +278,7 @@ public class ProduitController implements Initializable{
                     prepare.executeUpdate();
 
                     // Show success alert
-                    showAlert("Successfully Added!", AlertType.INFORMATION);
+                    showAlert("ajouté avec succès !", AlertType.INFORMATION);
 
                     // Refresh inventory data
                     inventoryShowData();
@@ -269,7 +313,7 @@ public class ProduitController implements Initializable{
             alert = new Alert(AlertType.ERROR);
             alert.setTitle("Error Message");
             alert.setHeaderText(null);
-            alert.setContentText("Please fill all blank fields");
+            alert.setContentText("Veuillez remplir tous les champs vides");
             alert.showAndWait();
 
         } else {
@@ -293,7 +337,7 @@ public class ProduitController implements Initializable{
                 alert = new Alert(AlertType.CONFIRMATION);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Are you sure you want to UPDATE PRoduct ID: " + inventory_productID.getText() + "?");
+                alert.setContentText("Etes-vous sûr de vouloir METTRE À JOUR LE PRODUITID: " + inventory_productID.getText() + "?");
                 Optional<ButtonType> option = alert.showAndWait();
 
                 if (option.get().equals(ButtonType.OK)) {
@@ -303,7 +347,7 @@ public class ProduitController implements Initializable{
                     alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Error Message");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully Updated!");
+                    alert.setContentText("Mise à jour réussie !");
                     alert.showAndWait();
 
                     // TO UPDATE YOUR TABLE VIEW
@@ -328,14 +372,14 @@ public class ProduitController implements Initializable{
             alert = new Alert(AlertType.ERROR);
             alert.setTitle("Error Message");
             alert.setHeaderText(null);
-            alert.setContentText("Please fill all blank fields");
+            alert.setContentText("Veuillez remplir tous les champs vides");
             alert.showAndWait();
 
         } else {
             alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Error Message");
             alert.setHeaderText(null);
-            alert.setContentText("Are you sure you want to DELETE Product ID: " + inventory_productID.getText() + "?");
+            alert.setContentText("Êtes-vous sûr de vouloir SUPPRIMER le produit ID: " + inventory_productID.getText() + "?");
             Optional<ButtonType> option = alert.showAndWait();
 
             if (option.get().equals(ButtonType.OK)) {
@@ -346,7 +390,7 @@ public class ProduitController implements Initializable{
                     alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Error Message");
                     alert.setHeaderText(null);
-                    alert.setContentText("successfully Deleted!");
+                    alert.setContentText("Supprimé avec succès !");
                     alert.showAndWait();
 
                     // TO UPDATE YOUR TABLE VIEW
@@ -535,10 +579,185 @@ public class ProduitController implements Initializable{
             }
         }
     }
+    public ObservableList<produit> menuGetOrder() {
+        customerID();
+        ObservableList<produit> listData = FXCollections.observableArrayList();
+
+        String sql = "SELECT * FROM produit_command WHERE customer_id = " + cID;
+
+        try {
+
+            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            ResultSet rs =  st.executeQuery(sql);
+
+            produit prod;
+
+            while (rs.next()) {
+                prod = new produit();
+                prod.setId(rs.getInt("id"));
+                prod.setNom(rs.getString("prod_name"));
+                prod.setQuantité_stock(rs.getInt("quantity"));
+                //prod.setDescription(rs.getString("description"));
+                prod.setPrix(rs.getFloat("price"));
+
+                //prod.setCategorie(rs.getString("categorie"));
+                listData.add(prod);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listData;
+    }
+
+    private ObservableList<produit> menuOrderListData;
+
+    public void menuShowOrderData() {
+        menuOrderListData = menuGetOrder();
+
+        menu_col_productName.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        menu_col_quantity.setCellValueFactory(new PropertyValueFactory<>("quantité_stock"));
+        menu_col_price.setCellValueFactory(new PropertyValueFactory<>("prix"));
+
+        menu_tableView.setItems(menuOrderListData);
+    }
+    private int getid;
+
+    public void menuSelectOrder() {
+        produit prod = menu_tableView.getSelectionModel().getSelectedItem();
+        int num = menu_tableView.getSelectionModel().getSelectedIndex();
+
+        if ((num - 1) < -1) {
+            return;
+        }
+        // TO GET THE ID PER ORDER
+        getid = prod.getId();
+
+    }
+    private double totalP;
+
+    public void menuGetTotal() {
+        customerID();
+        String total = "SELECT SUM(price) FROM produit_command WHERE customer_id = " + cID;
+
+        connect = database.connectDB();
+
+        try {
+
+            prepare = connect.prepareStatement(total);
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                totalP = result.getDouble("SUM(price)");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void menuDisplayTotal() {
+        menuGetTotal();
+        menu_total.setText("TND" + totalP);
+    }
+    public void menuPayBtn() {
+
+        if (totalP == 0) {
+            alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez d'abord choisir votre commande !");
+            alert.showAndWait();
+        } else {
+            menuGetTotal();
+            String insertPay = "INSERT INTO command (customer_id, total, date) "
+                    + "VALUES(?,?,?)";
+
+            connect = database.connectDB();
+
+            try {
+                    alert = new Alert(AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmation Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Are you sure?");
+                    Optional<ButtonType> option = alert.showAndWait();
+
+                    if (option.get().equals(ButtonType.OK)) {
+                        customerID();
+                        menuGetTotal();
+                        prepare = connect.prepareStatement(insertPay);
+                        prepare.setString(1, String.valueOf(cID));
+                        prepare.setString(2, String.valueOf(totalP));
+
+                        Date date = new Date();
+                        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+                        prepare.setString(3, String.valueOf(sqlDate));
+                        //prepare.setString(4, data.username);
+
+                        prepare.executeUpdate();
+
+                        alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Infomation Message");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Successful.");
+                        alert.showAndWait();
+
+                        menuShowOrderData();
+
+                    } else {
+                        alert = new Alert(AlertType.WARNING);
+                        alert.setTitle("Infomation Message");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Cancelled.");
+                        alert.showAndWait();
+                    }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+    public void menuRemoveBtn() {
+
+        if (getid == 0) {
+            alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez sélectionner la commande que vous souhaitez supprimer");
+            alert.showAndWait();
+        } else {
+            String deleteData = "DELETE FROM produit_command WHERE id = " + getid;
+            connect = database.connectDB();
+            try {
+                alert = new Alert(AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Êtes-vous sûr de vouloir supprimer cette commande ?");
+                Optional<ButtonType> option = alert.showAndWait();
+
+                if (option.get().equals(ButtonType.OK)) {
+                    prepare = connect.prepareStatement(deleteData);
+                    prepare.executeUpdate();
+                }
+
+                menuShowOrderData();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+    public void menuRestart() {
+        totalP = 0;
+        menu_total.setText("TND 0.0");
+    }
     private int cID;
     public void customerID() {
 
-        String sql = "SELECT MAX(customer_id) FROM produit_commande";
+        String sql = "SELECT MAX(customer_id) FROM produit_command";
         connect = database.connectDB();
 
         try {
@@ -569,13 +788,65 @@ public class ProduitController implements Initializable{
             e.printStackTrace();
         }
     }
+    public ObservableList<commande> customersDataList() {
+
+        ObservableList<commande> listData = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM command";
+        connect = database.connectDB();
+
+        try {
+
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+            commande cData;
+
+            while (result.next()) {
+                cData = new commande(result.getInt("id"),
+                        result.getInt("customer_id"),
+                        result.getDouble("total"),
+                        result.getDate("date"));
+
+                listData.add(cData);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listData;
+    }
+
+    private ObservableList<commande> commandeListData;
+
+    public void commandeShowData() {
+        commandeListData = customersDataList();
+        commande_col_commandeID.setCellValueFactory(new  PropertyValueFactory<>("id"));
+        commande_col_customerID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        commande_col_total.setCellValueFactory(new PropertyValueFactory<>("total"));
+        commande_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+
+        command_tableview.setItems(commandeListData);
+    }
+
+    @FXML
+    private void redirectToPayment(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("payment.fxml"));
+            Parent root = loader.load();
+            //UPDATE The Controller with Data :
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) menu_payBtn.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
     public void switchForm(ActionEvent event) {
 
         if (event.getSource() == dashboard_btn) {
             dashboard_form.setVisible(true);
             inventory_form.setVisible(false);
             menu_form.setVisible(false);
-            //customers_form.setVisible(false);
+            commande_form.setVisible(false);
 
             //dashboardDisplayNC();
             //dashboardDisplayTI();
@@ -588,7 +859,7 @@ public class ProduitController implements Initializable{
             dashboard_form.setVisible(false);
             inventory_form.setVisible(true);
             menu_form.setVisible(false);
-            //customers_form.setVisible(false);
+            commande_form.setVisible(false);
 
             inventoryTypeList();
             //inventoryStatusList();
@@ -597,19 +868,19 @@ public class ProduitController implements Initializable{
             dashboard_form.setVisible(false);
             inventory_form.setVisible(false);
             menu_form.setVisible(true);
-            //customers_form.setVisible(false);
+            commande_form.setVisible(false);
 
             menuDisplayCard();
-            //menuDisplayTotal();
-            //menuShowOrderData();
-        } /*else if (event.getSource() == customers_btn) {
+            menuDisplayTotal();
+            menuShowOrderData();
+        } else if (event.getSource() == command_btn) {
             dashboard_form.setVisible(false);
             inventory_form.setVisible(false);
             menu_form.setVisible(false);
-            customers_form.setVisible(true);
+            commande_form.setVisible(true);
 
-            customersShowData();
-        }*/
+            commandeShowData();
+        }
 
     }
     @Override
@@ -617,6 +888,9 @@ public class ProduitController implements Initializable{
         inventoryTypeList();
         inventoryShowData();
         menuDisplayCard();
+        menuShowOrderData();
+        menuDisplayTotal();
+        commandeShowData();
     }
 
 }

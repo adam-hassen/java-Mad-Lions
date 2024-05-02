@@ -15,6 +15,11 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.stripe</groupId>
+      <artifactId>stripe-java</artifactId>
+      <version>24.17.0</version>
+    </dependency>
+    <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
       <version>17.0.6</version>
@@ -33,6 +38,11 @@
       <groupId>de.jensd</groupId>
       <artifactId>fontawesomefx-fontawesome</artifactId>
       <version>4.7.0-9.1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>com.erpya</groupId>
+      <artifactId>jasperreports</artifactId>
+      <version>shw-air-terminal-vertical-1.0.57</version>
     </dependency>
 
     <dependency>
@@ -57,7 +67,13 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
-    </dependency>  </dependencies>
+    </dependency>
+      <dependency>
+          <groupId>io.github.typhon0</groupId>
+          <artifactId>AnimateFX</artifactId>
+          <version>1.2.4</version>
+      </dependency>
+  </dependencies>
 
   <build>
     <plugins>

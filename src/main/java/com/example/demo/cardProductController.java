@@ -139,12 +139,12 @@ public class cardProductController implements Initializable {
                     alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Error Message");
                     alert.setHeaderText(null);
-                    alert.setContentText("Invalid. This product is Out of stock");
+                    alert.setContentText("Invalide. Ce produit est en rupture de stock");
                     alert.showAndWait();
                 } else {
                     prod_image = prod_image.replace("\\", "\\\\");
 
-                    String insertData = "INSERT INTO produit_commande "
+                    String insertData = "INSERT INTO produit_command "
                             + "(customer_id, prod_id, prod_name, quantity, price, date) "
                             + "VALUES(?,?,?,?,?,?)";
                     prepare = connect.prepareStatement(insertData);
@@ -159,11 +159,17 @@ public class cardProductController implements Initializable {
                     Date date = new Date();
                     java.sql.Date sqlDate = new java.sql.Date(date.getTime());
                     prepare.setString(6, String.valueOf(sqlDate));
+                    prepare.executeUpdate();
 
                     int upStock = checkStck - qty;
 
 
                     //System.out.println("Date: " + prod_date);
+                    System.out.println(data.cID);
+                    System.out.println(prodID);
+                    System.out.println(prod_name);
+                    System.out.println(qty);
+
                     System.out.println("Image: " + prod_image);
                     System.out.println(categorie);
                     System.out.println(pr);
@@ -182,7 +188,7 @@ public class cardProductController implements Initializable {
                     alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully Added!");
+                    alert.setContentText("Ajouté avec succès!");
                     alert.showAndWait();
 
                     //mForm.menuGetTotal();

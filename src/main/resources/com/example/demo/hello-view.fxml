@@ -45,6 +45,7 @@
                     <Button fx:id="dashboard_btn" layoutX="9.0" layoutY="165.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="45.0" prefWidth="258.0" styleClass="nav-btn" stylesheets="@mainFormCss.css" text="DASHBOARD" />
                     <Button fx:id="inventory_btn" layoutX="9.0" layoutY="221.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="45.0" prefWidth="258.0" styleClass="nav-btn" stylesheets="@mainFormCss.css" text="INVENTORY" />
                     <Button fx:id="menu_btn" layoutX="9.0" layoutY="277.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="45.0" prefWidth="258.0" styleClass="nav-btn" stylesheets="@mainFormCss.css" text="MENU" />
+                              <Button fx:id="command_btn" layoutX="8.0" layoutY="332.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="45.0" prefWidth="258.0" styleClass="nav-btn" stylesheets="@mainFormCss.css" text="LISTE DES COMMANDES" />
                   </children>
                 </AnchorPane>
               </children>
@@ -143,7 +144,7 @@
                     <Separator layoutX="21.0" layoutY="206.0" prefHeight="2.0" prefWidth="778.0" AnchorPane.leftAnchor="20.799999999999955" AnchorPane.rightAnchor="25.399999999999977" AnchorPane.topAnchor="206.0" />
                   </children>
                 </AnchorPane>
-                <AnchorPane fx:id="inventory_form" layoutX="178.0" layoutY="109.0" prefHeight="600.0" prefWidth="824.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <AnchorPane fx:id="inventory_form" layoutX="178.0" layoutY="109.0" prefHeight="600.0" prefWidth="824.8" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <children>
                     <AnchorPane layoutX="15.2" layoutY="14.0" prefHeight="254.0" prefWidth="798.0" stylesheets="@mainFormCss.css" AnchorPane.bottomAnchor="332.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="14.0">
                       <styleClass>
@@ -245,7 +246,7 @@
                     <Separator layoutX="14.0" layoutY="276.0" prefHeight="5.0" prefWidth="795.0" AnchorPane.bottomAnchor="318.4" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="15.600000000000023" />
                   </children>
                 </AnchorPane>
-                        <AnchorPane fx:id="menu_form" layoutX="-10.0" prefHeight="600.0" prefWidth="835.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="0.39999999999997726" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="menu_form" layoutX="-10.0" prefHeight="600.0" prefWidth="835.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="0.39999999999997726" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="15.2" prefHeight="566.0" prefWidth="537.0" stylesheets="@mainFormCss.css" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="283.0" AnchorPane.topAnchor="15.0">
                                  <styleClass>
@@ -272,7 +273,7 @@
                                     <String fx:value="radius" />
                                  </styleClass>
                                  <children>
-                                    <TableView fx:id="menu_tableView" layoutX="14.0" layoutY="14.0" prefHeight="236.0" prefWidth="262.0" AnchorPane.bottomAnchor="316.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="11.200000000000045" AnchorPane.topAnchor="14.0">
+                                    <TableView fx:id="menu_tableView" layoutX="14.0" layoutY="14.0" onMouseClicked="#menuSelectOrder" prefHeight="236.0" prefWidth="262.0" AnchorPane.bottomAnchor="316.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="11.200000000000045" AnchorPane.topAnchor="14.0">
                                       <columns>
                                         <TableColumn fx:id="menu_col_productName" prefWidth="106.39996337890625" text="Nom de Produit" />
                                         <TableColumn fx:id="menu_col_quantity" prefWidth="74.4000244140625" text="Quantité" />
@@ -284,33 +285,17 @@
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="menu_total" layoutX="145.0" layoutY="272.0" text="TND 0.0" AnchorPane.bottomAnchor="272.79999999999995" AnchorPane.rightAnchor="89.4">
+                                    <Label fx:id="menu_total" layoutX="145.0" layoutY="272.0" text="TND  0.0" AnchorPane.bottomAnchor="272.79999999999995" AnchorPane.rightAnchor="89.4">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="46.0" layoutY="308.0" text="Amount:" AnchorPane.bottomAnchor="236.79999999999998" AnchorPane.rightAnchor="185.2">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="menu_amount" layoutX="146.0" layoutY="306.0" prefHeight="26.0" prefWidth="80.0" promptText="TND 0.0" AnchorPane.bottomAnchor="233.99999999999997" AnchorPane.rightAnchor="62.0" />
-                                    <Label layoutX="65.0" layoutY="351.0" text="Change:" AnchorPane.bottomAnchor="193.79999999999998" AnchorPane.rightAnchor="168.6">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="menu_change" layoutX="145.0" layoutY="351.0" text="TND 0.0" AnchorPane.bottomAnchor="193.79999999999998" AnchorPane.rightAnchor="89.4">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <Button fx:id="menu_payBtn" layoutX="14.0" layoutY="424.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="264.0" styleClass="btn" stylesheets="@mainFormCss.css" text="payer" textFill="WHITE" AnchorPane.bottomAnchor="104.79999999999998" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="9.600000000000023">
+                                    <Button fx:id="menu_payBtn" layoutX="14.0" layoutY="424.0" mnemonicParsing="false" onAction="#redirectToPayment" prefHeight="37.0" prefWidth="264.0" styleClass="btn" stylesheets="@mainFormCss.css" text="Valider le Panier" textFill="WHITE" AnchorPane.bottomAnchor="104.79999999999998" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="9.600000000000023">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="menu_removeBtn" layoutX="14.4" layoutY="469.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="116.0" styleClass="btn" stylesheets="@mainFormCss.css" text="Retirer" textFill="WHITE" AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="14.0">
+                                    <Button fx:id="menu_removeBtn" layoutX="14.4" layoutY="469.0" mnemonicParsing="false" onAction="#menuRemoveBtn" prefHeight="38.0" prefWidth="116.0" styleClass="btn" stylesheets="@mainFormCss.css" text="Retirer" textFill="WHITE" AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="14.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -320,6 +305,35 @@
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="commande_form" layoutX="228.0" layoutY="139.0" prefHeight="600.0" prefWidth="824.8" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="15.0" layoutY="16.0" prefHeight="568.0" prefWidth="794.0" stylesheets="@mainFormCss.css" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.199999999999932" AnchorPane.topAnchor="16.0">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                    <String fx:value="radius" />
+                                 </styleClass>
+                                 <children>
+                                    <Label layoutX="272.0" layoutY="47.0" text="Liste Des Commande" AnchorPane.leftAnchor="271.9999999999999" AnchorPane.topAnchor="47.0">
+                                       <font>
+                                          <Font name="Century" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <TableView fx:id="command_tableview" layoutX="20.0" layoutY="116.0" prefHeight="410.0" prefWidth="742.0" AnchorPane.bottomAnchor="41.60000000000002" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="31.999999999999886" AnchorPane.topAnchor="116.0">
+                                      <columns>
+                                        <TableColumn fx:id="commande_col_commandeID" prefWidth="95.20001602172852" text="ID" />
+                                        <TableColumn fx:id="commande_col_customerID" prefWidth="171.1999969482422" text="CUSTOMER ID" />
+                                          <TableColumn fx:id="commande_col_total" prefWidth="257.5999755859375" text="TOTAL" />
+                                          <TableColumn fx:id="commande_col_date" prefWidth="218.40008544921875" text="Date" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
                                  </children>
                               </AnchorPane>
                            </children>
