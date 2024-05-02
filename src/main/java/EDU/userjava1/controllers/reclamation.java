@@ -27,6 +27,8 @@ public class reclamation {
 
     @FXML
     private TextField type;
+    @FXML
+    private Button back;
     private ProfanityFilter profanityFilter = new ProfanityFilter();
 
     @FXML
@@ -113,5 +115,13 @@ public class reclamation {
             });
         }
     }*/
+    @FXML
+    void back(ActionEvent event)throws IOException {
+        Parent root2 = FXMLLoader.load(getClass().getResource("/account.fxml"));
+        Scene scene2 = new Scene(root2);
+        Stage stage2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage2.setScene(scene2);
+        stage2.show();
+    }
 
 }

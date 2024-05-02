@@ -55,11 +55,15 @@
                                     <Image url="@img/house-chimney.png" />
                                  </image>
                               </ImageView>
-                              <Label text="Page d'accueil" textAlignment="JUSTIFY">
-                                 <font>
-                                    <Font name="System Italic" size="14.0" />
-                                 </font>
-                              </Label>
+                              <Button fx:id="home" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #71b63e;" stylesheets="@style/style.css" text="page d'accueil" textFill="#3b1e1e">
+                                 <styleClass>
+                                    <String fx:value="blue-btn" />
+                                    <String fx:value="blue-btn" />
+                                 </styleClass>
+                                 <cursor>
+                                    <Cursor fx:constant="SE_RESIZE" />
+                                 </cursor>
+                              </Button>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="53.0" prefWidth="340.0">

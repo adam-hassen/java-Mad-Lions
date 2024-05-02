@@ -7,14 +7,16 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="957.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.Home">
+
+<AnchorPane prefHeight="1126.0" prefWidth="997.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.home111">
    <children>
-      <AnchorPane layoutX="5.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="980.0">
+      <AnchorPane layoutX="15.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="980.0">
          <children>
-            <ImageView fitHeight="706.0" fitWidth="985.0" layoutX="-1.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #00;">
+            <ImageView fitHeight="590.0" fitWidth="1103.0" layoutX="-12.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #00;">
                <image>
                   <Image url="@img/banner-bg.jpg" />
                </image>
@@ -43,9 +45,9 @@
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="62.0" prefWidth="283.0" />
-                  <VBox alignment="CENTER" prefHeight="62.0" prefWidth="127.0">
+                  <VBox alignment="CENTER" prefHeight="60.0" prefWidth="178.0">
                      <children>
-                        <Button fx:id="login" mnemonicParsing="false" onAction="#login" prefHeight="14.0" prefWidth="66.0" style="-fx-background-color: #8fca63;" stylesheets="@style/style.css" text="login">
+                        <Button fx:id="email" mnemonicParsing="false" onAction="#profile" prefHeight="26.0" prefWidth="146.0" style="-fx-background-color: #8fca63;" stylesheets="@style/style.css" text="useremail">
                            <styleClass>
                               <String fx:value="parent" />
                               <String fx:value="button-with-shadow" />
@@ -53,7 +55,6 @@
                         </Button>
                      </children>
                   </VBox>
-                  <Button fx:id="signup" mnemonicParsing="false" onAction="#signup" style="-fx-background-color: #8fca63;" styleClass="pane_1111" stylesheets="@style/style.css" text="s'inscrire" />
                </children>
             </HBox>
             <ImageView fitHeight="470.0" fitWidth="330.0" layoutX="622.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
@@ -73,5 +74,14 @@
             </Label>
          </children>
       </AnchorPane>
+      <Pane layoutX="-3.0" layoutY="591.0" prefHeight="562.0" prefWidth="997.0">
+         <children>
+            <Label layoutX="300.0" layoutY="185.0" prefHeight="125.0" prefWidth="497.0" text="interface amine mensi">
+               <font>
+                  <Font size="46.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

@@ -166,6 +166,14 @@ public class profile implements Initializable {
         stage2.show();
     }
     @FXML
+    void home(ActionEvent event)throws IOException {
+        Parent root2 = FXMLLoader.load(getClass().getResource("/home222.fxml"));
+        Scene scene2 = new Scene(root2);
+        Stage stage2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage2.setScene(scene2);
+        stage2.show();
+    }
+    @FXML
     void changer(ActionEvent event) throws IOException {
         Parent root2 = FXMLLoader.load(getClass().getResource("/changerMdp.fxml"));
         Scene scene2 = new Scene(root2);

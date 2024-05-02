@@ -4,11 +4,14 @@ import EDU.userjava1.entities.Reclamation;
 import EDU.userjava1.services.reclamationService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 
@@ -19,6 +22,11 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class Reclamationback implements Initializable {
+    @FXML
+    private Button envoyer;
+
+    @FXML
+    private TextField reponse;
 
     @FXML
     private TableColumn<Reclamation, Date> DATE;
@@ -62,8 +70,29 @@ public class Reclamationback implements Initializable {
         // Affichage des événements existants lors du chargement de la page
         showReclamation();
 
-        // Ajout d'un EventHandler pour le DatePicker
-        ;
+        // Ajout d'un EventHandler pour détecter les sélections d'éléments dans la TableView
+        table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                // Afficher les détails de la réclamation sélectionnée
+                System.out.println("Réclamation sélectionnée : " + newSelection.getId());
+            }
+        });        ;
 
     }
-}
+    @FXML
+    void envoyer(ActionEvent event) {
+        // Récupérer la réclamation sélectionnée
+        Reclamation selectedReclamation = table.getSelectionModel().getSelectedItem();
+        if (selectedReclamation != null) {
+            // Répondre à la réclamation sélectionnée
+            String response = reponse.getText(); // Récupérer la réponse à partir d'un champ de texte
+            gs.repondreReclamation(selectedReclamation.getId(), response);
+
+            // Mettre à jour la TableView pour afficher la nouvelle réponse
+            selectedReclamation.setReponse(response);
+            table.refresh();
+            reponse.clear();// Rafraîchir la TableView pour afficher les changements
+        } else {
+            System.out.println("Aucune réclamation sélectionnée.");
+        }
+    }}

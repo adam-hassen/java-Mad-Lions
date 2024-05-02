@@ -1,7 +1,11 @@
 package EDU.userjava1.entities;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import java.util.Date;
 
 public class Reclamation {
+
     private int id;
     private int user1_id;
     private String userName; // Ajout du nom de l'utilisateur
@@ -21,6 +25,7 @@ public class Reclamation {
         // Constructeur par défaut
     }
     // Getters et Setters
+
     public int getId() {
         return id;
     }
