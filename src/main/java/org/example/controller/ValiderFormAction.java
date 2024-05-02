@@ -6,12 +6,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.example.entity.Action;
+import org.example.entity.ActionLocation;
 import org.example.entity.TypeName;
 import org.example.service.ActionService;
 import org.example.service.TypeNameService;
 
 import javax.mail.MessagingException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -49,7 +54,7 @@ public class ValiderFormAction {
     private TypeNameService query2;
     private int mod;
     private int userId;
-    private int loc;
+    private ActionLocation loc;
     @FXML
     private VBox vboxside;
     @FXML
@@ -258,6 +263,8 @@ public class ValiderFormAction {
 
         if (result.isPresent() && result.get() == buttonTypeYes) {
             act=query.calculerScoreEtDanger(act);
+            String ip = "140.185.218.43";
+            act.setLocation_id(LocateUser(ip));
             query.ajouterAction(act);
 
             if (query.moyenneDanger(1) > 4) {
@@ -374,6 +381,57 @@ public class ValiderFormAction {
             successAlert.setContentText("Type Null");
             successAlert.showAndWait();
         }
+    }
+    public ActionLocation LocateUser(String ip){
+        // ipapi api
+        String ipAddress = "140.185.218.43";
+        String baseUrl = "https://ipapi.co/";
+
+        Request latitudeRequest = new Request.Builder()
+                .url(baseUrl + ipAddress + "/latitude/")
+                .build();
+        Request longitudeRequest = new Request.Builder()
+                .url(baseUrl + ipAddress + "/longitude/")
+                .build();
+        Request countryRequest = new Request.Builder()
+                .url(baseUrl + ipAddress + "/country_name/")
+                .build();
+        Request regionRequest = new Request.Builder()
+                .url(baseUrl + ipAddress + "/region/")
+                .build();
+        OkHttpClient client = new OkHttpClient();
+        try (Response latitudeResponse = client.newCall(latitudeRequest).execute();
+             Response longitudeResponse = client.newCall(longitudeRequest).execute();
+             Response countryResponse = client.newCall(countryRequest).execute();
+             Response regionResponse = client.newCall(regionRequest).execute();) {
+
+            int latitudeCode = latitudeResponse.code();
+            int longitudeCode = longitudeResponse.code();
+            int countryCode = countryResponse.code();
+            int regionCode = regionResponse.code();
+
+            if (!latitudeResponse.isSuccessful() || !longitudeResponse.isSuccessful() || !countryResponse.isSuccessful() ||
+                    !regionResponse.isSuccessful() ) {
+                System.err.println("Unexpected code for latitude: " + latitudeCode);
+                System.err.println("Unexpected code for longitude: " + longitudeCode);
+                System.err.println("Unexpected code for country: " + countryCode);
+                System.err.println("Unexpected code for region: " + regionCode);
+                throw new IOException("Unexpected code");
+            }
+
+            String latitude = latitudeResponse.body().string();
+            String longitude = longitudeResponse.body().string();
+            String country = countryResponse.body().string();
+            String region = regionResponse.body().string();
+
+            String address = region + ", " + country;
+            System.out.println("Latitude: " + latitude);
+            System.out.println("Longitude: " + longitude);
+            System.out.println("Address: " + address);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // end ipapi api
     }
 
 }

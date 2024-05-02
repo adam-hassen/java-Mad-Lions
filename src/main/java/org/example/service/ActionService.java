@@ -3,6 +3,7 @@ package org.example.service;
 import javafx.scene.control.Alert;
 import org.example.Connexion.connexion;
 import org.example.entity.Action;
+import org.example.entity.ActionLocation;
 import org.example.entity.TypeName;
 
 import java.sql.*;
@@ -72,7 +73,9 @@ public class ActionService {
                 act.setQuantite(rs.getDouble("quantite"));
                 act.setAction_score(rs.getDouble("action_score"));
                 act.setNiveau_danger(rs.getInt("niveau_danger"));
-                act.setLocation_id(rs.getInt("location_id"));
+                int b = rs.getInt("location_id");
+                ActionLocation loc = this.chercherLocation(b);
+                act.setLocation_id(loc);
                 act.setDescription(rs.getString("description"));
                 act.setDate(rs.getDate("date").toLocalDate());
                 ListeAct.add(act);
@@ -247,7 +250,7 @@ public class ActionService {
                 act.setQuantite(rs.getDouble("quantite"));
                 act.setAction_score(rs.getDouble("action_score"));
                 act.setNiveau_danger(rs.getInt("niveau_danger"));
-                act.setLocation_id(rs.getInt("location_id"));
+                act.setLocation_id(null);
                 act.setDescription(rs.getString("description"));
                 act.setDate(rs.getDate("date").toLocalDate());
                 LocalTime quantiteTime = rs.getTime("quantite_time").toLocalTime();
@@ -306,5 +309,25 @@ public class ActionService {
             System.out.println(e.getMessage());
         }
         return averageDangerLevel;
+    }
+    public ActionLocation chercherLocation(int id){
+        ActionLocation act = new ActionLocation();
+        try {
+            String requete = "SELECT * FROM action_location WHERE id=?";
+            PreparedStatement pst = cn.prepareStatement(requete);
+            pst.setInt(1,id);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                act.setId(rs.getInt("id"));
+                act.setAddress(rs.getString("address"));
+                act.setNom(rs.getString("nom"));
+                act.setLatitude(rs.getString("latitude"));
+                act.setLongitude(rs.getString("longitude"));
+            }
+        }
+        catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return act;
     }
 }

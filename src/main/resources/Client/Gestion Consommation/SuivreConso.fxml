@@ -16,6 +16,7 @@
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.chart.AreaChart?>
 <?import javafx.scene.chart.ScatterChart?>
+<?import javafx.scene.web.WebView?>
 <VBox alignment="CENTER" prefHeight="600.0" prefWidth="1000.0" stylesheets="@/CSS/Home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.SuivreConsoController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="542.0" prefWidth="1000.0" spacing="20.0">
@@ -94,6 +95,11 @@
                                  <PieChart fx:id="chart2" />
                               </children>
                            </StackPane>
+                           <AnchorPane prefHeight="450.0" prefWidth="550.0">
+                              <ScrollPane prefHeight="450.0" prefWidth="550.0">
+                                 <WebView fx:id="webView" prefHeight="450.0" prefWidth="550.0"/>
+                              </ScrollPane>
+                           </AnchorPane>
                         </children>
                      </VBox>
                   </children>

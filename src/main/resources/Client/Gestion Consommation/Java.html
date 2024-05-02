@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Markers Map</title>
+    <link href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" rel="stylesheet" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/geolocation-polyfill@3.0.0/src/geolocation.js"></script>
+</head>
+<body>
+<div id="map" style="height: 500px;"></div>
+<script>
+    function processData(data) {
+        data.forEach(function(location) {
+            console.log(location);
+
+
+    // geoLocation
+    function getRandomColor() {
+        var colors = ['blue', 'red', 'green', 'orange', 'purple', 'yellow'];
+        var randomIndex = Math.floor(Math.random() * colors.length);
+        return colors[randomIndex];
+    }
+
+    var map = L.map('map').setView([0, 0], 2);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '',
+        maxZoom: 18,
+        id: 'my-map',
+        username: 'youssefbenarous@gmail.com',
+        password: 'Hattoubablues12'
+    }).addTo(map);
+
+    // Generate random markers
+    var numberOfMarkers = 10; // Specify the number of markers you want
+    for (var i = 0; i < numberOfMarkers; i++) {
+        var randomColor = getRandomColor();
+        var customIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-' + randomColor + '.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        var lat = location.latitude;
+        var lng = location.longitude;
+        var marker = L.marker([lat, lng], {icon: customIcon}).addTo(map);
+        marker.bindPopup("Random Marker");
+        //receiveDataFromJava(21);
+    }
+        });
+    }
+    //end geoLocation
+</script>
+</body>
+</html>

@@ -12,7 +12,7 @@ public class Action {
     private double action_score;
     private String quantite_time;
     private int niveau_danger;
-    private int location_id;
+    private ActionLocation location_id;
 
     public Action(TypeName type_id, double quantite, LocalDate date, String description, String quantite_time) {
         this.type_id=type_id;
@@ -113,11 +113,11 @@ public class Action {
         this.niveau_danger = niveau_danger;
     }
 
-    public int getLocation_id() {
+    public ActionLocation getLocation_id() {
         return location_id;
     }
 
-    public void setLocation_id(int location_id) {
+    public void setLocation_id(ActionLocation location_id) {
         this.location_id = location_id;
     }
 }

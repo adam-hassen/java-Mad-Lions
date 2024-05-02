@@ -3,7 +3,13 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.example.entity.Action;
+import org.example.entity.ActionLocation;
 import org.example.entity.TypeName;
 import org.example.service.ActionService;
 import org.example.service.TypeNameService;
@@ -22,8 +28,9 @@ import org.jfree.chart.title.TextTitle;
 import org.jfree.chart.ui.RectangleEdge;
 import org.jfree.chart.ui.RectangleInsets;
 import org.jfree.data.general.DefaultPieDataset;
-
+import com.google.gson.Gson;
 import java.awt.geom.Ellipse2D;
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.net.URL;
@@ -35,6 +42,7 @@ import javafx.scene.layout.VBox;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import javafx.scene.control.Label;
+import org.jfree.data.json.impl.JSONObject;
 import org.jfree.data.xy.DefaultXYDataset;
 import org.jfree.data.xy.DefaultXYZDataset;
 
@@ -55,7 +63,9 @@ public class SuivreConsoController {
     @FXML
     private Label scattercharterror;
     @FXML
-    public void initialize() {
+    private WebView webView;
+    @FXML
+    public void initialize() throws IOException {
         query2 = new TypeNameService();
         query = new ActionService();
         //first chart
@@ -121,6 +131,34 @@ public class SuivreConsoController {
         } else {
             scattercharterror.setVisible(true);
         }
+        //end scatter
+        // leaftlet js
+        WebEngine webEngine = webView.getEngine();
+        String htmlFilePath = getClass().getResource("/Client/Gestion Consommation/Java.html").toString();
+        webView.getEngine().load(htmlFilePath);
+        webEngine.documentProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                List<Action> dataList = query.afficherActions(1);
+                List<ActionLocation> actionLocs = new ArrayList<>();
+                for (Action action : dataList){
+                    if (action.getLocation_id().getNom() != null ) {
+                        actionLocs.add(action.getLocation_id());
+                    }
+                }
+                Gson gson = new Gson();
+                String jsonData = gson.toJson(actionLocs);
+                String jsonEscapedData = jsonData.replace("'", "\\'");
+                //System.out.println("JSON data from Java: " + jsonEscapedData);
+                //System.out.println("Pure Java: " + actionLocs);
+                String script = "var data = JSON.parse('" + jsonEscapedData + "'); processData(data);";
+                webEngine.executeScript(script);
+            }
+        });
+
+        webEngine.setOnError(event -> {
+            System.out.println("WebView Error: " + event.getMessage());
+        });
+        //end leaflet api
     }
 
     private static class ModernColorGenerator {
