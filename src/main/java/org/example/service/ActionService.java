@@ -26,7 +26,7 @@ public class ActionService {
     }
     public void ajouterAction(Action act){
         try {
-            String requete = "INSERT INTO ACTION (type_id,user_id,quantite,date,description,quantite_time,action_score,niveau_danger) VALUES (?,?,?,?,?,?,?,?)";
+            String requete = "INSERT INTO ACTION (type_id,user_id,quantite,date,description,quantite_time,action_score,niveau_danger,location_id) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement pst = cn.prepareStatement(requete);
             pst.setInt(1,act.getType_id().getId());
             pst.setInt(2,act.getUser_id());
@@ -36,6 +36,7 @@ public class ActionService {
             pst.setString(6, act.getQuantite_time());
             pst.setDouble(7, act.getAction_score());
             pst.setInt(8,act.getNiveau_danger());
+            pst.setInt(9,act.getLocation_id().getId());
             pst.executeUpdate();
             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
             successAlert.setTitle("Gestion De Consommation Alert!");
@@ -104,7 +105,7 @@ public class ActionService {
             String requete = "UPDATE ACTION SET type_id=?, user_id=?, quantite=?" +
                     ", date=STR_TO_DATE(?, '%Y-%m-%d'), description=?, action_score=?" +
                     ", quantite_time=TIME_FORMAT(?, '%H:%i:%s'), niveau_danger=?" +
-                    " WHERE ID = ?";
+                    ",location_id=? WHERE ID = ?";
             PreparedStatement pst = cn.prepareStatement(requete);
             pst.setInt(1,act.getType_id().getId());
             pst.setInt(2,act.getUser_id());
@@ -114,7 +115,7 @@ public class ActionService {
             pst.setDouble(6,act.getAction_score());
             pst.setString(7,act.getQuantite_time());
             pst.setInt(8,act.getNiveau_danger());
-            pst.setInt(9,id);
+            pst.setInt(9,act.getLocation_id().getId());
             int row = pst.executeUpdate();
             if (row > 0) System.out.println("Modify succeed");
             else System.out.println("Modify Failed Probably infound ID");

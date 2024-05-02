@@ -7,8 +7,7 @@ public class ActionLocation {
     private String latitude;
     private String  longitude;
 
-    public ActionLocation(int id, String nom, String address, String latitude, String longitude) {
-        this.id = id;
+    public ActionLocation(String nom, String address, String latitude, String longitude) {
         this.nom = nom;
         this.address = address;
         this.latitude = latitude;

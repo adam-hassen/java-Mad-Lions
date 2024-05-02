@@ -13,6 +13,7 @@ import org.example.entity.Action;
 import org.example.entity.ActionLocation;
 import org.example.entity.TypeName;
 import org.example.service.ActionService;
+import org.example.service.LocationService;
 import org.example.service.TypeNameService;
 
 import javax.mail.MessagingException;
@@ -52,6 +53,7 @@ public class ValiderFormAction {
     private Label quantiteLabel;
     private ActionService query;
     private TypeNameService query2;
+    private LocationService query3;
     private int mod;
     private int userId;
     private ActionLocation loc;
@@ -61,6 +63,7 @@ public class ValiderFormAction {
     public void initialize() {
         query2 = new TypeNameService();
         query = new ActionService();
+        query3 = new LocationService();
         ObservableList<Integer> hours = FXCollections.observableArrayList();
         for (int i = 0; i < 24; i++) {
             hours.add(i);
@@ -265,8 +268,9 @@ public class ValiderFormAction {
             act=query.calculerScoreEtDanger(act);
             String ip = "140.185.218.43";
             act.setLocation_id(LocateUser(ip));
-            query.ajouterAction(act);
-
+            System.out.println(act.getLocation_id());
+            query3.ajouterActionLocation(act.getLocation_id());
+           // query.ajouterAction(act);
             if (query.moyenneDanger(1) > 4) {
                 // Send email
                 try {
@@ -384,38 +388,43 @@ public class ValiderFormAction {
     }
     public ActionLocation LocateUser(String ip){
         // ipapi api
-        String ipAddress = "140.185.218.43";
         String baseUrl = "https://ipapi.co/";
 
         Request latitudeRequest = new Request.Builder()
-                .url(baseUrl + ipAddress + "/latitude/")
+                .url(baseUrl + ip + "/latitude/")
                 .build();
         Request longitudeRequest = new Request.Builder()
-                .url(baseUrl + ipAddress + "/longitude/")
+                .url(baseUrl + ip + "/longitude/")
                 .build();
         Request countryRequest = new Request.Builder()
-                .url(baseUrl + ipAddress + "/country_name/")
+                .url(baseUrl + ip + "/country_name/")
                 .build();
         Request regionRequest = new Request.Builder()
-                .url(baseUrl + ipAddress + "/region/")
+                .url(baseUrl + ip + "/region/")
+                .build();
+        Request postalRequest = new Request.Builder()
+                .url(baseUrl + ip + "/postal/")
                 .build();
         OkHttpClient client = new OkHttpClient();
         try (Response latitudeResponse = client.newCall(latitudeRequest).execute();
              Response longitudeResponse = client.newCall(longitudeRequest).execute();
              Response countryResponse = client.newCall(countryRequest).execute();
-             Response regionResponse = client.newCall(regionRequest).execute();) {
+             Response regionResponse = client.newCall(regionRequest).execute();
+             Response postalResponse = client.newCall(postalRequest).execute()) {
 
             int latitudeCode = latitudeResponse.code();
             int longitudeCode = longitudeResponse.code();
             int countryCode = countryResponse.code();
             int regionCode = regionResponse.code();
+            int postalCode = postalResponse.code();
 
             if (!latitudeResponse.isSuccessful() || !longitudeResponse.isSuccessful() || !countryResponse.isSuccessful() ||
-                    !regionResponse.isSuccessful() ) {
+                    !regionResponse.isSuccessful() || !postalResponse.isSuccessful()) {
                 System.err.println("Unexpected code for latitude: " + latitudeCode);
                 System.err.println("Unexpected code for longitude: " + longitudeCode);
                 System.err.println("Unexpected code for country: " + countryCode);
                 System.err.println("Unexpected code for region: " + regionCode);
+                System.err.println("Unexpected code for postal: " + postalCode);
                 throw new IOException("Unexpected code");
             }
 
@@ -423,14 +432,19 @@ public class ValiderFormAction {
             String longitude = longitudeResponse.body().string();
             String country = countryResponse.body().string();
             String region = regionResponse.body().string();
+            String postal = postalResponse.body().string();
 
-            String address = region + ", " + country;
+            String address = postal + " " + region + ", " + country;
             System.out.println("Latitude: " + latitude);
             System.out.println("Longitude: " + longitude);
             System.out.println("Address: " + address);
+            System.out.println("Region: " + region);
+            ActionLocation loc = new ActionLocation(region,address,latitude,longitude);
+            return loc;
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
         // end ipapi api
     }
 
