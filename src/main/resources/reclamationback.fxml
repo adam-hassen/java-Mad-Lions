@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="484.0" prefWidth="983.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.Reclamationback">
+   <children>
+      <TableView fx:id="table" layoutY="42.0" prefHeight="318.0" prefWidth="983.0" style="-fx-background-color: #00;" styleClass="white-pane" stylesheets="@style/style.css">
+        <columns>
+          <TableColumn fx:id="EMAIL" prefWidth="120.79998624324799" text="EMAIL" />
+          <TableColumn fx:id="RECLAMATION" prefWidth="273.6000442504883" text="RECLAMATION" />
+            <TableColumn fx:id="TYPE" prefWidth="144.79995727539062" text="TYPE" />
+            <TableColumn fx:id="DATE" prefWidth="132.0" text="DATE" />
+            <TableColumn fx:id="REPONSE" prefWidth="310.4000122070313" text="REPONSE" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
