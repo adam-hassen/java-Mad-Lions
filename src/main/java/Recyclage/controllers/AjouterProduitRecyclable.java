@@ -42,10 +42,14 @@ public class AjouterProduitRecyclable implements Initializable {
 
     @FXML
     private TextField nomTFP;
-
+    @FXML
+    private ProgressBar progressBar;
+    @FXML
+    private Label pourcentageLabel;
     @FXML
     private TextField quantiteTFP;
     private EcoDepotMethodes ecoDepotMethodes;
+    private double capaciteTotaleEcoDepot;
 
     @FXML
     void AfficherLesProduitRecyclable(ActionEvent event) {
@@ -179,6 +183,8 @@ public class AjouterProduitRecyclable implements Initializable {
         ecoDepotMethodes = new EcoDepotMethodes();
         ecoDepotMethodes.chargerNomsEcoDepots(ComboBoxTF1P);
         dateP.setValue(LocalDate.now());
+        capaciteTotaleEcoDepot = 1000;
+        afficherCapaciteStockage();
     }
 
     private void afficherAlerteErreur(String message) {
@@ -260,6 +266,49 @@ public class AjouterProduitRecyclable implements Initializable {
         // Afficher l'alerte et attendre la réponse de l'utilisateur
         Optional<ButtonType> result = alert.showAndWait();
         return result.isPresent() && result.get() == ButtonType.OK;
+    }
+    @FXML
+    void onEcoDepotSelected(ActionEvent event) {
+        // Récupérer la capacité totale de l'éco-dépôt sélectionné
+        double capaciteTotale = ecoDepotMethodes.getCapaciteStockageByNom(ComboBoxTF1P.getValue());
+
+        // Vérifier si la capacité totale est valide
+        if (capaciteTotale > 0) {
+            try {
+                // Récupérer la quantité du produit à ajouter
+                int quantite = Integer.parseInt(quantiteTFP.getText());
+
+                // Calculer la capacité disponible en soustrayant la quantité du produit à ajouter de la capacité totale
+                double capaciteDisponible = capaciteTotale - quantite;
+
+                // Calculer le pourcentage de la capacité disponible par rapport à la capacité totale
+                double pourcentageCapaciteDisponible = capaciteDisponible / capaciteTotale;
+
+                // Assurez-vous que le pourcentage est compris entre 0 et 1
+                pourcentageCapaciteDisponible = Math.min(1.0, Math.max(0.0, pourcentageCapaciteDisponible));
+
+                // Définir la valeur de la ProgressBar
+                progressBar.setProgress(pourcentageCapaciteDisponible);
+                afficherCapaciteStockage();
+            } catch (NumberFormatException e) {
+                // Gérer l'erreur si la quantité n'est pas un nombre valide
+                afficherAlerteErreur("La quantité doit être un nombre entier valide");
+            }
+        } else {
+            // Gérer l'erreur si la capacité totale n'est pas valide
+            afficherAlerteErreur("La capacité totale de l'éco-dépôt n'est pas valide");
+        }
+    }
+
+    private void afficherCapaciteStockage() {
+        // Récupérer le nom de l'éco-dépôt sélectionné dans votre ComboBox
+        String nomEcoDepot = ComboBoxTF1P.getValue();
+
+        // Récupérer la capacité de stockage de cet éco-dépôt à partir de votre service EcoDepotMethodes
+        int capaciteStockage = ecoDepotMethodes.getCapaciteStockageByNom(nomEcoDepot);
+
+        // Afficher la capacité de stockage dans l'étiquette
+        pourcentageLabel.setText("Capacité: " + capaciteStockage);
     }
 
 }

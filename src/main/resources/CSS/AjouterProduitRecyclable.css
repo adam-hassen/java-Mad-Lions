@@ -12,8 +12,8 @@
 /* Style des étiquettes */
 .label {
     -fx-font-family: "Segoe UI", sans-serif;
-    -fx-font-size: 24px;
-    -fx-text-fill: #242423; /* Couleur de texte gris foncé */
+    -fx-font-size: 12px;
+    -fx-text-fill:#4B5943; /* Couleur de texte gris foncé */
 }
 
 /* Style des champs de texte */
@@ -87,5 +87,33 @@
     -fx-background-color: #4CAF50; /* Fond vert pour les dates sélectionnées */
     -fx-text-fill: #fff; /* Texte blanc pour les dates sélectionnées */
 }
+/* Style de la ProgressBar */
+/* Style de la ProgressBar */
+.progress-bar {
+    -fx-background-color: transparent; /* Couleur de fond transparente */
+}
 
+/* Style de la piste de la ProgressBar */
+.progress-bar .track {
+        -fx-background-color: #f0f0f0; /* Couleur de la piste */
+    -fx-background-insets: 0;
+}
+
+/* Style de la barre de progression de la ProgressBar */
+.progress-bar .bar {
+    -fx-background-color: linear-gradient(to right, #4CAF50, #45A049); /* Dégradé de couleur pour la barre de progression */
+    -fx-background-insets: 0;
+}
+
+/* Animation de la barre de progression */
+.progress-bar .bar {
+    -fx-background-color: linear-gradient(to right, #4CAF50, #45A049); /* Dégradé de couleur initial */
+    -fx-background-insets: 0;
+    -fx-transition: background-color 0.5s ease-in-out; /* Animation de la couleur de fond */
+}
+
+/* Effet d'ombre pour une apparence 3D */
+.progress-bar .bar {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0); /* Ombre portée légère */
+}
 

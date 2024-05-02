@@ -213,7 +213,7 @@ public class EcoDepotMethodes implements EcodepotService<EcoDepot> {
         return null;
     }
     public int getCapaciteStockageByNom(String nomEcoDepot) {
-        int capaciteStockage = -1; // Initialiser la capacité de stockage à -1 par défaut
+        int capaciteStockage = 0; // Initialiser la capacité de stockage à -1 par défaut
 
         String requete = "SELECT capacite_stockage FROM eco_depot WHERE nom = ?";
         try {
