@@ -33,6 +33,8 @@ public class profile implements Initializable {
     @FXML
     private Button delete;
     @FXML
+    private Button ajoutreclamation;
+    @FXML
     private Label address;
     @FXML
     private Button edit;
@@ -154,8 +156,15 @@ public class profile implements Initializable {
         Stage stage2 = new Stage();
         stage2.setScene(scene2);
         stage2.show();
-    } 
-
+    }
+    @FXML
+    void ajoutreclamation(ActionEvent event)throws IOException {
+        Parent root2 = FXMLLoader.load(getClass().getResource("/reclamation.fxml"));
+        Scene scene2 = new Scene(root2);
+        Stage stage2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage2.setScene(scene2);
+        stage2.show();
+    }
     @FXML
     void changer(ActionEvent event) throws IOException {
         Parent root2 = FXMLLoader.load(getClass().getResource("/changerMdp.fxml"));

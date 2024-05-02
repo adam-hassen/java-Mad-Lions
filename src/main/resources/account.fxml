@@ -214,6 +214,24 @@
                                           </ImageView>
                                        </children>
                                     </Pane>
+                                    <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="65.0" style="-fx-background-color: edf5eb;" stylesheets="@style/style.css" text="                              ." textFill="#3b1e1e">
+                                       <styleClass>
+                                          <String fx:value="blue-btn" />
+                                          <String fx:value="blue-btn" />
+                                       </styleClass>
+                                       <cursor>
+                                          <Cursor fx:constant="SE_RESIZE" />
+                                       </cursor>
+                                    </Button>
+                                    <Button fx:id="ajoutreclamation" mnemonicParsing="false" onAction="#ajoutreclamation" style="-fx-background-color: edf5eb;" stylesheets="@style/style.css" text="ajouter reclamation" textFill="#3b1e1e">
+                                       <styleClass>
+                                          <String fx:value="side_ankerpane" />
+                                          <String fx:value="blue-btn" />
+                                       </styleClass>
+                                       <cursor>
+                                          <Cursor fx:constant="SE_RESIZE" />
+                                       </cursor>
+                                    </Button>
                                  </children></HBox>
                               <HBox prefHeight="81.0" prefWidth="353.0" />
                            </children>

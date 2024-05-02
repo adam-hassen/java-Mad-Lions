@@ -7,8 +7,16 @@ import com.modernmt.text.profanity.dictionary.Profanity;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 import static com.sun.beans.introspect.PropertyInfo.Name.description;
 
@@ -22,7 +30,7 @@ public class reclamation {
     private ProfanityFilter profanityFilter = new ProfanityFilter();
 
     @FXML
-    void ajouter(ActionEvent event) {
+    void ajouter(ActionEvent event) throws IOException {
         int USER_ID = Login.v.getId();
         String RECLAMATION = reclamation.getText();
         String TYPE = type.getText();
@@ -36,6 +44,11 @@ public class reclamation {
             alert.setHeaderText("Profanity has been detected in the text.");
             alert.setContentText("Please refrain from using offensive language.");
             alert.showAndWait();
+            Parent root2 = FXMLLoader.load(getClass().getResource("/login.fxml"));
+            Scene scene2 = new Scene(root2);
+            Stage stage2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage2.setScene(scene2);
+            stage2.show();
         } else {
             // Proceed with submission if no profanity is detected
             reclamationService pcd = new reclamationService();
@@ -52,6 +65,11 @@ public class reclamation {
             successAlert.setHeaderText(null);
             successAlert.setContentText("Reclamation added successfully!");
             successAlert.showAndWait();
+            Parent root2 = FXMLLoader.load(getClass().getResource("/account.fxml"));
+            Scene scene2 = new Scene(root2);
+            Stage stage2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage2.setScene(scene2);
+            stage2.show();
         }
     }
 
