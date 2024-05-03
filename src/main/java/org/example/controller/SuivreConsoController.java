@@ -151,6 +151,7 @@ public class SuivreConsoController {
                 //System.out.println("JSON data from Java: " + jsonEscapedData);
                 //System.out.println("Pure Java: " + actionLocs);
                 String script = "var data = JSON.parse('" + jsonEscapedData + "'); processData(data);";
+
                 webEngine.executeScript(script);
             }
         });

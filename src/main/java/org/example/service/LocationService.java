@@ -3,6 +3,7 @@ package org.example.service;
 import javafx.scene.control.Alert;
 import org.example.Connexion.connexion;
 import org.example.entity.ActionLocation;
+import org.example.entity.TypeName;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -97,6 +98,27 @@ public class LocationService {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+    public ActionLocation chercherLocation() {
+        ActionLocation act = null;
+        try {
+            String requete = "SELECT * FROM action_location WHERE id = LAST_INSERT_ID()";
+            PreparedStatement pst = cn.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                String nom = rs.getString("nom");
+                String address = rs.getString("address");
+                String latitude = rs.getString("latitude");
+                String longitude = rs.getString("longitude");
+                act = new ActionLocation(nom, address, latitude, longitude);
+                act.setId(id);
+                return act;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return act;
     }
 }
 

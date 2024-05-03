@@ -9,49 +9,49 @@
 <body>
 <div id="map" style="height: 500px;"></div>
 <script>
+    let map = null; // Declare a global variable to store the map instance
+
     function processData(data) {
+        function getRandomColor() {
+            var colors = ['blue', 'red', 'green', 'orange', 'purple', 'yellow'];
+            var randomIndex = Math.floor(Math.random() * colors.length);
+            return colors[randomIndex];
+        }
+        if (!map) {
+            // Create a new map instance
+            map = L.map('map').setView([0, 0], 2);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '',
+                maxZoom: 18
+            }).addTo(map);
+        }
+
+        // Add markers from the new data
+        let markers = L.layerGroup();
         data.forEach(function(location) {
             console.log(location);
 
+            var randomColor = getRandomColor();
+            var customIcon = L.icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-' + randomColor + '.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
 
-    // geoLocation
-    function getRandomColor() {
-        var colors = ['blue', 'red', 'green', 'orange', 'purple', 'yellow'];
-        var randomIndex = Math.floor(Math.random() * colors.length);
-        return colors[randomIndex];
-    }
-
-    var map = L.map('map').setView([0, 0], 2);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '',
-        maxZoom: 18,
-        id: 'my-map',
-        username: 'youssefbenarous@gmail.com',
-        password: 'Hattoubablues12'
-    }).addTo(map);
-
-    // Generate random markers
-    var numberOfMarkers = 10; // Specify the number of markers you want
-    for (var i = 0; i < numberOfMarkers; i++) {
-        var randomColor = getRandomColor();
-        var customIcon = L.icon({
-            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-' + randomColor + '.png',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41]
+            var lat = location.latitude;
+            var lng = location.longitude;
+            var marker = L.marker([lat, lng], { icon: customIcon }).addTo(markers);
+            marker.bindPopup("Random Marker");
         });
 
-        var lat = location.latitude;
-        var lng = location.longitude;
-        var marker = L.marker([lat, lng], {icon: customIcon}).addTo(map);
-        marker.bindPopup("Random Marker");
-        //receiveDataFromJava(21);
+        // Add the markers to the map
+        markers.addTo(map);
     }
-        });
-    }
-    //end geoLocation
+
+
 </script>
 </body>
 </html>

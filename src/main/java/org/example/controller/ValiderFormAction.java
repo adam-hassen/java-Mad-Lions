@@ -15,6 +15,8 @@ import org.example.entity.TypeName;
 import org.example.service.ActionService;
 import org.example.service.LocationService;
 import org.example.service.TypeNameService;
+import org.jfree.data.json.impl.JSONObject;
+
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -266,11 +268,12 @@ public class ValiderFormAction {
 
         if (result.isPresent() && result.get() == buttonTypeYes) {
             act=query.calculerScoreEtDanger(act);
-            String ip = "140.185.218.43";
-            act.setLocation_id(LocateUser(ip));
-            System.out.println(act.getLocation_id());
+                String ip = "106.169.53.240";
+                act.setLocation_id(LocateUser(ip));
+                //System.out.println(act.getLocation_id());
             query3.ajouterActionLocation(act.getLocation_id());
-           // query.ajouterAction(act);
+            act.setLocation_id(query3.chercherLocation());
+            query.ajouterAction(act);
             if (query.moyenneDanger(1) > 4) {
                 // Send email
                 try {
@@ -386,60 +389,58 @@ public class ValiderFormAction {
             successAlert.showAndWait();
         }
     }
-    public ActionLocation LocateUser(String ip){
-        // ipapi api
-        String baseUrl = "https://ipapi.co/";
+        public ActionLocation LocateUser(String ip) {
+            String baseUrl = "https://ipapi.co/";
 
-        Request latitudeRequest = new Request.Builder()
-                .url(baseUrl + ip + "/latitude/")
-                .build();
-        Request longitudeRequest = new Request.Builder()
-                .url(baseUrl + ip + "/longitude/")
-                .build();
-        Request countryRequest = new Request.Builder()
-                .url(baseUrl + ip + "/country_name/")
-                .build();
-        Request regionRequest = new Request.Builder()
-                .url(baseUrl + ip + "/region/")
-                .build();
-        Request postalRequest = new Request.Builder()
-                .url(baseUrl + ip + "/postal/")
-                .build();
-        OkHttpClient client = new OkHttpClient();
-        try (Response latitudeResponse = client.newCall(latitudeRequest).execute();
-             Response longitudeResponse = client.newCall(longitudeRequest).execute();
-             Response countryResponse = client.newCall(countryRequest).execute();
-             Response regionResponse = client.newCall(regionRequest).execute();
-             Response postalResponse = client.newCall(postalRequest).execute()) {
+            Request latitudeRequest = new Request.Builder()
+                    .url(baseUrl + ip + "/latitude/")
+                    .build();
+            Request longitudeRequest = new Request.Builder()
+                    .url(baseUrl + ip + "/longitude/")
+                    .build();
+            Request countryRequest = new Request.Builder()
+                    .url(baseUrl + ip + "/country_name/")
+                    .build();
+            Request regionRequest = new Request.Builder()
+                    .url(baseUrl + ip + "/region/")
+                    .build();
 
-            int latitudeCode = latitudeResponse.code();
-            int longitudeCode = longitudeResponse.code();
-            int countryCode = countryResponse.code();
-            int regionCode = regionResponse.code();
-            int postalCode = postalResponse.code();
+            OkHttpClient client = new OkHttpClient();
+            try (Response latitudeResponse = client.newCall(latitudeRequest).execute();
+                 Response longitudeResponse = client.newCall(longitudeRequest).execute();
+                 Response countryResponse = client.newCall(countryRequest).execute();
+                 Response regionResponse = client.newCall(regionRequest).execute();
+            )
+            {
 
-            if (!latitudeResponse.isSuccessful() || !longitudeResponse.isSuccessful() || !countryResponse.isSuccessful() ||
-                    !regionResponse.isSuccessful() || !postalResponse.isSuccessful()) {
-                System.err.println("Unexpected code for latitude: " + latitudeCode);
-                System.err.println("Unexpected code for longitude: " + longitudeCode);
-                System.err.println("Unexpected code for country: " + countryCode);
-                System.err.println("Unexpected code for region: " + regionCode);
-                System.err.println("Unexpected code for postal: " + postalCode);
-                throw new IOException("Unexpected code");
-            }
+                int latitudeCode = latitudeResponse.code();
+                int longitudeCode = longitudeResponse.code();
+                int countryCode = countryResponse.code();
+                int regionCode = regionResponse.code();
 
-            String latitude = latitudeResponse.body().string();
-            String longitude = longitudeResponse.body().string();
-            String country = countryResponse.body().string();
-            String region = regionResponse.body().string();
-            String postal = postalResponse.body().string();
+                if (!latitudeResponse.isSuccessful() || !longitudeResponse.isSuccessful() || !countryResponse.isSuccessful() ||
+                        !regionResponse.isSuccessful()) {
+                    System.err.println("Unexpected code for latitude: " + latitudeCode);
+                    System.err.println("Unexpected code for longitude: " + longitudeCode);
+                    System.err.println("Unexpected code for country: " + countryCode);
+                    System.err.println("Unexpected code for region: " + regionCode);
 
-            String address = postal + " " + region + ", " + country;
-            System.out.println("Latitude: " + latitude);
-            System.out.println("Longitude: " + longitude);
-            System.out.println("Address: " + address);
-            System.out.println("Region: " + region);
-            ActionLocation loc = new ActionLocation(region,address,latitude,longitude);
+                    throw new IOException("Unexpected code");
+                }
+
+                String latitude = latitudeResponse.body().string();
+                String longitude = longitudeResponse.body().string();
+                String country = countryResponse.body().string();
+                String region = regionResponse.body().string();
+                // String postal = postalResponse.body().string();
+
+                String address = region + ", " + country;
+                System.out.println("Latitude: " + latitude);
+                System.out.println("Longitude: " + longitude);
+                System.out.println("Address: " + address);
+                System.out.println("Region: " + region);
+                ActionLocation loc = new ActionLocation("test",address,latitude,longitude);
+                System.out.println(loc);
             return loc;
         } catch (IOException e) {
             e.printStackTrace();

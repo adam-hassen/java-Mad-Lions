@@ -17,7 +17,11 @@ public class ActionLocation {
     @Override
     public String toString() {
         return "ActionLocation{" +
-                "nom='" + nom + '\'' +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", address='" + address + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
                 '}';
     }
 
