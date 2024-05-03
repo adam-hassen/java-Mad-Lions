@@ -10,7 +10,5 @@ public interface testService<E>{
     public boolean modifiertest(E e,int id);
     public List<E> listeDestest();
 
-    boolean modifierTest(Test test, int x);
 
-    List<Test> listeDesTest();
 }

@@ -19,6 +19,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -99,11 +100,21 @@ public class modifierWorkshop  implements Initializable {
         String HeureString = heure.getText();
         String Cours = cours.getText();
 
-        if (!Nom.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*")) {
+        if (!Nom.matches("^[a-zA-Z]+$")) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Erreur !");
             alert.setHeaderText(null);
             alert.setContentText("Veuillez saisir un nom valide !");
+            alert.showAndWait();
+            return;
+        }
+        try {
+            LocalTime.parse(HeureString);
+        } catch (DateTimeParseException e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur !");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez saisir une heure valide !");
             alert.showAndWait();
             return;
         }

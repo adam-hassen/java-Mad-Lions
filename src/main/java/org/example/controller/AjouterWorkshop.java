@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 
 public class AjouterWorkshop  implements Initializable {
@@ -99,6 +100,17 @@ public class AjouterWorkshop  implements Initializable {
                                 alert.setTitle("Erreur !");
                                 alert.setHeaderText(null);
                                 alert.setContentText("Veuillez saisir un nom valide !");
+                                alert.showAndWait();
+                                return;
+                        }
+
+                        try {
+                                LocalTime.parse(HeureString);
+                        } catch (DateTimeParseException e) {
+                                Alert alert = new Alert(Alert.AlertType.WARNING);
+                                alert.setTitle("Erreur !");
+                                alert.setHeaderText(null);
+                                alert.setContentText("Veuillez saisir une heure valide !");
                                 alert.showAndWait();
                                 return;
                         }

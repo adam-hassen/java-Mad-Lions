@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.Home">
+    <children>
+        <AnchorPane layoutX="5.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="980.0">
+            <children>
+                <ImageView fitHeight="584.0" fitWidth="1021.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #00;">
+                    <image>
+                        <Image url="@img/banner-bg.jpg" />
+                    </image>
+                </ImageView>
+                <HBox alignment="CENTER" prefHeight="62.0" prefWidth="980.0">
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="62.0" prefWidth="88.0">
+                            <children>
+                                <Button mnemonicParsing="false" style="-fx-background-color: #00;" styleClass="root" stylesheets="@style/style.css" text="evenement" />
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <Button mnemonicParsing="false" style="-fx-background-color: #00;" styleClass="root" stylesheets="@style/style.css" text="consomation" />
+                            </children>
+                        </VBox>
+                        <Button mnemonicParsing="false" style="-fx-background-color: #00;" styleClass="root" stylesheets="@style/style.css" text="recyclage" />
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <Button mnemonicParsing="false" style="-fx-background-color: #00;" styleClass="root" stylesheets="@style/style.css" text="worshop" />
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <Button mnemonicParsing="false" style="-fx-background-color: #00;" styleClass="root" stylesheets="@style/style.css" text="produit" />
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="38.0" prefWidth="283.0">
+                     <children>
+                        <ImageView fitHeight="40.0" fitWidth="224.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/Sanstitre-1.png" />
+                           </image>
+                        </ImageView>
+                     </children></VBox>
+                        <VBox alignment="CENTER" prefHeight="62.0" prefWidth="127.0">
+                            <children>
+                                <Button fx:id="login" mnemonicParsing="false" onAction="#login" prefHeight="14.0" prefWidth="66.0" style="-fx-background-color: #8fca63;" stylesheets="@style/style.css" text="login">
+                                    <styleClass>
+                                        <String fx:value="parent" />
+                                        <String fx:value="button-with-shadow" />
+                                    </styleClass>
+                                </Button>
+                            </children>
+                        </VBox>
+                        <Button fx:id="signup" mnemonicParsing="false" onAction="#signup" style="-fx-background-color: #8fca63;" styleClass="pane_1111" stylesheets="@style/style.css" text="s'inscrire" />
+                    </children>
+                </HBox>
+                <ImageView fitHeight="470.0" fitWidth="330.0" layoutX="622.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@img/banner-01.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="36.0" layoutY="234.0" prefHeight="30.0" prefWidth="887.0" text="La nature est essentielle ">
+                    <font>
+                        <Font name="System Bold" size="40.0" />
+                    </font>
+                </Label>
+                <Label layoutX="46.0" layoutY="298.0" prefHeight="70.0" prefWidth="570.0" text="à notre bien-être global.">
+                    <font>
+                        <Font name="System Bold" size="40.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

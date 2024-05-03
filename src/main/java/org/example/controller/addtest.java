@@ -5,13 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.example.entity.Question;
+import org.example.entity.Reponse;
 import org.example.entity.Test;
+import org.example.entity.Workshop;
 import org.example.service.testMethode;
 
 import java.io.IOException;
@@ -19,6 +19,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
+
+
 
 public class addtest {
 
@@ -32,47 +34,48 @@ public class addtest {
     private Button inscrire;
 
     @FXML
-    private TextField nom;
+    private TextField question1;
 
     @FXML
-    private TextField type;
+    private TextField question2;
 
     @FXML
-    private TextField type1;
+    private TextField question3;
 
     @FXML
-    private TextField type2;
+    private TextField reponce1_1;
 
     @FXML
-    private TextField type3;
+    private TextField reponce1_2;
 
     @FXML
-    private TextField type31;
+    private TextField reponce1_3;
 
     @FXML
-    private TextField type32;
+    private TextField reponce2_1;
 
     @FXML
-    private TextField type33;
+    private TextField reponce2_2;
 
     @FXML
-    private TextField type331;
+    private TextField reponce2_3;
 
     @FXML
-    private TextField type3311;
+    private TextField reponce3_1;
 
     @FXML
-    private TextField type3312;
+    private TextField reponce3_2;
 
     @FXML
-    private TextField type3313;
-
-
+    private TextField reponce3_3;
 
     @FXML
-    void inscrire(MouseEvent event) {
+    private ComboBox<?> workshop;
+    @FXML
+    void liste(MouseEvent event) {
 
     }
+
     @FXML
     void listee(MouseEvent event) throws IOException {
         Parent root2 = FXMLLoader.load(getClass().getResource("/Workshop/Affichetest.fxml"));
@@ -87,40 +90,81 @@ public class addtest {
     void cancelButtonOnAction(ActionEvent event) {
 
     }
-
     @FXML
-    void inscrire(ActionEvent event)throws IOException {
-        if (question.getText().isEmpty() || repense.getText().isEmpty() ){
-            // Alert user to fill in all fields
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setHeaderText(null);
-            alert.setContentText("Veuillez remplir tous les champs!");
-            alert.showAndWait();
-            return;}
-        String question = question.getText();
-        String repense = repense.getText();
-        LocalDate Date = date.getValue();
-        String HeureString = heure.getText();
-        String Cours = cours.getText();
+    private Button ajoutertest;
+    @FXML
+    void inscrire(MouseEvent event)throws IOException {
 
-        if (!Nom.matches("^[a-zA-Z]+$")) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Erreur !");
-            alert.setHeaderText(null);
-            alert.setContentText("Veuillez saisir un nom valide !");
-            alert.showAndWait();
-            return;
-        }
-        WorkshopMethode pcd = new WorkshopMethode();
-        LocalTime Heure = LocalTime.parse(HeureString);
-        Workshop w = new Workshop(Nom, Type, Date, Heure, Cours);
-        pcd.ajouterWorkshop(w);
+        String questionText1 = question1.getText().trim();
+        String responseText1_1 = reponce1_1.getText().trim();
+        String responseText1_2 = reponce1_2.getText().trim();
+        String responseText1_3 = reponce1_3.getText().trim();
+
+        String questionText2 = question2.getText().trim();
+        String responseText2_1 = reponce2_1.getText().trim();
+        String responseText2_2 = reponce2_2.getText().trim();
+        String responseText2_3 = reponce2_3.getText().trim();
+
+        String questionText3 = question3.getText().trim();
+        String responseText3_1 = reponce3_1.getText().trim();
+        String responseText3_2 = reponce3_2.getText().trim();
+        String responseText3_3 = reponce3_3.getText().trim();
 
 
+        Test test = new Test();
+        test.setScore(20);
+        test.SetId_workshop(45);
+        testMethode testMethode= new testMethode();
+
+        Question question1=new Question();
+        question1.setContenu(questionText1);
+        test.setQuestion_1(question1);
+
+        Question question2=new Question();
+        question2.setContenu(questionText2);
+        test.setQuestion_2(question2);
+
+        Question question3=new Question();
+        question3.setContenu(questionText3);
+        test.setQuestion_3(question3);
+
+        Reponse reponse1_1=new Reponse();
+        reponse1_1.setContenu(responseText1_1);
+        Reponse reponse1_2=new Reponse();
+        reponse1_2.setContenu(responseText1_2);
+        Reponse reponse1_3=new Reponse();
+        reponse1_3.setContenu(responseText1_3);
+        Reponse[]reponses1={reponse1_1,reponse1_2,reponse1_3};
+        test.setReponse_1(reponses1);
+
+        Reponse reponse2_1=new Reponse();
+        reponse2_1.setContenu(responseText2_1);
+        Reponse reponse2_2=new Reponse();
+        reponse2_2.setContenu(responseText2_2);
+        Reponse reponse2_3=new Reponse();
+        reponse2_3.setContenu(responseText2_3);
+        Reponse[]reponses2={reponse2_1,reponse2_2,reponse2_3};
+        test.setReponse_2(reponses2);
+
+        Reponse reponse3_1=new Reponse();
+        reponse3_1.setContenu(responseText3_1);
+        Reponse reponse3_2=new Reponse();
+        reponse3_2.setContenu(responseText3_2);
+        Reponse reponse3_3=new Reponse();
+        reponse3_3.setContenu(responseText3_3);
+        Reponse[]reponses3={reponse3_1,reponse3_2,reponse3_3};
+        test.setReponse_3(reponses3);
+
+        testMethode.addtest(test);
+
+/*
+        testMethode.addtest(questionText1, responseText1_1, responseText1_2, responseText1_3);
+        testMethode.addtest(questionText2, responseText2_1, responseText2_2, responseText2_3);
+        testMethode.addtest(questionText3, responseText3_1, responseText3_2, responseText3_3);
+*/
 
         System.out.println("Done!");
-        Parent root2 = FXMLLoader.load(getClass().getResource("/Workshop/AfficherWorkshop.fxml"));
+        Parent root2 = FXMLLoader.load(getClass().getResource("/Workshop/Affichetest.fxml"));
         Scene scene2 = new Scene(root2);
         Stage stage2;
         stage2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -128,16 +172,19 @@ public class addtest {
         stage2.show();
 
     }
-
+    @FXML
+    void test(ActionEvent event) throws IOException {
+        Parent root1 = FXMLLoader.load(getClass().getResource("/Workshop/Affichetest.fxml"));
+        Scene scene1 = new Scene(root1);
+        Stage stage1;
+        stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage1.setScene(scene1);
+        stage1.show();
+    }
 
     @FXML
     void login(ActionEvent event) {
 
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
 }
-}
+

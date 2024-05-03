@@ -24,9 +24,9 @@
                     <left>
                         <VBox prefHeight="842.0" prefWidth="521.0" style="-fx-background-color: green;" styleClass="right-bar" BorderPane.alignment="CENTER">
                             <children>
-                                <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0">
+                                <HBox alignment="CENTER" prefHeight="63.0" prefWidth="522.0">
                                     <children>
-                                        <ImageView fitHeight="113.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fitHeight="45.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../img/Sanstitre-1.png" />
                                             </image>
@@ -34,19 +34,19 @@
                                     </children>
                                 </HBox>
                                 <Pane prefHeight="0.0" prefWidth="522.0" VBox.vgrow="ALWAYS" />
-                                <VBox fx:id="chosenFruitCard" alignment="CENTER" prefHeight="538.0" prefWidth="421.0" style="-fx-background-color: #2b4d24;" styleClass="button-with-shadow" stylesheets="@../style/style.css">
+                                <VBox fx:id="chosenFruitCard" alignment="CENTER" prefHeight="670.0" prefWidth="421.0" style="-fx-background-color: #2b4d24;" styleClass="button-with-shadow" stylesheets="@../style/style.css">
                                     <VBox.margin>
                                         <Insets left="50.0" right="50.0" />
                                     </VBox.margin>
                                 </VBox>
                                 <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Button layoutX="86.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#suprimer" text="suprimer" textFill="RED">
+                              <Button layoutX="86.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#suprimer" text="suprimer" textFill="RED">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="322.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#modifier" text="modifier" textFill="#0e2273">
+                              <Button layoutX="322.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#modifier" text="modifier" textFill="#0e2273">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
@@ -94,56 +94,126 @@
                         </VBox>
                     </center>
                 </BorderPane>
-                <Label fx:id="heure" layoutX="250.0" layoutY="500.0" prefHeight="30.0" prefWidth="158.0" text="Label" textFill="WHITE">
-                    <font>
-                        <Font name="Cambria" size="24.0" />
-                    </font>
-                </Label>
-                <Label fx:id="type" layoutX="250.0" layoutY="300.0" text="Label" textFill="WHITE">
-                    <font>
-                        <Font name="Cambria" size="24.0" />
-                    </font>
-                </Label>
-                <Label fx:id="date" layoutX="250.0" layoutY="400.0" text="Label" textFill="WHITE">
-                    <font>
-                        <Font name="Cambria" size="24.0" />
-                    </font>
-                </Label>
-                <Label fx:id="cours" layoutX="250.0" layoutY="600.0" prefHeight="30.0" prefWidth="326.0" text="Label" textFill="WHITE">
-                    <font>
-                        <Font name="Cambria" size="24.0" />
-                    </font>
-                </Label>
-                <Label fx:id="nom" layoutX="250.0" layoutY="200.0" text="Label" textFill="WHITE">
-                    <font>
-                        <Font name="Cambria" size="24.0" />
-                    </font>
-                </Label>
-                <Label layoutX="100.0" layoutY="200.0" prefHeight="24.0" prefWidth="86.0" text="name" textFill="WHITE">
-                    <font>
-                        <Font name="Cambria" size="20.0" />
-                    </font>
-                </Label>
-                <Label layoutX="100.0" layoutY="300.0" text="type" textFill="WHITE">
-                    <font>
-                        <Font name="Cambria" size="20.0" />
-                    </font>
-                </Label>
-                <Label layoutX="100.0" layoutY="400.0" text="date" textFill="WHITE">
-                    <font>
-                        <Font name="Cambria" size="20.0" />
-                    </font>
-                </Label>
-                <Label layoutX="100.0" layoutY="500.0" text="heure" textFill="WHITE">
-                    <font>
-                        <Font name="Cambria" size="20.0" />
-                    </font>
-                </Label>
-                <Label layoutX="100.0" layoutY="600.0" text="cours" textFill="WHITE">
-                    <font>
-                        <Font name="Cambria" size="20.0" />
-                    </font>
-                </Label>
+            <Label fx:id="reponse_7" layoutX="54.0" layoutY="558.0" prefHeight="30.0" prefWidth="410.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="question_3" layoutX="53.0" layoutY="510.0" prefHeight="30.0" prefWidth="410.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="81.0" layoutY="485.0" prefHeight="24.0" prefWidth="110.0" text="Question3" textFill="RED">
+               <font>
+                  <Font name="Cambria" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="133.0" layoutY="535.0" prefHeight="24.0" prefWidth="92.0" text="reponse1" textFill="#e5ff00">
+               <font>
+                  <Font name="Cambria" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="reponce_8" layoutX="54.0" layoutY="612.0" prefHeight="30.0" prefWidth="422.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="134.0" layoutY="586.0" prefHeight="24.0" prefWidth="92.0" text="reponse2" textFill="#e5ff00">
+               <font>
+                  <Font name="Cambria" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="reponce_9" layoutX="56.0" layoutY="673.0" prefHeight="30.0" prefWidth="410.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="135.0" layoutY="644.0" prefHeight="24.0" prefWidth="92.0" text="reponse3" textFill="#e5ff00">
+               <font>
+                  <Font name="Cambria" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="reponse_4" layoutX="51.0" layoutY="352.0" prefHeight="30.0" prefWidth="422.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="question_2" layoutX="50.0" layoutY="307.0" prefHeight="30.0" prefWidth="422.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="75.0" layoutY="284.0" prefHeight="24.0" prefWidth="110.0" text="Question2" textFill="RED">
+               <font>
+                  <Font name="Cambria" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="126.0" layoutY="331.0" prefHeight="24.0" prefWidth="92.0" text="reponse1" textFill="#e5ff00">
+               <font>
+                  <Font name="Cambria" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="reponse_5" layoutX="50.0" layoutY="401.0" prefHeight="30.0" prefWidth="422.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="127.0" layoutY="380.0" prefHeight="24.0" prefWidth="92.0" text="reponse2" textFill="#e5ff00">
+               <font>
+                  <Font name="Cambria" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="reponse_6" layoutX="52.0" layoutY="454.0" prefHeight="30.0" prefWidth="422.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="127.0" layoutY="427.0" prefHeight="24.0" prefWidth="92.0" text="reponse3" textFill="#e5ff00">
+               <font>
+                  <Font name="Cambria" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="reponse_1" layoutX="56.0" layoutY="151.0" prefHeight="30.0" prefWidth="410.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="question_1" layoutX="57.0" layoutY="86.0" prefHeight="30.0" prefWidth="410.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="70.0" layoutY="55.0" prefHeight="24.0" prefWidth="110.0" text="Question1" textFill="RED">
+               <font>
+                  <Font name="Cambria" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="118.0" layoutY="120.0" prefHeight="24.0" prefWidth="92.0" text="reponse1" textFill="#e5ff00">
+               <font>
+                  <Font name="Cambria" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="reponse_2" layoutX="57.0" layoutY="205.0" prefHeight="30.0" prefWidth="422.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="120.0" layoutY="184.0" prefHeight="24.0" prefWidth="92.0" text="reponse2" textFill="#e5ff00">
+               <font>
+                  <Font name="Cambria" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="reponse_3" layoutX="59.0" layoutY="258.0" prefHeight="30.0" prefWidth="410.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="123.0" layoutY="233.0" prefHeight="24.0" prefWidth="92.0" text="reponse3" textFill="#e5ff00">
+               <font>
+                  <Font name="Cambria" size="20.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
     </children>

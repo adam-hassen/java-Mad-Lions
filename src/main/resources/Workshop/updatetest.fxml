@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.updatetest">
+    <children>
+        <AnchorPane prefHeight="605.0" prefWidth="881.0" style="-fx-background-color: green;">
+            <children>
+                <Label layoutX="319.0" layoutY="20.0" prefHeight="54.0" prefWidth="239.0" text="Modifier test" textFill="WHITE">
+                    <font>
+                        <Font size="36.0" />
+                    </font>
+                </Label>
+                <AnchorPane layoutX="-2.0" layoutY="70.0" opacity="0.88" prefHeight="534.0" prefWidth="882.0">
+                    <children>
+                  <ImageView fitHeight="525.0" fitWidth="862.0" layoutX="10.0" layoutY="4.0" opacity="0.83" pickOnBounds="true" smooth="false">
+                     <image>
+                        <Image url="@../img/quiz-time-2453148_1920.png" />
+                     </image>
+                  </ImageView>
+                        <Label fx:id="LoginMessageLabel1" layoutX="110.0" layoutY="292.0" prefHeight="21.0" prefWidth="284.0" textAlignment="CENTER" textFill="#bf1b1b" />
+                        <TextField fx:id="reponce1_1" layoutX="101.0" layoutY="54.0" prefHeight="30.0" prefWidth="570.0" promptText="reponce1" style="-fx-background-color: #f3fafa; -fx-border-color: 0;" styleClass="pane_1111" stylesheets="@../style/style.css" />
+                        <Label layoutX="20.0" layoutY="358.0" prefHeight="39.0" prefWidth="119.0" text="Question3:" textAlignment="CENTER" textFill="#100e0e" wrapText="true">
+                            <font>
+                                <Font name="Century Gothic Bold" size="17.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="178.0" prefHeight="39.0" prefWidth="119.0" text="Question2:" textAlignment="CENTER" textFill="#050505" wrapText="true">
+                            <font>
+                                <Font name="Century Gothic Bold" size="17.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="question1" layoutX="103.0" layoutY="14.0" prefHeight="30.0" prefWidth="570.0" promptText="question1" style="-fx-background-color: #f3fafa; -fx-border-color: 0;" styleClass="pane_1111" stylesheets="@../style/style.css" />
+                        <Label layoutX="14.0" layoutY="8.0" prefHeight="39.0" prefWidth="119.0" text="Question1:" textAlignment="CENTER" textFill="#181717" wrapText="true">
+                            <font>
+                                <Font name="Century Gothic Bold" size="17.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="49.0" prefHeight="39.0" prefWidth="119.0" text="reponce1:" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                            <font>
+                                <Font name="Century Gothic Bold" size="17.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="89.0" prefHeight="39.0" prefWidth="119.0" text="reponce2:" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                            <font>
+                                <Font name="Century Gothic Bold" size="17.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="reponce1_2" layoutX="103.0" layoutY="95.0" prefHeight="30.0" prefWidth="570.0" promptText="reponce2" style="-fx-background-color: #f3fafa; -fx-border-color: 0;" styleClass="pane_1111" stylesheets="@../style/style.css" />
+                        <TextField fx:id="reponce1_3" layoutX="103.0" layoutY="134.0" prefHeight="30.0" prefWidth="570.0" promptText="reponce3" style="-fx-background-color: #f3fafa; -fx-border-color: 0;" styleClass="pane_1111" stylesheets="@../style/style.css" />
+                        <TextField fx:id="question2" layoutX="111.0" layoutY="183.0" prefHeight="30.0" prefWidth="570.0" promptText="question2" style="-fx-background-color: #f3fafa; -fx-border-color: 0;" styleClass="pane_1111" stylesheets="@../style/style.css" />
+                        <TextField fx:id="reponce2_1" layoutX="111.0" layoutY="223.0" prefHeight="30.0" prefWidth="570.0" promptText="reponce1" style="-fx-background-color: #f3fafa; -fx-border-color: 0;" styleClass="pane_1111" stylesheets="@../style/style.css" />
+                        <TextField fx:id="reponce2_2" layoutX="111.0" layoutY="264.0" prefHeight="30.0" prefWidth="570.0" promptText="reponce2" style="-fx-background-color: #f3fafa; -fx-border-color: 0;" styleClass="pane_1111" stylesheets="@../style/style.css" />
+                        <TextField fx:id="reponce2_3" layoutX="111.0" layoutY="304.0" prefHeight="30.0" prefWidth="570.0" promptText="reponce3" style="-fx-background-color: #f3fafa; -fx-border-color: 0;" styleClass="pane_1111" stylesheets="@../style/style.css" />
+                        <TextField fx:id="question3" layoutX="120.0" layoutY="363.0" prefHeight="30.0" prefWidth="570.0" promptText="question3" style="-fx-background-color: #f3fafa; -fx-border-color: 0;" styleClass="pane_1111" stylesheets="@../style/style.css" />
+                        <TextField fx:id="reponce3_1" layoutX="118.0" layoutY="409.0" prefHeight="30.0" prefWidth="570.0" promptText="reponce1" style="-fx-background-color: #f3fafa; -fx-border-color: 0;" styleClass="pane_1111" stylesheets="@../style/style.css" />
+                        <TextField fx:id="reponce3_2" layoutX="120.0" layoutY="451.0" prefHeight="30.0" prefWidth="570.0" promptText="reponce2" style="-fx-background-color: #f3fafa; -fx-border-color: 0;" styleClass="pane_1111" stylesheets="@../style/style.css" />
+                        <TextField fx:id="reponce3_3" layoutX="118.0" layoutY="491.0" prefHeight="30.0" prefWidth="570.0" promptText="reponce3" style="-fx-background-color: #f3fafa; -fx-border-color: 0;" styleClass="pane_1111" stylesheets="@../style/style.css" />
+                        <Label layoutX="14.0" layoutY="128.0" prefHeight="39.0" prefWidth="119.0" text="reponce3:" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                            <font>
+                                <Font name="Century Gothic Bold" size="17.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="217.0" prefHeight="39.0" prefWidth="119.0" text="reponce1:" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                            <font>
+                                <Font name="Century Gothic Bold" size="17.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="258.0" prefHeight="39.0" prefWidth="119.0" text="reponce2:" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                            <font>
+                                <Font name="Century Gothic Bold" size="17.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="299.0" prefHeight="39.0" prefWidth="119.0" text="reponce3:" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                            <font>
+                                <Font name="Century Gothic Bold" size="17.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="29.0" layoutY="403.0" prefHeight="39.0" prefWidth="119.0" text="reponce1:" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                            <font>
+                                <Font name="Century Gothic Bold" size="17.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="29.0" layoutY="446.0" prefHeight="39.0" prefWidth="119.0" text="reponce2:" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                            <font>
+                                <Font name="Century Gothic Bold" size="17.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="29.0" layoutY="484.0" prefHeight="39.0" prefWidth="119.0" text="reponce3:" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                            <font>
+                                <Font name="Century Gothic Bold" size="17.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <Button fx:id="update2" layoutX="726.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#inscrire" prefHeight="44.0" prefWidth="150.0" style="-fx-background-color: ffff;" styleClass="btn_workbench11" stylesheets="@../style/style.css" text="Modifier" />
+            <ImageView fitHeight="76.0" fitWidth="189.0" layoutX="32.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/Sanstitre-1.png" />
+               </image>
+            </ImageView>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
