@@ -48,11 +48,14 @@
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Pane prefHeight="84.0" prefWidth="96.0" />
+                              <Pane prefHeight="84.0" prefWidth="96.0">
+                                 <children>
+                                    <Button fx:id="reclamationbutton" mnemonicParsing="false" onAction="#reclamationbutton" prefHeight="27.0" prefWidth="136.0" style="-fx-background-color: green;" styleClass="button-with-shadow" stylesheets="@style/style.css" text="liste de reclamatiob" textFill="WHITE" />
+                                 </children></Pane>
                               <Pane prefHeight="84.0" prefWidth="96.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <TextField layoutX="-32.0" layoutY="37.0" prefHeight="25.0" prefWidth="202.0" styleClass="button-with-shadow" stylesheets="@style/style.css" />
-                                    <Button layoutX="207.0" layoutY="37.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: green;" styleClass="button-with-shadow" stylesheets="@style/style.css" text="Search" textFill="WHITE" />
+                                    <TextField fx:id="recherche" layoutX="71.0" layoutY="48.0" prefHeight="25.0" prefWidth="202.0" styleClass="button-with-shadow" stylesheets="@style/style.css" />
+                                    <Button layoutX="282.0" layoutY="48.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: green;" styleClass="button-with-shadow" stylesheets="@style/style.css" text="Search" textFill="WHITE" />
                                     <Button fx:id="profile" layoutX="444.0" mnemonicParsing="false" onAction="#profile" prefHeight="26.0" prefWidth="154.0" style="-fx-background-color: green;" styleClass="button-with-shadow" stylesheets="@style/style.css" text="Mon profile" textFill="#eae7e7" />
                                  </children>
                               </Pane>

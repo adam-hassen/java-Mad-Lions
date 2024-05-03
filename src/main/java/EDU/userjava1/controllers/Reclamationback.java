@@ -7,14 +7,20 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
@@ -95,4 +101,14 @@ public class Reclamationback implements Initializable {
         } else {
             System.out.println("Aucune réclamation sélectionnée.");
         }
-    }}
+    }
+    @FXML
+    void back(ActionEvent event) throws IOException {
+        Parent root1 = FXMLLoader.load(getClass().getResource("/userliste.fxml"));
+        Scene scene1 = new Scene(root1);
+        Stage stage1;
+        stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage1.setScene(scene1);
+        stage1.show();
+    }
+}

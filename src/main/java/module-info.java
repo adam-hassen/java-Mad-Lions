@@ -7,6 +7,9 @@ module userjava1 {
     requires java.persistence;
     requires profanity.filter;
     requires java.desktop;
+    requires twilio;
+    requires bcrypt;
+
     opens EDU.userjava1.controllers;
     opens EDU.userjava1.entities to javafx.base;
 

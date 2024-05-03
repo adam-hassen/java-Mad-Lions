@@ -3,7 +3,8 @@ import EDU.userjava1.entities.RolesConverter;
 import EDU.userjava1.tools.MyConnexion;
 import EDU.userjava1.interfaces.Userinterface;
 import EDU.userjava1.entities.User1;
-
+import com.twilio.Twilio;
+import com.twilio.type.PhoneNumber;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -12,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
@@ -64,6 +66,24 @@ public class UserServices implements Userinterface {
 
     }
 
+
+    public List<User1> recherche_user(String nom) {
+        List<User1> personnes = new ArrayList<>();
+        String request = "SELECT * FROM user1 WHERE name LIKE '%" + nom + "%'";
+        // Utilisation de LIKE avec le nom pour rechercher des correspondances partielles
+
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(request);
+            while (rs.next()) {
+                User1 p = adduser(rs);
+                personnes.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return personnes;
+    }
 
 
     private User1 adduser(ResultSet rs) {
@@ -247,6 +267,7 @@ public class UserServices implements Userinterface {
         }
         return c;
     }
+
     public String EncryptMdp (String mdp_input)
     {
 

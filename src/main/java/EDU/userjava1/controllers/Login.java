@@ -101,9 +101,20 @@ public class Login {
     }
 
     @FXML
-    void openForgetPassword(ActionEvent event) {
+    void openForgetPassword(ActionEvent event) throws IOException{
+
+        Parent root1 = FXMLLoader.load(getClass().getResource("/Mdpoublier.fxml"));
+        Scene scene1 = new Scene(root1);
+        Stage stage1;
+        stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage1.setScene(scene1);
+        stage1.show();
+
 
     }
+
+
+
 
     @FXML
     void openSignUpInterface(ActionEvent event) throws IOException {

@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -31,7 +32,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class userliste implements Initializable {
-
+    @FXML
+    private TextField recherche;
     @FXML
     private Label adresse;
 
@@ -65,78 +67,65 @@ public class userliste implements Initializable {
     @FXML
     private ScrollPane scroll;
 
-
     private List<User1> fruits = new ArrayList<>();
-    private Image image;
     private MyListener myListener;
-    UserServices gs = new UserServices();
+    private UserServices gs = new UserServices();
 
-    private List<User1> getData() {
-        List<User1> fruits = new ArrayList<>();
-
-        fruits = gs.afficheruser();
-
-
-        return fruits;
+    private void loadFruits() {
+        fruits.addAll(gs.afficheruser());
     }
 
     private void setChosenFruit(User1 fruit) {
         role.setText(fruit.getRoles());
-        //image = new Image(getClass().getResourceAsStream(fruit.getImgSrc()));
-        //fruitImg.setImage(image);
         nom.setText(fruit.getName());
         prenom.setText(fruit.getPrenom());
         email.setText(fruit.getUsername());
-        //  adresse.setText(fruit.getAdress());
         jeton.setText(String.valueOf(fruit.getNumero()));
-
-
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        fruits.addAll(getData());
+        loadFruits();
         if (fruits.size() > 0) {
             setChosenFruit(fruits.get(0));
-            myListener = new MyListener() {
-
-
-                @Override
-                public void onClickListener(User1 u) {
-                    setChosenFruit(u);
-                }
-            };
+            myListener = u -> setChosenFruit(u);
         }
+        displayFruits(fruits);
+
+        // Ajout du gestionnaire d'événements pour la recherche
+        recherche.setOnKeyReleased(event -> {
+            String searchText = recherche.getText();
+            List<User1> searchResults = gs.recherche_user(searchText);
+            displayFruits(searchResults);
+        });
+    }
+
+    private void displayFruits(List<User1> fruits) {
+        grid.getChildren().clear();
         int column = 0;
         int row = 1;
         try {
-            for (int i = 0; i < fruits.size(); i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/items.fxml"));
-
-
+            for (User1 fruit : fruits) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/items.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
-
                 ItemController itemController = fxmlLoader.getController();
-                itemController.setData(fruits.get(i), myListener);
+                itemController.setData(fruit, myListener);
 
                 if (column == 3) {
                     column = 0;
                     row++;
                 }
 
-                grid.add(anchorPane, column++, row); //(child,column,row)
-                //set grid width
+                grid.add(anchorPane, column++, row);
+
+                // Mettre en forme la grille...
+                GridPane.setMargin(anchorPane, new Insets(10));
                 grid.setMinWidth(Region.USE_COMPUTED_SIZE);
                 grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-                //set grid height
                 grid.setMinHeight(Region.USE_COMPUTED_SIZE);
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_PREF_SIZE);
-
-                GridPane.setMargin(anchorPane, new Insets(10));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -153,7 +142,15 @@ public class userliste implements Initializable {
         stage1.show();
     }
 
-
+    @FXML
+    void reclamationbutton(ActionEvent event) throws IOException{
+        Parent root1 = FXMLLoader.load(getClass().getResource("/reclamationback.fxml"));
+        Scene scene1 = new Scene(root1);
+        Stage stage1;
+        stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage1.setScene(scene1);
+        stage1.show();
+    }
 
 
 
