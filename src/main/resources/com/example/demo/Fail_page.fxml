@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="sportify.edu.controllers.Fail_pageController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.example.demo.Fail_pageController">
    <children>
-      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../../resources/style.css">
+      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="900.0" stylesheets="@style.css">
          <children>
             <Label alignment="CENTER" layoutX="294.0" layoutY="46.0" prefHeight="25.0" prefWidth="311.0" style="-fx-font-size: 40;" text="Payment Error" />
             <Pane layoutX="28.0" layoutY="143.0" prefHeight="315.0" prefWidth="842.0" style="-fx-background-radius: 15px; -fx-background-color: #5f6469;">

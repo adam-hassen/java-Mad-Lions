@@ -21,6 +21,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
@@ -196,7 +197,7 @@ public class ProduitController implements Initializable{
     private Label dashboard_TotalI;
 
     @FXML
-    private AreaChart<?, ?> dashboard_incomeChart;
+    private StackedBarChart<?, ?> dashboard_incomeChart;
 
     private Alert alert;
 

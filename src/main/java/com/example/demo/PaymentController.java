@@ -213,7 +213,6 @@ public class PaymentController implements Initializable {
             alert.setContentText("Successful Payment.");
             alert.setHeaderText(null);
             alert.showAndWait();
-            redirect_to_successPage();
             if (totalP == 0) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
@@ -245,7 +244,6 @@ public class PaymentController implements Initializable {
                         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
                         prepare.setString(3, String.valueOf(sqlDate));
-                        //prepare.setString(4, data.username);
 
                         prepare.executeUpdate();
 
@@ -256,6 +254,7 @@ public class PaymentController implements Initializable {
                         alert.showAndWait();
 
                         //menuShowOrderData();
+                        redirect_to_successPage();
 
                     } else {
                         alert = new Alert(Alert.AlertType.WARNING);
@@ -270,7 +269,6 @@ public class PaymentController implements Initializable {
                     e.printStackTrace();
                 }
             }
-            redirect_to_successPage();
         } catch (StripeException e) {
 // If there was an error processing the payment, display the error message
             System.out.println("Payment failed. Error: " + e.getMessage());
@@ -282,108 +280,6 @@ public class PaymentController implements Initializable {
             redirect_to_FailPage();
         }
     }}
-
-
-        /*@FXML
-        private void payment(ActionEvent event) throws StripeException {
-
-            if (client_name.getText().isEmpty()) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("You need to input your Name");
-                alert.setTitle("Problem");
-                alert.setHeaderText(null);
-                alert.showAndWait();
-                client_name.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-                new animatefx.animation.Shake(client_name).play();
-            } else if (email.getText().isEmpty()) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("You need to input your Email");
-                alert.setTitle("Problem");
-                alert.setHeaderText(null);
-                alert.showAndWait();
-                email.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-                new animatefx.animation.Shake(email).play();
-            } else if (!isValidEmail(email.getText())) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Please enter a valid Email address.");
-                alert.setTitle("Problem");
-                alert.setHeaderText(null);
-                alert.showAndWait();
-                email.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-                new animatefx.animation.Shake(email).play();
-            } else if (num_card.getText().isEmpty()) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("You need to input your Card Number");
-                alert.setTitle("Problem");
-                alert.setHeaderText(null);
-                alert.showAndWait();
-                num_card.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-                new animatefx.animation.Shake(num_card).play();
-            } else if (!check_cvc(cvc.getValue())) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("The CVC number should contain three digits");
-                alert.setTitle("Problem");
-                alert.setHeaderText(null);
-                alert.showAndWait();
-                cvc.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-                new animatefx.animation.Shake(cvc).play();
-            } else if (!check_expDate(YY.getValue(), MM.getValue())) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Please enter a valid expiration date");
-                alert.setTitle("Problem");
-                alert.setHeaderText(null);
-                alert.showAndWait();
-                MM.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-                YY.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-                new animatefx.animation.Shake(MM).play();
-                new animatefx.animation.Shake(YY).play();
-            } else {
-                client_name.setStyle(null);
-                email.setStyle(null);
-                num_card.setStyle(null);
-                cvc.setStyle(null);
-                MM.setStyle(null);
-                YY.setStyle(null);
-                boolean isValid = check_card_num(num_card.getText());
-                if (!isValid) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setContentText("Please enter a valid Card number");
-                    alert.setTitle("Problem");
-                    alert.setHeaderText(null);
-                    alert.showAndWait();
-                    num_card.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-                    new animatefx.animation.Shake(num_card).play();
-                } else {
-                    num_card.setStyle(null);
-                    String name = client_name.getText();
-                    String email_txt = email.getText();
-                    String num = num_card.getText();
-                    int yy = YY.getValue();
-                    int mm = MM.getValue();
-                    String cvc_num = String.valueOf(cvc.getValue());
-                    boolean payment_result = PaymentProcessor.processPayment(name, email_txt, total_pay, num, mm, yy, cvc_num);
-                    if (payment_result) {
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Success");
-                        alert.setContentText("Successful Payment.");
-                        alert.setHeaderText(null);
-                        alert.showAndWait();
-                        /*this.reservation.setResStatus(true);
-                        ReservationService rs = new ReservationService();
-                        rs.updateEntity(this.reservation);*/
-                        /*redirect_to_successPage();
-                    } else {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setContentText("Payment Failed.");
-                        alert.setTitle("Problem");
-                        alert.setHeaderText(null);
-                        alert.showAndWait();
-                        redirect_to_FailPage();
-                    }
-                }
-            }
-
-        }*/
 
         private boolean check_cvc(int value) {
             String cvc_txt = String.valueOf(value);

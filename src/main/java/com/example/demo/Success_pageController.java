@@ -10,6 +10,15 @@ import com.twilio.Twilio;
 import com.twilio.exception.ApiException;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;*/
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.properties.TextAlignment;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,9 +36,13 @@ import sportify.edu.services.TerrainService;*/
 
 //import java.awt.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.*;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.UUID;
@@ -47,169 +60,164 @@ public class Success_pageController implements Initializable {
     private Button pdf_btn;
     @FXML
     private Button back_btn;
-   /* private Reservation reservation;
-    private Terrain terrain;*/
-    //The Account Sid and Token at console.twilio.com
-    public static final String ACCOUNT_SID = "ACe1969f27c9ebaba39c1c2e19532653e5";
-    public static final String AUTH_TOKEN = "53b72d6c70636292563f45e93c8725f3";
 
-    /*public void setData(Reservation r) {
-        String value;
-        this.reservation = r;
-        TerrainService ts = new TerrainService();
-        terrain = ts.diplay(this.reservation.getTerrain_id());
-        if (terrain != null) {
-            value = "This confirms that we've just received your online payment for your Reservation of the Staduim : " + terrain.getName() + ",";
-            payment_txt.setText(value);
-        }
-       // send_sms_to_Client(50190957); // this will be replaced with the client number 
-    }*/
 
-   /* public void export_pdf(String html, String fileName) throws IOException, DocumentException {
-        // Create a file chooser dialog
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save PDF");
-        fileChooser.setInitialFileName(fileName);
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
-        File file = fileChooser.showSaveDialog(null);
 
-        // Create a document
-        ITextRenderer renderer = new ITextRenderer();
-        renderer.setDocumentFromString(html);
-        renderer.layout();
 
-        // Export to PDF
-        try (FileOutputStream os = new FileOutputStream(file)) {
-            renderer.createPDF(os);
-        }
-        // Open the PDF file
-        if (Desktop.isDesktopSupported()) {
-            Desktop.getDesktop().open(file);
-        }
-    }*/
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       /* this.reservation = new Reservation();
-        this.terrain = new Terrain();*/
     }
+    private int cID;
+    private Connection connect;
+    private PreparedStatement prepare;
+    private ResultSet result;
+    public void customerID() {
 
+        String sql = "SELECT MAX(customer_id) FROM produit_command";
+        connect = database.connectDB();
 
-   /* private void getReceiptPdf(ActionEvent event) {
-        float total = (this.reservation.getNbPerson() * this.terrain.getRentPrice());
-        DateTimeFormatter formatter_time = DateTimeFormatter.ofPattern("HH:mm");
-        DateTimeFormatter formatter_date = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String date_res = formatter_date.format(reservation.getDateReservation());
-        String start_time = formatter_time.format(reservation.getStartTime());
-        String end_time = formatter_time.format(reservation.getEndTime());
-        String html = "<!DOCTYPE html>\n"
-                + "<html>\n"
-                + "<head>\n"
-                + "    <title>Receipt</title>\n"
-                + "    <style>\n"
-                + "        body {\n"
-                + "            font-family: Arial, sans-serif;\n"
-                + "            font-size: 17px;\n"
-                + "        }\n"
-                + "        .header {\n"
-                + "            text-align: center;\n"
-                + "        }\n"
-                + "        .header h1 {\n"
-                + "            margin: 0;\n"
-                + "            font-size: 24px;\n"
-                + "        }\n"
-                + "        .info {\n"
-                + "            margin-top: 20px;\n"
-                + "            margin-bottom: 20px;\n"
-                + "            border: 1px solid #ee1e46;\n"
-                + "            padding: 10px;\n"
-                + "        }\n"
-                + "        .items {\n"
-                + "            margin-top: 20px;\n"
-                + "            margin-bottom: 20px;\n"
-                + "            border-collapse: collapse;\n"
-                + "            width: 100%;\n"
-                + "            font-size: 16px;\n"
-                + "        }\n"
-                + "        .items th, .items td {\n"
-                + "            border: 1px solid #ccc;\n"
-                + "            padding: 10px;\n"
-                + "            text-align: left;\n"
-                + "        }\n"
-                + "        .items th {\n"
-                + "            background-color: #eee;\n"
-                + "            font-weight: bold;\n"
-                + "        }\n"
-                + "        .items td {\n"
-                + "            vertical-align: middle;\n"
-                + "        }\n"
-                + "        .items tr:hover {\n"
-                + "            background-color: #f5f5f5;\n"
-                + "        }\n"
-                + "        .total {\n"
-                + "            text-align: right;\n"
-                + "            font-weight: bold;\n"
-                + "            font-size: 18px;\n"
-                + "        }\n"
-                + "    </style>\n"
-                + "</head>\n"
-                + "<header>\n"
-                + " <img src=\"https://i.im.ge/2023/04/23/LxdZBT.icon.png\" alt=\"Company Logo\" width=\"240\" height=\"180\" />\n"
-                + "  <h1>Receipt :</h1>\n"
-                + "</header>\n"
-                + "<body>\n"
-                + "    \n"
-                + "    <div class=\"info\">\n"
-                + "        <p><strong>Client Information:</strong></p>\n"
-                + "        <p><strong>Firstname:</strong> " + "client-name-To-Do" + "</p>\n"
-                + "        <p><strong>Lastname:</strong> " + "client-lastname-To-Do" + "</p>\n"
-                + "        <p><strong>Email:</strong> " + "client-email-To-Do" + "</p>\n"
-                + "        <p><strong>Telephone:</strong> " + "client-telephone-To-Do" + "</p>\n"
-                + "    </div>\n"
-                + "    <table class=\"items\">\n"
-                + "        <thead>\n"
-                + "            <tr>\n"
-                + "                <th>Date</th>\n"
-                + "                <th>Start Time</th>\n"
-                + "                <th>End Time</th>\n"
-                + "                <th>Number of people</th>\n"
-                + "                <th>Subtotal</th>\n"
-                + "            </tr>\n"
-                + "        </thead>\n"
-                + "        <tbody>\n"
-                + "            \n"
-                + "            <tr>\n"
-                + "                <td>" + date_res + "</td>\n"
-                + "                <td>" + start_time + "</td>\n"
-                + "                <td>" + end_time + "</td>\n"
-                + "                <td>" + String.valueOf(this.reservation.getNbPerson()) + "</td>\n"
-                + "                <td>" + String.valueOf(total) + ".DT</td>\n"
-                + "            </tr>\n"
-                + "            <tr>\n"
-                + "                <td colspan=\"3\" align=\"right\">Total:</td>\n"
-                + "                <td class=\"total\">" + String.valueOf(total) + ".DT</td>\n"
-                + "            </tr>\n"
-                + "        </tbody>\n"
-                + "    </table>\n"
-                + "    <br></br><br></br><br></br>\n"
-                + "     <div>\n"
-                + "                            <p>\n"
-                + "                    © All rights reserved | This template is made with ♥ by Creative Crew \n"
-                + "                            </p>\n"
-                + "    </div>\n"
-                + "</body>\n"
-                + "</html>";
-        String txt = "Reservation-" + String.valueOf(reservation.getId())+"-"+generateUniqueString()+ ".pdf";
-        String fileName = txt;
         try {
-            export_pdf(html, fileName);
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                cID = result.getInt("MAX(customer_id)");
+            }
+
+            String checkCID = "SELECT MAX(customer_id) FROM command";
+            prepare = connect.prepareStatement(checkCID);
+            result = prepare.executeQuery();
+            int checkID = 0;
+            if (result.next()) {
+                checkID = result.getInt("MAX(customer_id)");
+            }
+
+            if (cID == 0) {
+                cID += 1;
+            } else if (cID == checkID) {
+                cID += 1;
+            }
+
+            data.cID = cID;
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+    }
+    private double totalP;
+
+    public void menuGetTotal() {
+        customerID();
+        String total = "SELECT SUM(price) FROM produit_command WHERE customer_id = " + cID;
+
+        connect = database.connectDB();
+
+        try {
+
+            prepare = connect.prepareStatement(total);
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                totalP = result.getDouble("SUM(price)");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void generatePDF() throws FileNotFoundException, MalformedURLException, SQLException {
+        customerID();
+        ObservableList<produit> listData = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM produit_command WHERE customer_id = " + cID;
+
+        Statement st = MyConnection.getInstance().getCnx().createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+            produit prod = new produit();
+            prod.setId(rs.getInt("id"));
+            prod.setNom(rs.getString("prod_name"));
+            prod.setQuantité_stock(rs.getInt("quantity"));
+            prod.setPrix(rs.getFloat("price"));
+            listData.add(prod);
+        }
+
+        // Initialize PDF writer and document
+        PdfWriter writer = new PdfWriter("receipt.pdf");
+        PdfDocument pdf = new PdfDocument(writer);
+        Document document = new Document(pdf);
+
+        // Set document alignment to center both horizontally and vertically
+        document.setTextAlignment(TextAlignment.CENTER);
+        //document.setVerticalAlignment(VerticalAlignment.MIDDLE);
+
+        // Add logo image (adjust width and height as needed)
+        String imagePath = "logo.png"; // Specify the path to your image file
+        com.itextpdf.layout.element.Image image = new com.itextpdf.layout.element.Image(ImageDataFactory.create(imagePath));
+
+        // Set the width and height of the image (in points)
+        float desiredWidth = 500; // Adjust this value as needed
+        float desiredHeight = 300; // Adjust this value as needed
+        image.setWidth(desiredWidth);
+        image.setHeight(desiredHeight);
+
+        // Add the image to the document
+        document.add(image);
+
+        // Add title with increased font size
+        Paragraph title = new Paragraph("Receipt")
+                .setBold()
+                .setFontSize(30); // Set font size to 30
+        document.add(title);
+
+        // Add date with larger font size
+        Paragraph date = new Paragraph("Date: " + LocalDate.now())
+                .setFontSize(20); // Set font size to 20
+        document.add(date);
+
+        // Add customer ID with larger font size
+        Paragraph customerID = new Paragraph("Customer ID: " + cID)
+                .setFontSize(20); // Set font size to 20
+        document.add(customerID);
+
+        // Add empty paragraph for spacing
+        document.add(new Paragraph(" "));
+
+        // Add table with increased font size
+        Table table = new Table(3).setWidth(500);
+        table.addCell(new Paragraph("Product Name").setFontSize(20)); // Set font size to 20
+        table.addCell(new Paragraph("Quantity").setFontSize(20)); // Set font size to 20
+        table.addCell(new Paragraph("Price").setFontSize(20)); // Set font size to 20
+
+        for (produit prodd : listData) {
+            table.addCell(new Paragraph(prodd.getNom()).setFontSize(18)); // Set font size to 18
+            table.addCell(new Paragraph(String.valueOf(prodd.getQuantité_stock())).setFontSize(18)); // Set font size to 18
+            table.addCell(new Paragraph(String.format("%.2f", prodd.getPrix())).setFontSize(18)); // Set font size to 18
+        }
+
+        // Add table to document
+        document.add(table);
+
+        // Add empty paragraph for spacing
+        document.add(new Paragraph(" "));
+
+        // Calculate and add total amount with larger font size
+        //float totalP = calculateTotalPrice(listData);
+        Paragraph totalAmount = new Paragraph("Your total is: TND " + String.format("%.2f", totalP))
+                .setFontSize(24); // Set font size to 24
+        document.add(totalAmount);
+        Paragraph Thank = new Paragraph("Thank Youuu <3 (;" )
+                .setFontSize(24); // Set font size to 24
+        document.add(Thank);
+
+        // Close document
+        document.close();
+
+    }
 
     @FXML
     private void redirectToListReservation(ActionEvent event) {
@@ -225,36 +233,6 @@ public class Success_pageController implements Initializable {
         }
     }
 
-   /* private void send_sms_to_Client(int phone) {
 
-        try {
-            //init twilio
-            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-            String send_number = "+216" + String.valueOf(phone);
-            String from_number = "+15075650863";
-            String body = "Sportify: Thank you for making a reservation with us! We look forward to seeing you on : ";
-            DateTimeFormatter formatter_time = DateTimeFormatter.ofPattern("HH:mm");
-            DateTimeFormatter formatter_date = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            String date_res = formatter_date.format(reservation.getDateReservation());
-            String start_time = formatter_time.format(reservation.getStartTime());
-            String end_time = formatter_time.format(reservation.getEndTime());
-            body += date_res + ", at : " + start_time + " ,ends at : " + end_time;
-            Message message = Message
-                    .creator(
-                            new PhoneNumber(send_number),
-                            new PhoneNumber(from_number),
-                            body
-                    )
-                    .create();
 
-        } catch (final ApiException e) {
-
-            System.err.println(e);
-
-        }
-    }*/
-    private String generateUniqueString() {      
-        String unique = UUID.randomUUID().toString(); // Generate a unique String
-        return unique;
-    }
 }

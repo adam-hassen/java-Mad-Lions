@@ -34,19 +34,6 @@ public class Fail_pageController implements Initializable {
     @FXML
     private Button back_btn;
 
-   // private Reservation reservation;
-    //private Terrain terrain;
-
-    /*public void setData(Reservation r) {
-        String value;
-        this.reservation = r;
-        TerrainService ts = new TerrainService();
-        terrain = ts.diplay(this.reservation.getTerrain_id());
-        if (terrain != null) {
-            value = "There's an Error in your online payment for your Reservation of the Staduim : " + terrain.getName() + ",";
-            paymen_txt.setText(value);
-        }
-    }*/
 
     /**
      * Initializes the controller class.
@@ -60,7 +47,7 @@ public class Fail_pageController implements Initializable {
     @FXML
     private void redirectToListReservation(ActionEvent event) {
            try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/reservation/Reservation_view_client.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
             Parent root = loader.load();
             //UPDATE The Controller with Data :
             Scene scene = new Scene(root);
