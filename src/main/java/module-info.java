@@ -7,7 +7,8 @@ module GestionRecyclage {
     requires qrgen;
     requires com.gluonhq.maps;
     requires javafx.web;
-    requires jdk.jsobject; // Ajout de la bibliothèque net.glxn.qrgen
+    requires jdk.jsobject;
+    requires twilio; // Ajout de la bibliothèque net.glxn.qrgen
 
     opens Recyclage.entities;
     opens Recyclage.controllers;

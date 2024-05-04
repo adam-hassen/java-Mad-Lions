@@ -150,6 +150,14 @@ public class AjouterProduitRecyclable implements Initializable {
         }
             if (confirmerAjoutProduit()) {
                 produitRecyclableMethodes.ajouterProduit(produitRecyclable);
+                String numeroDestinataire = "+21658584828"; // Remplacez par le numéro de téléphone de l'utilisateur
+                String message = "Bonjour, un nouveau produit recyclable a été ajouté !\n" +
+                        "Nom du produit : " + produitRecyclable.getNom() + "\n" +
+                        "Catégorie du produit : " + produitRecyclable.getType() +"\n" +
+                        "description du produit : "+ produitRecyclable.getDescription() +"\n" +
+                        "Date d'ajout : "+ produitRecyclable.getDateDepot() +"\n" +
+                        "Ecodepot Associer : "+ produitRecyclable.getEcoDepot().getNom();
+                TwilioSMS.sendSMS(numeroDestinataire, message);
                 ecoDepotMethodes.updateCapaciteStockage(ComboBoxTF1P.getValue(), capaciteRestante);
                 afficherPageProduitsRecyclables();
             }
