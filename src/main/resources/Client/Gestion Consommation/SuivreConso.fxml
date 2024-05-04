@@ -102,6 +102,11 @@
                                  <WebView fx:id="webView" prefHeight="450.0" prefWidth="730.0"/>
                               </ScrollPane>
                            </AnchorPane>
+                           <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />
+                           <Label styleClass="suivre-label" text="CELA PRÉSENTE VOS PLACES PRÉCÉDENTE DE CONSOMMATION :" />
+                           <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />
+                           <AnchorPane fx:id="challSpace" prefHeight="600.0" prefWidth="800.0">
+                           </AnchorPane>
                         </children>
                      </VBox>
                   </children>

@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import EDU.userjava1.controllers.Login;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,7 +19,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
-
+import EDU.userjava1.entities.User1;
+import EDU.userjava1.interfaces.MyListener;
+import EDU.userjava1.interfaces.MyListener1;
+import EDU.userjava1.services.UserServices;
 public class AdminGestAction {
     @FXML
     public ComboBox<TypeName> Type;
@@ -181,7 +185,7 @@ public class AdminGestAction {
         if ((!Quantite.getText().isEmpty() || time!=null) && (Type.getValue()!=null) && (Date.getValue()!=null)) {
             Action act = new Action(Type.getValue(), k, Date.getValue(), Description.getText(), time);
             act = query.calculerScoreEtDanger(act);
-            act.setUser_id(1);
+            act.setUser_id(Login.v.getId());
             double quantite = 0.0;
             // Validate Description: Only letters, numbers, and spaces allowed
             if (!Pattern.matches("[a-zA-Z0-9\\s]*", Description.getText())){

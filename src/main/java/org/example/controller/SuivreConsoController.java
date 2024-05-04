@@ -1,5 +1,8 @@
 package org.example.controller;
+import EDU.userjava1.controllers.Login;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -48,7 +51,10 @@ import org.jfree.data.xy.DefaultXYZDataset;
 
 import javax.mail.MessagingException;
 import java.awt.*;
-
+import EDU.userjava1.entities.User1;
+import EDU.userjava1.interfaces.MyListener;
+import EDU.userjava1.interfaces.MyListener1;
+import EDU.userjava1.services.UserServices;
 public class SuivreConsoController {
     private ActionService query;
     private TypeNameService query2;
@@ -56,6 +62,8 @@ public class SuivreConsoController {
     private VBox vboxside;
     @FXML
     private StackPane  chartPanel;
+    @FXML
+    private AnchorPane challSpace;
     @FXML
     private StackPane  scatterPanel;
     @FXML
@@ -68,6 +76,7 @@ public class SuivreConsoController {
     public void initialize() throws IOException {
         query2 = new TypeNameService();
         query = new ActionService();
+        showChallenges();
         //first chart
         ActionService.ChartData chartData = query.firstChart(1);
         List<Double> data2 = chartData.getData();
@@ -87,7 +96,7 @@ public class SuivreConsoController {
         }
         //end first chart
         // Scatter chart
-        ActionService.ChartData chartData2 = query.scatterchart(1);
+        ActionService.ChartData chartData2 = query.scatterchart(Login.v.getId());
         List<Double> data3 = chartData2.getData();
         List<String> labels3 = chartData2.getLabels();
 
@@ -139,7 +148,7 @@ public class SuivreConsoController {
         webEngine.documentProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 //webView.getEngine().load(htmlFilePath);
-                List<Action> dataList = query.afficherActions(1);
+                List<Action> dataList = query.afficherActions(Login.v.getId());
                 List<ActionLocation> actionLocs = new ArrayList<>();
                 for (Action action : dataList){
                     if (action.getLocation_id().getNom() != null ) {
@@ -266,4 +275,15 @@ public class SuivreConsoController {
             scaleTransition.play();
         });
     }*/
+   public void showChallenges() {
+       try {
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("/Client/Gestion Consommation/ChallContainers.fxml"));
+           Parent root = loader.load();
+           ChallContainers challContainers = loader.getController();
+           challSpace.getChildren().clear();
+           challContainers.showChallenges(challSpace);
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+   }
 }

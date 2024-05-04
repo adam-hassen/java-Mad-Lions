@@ -18,7 +18,17 @@ public class home111 implements Initializable {
 
     @FXML
     private Button email;
-
+    @FXML
+    private Button gestConso;
+    @FXML
+    void GestionConsommation(ActionEvent event) throws IOException {
+        Parent root1 = FXMLLoader.load(getClass().getResource("/Client/Gestion Consommation/HomeGestionAction.fxml"));
+        Scene scene1 = new Scene(root1);
+        Stage stage1;
+        stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage1.setScene(scene1);
+        stage1.show();
+    }
     @FXML
     void profile(ActionEvent event) throws IOException {
         Parent root2 = FXMLLoader.load(getClass().getResource("/account.fxml"));

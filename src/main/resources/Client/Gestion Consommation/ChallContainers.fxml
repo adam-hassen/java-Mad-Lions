@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+<HBox fx:id="ChallContainer" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0" spacing="5.0" stylesheets="@../../CSS/Home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ChallContainers">
+   <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0" styleClass="card">
+      <ImageView>
+         <Image url="@../../CSS/Images/plastique.png"/>
+      </ImageView>
+      <Label text="Limiter Le Plastique" />
+      <Label style="-fx-text-fill: black;">
+         Votre Objective d'aujourd'hui est : <Text fx:id="predectPlastique" style="-fx-font-weight: bold;" />
+         Kw/s
+      </Label>
+      <Label style="-fx-text-fill: black;">
+         Equivalant a : <Text fx:id="predectPlastiqueProp" style="-fx-font-weight: bold;" />
+         d'utilisation de PC
+      </Label>
+   </VBox>
+   <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0" styleClass="card">
+      <ImageView>
+         <Image url="@../../CSS/Images/electric.png"/>
+      </ImageView>
+      <Label text="Limiter L'electricité" />
+      <Label style="-fx-text-fill: black;">
+         Votre Objective d'aujourd'hui est : <Text fx:id="predectElectricite" style="-fx-font-weight: bold;" />
+         Kw/s
+      </Label>
+      <Label style="-fx-text-fill: black;">
+         Equivalant a : <Text fx:id="predectElectTime" style="-fx-font-weight: bold;" />
+         d'utilisation de PC
+      </Label>
+   </VBox>
+   <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0" styleClass="card">
+      <ImageView>
+         <Image url="@../../CSS/Images/gaz.png"/>
+      </ImageView>
+      <Label text="Limiter Le Gaz" />
+      <Label style="-fx-text-fill: black;">
+         Votre Objective d'aujourd'hui est : <Text fx:id="predectGaz" style="-fx-font-weight: bold;" />
+         Kw/s
+      </Label>
+      <Label style="-fx-text-fill: black;">
+         Equivalant a : <Text fx:id="predectGazProp" style="-fx-font-weight: bold;" />
+         d'utilisation de PC
+      </Label>
+   </VBox>
+   <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0" styleClass="card">
+      <ImageView>
+         <Image url="@../../CSS/Images/carburant.png"/>
+      </ImageView>
+      <Label text="Limiter Le Carburant " />
+      <Label style="-fx-text-fill: black;">
+         Votre Objective d'aujourd'hui est : <Text fx:id="predectCarburant" style="-fx-font-weight: bold;" />
+         Kw/s
+      </Label>
+      <Label style="-fx-text-fill: black;">
+         Equivalant a : <Text fx:id="predectCarburantProp" style="-fx-font-weight: bold;" />
+         d'utilisation de PC
+      </Label>
+   </VBox>
+</HBox>

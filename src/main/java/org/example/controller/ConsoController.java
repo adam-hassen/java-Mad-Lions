@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import EDU.userjava1.controllers.Login;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +13,10 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.io.IOException;
-
+import EDU.userjava1.entities.User1;
+import EDU.userjava1.interfaces.MyListener;
+import EDU.userjava1.interfaces.MyListener1;
+import EDU.userjava1.services.UserServices;
 public class ConsoController {
     @FXML
     private Button button;
@@ -33,6 +37,7 @@ public class ConsoController {
                 addHoverAnimation(label);
             }
         });
+        System.out.println("djo" + Login.v.getId());
     }
     @FXML
     public void naviguerVersGestion(ActionEvent event) {

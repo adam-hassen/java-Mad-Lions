@@ -1,5 +1,6 @@
 package org.example.service;
 
+import EDU.userjava1.entities.User1;
 import javafx.scene.control.Alert;
 import org.example.Connexion.connexion;
 import org.example.entity.Action;
@@ -36,7 +37,7 @@ public class ActionService {
             pst.setString(6, act.getQuantite_time());
             pst.setDouble(7, act.getAction_score());
             pst.setInt(8,act.getNiveau_danger());
-            pst.setInt(9,act.getLocation_id().getId());
+            pst.setInt(9,59);
             pst.executeUpdate();
             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
             successAlert.setTitle("Gestion De Consommation Alert!");
@@ -330,5 +331,89 @@ public class ActionService {
             System.out.println(e.getMessage());
         }
         return act;
+    }
+    public String ListeDanger(User1 user){
+        List<Action> ls=afficherActions(user.getId());
+        Map<String, List<Action>> actionsByType = new HashMap<>();
+
+        for (Action action : ls) {
+            String actionType = action.getType_id().getType();
+
+            if (actionsByType.containsKey(actionType)) {
+                actionsByType.get(actionType).add(action);
+            } else {
+                List<Action> actionList = new ArrayList<>();
+                actionList.add(action);
+                actionsByType.put(actionType, actionList);
+            }
+        }
+
+        StringBuilder averageDangerString = new StringBuilder();
+        int i=0;
+        for (Map.Entry<String, List<Action>> entry : actionsByType.entrySet()) {
+            String actionType = entry.getKey();
+            List<Action> collectedActions = entry.getValue();
+
+            double averageDanger = ControleDeDanger(collectedActions);
+            if (averageDanger > 3) {
+                i=1;
+                averageDangerString.append("Action Type: ").append(actionType)
+                        .append(", Moyenne Danger: ").append(averageDanger)
+                        .append(System.lineSeparator());
+            }
+        }
+        if (i==0){
+            return null;
+        }
+        else {
+            String averageDangerStringResult = averageDangerString.toString();
+            return averageDangerStringResult;
+        }
+    }
+    public  float ControleDeDanger(List<Action> actions) {
+        float totalDanger = 0;
+        int count = actions.size();
+
+        for (Action action : actions) {
+            totalDanger += action.getNiveau_danger();
+        }
+
+        if (count > 0) {
+            float averageDanger = totalDanger / count;
+            return averageDanger;
+        } else {
+            return 0;
+        }
+    }
+    public List<Action> afficherActionToday(int id) {
+        List<Action> ListeAct = new ArrayList<>();
+        try {
+            String requete = "SELECT * FROM ACTION WHERE user_id=? AND DATE(date) = CURDATE()";
+            PreparedStatement pst = cn.prepareStatement(requete);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Action act = new Action();
+                act.setId(rs.getInt("id"));
+                int a = rs.getInt("type_id");
+                TypeNameService typenameService = new TypeNameService();
+                TypeName tp = typenameService.cherchertypename(a);
+                act.setType_id(tp);
+                act.setUser_id(rs.getInt("user_id"));
+                act.setQuantite(rs.getDouble("quantite"));
+                act.setAction_score(rs.getDouble("action_score"));
+                act.setNiveau_danger(rs.getInt("niveau_danger"));
+                int b = rs.getInt("location_id");
+                ActionLocation loc = this.chercherLocation(b);
+                act.setLocation_id(loc);
+                act.setDescription(rs.getString("description"));
+                act.setDate(rs.getDate("date").toLocalDate());
+                ListeAct.add(act);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return ListeAct;
     }
 }

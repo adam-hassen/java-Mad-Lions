@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import EDU.userjava1.controllers.Login;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,7 +24,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
-
+import EDU.userjava1.entities.User1;
+import EDU.userjava1.interfaces.MyListener;
+import EDU.userjava1.interfaces.MyListener1;
+import EDU.userjava1.services.UserServices;
 public class ValiderFormAction {
     @FXML
     public ComboBox<TypeName> Type;
@@ -224,7 +228,7 @@ public class ValiderFormAction {
 
         Action act = new Action(Type.getValue(), 0.0, Date.getValue(), Description.getText(), time);
         act = query.calculerScoreEtDanger(act);
-        act.setUser_id(1);
+        act.setUser_id(Login.v.getId());
 
         if (!Pattern.matches("[a-zA-Z0-9\\s]*", Description.getText())) {
             Alert validationAlert = new Alert(Alert.AlertType.ERROR);
@@ -268,22 +272,27 @@ public class ValiderFormAction {
 
         if (result.isPresent() && result.get() == buttonTypeYes) {
             act=query.calculerScoreEtDanger(act);
-                String ip = "106.169.53.240";
-                act.setLocation_id(LocateUser(ip));
+                String ip = "154.108.39.208 ";
+                //act.setLocation_id(LocateUser(ip));
                 //System.out.println(act.getLocation_id());
-            query3.ajouterActionLocation(act.getLocation_id());
+            //query3.ajouterActionLocation(act.getLocation_id());
             act.setLocation_id(query3.chercherLocation());
+            System.out.println(act);
             query.ajouterAction(act);
-            if (query.moyenneDanger(1) > 4) {
-                // Send email
+            //UserServices GS = new UserServices();
+            String ListeDanger=null;
+            ListeDanger=query.ListeDanger(Login.v);
+            System.out.println(ListeDanger);
+            if (ListeDanger != null) {
                 try {
                     query.sendEmail("youssefbenarous@gmail.com", "Alerte : Dépassement du seuil de danger pour l'environnement",
-                            "Cher/Chère [Nom du destinataire],\n\n" +
+                            "Cher/Chère "+ Login.v.getName()+" ,\n\n" +
                                     "Nos systèmes de surveillance ont détecté une augmentation significative des indicateurs environnementaux, indiquant un dépassement du seuil de danger.\n\n" +
                                     "Nous vous exhortons à agir immédiatement pour faire face à cette situation cruciale. Il est impératif que nous trouvions ensemble des solutions viables afin d'atténuer les défis environnementaux auxquels nous sommes confrontés.\n\n" +
                                     "Merci pour votre attention à cette demande. Nous attendons votre réponse et votre collaboration.\n\n" +
+                                    ListeDanger+
                                     "Cordialement,\n" +
-                                    "Votre nom");
+                                    "EcoGardien");
                     System.out.println("Email sent successfully.");
                 } catch (MessagingException e) {
                     System.out.println("Failed to send email: " + e.getMessage());
@@ -291,7 +300,7 @@ public class ValiderFormAction {
                 // End email
             }
 
-            List<Action> actionList = query.afficherActions(1);
+            List<Action> actionList = query.afficherActions(Login.v.getId());
             ObservableList<Action> observableList = FXCollections.observableArrayList(actionList);
         }
     }
@@ -314,7 +323,7 @@ public class ValiderFormAction {
             Action act = new Action(Type.getValue(), k, Date.getValue(), Description.getText(), time);
             act = query.calculerScoreEtDanger(act);
             act.setId(mod);
-            act.setUser_id(userId);
+            act.setUser_id(Login.v.getId());
             act.setLocation_id(loc);
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
@@ -355,7 +364,7 @@ public class ValiderFormAction {
                 successAlert.setHeaderText(null);
                 successAlert.setContentText("Action modifiée avec succès!");
                 successAlert.showAndWait();
-                List<Action> actionList = query.afficherActions(1);
+                List<Action> actionList = query.afficherActions(Login.v.getId());
             }
         }
         if (Date.getValue()==null){
