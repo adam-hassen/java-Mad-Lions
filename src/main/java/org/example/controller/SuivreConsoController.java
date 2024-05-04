@@ -138,6 +138,7 @@ public class SuivreConsoController {
         webView.getEngine().load(htmlFilePath);
         webEngine.documentProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
+                //webView.getEngine().load(htmlFilePath);
                 List<Action> dataList = query.afficherActions(1);
                 List<ActionLocation> actionLocs = new ArrayList<>();
                 for (Action action : dataList){

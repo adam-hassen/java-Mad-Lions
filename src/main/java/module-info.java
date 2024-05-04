@@ -25,7 +25,7 @@ module GestionRecyclage {
     opens Recyclage.tests;
     opens Recyclage.tools;
     opens org.example.controller;
-    opens org.example.entity to javafx.base;
+    opens org.example.entity;
     opens org.example.service;
     opens EDU.userjava1.controllers;
     opens EDU.userjava1.entities to javafx.base;
