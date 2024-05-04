@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="form" stylesheets="@/CSS/GestConso.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ValiderFormAction">
+    <children>
+        <!-- Type Name -->
+        <HBox layoutX="10.0" layoutY="10.0" spacing="10.0">
+            <Label text="Type Name:" />
+            <ComboBox fx:id="Type" promptText="Select Type Name" />
+        </HBox>
+
+        <!-- Time/Quantity Toggles -->
+
+
+        <!-- Time Selection -->
+        <HBox layoutX="10.0" layoutY="70.0" spacing="10.0">
+            <Label fx:id="timeLabel" text="Time:" />
+            <ComboBox fx:id="hourComboBox" promptText="Hour" />
+            <ComboBox fx:id="minuteComboBox" promptText="Minute" />
+            <ComboBox fx:id="secondComboBox" promptText="Second" />
+        </HBox>
+
+        <!-- Quantity Selection -->
+        <HBox layoutX="10.0" layoutY="132.0" spacing="10.0">
+            <Label fx:id="quantiteLabel" text="Quantite:" />
+            <TextField fx:id="Quantite" promptText="Select Quantity" />
+        </HBox>
+
+        <!-- Date and Description -->
+        <HBox layoutX="13.0" layoutY="184.0" spacing="10.0">
+            <Label text="Date:" />
+            <DatePicker fx:id="Date" promptText="Select Date" />
+        </HBox>
+        <HBox layoutX="10.0" layoutY="238.0" spacing="10.0">
+            <Label text="Description:" />
+            <TextField fx:id="Description" promptText="Select Description" />
+        </HBox>
+
+        <!-- Buttons -->
+            <HBox layoutX="100" layoutY="270" spacing="10" />
+
+             <ToggleButton fx:id="quantiteToggle" layoutX="283.0" layoutY="13.0" onAction="#handleToggle" prefHeight="26.0" prefWidth="16.0" text="Quantite" />
+             <ToggleButton fx:id="timeToggle" layoutX="346.0" layoutY="13.0" onAction="#handleToggle" prefHeight="23.0" prefWidth="27.0" text="Time" />
+             <Button fx:id="ModifierAction" layoutX="292.0" layoutY="301.0" prefHeight="40.0" prefWidth="118.0" styleClass="button-home" text="Modifier" />
+             <Button fx:id="ValiderAction" layoutX="141.0" layoutY="301.0" prefHeight="40.0" prefWidth="118.0" styleClass="button-home" text="Ajouter" />
+    </children>
+</AnchorPane>

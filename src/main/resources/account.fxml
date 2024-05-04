@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.profile">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="636.0" prefWidth="1230.0" style="-fx-background-color: edf5eb;">
+         <left>
+            <VBox prefHeight="628.0" prefWidth="329.0" style="-fx-background-color: #71b63e;" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="168.0" prefWidth="340.0">
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
+                     <children>
+                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/banner-01.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="email" prefHeight="27.0" prefWidth="310.0" text="                        email" textFill="#f2f5e9">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="edit" mnemonicParsing="false" onAction="#edit" style="-fx-background-color: #8fca63;" stylesheets="@style/style.css" text="editer profile" textFill="WHITE">
+                           <styleClass>
+                              <String fx:value="parent" />
+                              <String fx:value="button-with-shadow" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="412.0" prefWidth="340.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="69.0" prefWidth="340.0">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@img/house-chimney.png" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="home" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #71b63e;" stylesheets="@style/style.css" text="page d'accueil" textFill="#3b1e1e">
+                                 <styleClass>
+                                    <String fx:value="blue-btn" />
+                                    <String fx:value="blue-btn" />
+                                 </styleClass>
+                                 <cursor>
+                                    <Cursor fx:constant="SE_RESIZE" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="340.0">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@img/key.png" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="changer" mnemonicParsing="false" onAction="#changer" style="-fx-background-color: #71b63e;" stylesheets="@style/style.css" text="Changer mot de passe" textFill="#3b1e1e">
+                                 <styleClass>
+                                    <String fx:value="blue-btn" />
+                                    <String fx:value="blue-btn" />
+                                 </styleClass>
+                                 <cursor>
+                                    <Cursor fx:constant="SE_RESIZE" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="340.0">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@img/process.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="parametre">
+                                 <font>
+                                    <Font name="System Italic" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="62.0" prefWidth="340.0">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@img/user-xmark.png" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="delete" mnemonicParsing="false" onAction="#delete" style="-fx-background-color: #71b63e;" stylesheets="@style/style.css" text="supprimer profile" textFill="#3b1e1e">
+                                 <styleClass>
+                                    <String fx:value="blue-btn" />
+                                    <String fx:value="blue-btn" />
+                                 </styleClass>
+                                 <cursor>
+                                    <Cursor fx:constant="SE_RESIZE" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="56.0" prefWidth="330.0">
+                           <children>
+                              <Button fx:id="logout" mnemonicParsing="false" onAction="#logout" prefHeight="51.0" prefWidth="211.0" style="-fx-background-color: #71b63e;" stylesheets="@style/style.css" text="logout" textFill="#3b1e1e">
+                                 <styleClass>
+                                    <String fx:value="blue-btn" />
+                                    <String fx:value="blue-btn" />
+                                 </styleClass>
+                                 <cursor>
+                                    <Cursor fx:constant="SE_RESIZE" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="662.0" prefWidth="880.0" style="-fx-background-color: edf5eb;" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="TOP_RIGHT" prefHeight="42.0" prefWidth="880.0" style="-fx-background-color: edf5eb;">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/Sans%20titre-1.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="80.0" prefWidth="880.0" style="-fx-background-color: edf5eb;">
+                     <children>
+                        <Label text="Bienvenue!  " textFill="#757647">
+                           <font>
+                              <Font name="System Italic" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="nom" prefHeight="35.0" prefWidth="106.0" text="NAME " textFill="#757647">
+                           <font>
+                              <Font name="System Italic" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="prenom" prefHeight="33.0" prefWidth="230.0" text="PRENOM" textFill="#757647">
+                           <font>
+                              <Font name="System Italic" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="287.0" prefWidth="880.0">
+                     <children>
+                        <VBox prefHeight="246.0" prefWidth="250.0" style="-fx-background-color: edf5eb;">
+                           <children>
+                              <Pane fx:id="pane_131" prefHeight="94.0" prefWidth="245.0" style="-fx-background-color: #afc885;" styleClass="pane_11" stylesheets="@style/style.css">
+                                 <children>
+                                    <Label fx:id="num" layoutX="91.0" layoutY="26.0" text="Event 2" textFill="WHITE">
+                                       <font>
+                                          <Font name="Century Gothic Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="37.0" fitWidth="38.0" layoutX="203.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@img/location-crosshairs.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="14.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@img/phone-call.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                              <Pane prefHeight="27.0" prefWidth="250.0" />
+                           </children>
+                        </VBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: edf5eb;" />
+                        <VBox prefHeight="287.0" prefWidth="435.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="146.0" prefWidth="389.0" style="-fx-background-color: edf5eb;">
+                                 <children>
+                                    <Pane fx:id="pane_1311" prefHeight="93.0" prefWidth="246.0" style="-fx-background-color: #afc885;" styleClass="pane_11" stylesheets="@style/style.css">
+                                       <children>
+                                          <Label fx:id="genre" layoutX="98.0" layoutY="24.0" text="Event 3" textFill="WHITE">
+                                             <font>
+                                                <Font name="Century Gothic Bold" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fitHeight="42.0" fitWidth="41.0" layoutX="20.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@img/family-dress.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="41.0" fitWidth="35.0" layoutX="211.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@img/location-crosshairs.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </Pane>
+                                    <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="65.0" style="-fx-background-color: edf5eb;" stylesheets="@style/style.css" text="                              ." textFill="#3b1e1e">
+                                       <styleClass>
+                                          <String fx:value="blue-btn" />
+                                          <String fx:value="blue-btn" />
+                                       </styleClass>
+                                       <cursor>
+                                          <Cursor fx:constant="SE_RESIZE" />
+                                       </cursor>
+                                    </Button>
+                                    <Button fx:id="ajoutreclamation" mnemonicParsing="false" onAction="#ajoutreclamation" style="-fx-background-color: edf5eb;" stylesheets="@style/style.css" text="ajouter reclamation" textFill="#3b1e1e">
+                                       <styleClass>
+                                          <String fx:value="side_ankerpane" />
+                                          <String fx:value="blue-btn" />
+                                       </styleClass>
+                                       <cursor>
+                                          <Cursor fx:constant="SE_RESIZE" />
+                                       </cursor>
+                                    </Button>
+                                 </children></HBox>
+                              <HBox prefHeight="81.0" prefWidth="353.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <ScrollPane fx:id="scroll" prefHeight="680.0" prefWidth="950.0" styleClass="transparent" stylesheets="@../../../../../Desktop/trocit-Gestionuser/values/style.css">
+                     <content>
+                        <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
