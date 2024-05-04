@@ -18,7 +18,6 @@
             return colors[randomIndex];
         }
         if (!map) {
-            // Create a new map instance
             map = L.map('map').setView([0, 0], 2);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '',
@@ -26,7 +25,6 @@
             }).addTo(map);
         }
 
-        // Add markers from the new data
         let markers = L.layerGroup();
         data.forEach(function(location) {
             console.log(location);
@@ -47,7 +45,6 @@
             marker.bindPopup("Random Marker");
         });
 
-        // Add the markers to the map
         markers.addTo(map);
     }
 
