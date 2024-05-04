@@ -269,9 +269,9 @@ public class ValiderFormAction {
         if (result.isPresent() && result.get() == buttonTypeYes) {
             act=query.calculerScoreEtDanger(act);
                 String ip = "106.169.53.240";
-                act.setLocation_id(LocateUser(ip));
+               //  act.setLocation_id(LocateUser(ip));
                 //System.out.println(act.getLocation_id());
-            query3.ajouterActionLocation(act.getLocation_id());
+              //query3.ajouterActionLocation(act.getLocation_id());
             act.setLocation_id(query3.chercherLocation());
             query.ajouterAction(act);
             if (query.moyenneDanger(1) > 4) {

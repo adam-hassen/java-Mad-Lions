@@ -52,5 +52,14 @@
                </image>
             </ImageView>
          </graphic></Button>
+      <Button layoutX="14.0" layoutY="12.0" mnemonicParsing="false" onAction="#Home" prefHeight="44.0" prefWidth="64.0" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="49.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../CSS/Images/blue_repicthousebase_1484336386-1.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
     </children>
 </AnchorPane>

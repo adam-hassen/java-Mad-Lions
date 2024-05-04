@@ -1,5 +1,7 @@
 package Recyclage.entities;
 
+import EDU.userjava1.entities.User1;
+
 import java.util.Date;
 
 public class ProduitRecyclable {
@@ -10,9 +12,19 @@ public class ProduitRecyclable {
     private String type;
     private Date dateDepot;
     private EcoDepot ecoDepot;
-    private long ecodepot_id; // Utilisez long pour stocker l'ID de l'éco-dépôt
+    private User1 user;
+    private long ecodepot_id;
+    private long UserID;
 
-    public ProduitRecyclable(String nom, String description, int quantite, String type, Date dateDepot, EcoDepot ecoDepot) {
+    public long getUserID() {
+        return UserID;
+    }
+
+    public void setUserID(long userID) {
+        UserID = userID;
+    }
+
+    public ProduitRecyclable(String nom, String description, int quantite, String type, Date dateDepot, EcoDepot ecoDepot, User1 user) {
         this.nom = nom;
         this.description = description;
         this.quantite = quantite;
@@ -20,11 +32,20 @@ public class ProduitRecyclable {
         this.dateDepot = dateDepot;
         this.ecoDepot = ecoDepot;
         this.ecodepot_id = ecoDepot.getId(); // Assurez-vous que ecoDepot est déjà initialisé
+        this.user = user;
+        this.UserID = user.getId();
     }
 
     public ProduitRecyclable() {}
 
-    // Getters and setters
+    public User1 getUser() {
+        return user;
+    }
+
+    public void setUser(User1 user) {
+        this.user = user;
+    }
+// Getters and setters
 
     public int getId() {
         return id;

@@ -8,10 +8,22 @@
             height: 600px;
             width: 100%;
         }
+        #addressLabel {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            background-color: white;
+            padding: 5px;
+            border: 1px solid black;
+        }
     </style>
 </head>
 <body>
 <h1>Ma carte de localisation</h1>
+<div id="addressLabel"></div> <!-- Ajout de cet élément pour afficher l'adresse -->
+
 <div id="map"></div>
 
 <script>
@@ -62,6 +74,12 @@
                     // Center the map on the found location
                     mymap.setCenter(location);
                     mymap.setZoom(12);
+                    // Afficher l'adresse sous le marqueur
+                    var addressLabel = document.getElementById('addressLabel');
+                    addressLabel.innerText = 'Centre de ' + address;
+                    addressLabel.style.top = marker.getPosition().toUrlValue(0) + 'px';
+                    addressLabel.style.left = marker.getPosition().toUrlValue(1) + 'px';
+
                 } else {
                     alert('La recherche d\'adresse a échoué : ' + status);
                 }
@@ -71,6 +89,6 @@
 </script>
 
 <!-- Load the Google Maps JavaScript API with your API key -->
- <script src="js/mapsJavaScriptAPI.js"></script>>
+<script src="js/mapsJavaScriptAPI.js"></script>
 </body>
 </html>

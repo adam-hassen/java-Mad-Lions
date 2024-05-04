@@ -25,8 +25,8 @@ public class ProduitRecyclableMethodes implements ProduitRecyclableService<Produ
             return;
         }
 
-        String requete = "INSERT INTO produit_recyclable (nom, description, quantite, date_depot, eco_depot_id, type)" +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+        String requete = "INSERT INTO produit_recyclable (nom, description, quantite, date_depot, eco_depot_id, type ,user_id)" +
+                "VALUES (?, ?, ?, ?, ?, ?,?)";
         try {
             PreparedStatement pst = MyConnection.getInsatance().getCnx().prepareStatement(requete);
             pst.setString(1, produitRecyclable.getNom());
@@ -35,6 +35,7 @@ public class ProduitRecyclableMethodes implements ProduitRecyclableService<Produ
             pst.setDate(4, new java.sql.Date(produitRecyclable.getDateDepot().getTime())); // Convertir java.util.Date en java.sql.Date
             pst.setLong(5, produitRecyclable.getEcodepot_id());
             pst.setString(6, produitRecyclable.getType().toString());
+            pst.setLong(7, produitRecyclable.getUserID());
 
             pst.executeUpdate();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -131,14 +132,17 @@ public class ProduitRecyclableMethodes implements ProduitRecyclableService<Produ
     }
 
     @Override
-    public List<ProduitRecyclable> listeDesProduits() {
+    public List<ProduitRecyclable> listeDesProduits(int idUtilisateurConnecte) {
         List<ProduitRecyclable> produits = new ArrayList<>();
-        String requete = "SELECT * FROM PRODUIT_RECYCLABLE";
+        String requete = "SELECT * FROM PRODUIT_RECYCLABLE WHERE user_id=?";
         try {
-            Statement stmt = MyConnection.getInsatance().getCnx().createStatement();
-            ResultSet rs = stmt.executeQuery(requete);
+            // Utilisation d'une PreparedStatement pour éviter les attaques par injection SQL
+            PreparedStatement pstmt = MyConnection.getInsatance().getCnx().prepareStatement(requete);
+            pstmt.setInt(1, idUtilisateurConnecte); // Remplacer le premier paramètre par l'ID de l'utilisateur connecté
+            ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 ProduitRecyclable produit = new ProduitRecyclable();
+                produit.setUserID(rs.getInt("user_id"));
                 produit.setId(rs.getInt("id"));
                 produit.setNom(rs.getString("nom"));
                 produit.setDescription(rs.getString("description"));
@@ -158,6 +162,7 @@ public class ProduitRecyclableMethodes implements ProduitRecyclableService<Produ
         }
         return produits;
     }
+
     public EcoDepot obtenirEcoDepotParId(long ecodepotId) {
         EcoDepot ecoDepot = null;
         String requete = "SELECT * FROM ECO_DEPOT WHERE id = ?";

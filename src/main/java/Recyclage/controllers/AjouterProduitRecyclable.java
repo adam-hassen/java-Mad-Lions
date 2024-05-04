@@ -1,5 +1,6 @@
 package Recyclage.controllers;
 
+import EDU.userjava1.controllers.Login;
 import Recyclage.entities.EcoDepot;
 import Recyclage.entities.ProduitRecyclable;
 import Recyclage.services.EcoDepotMethodes;
@@ -149,6 +150,7 @@ public class AjouterProduitRecyclable implements Initializable {
             }
         }
             if (confirmerAjoutProduit()) {
+               produitRecyclable.setUserID(Login.v.getId());
                 produitRecyclableMethodes.ajouterProduit(produitRecyclable);
                 String numeroDestinataire = "+21658584828"; // Remplacez par le numéro de téléphone de l'utilisateur
                 String message = "Bonjour, un nouveau produit recyclable a été ajouté !\n" +
@@ -193,6 +195,7 @@ public class AjouterProduitRecyclable implements Initializable {
         dateP.setValue(LocalDate.now());
         capaciteTotaleEcoDepot = 1000;
         afficherCapaciteStockage();
+
     }
 
     private void afficherAlerteErreur(String message) {
@@ -318,7 +321,10 @@ public class AjouterProduitRecyclable implements Initializable {
         // Afficher la capacité de stockage dans l'étiquette
         pourcentageLabel.setText("Capacité: " + capaciteStockage);
     }
+    @FXML
+    void Home(ActionEvent event) {
 
+    }
 }
 
 

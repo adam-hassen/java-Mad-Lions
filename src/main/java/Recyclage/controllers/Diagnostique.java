@@ -1,5 +1,6 @@
 package Recyclage.controllers;
 
+import EDU.userjava1.controllers.Login;
 import Recyclage.entities.ProduitRecyclable;
 import Recyclage.services.ProduitRecyclableMethodes;
 import Recyclage.tests.HelloApplication;
@@ -58,7 +59,7 @@ public class Diagnostique {
     void initialize() {
         // Obtenir la liste des produits recyclables
         ProduitRecyclableMethodes produitRecyclableMethodes = new ProduitRecyclableMethodes();
-        List<ProduitRecyclable> listeProduits = produitRecyclableMethodes.listeDesProduits();
+        List<ProduitRecyclable> listeProduits = produitRecyclableMethodes.listeDesProduits(Login.v.getId());
 
         // Collecter les données pour la statistique
         Map<String, Integer> data = collectData(listeProduits);
@@ -102,5 +103,8 @@ public class Diagnostique {
         series.setData(dataList);
         areaChart.getData().add(series);
     }
+    @FXML
+    void Home(ActionEvent event) {
 
+    }
 }

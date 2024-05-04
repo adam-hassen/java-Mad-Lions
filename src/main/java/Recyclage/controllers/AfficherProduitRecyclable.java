@@ -3,6 +3,8 @@ package Recyclage.controllers;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+
+import EDU.userjava1.controllers.Login;
 import Recyclage.entities.ProduitRecyclable;
 import Recyclage.services.EcoDepotMethodes;
 import Recyclage.services.ProduitRecyclableMethodes;
@@ -81,7 +83,7 @@ public class AfficherProduitRecyclable {
     void initialize() {
         // Obtenir la liste des produits recyclables
         ProduitRecyclableMethodes produitRecyclableMethodes = new ProduitRecyclableMethodes();
-        listeProduits = produitRecyclableMethodes.listeDesProduits();
+        listeProduits = produitRecyclableMethodes.listeDesProduits(Login.v.getId());
 
         // Créer et configurer la pagination
         pagination = new Pagination((int) Math.ceil(listeProduits.size() / (double) ITEMS_PER_PAGE), 0);
@@ -371,7 +373,7 @@ public class AfficherProduitRecyclable {
 
         // Réinitialiser la liste des produits recyclables
         ProduitRecyclableMethodes produitRecyclableMethodes = new ProduitRecyclableMethodes();
-        List<ProduitRecyclable> produits = produitRecyclableMethodes.listeDesProduits();
+        List<ProduitRecyclable> produits = produitRecyclableMethodes.listeDesProduits(Login.v.getId());
 
         // Calculer le nouveau nombre total de pages
         int totalPages = (int) Math.ceil(produits.size() / (double) ITEMS_PER_PAGE);
@@ -413,7 +415,7 @@ public class AfficherProduitRecyclable {
     }
     private void updateProduitsList() {
         ProduitRecyclableMethodes produitRecyclableMethodes = new ProduitRecyclableMethodes();
-        listeProduits = produitRecyclableMethodes.listeDesProduits();
+        listeProduits = produitRecyclableMethodes.listeDesProduits(Login.v.getId());
     }
     private boolean confirmerAjoutProduit() {
         // Créer une nouvelle alerte de type CONFIRMATION
@@ -440,6 +442,9 @@ public class AfficherProduitRecyclable {
         Optional<ButtonType> result = alert.showAndWait();
         return result.isPresent() && result.get() == ButtonType.OK;
     }
+    @FXML
+    void Home(ActionEvent event) {
 
+    }
 
 }
