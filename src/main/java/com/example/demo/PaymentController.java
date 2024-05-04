@@ -29,6 +29,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -70,9 +72,8 @@ public class PaymentController implements Initializable {
     private double totalP;
 
     public void menuGetTotal() {
-        ProduitController pr = new ProduitController();
-        pr.customerID();
-        String total = "SELECT SUM(price) FROM produit_command WHERE customer_id = 1";
+        customerID();
+        String total = "SELECT SUM(price) FROM produit_command WHERE customer_id = " + cID;
 
         connect = database.connectDB();
 
@@ -212,6 +213,64 @@ public class PaymentController implements Initializable {
             alert.setContentText("Successful Payment.");
             alert.setHeaderText(null);
             alert.showAndWait();
+            redirect_to_successPage();
+            if (totalP == 0) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Veuillez d'abord choisir votre commande !");
+                alert.showAndWait();
+            } else {
+                menuGetTotal();
+                String insertPay = "INSERT INTO command (customer_id, total, date) "
+                        + "VALUES(?,?,?)";
+
+                connect = database.connectDB();
+
+                try {
+                    alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmation Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Are you sure?");
+                    Optional<ButtonType> option = alert.showAndWait();
+
+                    if (option.get().equals(ButtonType.OK)) {
+                        customerID();
+                        menuGetTotal();
+                        prepare = connect.prepareStatement(insertPay);
+                        prepare.setString(1, String.valueOf(cID));
+                        prepare.setString(2, String.valueOf(totalP));
+
+                        Date date = new Date();
+                        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+                        prepare.setString(3, String.valueOf(sqlDate));
+                        //prepare.setString(4, data.username);
+
+                        prepare.executeUpdate();
+
+                        alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Infomation Message");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Successful.");
+                        alert.showAndWait();
+
+                        //menuShowOrderData();
+
+                    } else {
+                        alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("Infomation Message");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Cancelled.");
+                        alert.showAndWait();
+                        redirect_to_FailPage();
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            redirect_to_successPage();
         } catch (StripeException e) {
 // If there was an error processing the payment, display the error message
             System.out.println("Payment failed. Error: " + e.getMessage());
@@ -420,6 +479,40 @@ public class PaymentController implements Initializable {
             stage.setScene(scene);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
+        }
+    }
+
+    public void customerID() {
+
+        String sql = "SELECT MAX(customer_id) FROM produit_command";
+        connect = database.connectDB();
+
+        try {
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                cID = result.getInt("MAX(customer_id)");
+            }
+
+            String checkCID = "SELECT MAX(customer_id) FROM command";
+            prepare = connect.prepareStatement(checkCID);
+            result = prepare.executeQuery();
+            int checkID = 0;
+            if (result.next()) {
+                checkID = result.getInt("MAX(customer_id)");
+            }
+
+            if (cID == 0) {
+                cID += 1;
+            } else if (cID == checkID) {
+                cID += 1;
+            }
+
+            data.cID = cID;
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" stylesheets="@style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="sportify.edu.controllers.Success_pageController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sportify.edu.controllers.Success_pageController">
    <children>
       <Label layoutX="295.0" layoutY="49.0" prefHeight="25.0" prefWidth="311.0" style="-fx-font-size: 40;" text="Successful payment" />
       <Pane layoutX="28.0" layoutY="143.0" prefHeight="365.0" prefWidth="842.0" style="-fx-background-radius: 15px; -fx-background-color: #5f6469;">
@@ -29,7 +28,7 @@
                   <Label style="-fx-text-fill: white; -fx-font-size: 20;" text="Thank you for doing business with us.. Thank you for doing business with us." GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <Button fx:id="pdf_btn" layoutX="345.0" layoutY="194.0" mnemonicParsing="false" onAction="#getReceiptPdf" prefHeight="41.0" prefWidth="152.0" text="Get a Receipt">
+            <Button fx:id="pdf_btn" layoutX="345.0" layoutY="194.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="152.0" text="Get a Receipt">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>

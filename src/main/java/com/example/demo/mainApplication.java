@@ -18,8 +18,6 @@ public class mainApplication extends Application {
     }
 
     public static void main(String[] args) {
-        ProduitController pc = new ProduitController();
-        System.out.println(pc.inventoryDataList());
         launch();
     }
 }

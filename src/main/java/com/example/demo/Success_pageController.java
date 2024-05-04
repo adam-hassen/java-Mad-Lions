@@ -214,7 +214,7 @@ public class Success_pageController implements Initializable {
     @FXML
     private void redirectToListReservation(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/reservation/Reservation_view_client.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
             Parent root = loader.load();
             //UPDATE The Controller with Data :
             Scene scene = new Scene(root);

@@ -1,45 +1,53 @@
 package com.example.demo;
 
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
-import javafx.fxml.FXML;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.AreaBreak;
+import com.itextpdf.layout.element.IBlockElement;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.properties.TextAlignment;
+import com.itextpdf.layout.properties.VerticalAlignment;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
-import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import com.itextpdf.io.image.ImageDataFactory;
+
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.Date;
-
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
 public class ProduitController implements Initializable{
 
@@ -769,65 +777,6 @@ public class ProduitController implements Initializable{
         menuGetTotal();
         menu_total.setText("TND" + totalP);
     }
-    public void menuPayBtn() {
-
-        if (totalP == 0) {
-            alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error Message");
-            alert.setHeaderText(null);
-            alert.setContentText("Veuillez d'abord choisir votre commande !");
-            alert.showAndWait();
-        } else {
-            menuGetTotal();
-            String insertPay = "INSERT INTO command (customer_id, total, date) "
-                    + "VALUES(?,?,?)";
-
-            connect = database.connectDB();
-
-            try {
-                    alert = new Alert(AlertType.CONFIRMATION);
-                    alert.setTitle("Confirmation Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Are you sure?");
-                    Optional<ButtonType> option = alert.showAndWait();
-
-                    if (option.get().equals(ButtonType.OK)) {
-                        customerID();
-                        menuGetTotal();
-                        prepare = connect.prepareStatement(insertPay);
-                        prepare.setString(1, String.valueOf(cID));
-                        prepare.setString(2, String.valueOf(totalP));
-
-                        Date date = new Date();
-                        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-
-                        prepare.setString(3, String.valueOf(sqlDate));
-                        //prepare.setString(4, data.username);
-
-                        prepare.executeUpdate();
-
-                        alert = new Alert(AlertType.INFORMATION);
-                        alert.setTitle("Infomation Message");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Successful.");
-                        alert.showAndWait();
-
-                        menuShowOrderData();
-
-                    } else {
-                        alert = new Alert(AlertType.WARNING);
-                        alert.setTitle("Infomation Message");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Cancelled.");
-                        alert.showAndWait();
-                    }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-    }
     public void menuRemoveBtn() {
 
         if (getid == 0) {
@@ -971,6 +920,7 @@ public class ProduitController implements Initializable{
             inventoryTypeList();
             //inventoryStatusList();
             inventoryShowData();
+            search_prod();
         } else if (event.getSource() == menu_btn) {
             dashboard_form.setVisible(false);
             inventory_form.setVisible(false);
@@ -1034,5 +984,93 @@ public class ProduitController implements Initializable{
         sorteddata.comparatorProperty().bind(inventory_tableView.comparatorProperty());
         inventory_tableView.setItems(sorteddata);
     }
+        public void generatePDF() throws FileNotFoundException, MalformedURLException, SQLException {
+            customerID();
+            ObservableList<produit> listData = FXCollections.observableArrayList();
+            String sql = "SELECT * FROM produit_command WHERE customer_id = " + cID;
+
+            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                produit prod = new produit();
+                prod.setId(rs.getInt("id"));
+                prod.setNom(rs.getString("prod_name"));
+                prod.setQuantité_stock(rs.getInt("quantity"));
+                prod.setPrix(rs.getFloat("price"));
+                listData.add(prod);
+            }
+
+            // Initialize PDF writer and document
+            PdfWriter writer = new PdfWriter("receipt.pdf");
+            PdfDocument pdf = new PdfDocument(writer);
+            Document document = new Document(pdf);
+
+            // Set document alignment to center both horizontally and vertically
+            document.setTextAlignment(TextAlignment.CENTER);
+            //document.setVerticalAlignment(VerticalAlignment.MIDDLE);
+
+            // Add logo image (adjust width and height as needed)
+            String imagePath = "logo.png"; // Specify the path to your image file
+            com.itextpdf.layout.element.Image image = new com.itextpdf.layout.element.Image(ImageDataFactory.create(imagePath));
+
+            // Set the width and height of the image (in points)
+            float desiredWidth = 500; // Adjust this value as needed
+            float desiredHeight = 300; // Adjust this value as needed
+            image.setWidth(desiredWidth);
+            image.setHeight(desiredHeight);
+
+            // Add the image to the document
+            document.add(image);
+
+            // Add title with increased font size
+            Paragraph title = new Paragraph("Receipt")
+                    .setBold()
+                    .setFontSize(30); // Set font size to 30
+            document.add(title);
+
+            // Add date with larger font size
+            Paragraph date = new Paragraph("Date: " + LocalDate.now())
+                    .setFontSize(20); // Set font size to 20
+            document.add(date);
+
+            // Add customer ID with larger font size
+            Paragraph customerID = new Paragraph("Customer ID: " + cID)
+                    .setFontSize(20); // Set font size to 20
+            document.add(customerID);
+
+            // Add empty paragraph for spacing
+            document.add(new Paragraph(" "));
+
+            // Add table with increased font size
+            Table table = new Table(3).setWidth(500);
+            table.addCell(new Paragraph("Product Name").setFontSize(20)); // Set font size to 20
+            table.addCell(new Paragraph("Quantity").setFontSize(20)); // Set font size to 20
+            table.addCell(new Paragraph("Price").setFontSize(20)); // Set font size to 20
+
+            for (produit prodd : listData) {
+                table.addCell(new Paragraph(prodd.getNom()).setFontSize(18)); // Set font size to 18
+                table.addCell(new Paragraph(String.valueOf(prodd.getQuantité_stock())).setFontSize(18)); // Set font size to 18
+                table.addCell(new Paragraph(String.format("%.2f", prodd.getPrix())).setFontSize(18)); // Set font size to 18
+            }
+
+            // Add table to document
+            document.add(table);
+
+            // Add empty paragraph for spacing
+            document.add(new Paragraph(" "));
+
+            // Calculate and add total amount with larger font size
+            //float totalP = calculateTotalPrice(listData);
+            Paragraph totalAmount = new Paragraph("Your total is: TND " + String.format("%.2f", totalP))
+                    .setFontSize(24); // Set font size to 24
+            document.add(totalAmount);
+            Paragraph Thank = new Paragraph("Thank Youuu <3 (;" )
+                    .setFontSize(24); // Set font size to 24
+            document.add(Thank);
+
+            // Close document
+            document.close();
+
+        }
 }
 
