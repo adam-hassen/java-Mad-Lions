@@ -100,7 +100,7 @@ int i=0;
     }
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/index.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Home.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setTitle("Hello!");
         primaryStage.setScene(scene);

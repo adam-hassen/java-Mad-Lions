@@ -18,7 +18,8 @@ public class Home  {
 
     @FXML
     private Button signup;
-
+    @FXML
+    private Button wf;
     @FXML
     void login(ActionEvent event)throws IOException {
         Parent root1 = FXMLLoader.load(getClass().getResource("/login.fxml"));
@@ -32,6 +33,15 @@ public class Home  {
     @FXML
     void signup(ActionEvent event)throws IOException  {
         Parent root1 = FXMLLoader.load(getClass().getResource("/inscrire.fxml"));
+        Scene scene1 = new Scene(root1);
+        Stage stage1;
+        stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage1.setScene(scene1);
+        stage1.show();
+    }
+@FXML
+    void wf (ActionEvent event) throws IOException {
+        Parent root1 = FXMLLoader.load(getClass().getResource("/Workshop/Fworkshop.fxml"));
         Scene scene1 = new Scene(root1);
         Stage stage1;
         stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();

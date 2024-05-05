@@ -23,23 +23,23 @@
                     <children>
                         <VBox alignment="CENTER" prefHeight="62.0" prefWidth="88.0">
                             <children>
-                                <Button mnemonicParsing="false" style="-fx-background-color: #00;" styleClass="root" stylesheets="@style/style.css" text="evenement" />
+                                <Button mnemonicParsing="false" style="-fx-background-color: #00;" styleClass="blue-btn" stylesheets="@style/style.css" text="evenement" />
                             </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                             <children>
-                                <Button mnemonicParsing="false" style="-fx-background-color: #00;" styleClass="root" stylesheets="@style/style.css" text="consomation" />
+                                <Button mnemonicParsing="false" style="-fx-background-color: #00;" styleClass="blue-btn" stylesheets="@style/style.css" text="consomation" />
                             </children>
                         </VBox>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #00;" styleClass="root" stylesheets="@style/style.css" text="recyclage" />
+                        <Button mnemonicParsing="false" style="-fx-background-color: #00;" styleClass="blue-btn" stylesheets="@style/style.css" text="recyclage" />
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                             <children>
-                                <Button mnemonicParsing="false" style="-fx-background-color: #00;" styleClass="root" stylesheets="@style/style.css" text="worshop" />
+                                <Button mnemonicParsing="false" onAction="#wf" style="-fx-background-color: #00;" styleClass="blue-btn" stylesheets="@style/style.css" text="worshop" />
                             </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                             <children>
-                                <Button mnemonicParsing="false" style="-fx-background-color: #00;" styleClass="root" stylesheets="@style/style.css" text="produit" />
+                                <Button mnemonicParsing="false" style="-fx-background-color: #00;" styleClass="blue-btn" stylesheets="@style/style.css" text="produit" />
                             </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="38.0" prefWidth="283.0">
