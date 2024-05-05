@@ -417,4 +417,33 @@ public class ActionService {
         }
         return ListeAct;
     }
+    public Action lastAction(int id) {
+        try {
+            String requete = "SELECT * FROM ACTION WHERE user_id=? ORDER BY id DESC LIMIT 1";
+            PreparedStatement pst = cn.prepareStatement(requete);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                Action act = new Action();
+                act.setId(rs.getInt("id"));
+                int a = rs.getInt("type_id");
+                TypeNameService typenameService = new TypeNameService();
+                TypeName tp = typenameService.cherchertypename(a);
+                act.setType_id(tp);
+                act.setUser_id(rs.getInt("user_id"));
+                act.setQuantite(rs.getDouble("quantite"));
+                act.setAction_score(rs.getDouble("action_score"));
+                act.setNiveau_danger(rs.getInt("niveau_danger"));
+                int b = rs.getInt("location_id");
+                ActionLocation loc = this.chercherLocation(b);
+                act.setLocation_id(loc);
+                act.setDescription(rs.getString("description"));
+                act.setDate(rs.getDate("date").toLocalDate());
+                return act;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 }

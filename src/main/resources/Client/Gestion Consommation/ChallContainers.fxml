@@ -12,8 +12,8 @@
       <ImageView>
          <Image url="@../../CSS/Images/plastique.png" />
       </ImageView>
-      <Label text="Limiter Le Plastique" styleClass="title-label" />
-      <Label text="Challenge!" styleClass="subtitle-label" />
+      <Label styleClass="title-label" text="Limiter Le Plastique" />
+      <Label styleClass="subtitle-label" text="Challenge!" />
       <Label style="-fx-text-fill: black;-fx-padding: 50px 0;" wrapText="true">
          Votre Objective d'aujourd'hui est :
       </Label>
@@ -21,11 +21,11 @@
          <Text fx:id="predictPlastique" style="-fx-font-weight: bold;" />
          <Label style="-fx-text-fill: black;">L</Label>
       </HBox>
-      <Label style="-fx-text-fill: black;" >
+      <Label style="-fx-text-fill: black;">
          Equivalant a :
       </Label>
       <Text fx:id="predictPlastiqueProp" style="-fx-font-weight: bold;" />
-      <Label prefHeight="23.0" prefWidth="173.0" style="-fx-text-fill: black;" wrapText="true">
+      <Label prefHeight="46.0" prefWidth="162.0" style="-fx-text-fill: black;" wrapText="true">
          de bouteilles d'eau de 0.5L
       </Label>
    </VBox>
@@ -33,8 +33,8 @@
       <ImageView>
          <Image url="@../../CSS/Images/electric.png" />
       </ImageView>
-      <Label text="Limiter L'electricité" styleClass="title-label" />
-      <Label text="Challenge!" styleClass="subtitle-label"/>
+      <Label styleClass="title-label" text="Limiter L'electricité" />
+      <Label styleClass="subtitle-label" text="Challenge!" />
       <Label style="-fx-text-fill: black;-fx-padding: 50px 0;" wrapText="true">
          Votre Objective d'aujourd'hui est :
       </Label>
@@ -54,8 +54,8 @@
       <ImageView>
          <Image url="@../../CSS/Images/gaz.png" />
       </ImageView>
-      <Label text="Limiter Le Gaz" styleClass="title-label" />
-      <Label text="Challenge!" styleClass="subtitle-label"/>
+      <Label styleClass="title-label" text="Limiter Le Gaz" />
+      <Label styleClass="subtitle-label" text="Challenge!" />
       <Label style="-fx-text-fill: black;-fx-padding: 50px 0;" wrapText="true">
          Votre Objective d'aujourd'hui est :
       </Label>
@@ -76,8 +76,8 @@
       <ImageView>
          <Image url="@../../CSS/Images/carburant.png" />
       </ImageView>
-      <Label text="Limiter Le Carburant " styleClass="title-label" />
-      <Label text="Challenge!" styleClass="subtitle-label"/>
+      <Label styleClass="title-label" text="Limiter Le Carburant " />
+      <Label styleClass="subtitle-label" text="Challenge!" />
       <Label style="-fx-text-fill: black;-fx-padding: 50px 0;" wrapText="true">
          Votre Objective d'aujourd'hui est :
       </Label>
