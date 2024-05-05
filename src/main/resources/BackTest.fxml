@@ -45,7 +45,7 @@
                   </HBox>
                   <ImageView fitHeight="62.0" fitWidth="302.0" layoutX="16.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@CSS/Images/ecogardien.png" />
+                        <Image url="@img/logo.png" />
                      </image>
                   </ImageView>
                </children>

@@ -18,6 +18,15 @@ module GestionRecyclage {
     requires org.jfree.chart.fx;
     requires javax.mail.api;
     requires okhttp3;
+    requires stripe.java;
+    requires AnimateFX;
+    requires kernel;
+    requires layout;
+    requires org.apache.pdfbox;
+    requires io;
+    requires com.dlsc.formsfx;
+    opens com.example.demo to javafx.fxml;
+    exports com.example.demo;
     opens Recyclage.entities;
     opens Recyclage.controllers;
     opens Recyclage.services;

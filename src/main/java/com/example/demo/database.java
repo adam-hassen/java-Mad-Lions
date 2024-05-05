@@ -12,7 +12,7 @@ public class database {
 
             Class.forName("com.mysql.jdbc.Driver");
 
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/ecogardienfinal1", "root", ""); // LINK YOUR DATABASE
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/ecogardienintegrationfinale", "root", ""); // LINK YOUR DATABASE
             return connect;
         } catch (Exception e) {
             e.printStackTrace();
