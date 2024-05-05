@@ -135,7 +135,34 @@ public void initialize (URL url , ResourceBundle resourceBundle){
             UserServices pcd = new UserServices();
 
             User1 t = new User1(USERNAME,PASSWORD,NAME,ADRESS,numeroInt,GENRE,PRENOM);
-            if (pcd.test_used_email(t)) {  pcd.ajouteruser(t);}
+            if (pcd.test_used_email(t)) {
+
+                pcd.ajouteruser(t);
+
+                String to =  username.getText();
+                String subject = "WELCOME TO ECOGARDIEN";
+                String body = "Dear member,\n" +
+                        "\n" +
+                        "Welcome to Ecogardien! We're delighted to have you join our community dedicated to preserving nature and protecting the environment.\n" +
+                        "\n" +
+                        "At Ecogardien, our mission is to [brief description of your company's mission or purpose]. We're committed to providing innovative solutions and empowering individuals like you to make a positive impact on our planet.\n" +
+                        "\n" +
+                        "Here's what you can look forward to as a new member:\n" +
+                        "\n" +
+                        "Access to a wealth of resources and tools to help you learn more about environmental conservation and sustainable living.\n" +
+                        "Regular updates on environmental news, conservation efforts, and opportunities to get involved in local and global initiatives.\n" +
+                        "Support from our team of experts to guide you on your journey towards becoming a more eco-conscious individual.\n" +
+                        "We're here to support you in your efforts to live more sustainably and make a difference for future generations. If you have any questions, ideas, or suggestions, please feel free to reach out to us at [your contact email or support channel].\n" +
+                        "\n" +
+                        "Once again, welcome to Ecogardien! Together, we can create a greener, cleaner, and more sustainable world.\n" +
+                        "\n" +
+                        "Best regards,\n" +
+                        "\n" +
+                        "yasmine ncib\n" +
+                        "Ecogardien";
+
+                // Send email
+                pcd.sendEmail(to, subject, body);}
             else {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("erreur !");

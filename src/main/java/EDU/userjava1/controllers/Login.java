@@ -13,6 +13,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+//import javax.mail.MessagingException;
+import javax.mail.MessagingException;
 import java.io.IOException;
 
 public class Login {
@@ -46,7 +48,7 @@ public class Login {
     private AnchorPane side_ankerpane1;
 
     @FXML
-    void LoginButtonOnAction(ActionEvent event) throws IOException{
+    void LoginButtonOnAction(ActionEvent event) throws IOException {
         User1 u = new User1();
         UserServices GS = new UserServices();
         int id = GS.Login(EmailLabel1.getText().toString(), PasswordLabel1.getText().toString());
@@ -60,7 +62,7 @@ public class Login {
             v = GS.getbyemail_user(EmailLabel1.getText().toString());
 
             System.out.println(v);
-
+           // GS.sendEmail("ncib.yasmine@esprit.tn","aa","aa") ;
             Parent root2 = FXMLLoader.load(getClass().getResource("/home222.fxml"));
             Scene scene2 = new Scene(root2);
             Stage stage2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -87,6 +89,8 @@ public class Login {
             alert.setContentText("Verifier vos données ");
             alert.showAndWait();
         }
+
+
     }
 
     @FXML
@@ -101,14 +105,7 @@ public class Login {
     }
 
     @FXML
-    void openForgetPassword(ActionEvent event) throws IOException{
-
-        Parent root1 = FXMLLoader.load(getClass().getResource("/Mdpoublier.fxml"));
-        Scene scene1 = new Scene(root1);
-        Stage stage1;
-        stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage1.setScene(scene1);
-        stage1.show();
+    void openForgetPassword(ActionEvent event) throws MessagingException {
 
 
     }

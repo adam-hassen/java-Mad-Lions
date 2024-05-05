@@ -3,8 +3,30 @@ import EDU.userjava1.entities.RolesConverter;
 import EDU.userjava1.tools.MyConnexion;
 import EDU.userjava1.interfaces.Userinterface;
 import EDU.userjava1.entities.User1;
-import com.twilio.Twilio;
-import com.twilio.type.PhoneNumber;
+import at.favre.lib.crypto.bcrypt.BCrypt;
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.util.Properties;
+
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
+
+
+import javax.mail.Authenticator;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Message;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.Transport;
+import javax.mail.MessagingException;
+import java.util.Properties;
+
+
+
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -13,6 +35,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+
+import java.util.Properties;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -287,6 +311,69 @@ public class UserServices implements Userinterface {
         return "";
 
     }
+ /* public String EncryptMdp (String mdp_input){
+      int strength = 12; // You can adjust the strength as needed
+
+      // Hash the password using BCrypt
+      String hashedPassword = BCrypt.withDefaults().hashToString(strength, mdp_input.toCharArray());
+
+      return hashedPassword;
+  }*/
+
+
+
+
+    public static void sendEmail(String to, String subject, String body) {
+        // SMTP server configuration for Gmail
+        String host = "smtp.gmail.com";
+        String username  = "techwork414@gmail.com";
+        String password = "pacrvzlvscatwwkb";
+
+        // Email properties
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", "587"); // Gmail SMTP port
+
+        // Create a Session with authentication
+        Session session = Session.getInstance(props, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+
+        try {
+            // Create a MimeMessage object
+            Message message = new MimeMessage(session);
+
+            // Set From: header field
+            message.setFrom(new InternetAddress(username));
+
+            // Set To: header field
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+
+            // Set Subject: header field
+            message.setSubject(subject);
+
+            // Set email body
+            message.setText(body);
+
+            // Send message
+            Transport.send(message);
+
+            System.out.println("Email sent successfully!");
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+
 
 }
+
+
 
