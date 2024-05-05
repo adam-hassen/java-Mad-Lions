@@ -380,6 +380,7 @@ public class ActionService {
 
         if (count > 0) {
             float averageDanger = totalDanger / count;
+            System.out.println("Moyenne de danger : " + averageDanger);
             return averageDanger;
         } else {
             return 0;

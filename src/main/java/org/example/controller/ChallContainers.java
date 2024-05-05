@@ -4,6 +4,7 @@ import EDU.userjava1.controllers.Login;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -25,30 +26,23 @@ import java.util.List;
 
 public class ChallContainers {
     @FXML
+    public Text predictPlastique;
+    @FXML
+    public Text predictPlastiqueProp;
+    @FXML
+    public Text predictElectricity;
+    @FXML
+    public Text predictElectTime;
+    @FXML
+    public Text predictGazProp;
+    @FXML
+    public Text predictGaz;
+    @FXML
+    public Text predictCarburant;
+    @FXML
+    public Text predictCarburantProp;
+    @FXML
     private HBox ChallContainer;
-    @FXML
-    private Text predectCarburant;
-
-    @FXML
-    private Text predectCarburantProp;
-
-    @FXML
-    private Text predectElectTime;
-
-    @FXML
-    private Text predectElectricite;
-
-    @FXML
-    private Text predectGaz;
-
-    @FXML
-    private Text predectGazProp;
-
-    @FXML
-    private Text predectPlastique;
-
-    @FXML
-    private Text predectPlastiqueProp;
     private ActionService query;
     @FXML
     public void initialize() {
@@ -95,7 +89,6 @@ public class ChallContainers {
         double sumElectricite = 0;
 
         for (Action action : actions) {
-            if (action.getDate().isEqual(LocalDate.now())) {
                 double score = action.getAction_score();
                 String type = action.getType_id().getType();
                 switch (type) {
@@ -112,7 +105,6 @@ public class ChallContainers {
                         sumElectricite += score;
                         break;
                 }
-            }
         }
 
         double percentagePlastique = (sumPlastique / predectPlastique) * 100;
@@ -121,24 +113,36 @@ public class ChallContainers {
         double percentageElectricite = (sumElectricite / predectElectricite) * 100;
 
 // Convert to PC time
-        double predectElectriciteProp = predectElectricite;
+        double predectElectriciteProp = predectElectricite ;
         predectElectriciteProp = predectElectricite / 0.0028;
-        String predectElectTime = new java.text.SimpleDateFormat("HH:mm:ss").format(new java.util.Date((long) predectElectricite * 1000));
-
+        java.util.Date predectElectriciteDate = new java.util.Date((long) predectElectriciteProp * 1000);
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("HH:mm:ss");
+        String predectElectTime = sdf.format(predectElectriciteDate);
+        predictElectTime.setText(predectElectTime);
+        predictElectricity.setText(String.valueOf(predectElectricite));
 // Convert to km de voiture
         double predectCarburantProp = predectCarburant;
-        predectCarburantProp = predectCarburantProp / 2.3;
+        predectCarburantProp = predectCarburantProp / 0.03;
+        String predectCarburantT = new java.text.SimpleDateFormat("HH:mm:ss").format(new java.util.Date((long) predectCarburantProp * 1000));
+        predictCarburant.setText(String.valueOf(predectCarburant));
+        predictCarburantProp.setText(String.valueOf(predectCarburantT));
 
 // Convert to cuisinier
         double predectGazP = predectGaz;
-        predectGazP = predectGazP / 0.5;
+        System.out.println("predectGazP" +predectGazP);
+        predectGazP = predectGazP / 0.05;
+        System.out.println("predectGazProp" +predectGazP);
         String predectGazProp = new java.text.SimpleDateFormat("HH:mm:ss").format(new java.util.Date((long) predectGazP * 1000));
-
+        System.out.println("predectGazProp" +predectGazProp);
+        predictGaz.setText(String.valueOf(predectGaz));
+        predictGazProp.setText(String.valueOf(predectGazProp));
 // Convert to bouteille 1L
         double predectPlastiqueProp = predectPlastique;
-        predectPlastiqueProp = predectPlastiqueProp / 0.5;
-
-
+        predectPlastiqueProp = predectPlastiqueProp / 1.5;
+        predictPlastique.setText(String.valueOf(predectPlastique));
+        predictPlastiqueProp.setText(String.valueOf(predectPlastiqueProp));
+        //predictPlastique.setText(String.valueOf(predectPlastique));
+        //predictPlastiqueProp.setText(String.valueOf(predectPlastiqueProp));
     }
     public void showChallenges(Pane challSpace){
         challSpace.getChildren().add(ChallContainer);
@@ -149,12 +153,16 @@ public class ChallContainers {
 
         for (Action action : actions) {
             totalScore += action.getAction_score();
+            System.out.println(action.getType_id().getType());
         }
 
         double averageScore = totalScore / actions.size();
 
-        double reductionAmount = averageScore * 0.4;
-
-        return Math.round(averageScore - reductionAmount);
+        double reductionAmount = averageScore * 0.5;
+        double rs = averageScore - reductionAmount;
+        System.out.println("averageScore : " + averageScore);
+        System.out.println("reductionAmount : " + reductionAmount);
+        System.out.println("Moyenne de danger : " + (averageScore - reductionAmount) + " =>" + Math.round(averageScore - reductionAmount));
+        return rs;
     }
 }

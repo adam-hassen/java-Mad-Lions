@@ -233,5 +233,18 @@
     -fx-border-color: #00FF00; /* Green */
     -fx-cursor: hand;
 }
+.title-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-padding: 5px 0;
+}
+
+.subtitle-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+    -fx-text-fill: black;
+    -fx-padding: 5px 0;
+}
 /* Rest of the CSS code */
 /* ... */

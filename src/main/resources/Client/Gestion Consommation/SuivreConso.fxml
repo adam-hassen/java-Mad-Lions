@@ -76,35 +76,35 @@
                   <children>
                      <VBox alignment="CENTER" spacing="20" prefHeight="600.0" prefWidth="800.0" styleClass="middle-container">
                         <children>
-                           <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />
+                           <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="darkgreen" strokeWidth="2.0" />
                            <Label styleClass="suivre-label" text="CONSOMMATION D'AUJOURD'HUI :" />
-                           <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />
+                           <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="darkgreen" strokeWidth="2.0" />
                            <StackPane fx:id="chartPanel" styleClass="chart-pane">
                               <children>
                                     <Label fx:id="firstcharterror" text="VOUS AVEZ AUCUN ACTIONS AUJOURD'HUI" />
                                     <PieChart fx:id="chart" styleClass="chart" prefHeight="450.0" prefWidth="550.0" />
                               </children>
                            </StackPane>
-                           <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />
+                           <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="darkgreen" strokeWidth="2.0" />
                            <Label styleClass="suivre-label" text="VOTRE DANGER ENVER L'ENVIRONNEMENT POUR LES 15J PRÉCÉDENTES :" />
-                           <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />
+                           <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="darkgreen" strokeWidth="2.0" />
                            <StackPane fx:id="scatterPanel" styleClass="chart-pane">
                               <children>
                                  <Label fx:id="scattercharterror" text="VOUS AVEZ AUCUN ACTIONS AUJOURD'HUI" />
                                  <PieChart fx:id="chart2" />
                               </children>
                            </StackPane>
-                           <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />
+                           <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="darkgreen" strokeWidth="2.0" />
                            <Label styleClass="suivre-label" text="CELA PRÉSENTE VOS PLACES PRÉCÉDENTE DE CONSOMMATION :" />
-                           <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />
+                           <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="darkgreen" strokeWidth="2.0" />
                            <AnchorPane prefHeight="450.0" prefWidth="730.0">
                               <ScrollPane prefHeight="450.0" prefWidth="730.0">
                                  <WebView fx:id="webView" prefHeight="450.0" prefWidth="730.0"/>
                               </ScrollPane>
                            </AnchorPane>
-                           <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />
-                           <Label styleClass="suivre-label" text="CELA PRÉSENTE VOS PLACES PRÉCÉDENTE DE CONSOMMATION :" />
-                           <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />
+                           <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="darkgreen" strokeWidth="2.0" />
+                           <Label styleClass="suivre-label" text="LIMITER VOS CONSOMMATION AVEC CES CHALLENGES :" />
+                           <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="darkgreen" strokeWidth="2.0" />
                            <AnchorPane fx:id="challSpace" prefHeight="600.0" prefWidth="800.0">
                            </AnchorPane>
                         </children>
