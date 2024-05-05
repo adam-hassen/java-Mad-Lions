@@ -23,6 +23,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.control.Pagination;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -163,9 +164,13 @@ public class Reclamationback implements Initializable {
             try (FileOutputStream fileOut = new FileOutputStream(file)) {
                 workbook.write(fileOut);
                 System.out.println("Excel file exported successfully.");
+
+                // Ouvrir le fichier Excel avec l'application par défaut
+                Desktop.getDesktop().open(file);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
+
 }
