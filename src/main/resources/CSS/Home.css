@@ -67,6 +67,18 @@
 .scroll-gestion .viewport{
     -fx-background-color: transparent;
 }
+.user_conso {
+    -fx-background-color: rgba(0, 128, 0, 0.5);
+    -fx-padding: 10px;
+    -fx-spacing: 5px;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+.user_conso Label {
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+}
 .button-home {
     -fx-font-size: 18px;
     -fx-padding: 10px 20px;
@@ -216,6 +228,35 @@
     -fx-border-color: #ccc; /* Bordure gris clair */
     -fx-border-width: 1px; /* Épaisseur de la bordure */
     -fx-border-radius: 25px; /* Coins arrondis */
+}
+/* challenges */
+.card {
+    -fx-background-color: rgba(0, 128, 0, 0.2);
+    -fx-border-color: #000000;
+    -fx-border-width: 1px;
+    -fx-padding: 10px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-transition-duration: 0.3s;
+}
+
+.card:hover {
+    -fx-background-color: rgba(0, 128, 0, 0.2); /* Transparent green */
+    -fx-border-color: #00FF00; /* Green */
+    -fx-cursor: hand;
+}
+.title-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-padding: 5px 0;
+}
+
+.subtitle-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+    -fx-text-fill: black;
+    -fx-padding: 5px 0;
 }
 /* Rest of the CSS code */
 /* ... */

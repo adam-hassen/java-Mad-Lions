@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.ComboBox?>
-<VBox alignment="CENTER" prefHeight="600.0" prefWidth="1000.0" stylesheets="@/CSS/Home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.AdminGestType">
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../CSS/Home.css"  xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.AdminGestType">
     <children>
         <HBox alignment="CENTER_LEFT" prefHeight="542.0" prefWidth="1000.0" spacing="20.0">
             <children>
@@ -70,7 +70,7 @@
                         </VBox>
                     </children>
                 </VBox>
-                <VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" stylesheets="@/CSS/Home.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+                <VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../CSS/Home.css"  xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
                     <children>
                         <AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="middle-container">
                             <Label layoutX="20.0" layoutY="20.0" text="Nom:" />

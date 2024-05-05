@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import EDU.userjava1.controllers.Login;
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
@@ -11,7 +12,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
-
+import EDU.userjava1.entities.User1;
+import EDU.userjava1.interfaces.MyListener;
+import EDU.userjava1.interfaces.MyListener1;
+import EDU.userjava1.services.UserServices;
 import java.io.IOException;
 
 public class HomeController {
@@ -27,6 +31,7 @@ public class HomeController {
                 addHoverAnimation(label);
             }
         });
+
     }
 
     public void addHoverAnimation(Label label) {

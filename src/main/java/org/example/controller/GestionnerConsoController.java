@@ -31,7 +31,10 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
-
+import EDU.userjava1.entities.User1;
+import EDU.userjava1.interfaces.MyListener;
+import EDU.userjava1.interfaces.MyListener1;
+import EDU.userjava1.services.UserServices;
 public class GestionnerConsoController {
     @FXML
     public HBox containerView;
@@ -84,13 +87,6 @@ public class GestionnerConsoController {
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
         //sidebar animation
-        VBox sidebar = vboxside;
-        sidebar.getChildren().forEach(node -> {
-            if (node instanceof Label) {
-                Label label = (Label) node;
-                addHoverAnimation(label);
-            }
-        });
     }
 
     @FXML

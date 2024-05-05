@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import EDU.userjava1.controllers.Login;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,7 +14,10 @@ import org.example.service.TypeNameService;
 
 import java.util.List;
 import java.util.Optional;
-
+import EDU.userjava1.entities.User1;
+import EDU.userjava1.interfaces.MyListener;
+import EDU.userjava1.interfaces.MyListener1;
+import EDU.userjava1.services.UserServices;
 public class showActions {
     @FXML
     public TextField typeNameTextField;
@@ -46,7 +50,7 @@ public class showActions {
         //showAction();
     }
     public void showAction(Pane containerView) {
-        List<Action> actionList = query.afficherActions(1);
+        List<Action> actionList = query.afficherActions(Login.v.getId());
         ObservableList<Action> observableList = FXCollections.observableArrayList(actionList);
         containerView.getChildren().clear();
         for (Action action : observableList) {

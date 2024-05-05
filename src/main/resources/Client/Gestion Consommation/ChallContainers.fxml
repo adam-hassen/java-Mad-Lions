@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<HBox fx:id="ChallContainer" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0" spacing="5.0" stylesheets="@../../CSS/Home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ChallContainers">
+   <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0" styleClass="card">
+      <ImageView>
+         <Image url="@../../CSS/Images/plastique.png" />
+      </ImageView>
+      <Label styleClass="title-label" text="Limiter Le Plastique" />
+      <Label styleClass="subtitle-label" text="Challenge!" />
+      <Label style="-fx-text-fill: black;-fx-padding: 50px 0;" wrapText="true">
+         Votre Objective d'aujourd'hui est :
+      </Label>
+      <HBox alignment="CENTER">
+         <Text fx:id="predictPlastique" style="-fx-font-weight: bold;" />
+         <Label style="-fx-text-fill: black;">L</Label>
+      </HBox>
+      <Label style="-fx-text-fill: black;">
+         Equivalant a :
+      </Label>
+      <Text fx:id="predictPlastiqueProp" style="-fx-font-weight: bold;" />
+      <Label prefHeight="46.0" prefWidth="162.0" style="-fx-text-fill: black;" wrapText="true">
+         de bouteilles d'eau de 0.5L
+      </Label>
+   </VBox>
+   <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0" styleClass="card">
+      <ImageView>
+         <Image url="@../../CSS/Images/electric.png" />
+      </ImageView>
+      <Label styleClass="title-label" text="Limiter L'electricité" />
+      <Label styleClass="subtitle-label" text="Challenge!" />
+      <Label style="-fx-text-fill: black;-fx-padding: 50px 0;" wrapText="true">
+         Votre Objective d'aujourd'hui est :
+      </Label>
+      <HBox alignment="CENTER">
+         <Text fx:id="predictElectricity" style="-fx-font-weight: bold;" />
+         <Label style="-fx-text-fill: black;">Kw/s</Label>
+      </HBox>
+      <Label style="-fx-text-fill: black;">
+         Equivalant a :
+      </Label>
+         <Text fx:id="predictElectTime" style="-fx-font-weight: bold;" />
+      <Label style="-fx-text-fill: black;" wrapText="true">
+         d'utilisation de PC
+      </Label>
+   </VBox>
+   <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0" styleClass="card">
+      <ImageView>
+         <Image url="@../../CSS/Images/gaz.png" />
+      </ImageView>
+      <Label styleClass="title-label" text="Limiter Le Gaz" />
+      <Label styleClass="subtitle-label" text="Challenge!" />
+      <Label style="-fx-text-fill: black;-fx-padding: 50px 0;" wrapText="true">
+         Votre Objective d'aujourd'hui est :
+      </Label>
+      <HBox alignment="CENTER">
+         <Text fx:id="predictGaz" style="-fx-font-weight: bold;" />
+         <Label style="-fx-text-fill: black;"> M³</Label>
+      </HBox>
+      <Label style="-fx-text-fill: black;">
+         Equivalant a :
+      </Label>
+      <Text fx:id="predictGazProp" style="-fx-font-weight: bold;" />
+      <Label style="-fx-text-fill: black;">
+         de cuisinière.
+      </Label>
+
+   </VBox>
+   <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0" styleClass="card">
+      <ImageView>
+         <Image url="@../../CSS/Images/carburant.png" />
+      </ImageView>
+      <Label styleClass="title-label" text="Limiter Le Carburant " />
+      <Label styleClass="subtitle-label" text="Challenge!" />
+      <Label style="-fx-text-fill: black;-fx-padding: 50px 0;" wrapText="true">
+         Votre Objective d'aujourd'hui est :
+      </Label>
+      <HBox alignment="CENTER">
+         <Text fx:id="predictCarburant" style="-fx-font-weight: bold;" />
+         <Label style="-fx-text-fill: black;"> M</Label>
+      </HBox>
+      <Label style="-fx-text-fill: black;" wrapText="true">
+         Equivalant a conduire pendant :
+      </Label>
+      <Text fx:id="predictCarburantProp" style="-fx-font-weight: bold;" />
+      <Label style="-fx-text-fill: black;">
+         Km de voiture 4x4
+      </Label>
+   </VBox>
+</HBox>

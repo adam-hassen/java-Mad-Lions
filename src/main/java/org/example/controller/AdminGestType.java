@@ -20,7 +20,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
-
+import EDU.userjava1.entities.User1;
+import EDU.userjava1.interfaces.MyListener;
+import EDU.userjava1.interfaces.MyListener1;
+import EDU.userjava1.services.UserServices;
 public class AdminGestType {
     @FXML
     private TableView<TypeName> tableView;
