@@ -119,6 +119,7 @@ public void miseajourtable(){
                         @Override
                         public void onClickListener(Workshop w) {
                                 setChosenFruit(w);
+
                         }
                 };
         }

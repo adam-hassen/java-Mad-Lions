@@ -9,12 +9,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import org.example.entity.Workshop;
 import org.example.interfaces.MyListener;
 import org.example.service.WorkshopMethode;
@@ -37,19 +40,22 @@ public class Fworkshop implements Initializable {
     @FXML
     private VBox chosenFruitCard;
 
+
     @FXML
     private GridPane grid;
 
-    private java.util.List<Workshop> fruits = new ArrayList<>();
+    private List<Workshop> fruits = new ArrayList<>();
     private MyListener myListener;
     private WorkshopMethode gs = new WorkshopMethode();
 
-    private java.util.List<Workshop> getData() {
+    private List<Workshop> getData() {
         return gs.listeDesWorkshop();
     }
 
-    private void setChosenFruit(Workshop fruit) {
-
+    private void setChosenFruit(Workshop fruit)
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/Workshop/addtest.fxml"));
     }
 
     @Override
@@ -57,14 +63,31 @@ public class Fworkshop implements Initializable {
         miseajourtable();
     }
 
-    public void miseajourtable() {
+    public void miseajourtable(){
         ObservableList<Node> children = grid.getChildren();
         grid.getChildren().clear();
         fruits.clear();
         fruits.addAll(getData());
         if (fruits.size() > 0) {
             setChosenFruit(fruits.get(0));
-            myListener = w -> setChosenFruit(w);
+            myListener = new MyListener() {
+
+                @Override
+                public void onClickListener(Workshop w) {
+                    setChosenFruit(w);
+                    System.out.println("ttttt");
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Workshop/quiz.fxml"));
+                        Parent root = loader.load();
+                        Stage stage = new Stage();  // Create a new stage for the new scene
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    } catch (IOException e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+
+            };
         }
         int column = 0;
         int row = 1;
@@ -83,7 +106,18 @@ public class Fworkshop implements Initializable {
                     column = 0;
                     row++;
                 }
-                grid.add(anchorPane, column++, row);
+
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
         } catch (IOException e) {

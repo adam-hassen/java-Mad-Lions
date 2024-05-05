@@ -30,7 +30,7 @@
                                                 <TextField layoutX="508.0" layoutY="24.0" prefHeight="27.0" prefWidth="184.0" styleClass="button-with-shadow" stylesheets="@../style/style.css" />
                                                 <Button layoutX="718.0" layoutY="24.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: green;" styleClass="button-with-shadow" stylesheets="@../style/style.css" text="Search" textFill="WHITE" />
                                                 <Button layoutX="853.0" layoutY="11.0" mnemonicParsing="false" onAction="#profile" prefHeight="26.0" prefWidth="154.0" style="-fx-background-color: green;" styleClass="button-with-shadow" stylesheets="@../style/style.css" text="Mon profile" textFill="#eae7e7" />
-                                                <Button layoutX="264.0" layoutY="30.0" mnemonicParsing="false" onAction="#generateCertificate" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: green;" styleClass="button-with-shadow" stylesheets="@../style/style.css" text="Generate Certificate" textFill="#eae7e7" />
+
 
                                                 <ImageView fitHeight="73.0" fitWidth="171.0" layoutX="46.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -44,6 +44,7 @@
                                     <VBox.margin>
                                         <Insets left="20.0" right="20.0" top="10.0" />
                                     </VBox.margin>
+
                                 </HBox>
                                 <HBox alignment="CENTER" prefHeight="666.0" prefWidth="1255.0" VBox.vgrow="ALWAYS">
                                     <children>
@@ -52,7 +53,7 @@
                                     <Image url="@../img/banner-bg.jpg" />
                                  </image>
                               </ImageView>
-                                        <ScrollPane prefHeight="655.0" prefWidth="946.0" styleClass="pane_1111" stylesheets="@../style/style.css">
+                                        <ScrollPane fx:id="lava" prefHeight="655.0" prefWidth="946.0" styleClass="pane_1111" stylesheets="@../style/style.css">
                                             <content>
                                                 <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
                                                     <rowConstraints>

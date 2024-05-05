@@ -37,7 +37,6 @@ public class Test {
         this.question = question;
         this.reponse = reponse;
 
-    }
 
 
 }
