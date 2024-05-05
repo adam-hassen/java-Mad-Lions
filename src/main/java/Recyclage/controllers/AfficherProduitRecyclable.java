@@ -71,8 +71,8 @@ public class AfficherProduitRecyclable {
             stage.show();
 
             // Fermer la fenêtre actuelle après la transition
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            fadeTransition.setOnFinished(e -> currentStage.close());
+          //  Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            //fadeTransition.setOnFinished(e -> currentStage.close());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -360,8 +360,8 @@ public class AfficherProduitRecyclable {
             stage.show();
 
             // Fermer la fenêtre actuelle après la transition
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            fadeTransition.setOnFinished(e -> currentStage.close());
+          //  Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+           // fadeTransition.setOnFinished(e -> currentStage.close());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

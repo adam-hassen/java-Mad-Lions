@@ -6,78 +6,78 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1359.0" prefWidth="1211.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.home111">
+<AnchorPane prefHeight="694.0" prefWidth="1227.0" style="-fx-background-color: #229954;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.home111">
    <children>
-      <AnchorPane layoutX="-6.0" layoutY="-54.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="752.0" prefWidth="1220.0">
-         <children>
-            <ImageView fitHeight="740.0" fitWidth="1220.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/banner-bg.jpg" />
-               </image>
-            </ImageView>
-            <HBox alignment="CENTER" layoutX="19.0" layoutY="-4.0" prefHeight="85.0" prefWidth="1007.0">
+      <BorderPane fx:id="BorderPane" layoutY="-69.0" prefHeight="794.0" prefWidth="1263.0">
+         <top>
+            <HBox alignment="CENTER" prefHeight="109.0" prefWidth="1226.0" style="-fx-background-color: #229954;" BorderPane.alignment="CENTER">
                <children>
-                  <VBox alignment="CENTER" prefHeight="62.0" prefWidth="148.0">
+                  <ImageView fitHeight="122.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/logo.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER" prefHeight="113.0" prefWidth="212.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#evenement" prefHeight="40.0" prefWidth="143.0" styleClass="root" stylesheets="@style/BoutonHome.css" text="evenement" />
+                        <Button mnemonicParsing="false" onAction="#evenement" prefHeight="40.0" prefWidth="170.0" styleClass="root" stylesheets="@style/BoutonHome.css" text="evenement" />
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="62.0" prefWidth="158.0">
+                  <VBox alignment="CENTER" prefHeight="141.0" prefWidth="205.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#consomation" prefHeight="40.0" prefWidth="158.0" styleClass="root" stylesheets="@style/BoutonHome.css" text="consomation" />
                      </children>
                   </VBox>
-                  <Button mnemonicParsing="false" onAction="#recyclage" prefHeight="40.0" prefWidth="138.0" styleClass="root" stylesheets="@style/BoutonHome.css" text="recyclage" />
-                  <VBox alignment="CENTER" prefHeight="62.0" prefWidth="128.0">
+                  <Button mnemonicParsing="false" onAction="#recyclage" prefHeight="40.0" prefWidth="169.0" styleClass="root" stylesheets="@style/BoutonHome.css" text="recyclage" />
+                  <VBox alignment="CENTER" prefHeight="168.0" prefWidth="195.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#workshop" prefHeight="40.0" prefWidth="118.0" styleClass="root" stylesheets="@style/BoutonHome.css" text="worshop" />
+                        <Button mnemonicParsing="false" onAction="#workshop" prefHeight="40.0" prefWidth="142.0" styleClass="root" stylesheets="@style/BoutonHome.css" text="worshop" />
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="62.0" prefWidth="121.0">
+                  <VBox alignment="CENTER" prefHeight="167.0" prefWidth="198.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#produit" prefHeight="40.0" prefWidth="114.0" styleClass="root" stylesheets="@style/BoutonHome.css" text="produit" />
+                        <Button mnemonicParsing="false" onAction="#produit" prefHeight="40.0" prefWidth="154.0" styleClass="root" stylesheets="@style/BoutonHome.css" text="produit" />
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="62.0" prefWidth="283.0" />
-                  <VBox alignment="CENTER" prefHeight="60.0" prefWidth="178.0" />
+                  <VBox alignment="CENTER" prefHeight="108.0" prefWidth="272.0" />
+                  <VBox alignment="CENTER" prefHeight="108.0" prefWidth="138.0">
+                     <children>
+                        <Button fx:id="email" mnemonicParsing="false" onAction="#profile" prefHeight="26.0" prefWidth="146.0" style="-fx-background-color: #8fca63;" stylesheets="@style/style.css" text="useremail">
+                           <styleClass>
+                              <String fx:value="parent" />
+                              <String fx:value="button-with-shadow" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
-            <ImageView fitHeight="421.0" fitWidth="310.0" layoutX="834.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/banner-01.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="120.0" layoutY="239.0" prefHeight="30.0" prefWidth="887.0" text="La nature est essentielle ">
-               <font>
-                  <Font name="System Bold" size="40.0" />
-               </font>
-            </Label>
-            <Label layoutX="264.0" layoutY="316.0" prefHeight="70.0" prefWidth="570.0" text="à notre bien-être global.">
-               <font>
-                  <Font name="System Bold" size="40.0" />
-               </font>
-            </Label>
-            <Button fx:id="email" layoutX="1026.0" layoutY="14.0" mnemonicParsing="false" onAction="#profile" prefHeight="26.0" prefWidth="146.0" style="-fx-background-color: #8fca63;" stylesheets="@style/style.css" text="useremail">
-               <styleClass>
-                  <String fx:value="parent" />
-                  <String fx:value="button-with-shadow" />
-               </styleClass>
-            </Button>
-         </children>
-      </AnchorPane>
-      <Pane layoutX="-3.0" layoutY="591.0" prefHeight="731.0" prefWidth="1182.0">
-         <children>
-            <Label layoutX="300.0" layoutY="185.0" prefHeight="125.0" prefWidth="497.0" text="interface amine mensi">
-               <font>
-                  <Font size="46.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
+         </top>
+         <center>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="1106.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="421.0" fitWidth="310.0" layoutX="788.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/banner-01.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="55.0" layoutY="197.0" prefHeight="113.0" prefWidth="887.0" text="La nature est essentielle ">
+                     <font>
+                        <Font name="System Bold" size="40.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="264.0" layoutY="316.0" prefHeight="121.0" prefWidth="570.0" text="à notre bien-être global.">
+                     <font>
+                        <Font name="System Bold" size="40.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>

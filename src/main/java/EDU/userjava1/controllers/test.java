@@ -20,6 +20,7 @@ public class test extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("/Home.fxml"));
             Scene scene = new Scene(root);
         primaryStage.setScene(scene);
+        primaryStage.setTitle("EcoGardien");
         primaryStage.show();
         }catch (IOException e){
             throw new RuntimeException(e);

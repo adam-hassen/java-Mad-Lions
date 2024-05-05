@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -52,31 +53,34 @@ public class AjouterProduitRecyclable implements Initializable {
     private EcoDepotMethodes ecoDepotMethodes;
     private double capaciteTotaleEcoDepot;
 
-    @FXML
-    void AfficherLesProduitRecyclable(ActionEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ProduitRecyclable/AfficherProduitRecyclable.fxml"));
-        try {
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
+    //@FXML
+   // void AfficherLesProduitRecyclable(ActionEvent event) {
+      //  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ProduitRecyclable/AfficherProduitRecyclable.fxml"));
+       // try {
+        //    Parent root = fxmlLoader.load();
+          //  Stage stage = new Stage();
 
             // Créer une transition de fondu pour la nouvelle scène
-            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
-            fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
-            fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
+           // FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+            //fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
+            //fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
 
             // Démarrer la transition de fondu
-            fadeTransition.play();
+           // fadeTransition.play();
 
             // Afficher la nouvelle scène dans une nouvelle fenêtre
-            stage.setScene(new Scene(root));
-            stage.show();
+            //stage.setScene(new Scene(root));
+            //stage.show();
 
             // Fermer la fenêtre actuelle après la transition
-            ((Stage) nomTFP.getScene().getWindow()).close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+            //((Stage) nomTFP.getScene().getWindow()).close();
+        //} catch (IOException e) {
+          //  throw new RuntimeException(e);
+        //}
+        // Fermer la fenêtre actuelle
+       /// Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        //currentStage.close();
+    //}
 
     @FXML
     void AjouterProduitRecyclable(ActionEvent event) {
@@ -230,28 +234,33 @@ public class AjouterProduitRecyclable implements Initializable {
     }
 
     private void afficherPageProduitsRecyclables() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ProduitRecyclable/AfficherProduitRecyclable.fxml"));
-        try {
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
+        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ProduitRecyclable/AfficherProduitRecyclable.fxml"));
+        //try {
+            //Parent root = fxmlLoader.load();
+            //Stage stage = new Stage();
 
             // Créer une transition de fondu pour la nouvelle scène
-            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
-            fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
-            fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
+            //FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+            //fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
+            //fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
 
             // Démarrer la transition de fondu
-            fadeTransition.play();
+            //fadeTransition.play();
 
             // Afficher la nouvelle scène dans une nouvelle fenêtre
-            stage.setScene(new Scene(root));
-            stage.show();
+            //stage.setScene(new Scene(root));
+            //stage.show();
 
             // Fermer la fenêtre actuelle après la transition
-            ((Stage) nomTFP.getScene().getWindow()).close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+          //  ((Stage) nomTFP.getScene().getWindow()).close();
+        //} catch (IOException e) {
+            //throw new RuntimeException(e);
+       // }
+        // Votre code pour effectuer l'ajout du produit recyclable
+
+        // Fermer la fenêtre actuelle
+        Stage currentStage = (Stage) nomTFP.getScene().getWindow();
+        currentStage.close();
     }
     private boolean confirmerAjoutProduit() {
         // Créer une nouvelle alerte de type CONFIRMATION

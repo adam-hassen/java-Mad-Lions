@@ -6,6 +6,7 @@ import EDU.userjava1.interfaces.MyListener;
 import EDU.userjava1.interfaces.MyListener1;
 import EDU.userjava1.services.UserServices;
 import EDU.userjava1.services.reclamationService;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -139,11 +141,28 @@ public class profile implements Initializable {
 
     @FXML
     void delete(ActionEvent event) throws IOException {
-        Parent root2 = FXMLLoader.load(getClass().getResource("/donnerpassword.fxml"));
-        Scene scene2 = new Scene(root2);
-        Stage stage2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage2.setScene(scene2);
-        stage2.show();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/donnerpassword.fxml"));
+        try {
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+
+            // Créer une transition de fondu pour la nouvelle scène
+            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+            fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
+            fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
+
+            // Démarrer la transition de fondu
+            fadeTransition.play();
+
+            // Afficher la nouvelle scène dans une nouvelle fenêtre
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Fermer la fenêtre actuelle après la transition
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -159,11 +178,28 @@ public class profile implements Initializable {
     }
     @FXML
     void ajoutreclamation(ActionEvent event)throws IOException {
-        Parent root2 = FXMLLoader.load(getClass().getResource("/reclamation.fxml"));
-        Scene scene2 = new Scene(root2);
-        Stage stage2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage2.setScene(scene2);
-        stage2.show();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reclamation.fxml"));
+        try {
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+
+        // Créer une transition de fondu pour la nouvelle scène
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+        fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
+        fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
+
+        // Démarrer la transition de fondu
+        fadeTransition.play();
+
+        // Afficher la nouvelle scène dans une nouvelle fenêtre
+        stage.setScene(new Scene(root));
+        stage.show();
+
+        // Fermer la fenêtre actuelle après la transition
+
+        } catch (IOException e) {
+        throw new RuntimeException(e);
+         }
     }
     @FXML
     void home(ActionEvent event)throws IOException {
@@ -175,11 +211,28 @@ public class profile implements Initializable {
     }
     @FXML
     void changer(ActionEvent event) throws IOException {
-        Parent root2 = FXMLLoader.load(getClass().getResource("/changerMdp.fxml"));
-        Scene scene2 = new Scene(root2);
-        Stage stage2 = new Stage();
-        stage2.setScene(scene2);
-        stage2.show();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/changerMdp.fxml"));
+        try {
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+
+            // Créer une transition de fondu pour la nouvelle scène
+            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+            fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
+            fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
+
+            // Démarrer la transition de fondu
+            fadeTransition.play();
+
+            // Afficher la nouvelle scène dans une nouvelle fenêtre
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Fermer la fenêtre actuelle après la transition
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

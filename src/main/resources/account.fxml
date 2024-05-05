@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.profile">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.profile">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="636.0" prefWidth="1230.0" style="-fx-background-color: edf5eb;">
          <left>
@@ -33,7 +33,7 @@
                               <Image url="@img/banner-01.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="email" prefHeight="27.0" prefWidth="310.0" text="                        email" textFill="#f2f5e9">
+                        <Label fx:id="email" prefHeight="27.0" prefWidth="228.0" text="                        email" textFill="#f2f5e9">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -140,15 +140,7 @@
          <center>
             <VBox prefHeight="662.0" prefWidth="880.0" style="-fx-background-color: edf5eb;" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="TOP_RIGHT" prefHeight="42.0" prefWidth="880.0" style="-fx-background-color: edf5eb;">
-                     <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@img/logo.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </HBox>
+                  <HBox alignment="TOP_RIGHT" prefHeight="42.0" prefWidth="880.0" style="-fx-background-color: edf5eb;" />
                   <HBox alignment="CENTER" prefHeight="80.0" prefWidth="880.0" style="-fx-background-color: edf5eb;">
                      <children>
                         <Label text="Bienvenue!  " textFill="#757647">
