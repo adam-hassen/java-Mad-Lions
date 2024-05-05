@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -63,7 +64,7 @@ public class SuivreConsoController {
     @FXML
     private StackPane  chartPanel;
     @FXML
-    private AnchorPane challSpace;
+    private HBox challSpace;
     @FXML
     private StackPane  scatterPanel;
     @FXML
@@ -78,7 +79,7 @@ public class SuivreConsoController {
         query = new ActionService();
         showChallenges();
         //first chart
-        ActionService.ChartData chartData = query.firstChart(1);
+        ActionService.ChartData chartData = query.firstChart(Login.v.getId());
         List<Double> data2 = chartData.getData();
         List<String> labels2 = chartData.getLabels();
         if ((data2!=null) && (labels2!=null)){

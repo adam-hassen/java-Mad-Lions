@@ -87,13 +87,6 @@ public class GestionnerConsoController {
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
         //sidebar animation
-        VBox sidebar = vboxside;
-        sidebar.getChildren().forEach(node -> {
-            if (node instanceof Label) {
-                Label label = (Label) node;
-                addHoverAnimation(label);
-            }
-        });
     }
 
     @FXML

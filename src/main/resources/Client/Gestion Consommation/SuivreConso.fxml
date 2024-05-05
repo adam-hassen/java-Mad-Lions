@@ -17,65 +17,22 @@
 <?import javafx.scene.chart.AreaChart?>
 <?import javafx.scene.chart.ScatterChart?>
 <?import javafx.scene.web.WebView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <VBox alignment="CENTER" prefHeight="600.0" stylesheets="@../../CSS/Home.css" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.SuivreConsoController">
    <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="542.0" prefWidth="1000.0" spacing="20.0">
-         <children>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" styleClass="sidebar">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <children>
-                  <VBox fx:id="vboxside" spacing="10.0" styleClass="sidebar-container">
-                     <Label styleClass="sidebar-label" text="Home">
-                        <font>
-                           <Font name="System Bold" size="16.0" />
-                        </font>
-                     </Label>
-                     <Line endX="140.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />
-                     <Label styleClass="sidebar-label" text="Consommation">
-                        <font>
-                           <Font name="System Bold" size="16.0" />
-                        </font>
-                     </Label>
-                     <Line endX="140.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />
-                     <Label styleClass="sidebar-label" text="Evenements">
-                        <font>
-                           <Font name="System Bold" size="16.0" />
-                        </font>
-                     </Label>
-                     <Line endX="140.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />
-                     <Label styleClass="sidebar-label" text="Produits">
-                        <font>
-                           <Font name="System Bold" size="16.0" />
-                        </font>
-                     </Label>
-                     <Line endX="140.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />
-                     <Label styleClass="sidebar-label" text="Recyclages">
-                        <font>
-                           <Font name="System Bold" size="16.0" />
-                        </font>
-                     </Label>
-                     <Line endX="140.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />
-                     <Label styleClass="sidebar-label" text="Workshops">
-                        <font>
-                           <Font name="System Bold" size="16.0" />
-                        </font>
-                     </Label>
-                     <Line endX="140.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />
-                  </VBox>
-                  <ListView fx:id="sidebarListView" prefHeight="160.0" styleClass="sidebar-list" />
-                  <VBox alignment="CENTER" styleClass="image-container">
-                     <StackPane prefHeight="0.0" prefWidth="122.0" styleClass="image-wrapper">
-                     </StackPane>
-                  </VBox>
-               </children>
-            </VBox>
-            <ScrollPane fitToWidth="true" styleClass="scroll-gestion" VBox.vgrow="ALWAYS">
-               <VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-                  <children>
-                     <VBox alignment="CENTER" spacing="20" prefHeight="600.0" prefWidth="800.0" styleClass="middle-container">
+      <HBox alignment="CENTER" prefHeight="600.0" prefWidth="918.0" spacing="20.0">
+      <children>
+         <VBox alignment="CENTER" prefHeight="600.0" prefWidth="971.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+            <children>
+               <ScrollPane prefHeight="570.0" prefWidth="1069.0" styleClass="scroll-gestion" stylesheets="@../../CSS/Home.css">
+                  <content>
+
+                     <VBox alignment="CENTER" prefHeight="556.0" prefWidth="966.0" spacing="20.0" styleClass="middle-container">
                         <children>
+                           <ImageView fitHeight="42.0" fitWidth="41.0">
+                              <Image url="@../../CSS/Images/home.png" />
+                           </ImageView>
                            <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="darkgreen" strokeWidth="2.0" />
                            <Label styleClass="suivre-label" text="CONSOMMATION D'AUJOURD'HUI :" />
                            <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="darkgreen" strokeWidth="2.0" />
@@ -105,13 +62,15 @@
                            <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="darkgreen" strokeWidth="2.0" />
                            <Label styleClass="suivre-label" text="LIMITER VOS CONSOMMATION AVEC CES CHALLENGES :" />
                            <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="darkgreen" strokeWidth="2.0" />
-                           <AnchorPane fx:id="challSpace" prefHeight="600.0" prefWidth="800.0">
-                           </AnchorPane>
+                           <HBox alignment="CENTER" fx:id="challSpace" prefHeight="600.0" prefWidth="800.0">
+                           </HBox>
                         </children>
+
                      </VBox>
+               </content>
+               </ScrollPane>
                   </children>
                </VBox>
-            </ScrollPane>
          </children>
       </HBox>
    </children>

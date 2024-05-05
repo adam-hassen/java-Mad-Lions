@@ -22,11 +22,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import EDU.userjava1.entities.User1;
 import EDU.userjava1.interfaces.MyListener;
 import EDU.userjava1.interfaces.MyListener1;

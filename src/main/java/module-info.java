@@ -15,7 +15,6 @@ module pidev.gestion.consommation {
     requires javafx.web;
     requires okhttp3;
     requires jdk.jsobject;
-    requires jsoup;
     opens org.example.controller;
     opens org.example.entity;
     opens org.example.service;
