@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="1126.0" prefWidth="997.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.home111">
    <children>
       <AnchorPane layoutX="15.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="980.0">
@@ -44,7 +43,10 @@
                         <Button mnemonicParsing="false" style="-fx-background-color: #00;" styleClass="root" stylesheets="@style/style.css" text="produit" />
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="62.0" prefWidth="283.0" />
+                  <VBox alignment="CENTER" prefHeight="62.0" prefWidth="283.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#pub" style="-fx-background-color: #00;" styleClass="root" stylesheets="@style/style.css" text="publication" />
+                     </children></VBox>
                   <VBox alignment="CENTER" prefHeight="60.0" prefWidth="178.0">
                      <children>
                         <Button fx:id="email" mnemonicParsing="false" onAction="#profile" prefHeight="26.0" prefWidth="146.0" style="-fx-background-color: #8fca63;" stylesheets="@style/style.css" text="useremail">

@@ -24,12 +24,14 @@
         <TextField fx:id="reponse" layoutX="98.0" layoutY="379.0" prefHeight="30.0" prefWidth="296.0" style="-fx-background-color: white;" styleClass="btn_workbench11" stylesheets="@style/style.css" />
         <Button fx:id="envoyer" layoutX="438.0" layoutY="381.0" mnemonicParsing="false" onAction="#envoyer" prefHeight="2.0" prefWidth="81.0" style="-fx-background-color: green;" styleClass="btn_workbench11" stylesheets="@style/style.css" text="envoyer" textFill="#fcf9f9" />
         <Button fx:id="back" layoutX="14.0" layoutY="2.0" mnemonicParsing="false" onAction="#back" prefHeight="18.0" prefWidth="43.0" style="-fx-background-color: green;" styleClass="btn_workbench11" stylesheets="@style/style.css" text="&lt;" textFill="#fcf9f9" />
-        <Button fx:id="exportButton" layoutX="748.0" layoutY="401.0" mnemonicParsing="false" onAction="#exportToExcel" prefHeight="52.0" prefWidth="64.0" styleClass="progress" stylesheets="@style/style.css" text="save" textFill="#fcf9f9" />
+        <Button fx:id="exportButton" layoutX="748.0" layoutY="401.0" mnemonicParsing="false" onAction="#exportToExcel" prefHeight="66.0" prefWidth="29.0" styleClass="progress" stylesheets="@style/style.css" text="save" textFill="#fcf9f9">
+         <graphic>
+            <ImageView fitHeight="44.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/icons8-export-excel-48.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
         <Pagination fx:id="pagination" layoutX="405.0" layoutY="428.0" styleClass="column2" stylesheets="@style/style.css" />
-      <ImageView fitHeight="44.0" fitWidth="43.0" layoutX="759.0" layoutY="404.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@img/icons8-export-excel-48.png" />
-         </image>
-      </ImageView>
     </children>
 </AnchorPane>

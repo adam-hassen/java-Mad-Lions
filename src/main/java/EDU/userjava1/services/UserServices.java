@@ -7,6 +7,7 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.Properties;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -234,46 +235,57 @@ public class UserServices implements Userinterface {
 
     @Override
     public int Login(String email, String password) {
-        String mdp_enc = EncryptMdp(password);
-        System.out.println("Mot de passe encodé : " + mdp_enc);
-        int id = -1; // Initialisez à une valeur par défaut
-        String req = "SELECT * FROM user1 WHERE username ='" + email + "' AND password ='" + mdp_enc + "' AND roles = '[\"ROLE_USER\"]'";
-        System.out.println("Requête SQL : " + req);
+        String req = "SELECT * FROM user1 WHERE username = ? AND roles = '[\"ROLE_USER\"]'";
         try {
-            ste = cnx.createStatement();
-            ResultSet rs = ste.executeQuery(req);
-            if (rs.next()) { // Vérifiez s'il y a des résultats
-                id = rs.getInt(1); // Extrait l'ID seulement si des résultats sont trouvés
-                System.out.println("Connexion réussie pour l'utilisateur avec l'ID : " + id);
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String hashedPassword = rs.getString("password");
+                if (BCrypt.verifyer().verify(password.toCharArray(), hashedPassword).verified) {
+                    // Mot de passe correct, retournez l'ID de l'utilisateur
+                    return rs.getInt("id");
+                } else {
+                    // Mot de passe incorrect
+                    return -1;
+                }
             } else {
-                System.out.println("Aucun utilisateur correspondant trouvé.");
+                // Aucun utilisateur correspondant trouvé
+                return -1;
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
         }
-        return id;
     }
 
 
 
 
     public int Login1(String email, String password) {
-        String mdp_enc = EncryptMdp(password);
-        int id1 = -1; // Initialisez à une valeur par défaut
-        String req = "SELECT * FROM user1 WHERE username ='" + email + "' AND password ='" + mdp_enc + "' AND roles = '[\"ROLE_ADMIN\"]'";
+        String req = "SELECT * FROM user1 WHERE username = ? AND roles = '[\"ROLE_ADMIN\"]'";
         try {
-            ste = cnx.createStatement();
-            ResultSet rs = ste.executeQuery(req);
-            if (rs.next()) { // Vérifiez s'il y a des résultats
-                id1 = rs.getInt(1); // Extrait l'ID seulement si des résultats sont trouvés
-                System.out.println(id1);
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String hashedPassword = rs.getString("password");
+                if (BCrypt.verifyer().verify(password.toCharArray(), hashedPassword).verified) {
+                    // Mot de passe correct, retournez l'ID de l'administrateur
+                    return rs.getInt("id");
+                } else {
+                    // Mot de passe incorrect
+                    return -1;
+                }
+            } else {
+                // Aucun administrateur correspondant trouvé
+                return -1;
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
         }
-        return id1;
     }
-
 
 
     public User1 getbyemail_user(String a) {
@@ -292,7 +304,7 @@ public class UserServices implements Userinterface {
         return c;
     }
 
-    public String EncryptMdp (String mdp_input)
+  /*  public String EncryptMdp (String mdp_input)
     {
 
         try {
@@ -310,17 +322,22 @@ public class UserServices implements Userinterface {
         }
         return "";
 
-    }
- /* public String EncryptMdp (String mdp_input){
-      int strength = 12; // You can adjust the strength as needed
+    }*/
+ public String EncryptMdp (String mdp_input){
+      int strength = 13; // You can adjust the strength as needed
 
       // Hash the password using BCrypt
       String hashedPassword = BCrypt.withDefaults().hashToString(strength, mdp_input.toCharArray());
 
       return hashedPassword;
-  }*/
+  }
 
+    public class PasswordUtils {
 
+        public static boolean checkPassword(String plainPassword, String hashedPassword) {
+            return BCrypt.verifyer().verify(plainPassword.toCharArray(), hashedPassword).verified;
+        }
+    }
 
 
     public static void sendEmail(String to, String subject, String body) {
