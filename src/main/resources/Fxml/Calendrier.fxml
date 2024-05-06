@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="642.0" prefWidth="744.0" style="-fx-background-color: #f2fafc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.evenements.controllers.CalendrierController">
+    <children>
+        <FlowPane fx:id="calendar" hgap="10.0" layoutX="14.0" layoutY="116.0" prefHeight="498.0" prefWidth="716.0" vgap="5.0">
+            <children>
+                <!-- Date cells -->
+            </children>
+        </FlowPane>
+        <HBox alignment="CENTER" layoutX="163.0" layoutY="14.0" prefHeight="44.0" prefWidth="419.0" spacing="5.0">
+            <children>
+                <ImageView fitHeight="33.0" fitWidth="155.0">
+                    <image>
+                        <Image url="@../css/Images/ecogardien.png" />
+                    </image>
+                </ImageView>
+                <Button mnemonicParsing="false" onAction="#backOneMonth" text="&lt;" />
+                <Text fx:id="year" strokeType="OUTSIDE" strokeWidth="0.0" text="####">
+                    <font>
+                        <Font size="22.0" />
+                    </font>
+                </Text>
+                <Text fx:id="month" strokeType="OUTSIDE" strokeWidth="0.0" text="####">
+                    <font>
+                        <Font size="22.0" />
+                    </font>
+                </Text>
+                <Button mnemonicParsing="false" onAction="#forwardOneMonth" text="&gt;" />
+
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" layoutX="14.0" layoutY="78.0" prefHeight="44.0" prefWidth="716.0" spacing="88.75">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dim" textAlignment="CENTER" />
+                <Text layoutX="213.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lun" textAlignment="CENTER" />
+                <Text layoutX="222.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mar" textAlignment="CENTER" />
+                <Text layoutX="232.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mer" textAlignment="CENTER" />
+                <Text layoutX="241.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jeu" textAlignment="CENTER" />
+                <Text layoutX="251.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ven" textAlignment="CENTER" />
+                <Text layoutX="266.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sam" textAlignment="CENTER" />
+            </children>
+            <padding>
+                <Insets right="9.0" />
+            </padding>
+        </HBox>
+      <ImageView fitHeight="68.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Desktop/logo.png" />
+         </image>
+      </ImageView>
+    </children>
+</AnchorPane>

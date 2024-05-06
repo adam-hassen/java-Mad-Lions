@@ -1,0 +1,112 @@
+/* CSS pour le texte défilant */
+.lbl-jours-restants {
+    /* Supprimer toute limitation de taille */
+    -fx-min-width: 0;
+    -fx-max-width: none;
+    -fx-min-height: 0;
+    -fx-max-height: none;
+
+    /* Annuler toute transformation de translation qui pourrait interférer avec l'animation */
+    -fx-translate-x: 0;
+    -fx-translate-y: 0;
+}
+
+/* Styles pour le reste de l'interface utilisateur */
+.root {
+    -fx-background-color: #fff; /* Couleur de fond verte douce */
+}
+
+/* Styles pour la TableView */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-font-size: 14px;
+}
+
+.table-row-cell {
+    -fx-background-color: #ffffff; /* Couleur de fond blanche pour les lignes */
+}
+
+/* Style pour le titre (Label) */
+.label-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2e7d32; /* Couleur de texte verte foncée */
+}
+
+/* Styles pour les éléments de la TableView */
+.table-cell {
+    -fx-alignment: center; /* Centrer le contenu dans les cellules */
+}
+
+.table-column {
+    -fx-alignment: center; /* Centrer le contenu dans les colonnes */
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+/* Styles pour survoler les lignes de la TableView */
+.table-row-cell:hover {
+    -fx-background-color: #fff; /* Couleur de survol vert clair */
+}
+
+/* Styles pour sélectionner les lignes de la TableView */
+.table-row-cell:selected {
+    -fx-background-color: #fff; /* Couleur de sélection vert clair */
+}
+
+/* Styles pour les panneaux d'événements */
+.event-pane {
+    -fx-background-color: #f4f4f4; /* Couleur de fond */
+    -fx-border-color: #ccc; /* Couleur de la bordure */
+    -fx-border-width: 1px; /* Largeur de la bordure */
+    -fx-border-radius: 5px; /* Rayon de la bordure */
+    -fx-padding: 10px; /* Espacement interne */
+}
+
+/* Styles pour les boutons de pagination */
+.pagination-button {
+    -fx-background-color: #2e7d32; /* Couleur de fond verte très sombre */
+    -fx-text-fill: white; /* Couleur du texte */
+    -fx-border-color: #2e7d32; /* Couleur de la bordure */
+    -fx-border-radius: 5px; /* Rayon de la bordure */
+    -fx-padding: 5px 10px; /* Espacement interne */
+}
+
+.pagination-button:hover {
+    -fx-background-color: #1b5e20; /* Couleur de fond au survol */
+}
+.root {
+    -fx-background-image: url('Images/back.jpg');
+    -fx-background-size: cover;
+}
+
+.combo-box {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 16px;
+    -fx-background-color: #fff; /* Fond blanc */
+    -fx-background-radius: 25px; /* Coins arrondis */
+    -fx-border-color: #ccc; /* Bordure gris clair */
+    -fx-border-width: 1px; /* Épaisseur de la bordure */
+    -fx-border-radius: 25px; /* Coins arrondis */
+}
+
+/* Style des options de la liste déroulante */
+.combo-box .list-cell {
+    -fx-text-fill: #555; /* Texte gris foncé */
+}
+
+/* Style des options de la liste déroulante au survol */
+.combo-box .list-cell:hover {
+    -fx-background-color: #f0f0f0; /* Fond gris très clair au survol */
+}
+.avis-dialog {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #ccc;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+}
+
+
+
+
