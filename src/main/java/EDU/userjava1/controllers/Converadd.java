@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -73,6 +74,8 @@ public class Converadd implements Initializable {
         fruits.addAll(getData());
 
         if (fruits.size() > 0) {
+            int column = 0;
+            int row = 1;
             try {
                 for (int i = 0; i < fruits.size(); i++) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
@@ -83,18 +86,13 @@ public class Converadd implements Initializable {
                     controller.setData(fruits.get(i), myListener3);
 
                     // Ajouter chaque élément à la position 0 pour afficher en haut
-                    grid.add(anchorPane, 0, i);
+                    grid.add(anchorPane, column, row); // Ajoute l'anchorPane au grid
 
-                    //set grid width
-                    grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                    grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-                    //set grid height
-                    grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                    grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                    grid.setMaxHeight(Region.USE_PREF_SIZE);
-
+                    column++; // Passe à la colonne suivante
+                    if (column == 1) { // Si nous avons atteint la dernière colonne, passe à la ligne suivante
+                        column = 0;
+                        row++;
+                    }
                     GridPane.setMargin(anchorPane, new Insets(10));
                 }
             } catch (IOException e) {
