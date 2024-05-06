@@ -25,6 +25,12 @@ module GestionRecyclage {
     requires org.apache.pdfbox;
     requires io;
     requires com.dlsc.formsfx;
+    requires org.controlsfx.controls;
+    requires org.apache.poi.poi;
+    requires org.apache.poi.ooxml;
+    requires json.simple;
+    exports EDU.evenements.entities;
+    exports EDU.evenements.controllers;
     opens com.example.demo to javafx.fxml;
     exports com.example.demo;
     opens Recyclage.entities;
@@ -37,7 +43,10 @@ module GestionRecyclage {
     opens org.example.entity;
     opens org.example.service;
     opens EDU.userjava1.controllers;
+    opens EDU.evenements.tests;
+    opens EDU.evenements.entities;
     opens EDU.userjava1.entities to javafx.base;
+    opens EDU.evenements.controllers;
     exports org.example;
     exports org.example.entity;
     exports org.example.controller;

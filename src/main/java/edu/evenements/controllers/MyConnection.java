@@ -1,11 +1,11 @@
-package edu.evenements.controllers;
+package EDU.evenements.controllers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MyConnection {
-    private String url = "jdbc:mysql://localhost:3306/ecogardienfinal";
+    private String url = "jdbc:mysql://localhost:3306/ecogardienintegrationfinale";
     private String login = "root";
     private String pwd = "";
     Connection cnx;

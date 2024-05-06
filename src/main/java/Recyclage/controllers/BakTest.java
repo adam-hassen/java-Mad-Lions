@@ -106,7 +106,9 @@ public class BakTest {
     }
 
     @FXML
-    void evenemment(ActionEvent event) {
+    void evenemment(ActionEvent event) throws IOException {
+        AnchorPane view = FXMLLoader.load(getClass().getResource("/Fxml/Evenements.fxml"));
+        BorderPane.setCenter(view);
         hboxButtons.setVisible(false);
     }
 

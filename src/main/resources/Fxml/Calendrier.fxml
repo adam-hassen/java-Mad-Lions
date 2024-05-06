@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="642.0" prefWidth="744.0" style="-fx-background-color: #f2fafc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.evenements.controllers.CalendrierController">
+<AnchorPane prefHeight="642.0" prefWidth="744.0" style="-fx-background-color: #f2fafc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.evenements.controllers.CalendrierController">
     <children>
         <FlowPane fx:id="calendar" hgap="10.0" layoutX="14.0" layoutY="116.0" prefHeight="498.0" prefWidth="716.0" vgap="5.0">
             <children>
@@ -20,9 +20,7 @@
         <HBox alignment="CENTER" layoutX="163.0" layoutY="14.0" prefHeight="44.0" prefWidth="419.0" spacing="5.0">
             <children>
                 <ImageView fitHeight="33.0" fitWidth="155.0">
-                    <image>
-                        <Image url="@../css/Images/ecogardien.png" />
-                    </image>
+
                 </ImageView>
                 <Button mnemonicParsing="false" onAction="#backOneMonth" text="&lt;" />
                 <Text fx:id="year" strokeType="OUTSIDE" strokeWidth="0.0" text="####">
@@ -54,9 +52,7 @@
             </padding>
         </HBox>
       <ImageView fitHeight="68.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../Desktop/logo.png" />
-         </image>
+
       </ImageView>
     </children>
 </AnchorPane>

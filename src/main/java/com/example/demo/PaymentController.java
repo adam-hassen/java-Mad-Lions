@@ -196,7 +196,7 @@ public class PaymentController implements Initializable {
         try {
             long flos = (long) (totalP * 100);
 // Set your secret key here
-            Stripe.apiKey = "sk_test_51PAbVp07iLNjInuxTndXXU1mKAckFb9pzU4NS0VpvbAUpkyaTwfQ4DYGpC2ZJdAi3LkusNRs0wNDIHFggk9aBGHV00V5bV2IJa";
+            Stripe.apiKey = "sk_test_51PDOjWRukiyTQZnz7W1T0SFoGLCEUfmXebdgKejtoyIrq975fLRrga09Y7dZUn9CQdJVsY5ISNUznVQE0ho4mNt900QszPz1zq";
 
 // Create a PaymentIntent with other payment details
             PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()

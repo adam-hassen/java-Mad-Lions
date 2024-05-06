@@ -1,12 +1,14 @@
 package org.example.controller;
 
 import EDU.userjava1.controllers.Login;
+import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -14,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import netscape.javascript.JSObject;
 import java.io.IOException;
@@ -96,25 +99,55 @@ public class ConsoController {
     }
     @FXML
     public void naviguerVersGestion(ActionEvent event) {
-        try{
-            Parent root= FXMLLoader.load(getClass().getResource("/Client/Gestion Consommation/GestionnerConso.fxml"));
-            button.getScene().setRoot(root);
-        }
-        catch (IOException ex){
-            System.err.println("Error loading FXML document: " + ex);
-            ex.printStackTrace();
-        }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Client/Gestion Consommation/GestionnerConso.fxml"));
+            try {
+                Parent root = loader.load();
+                Stage stage = new Stage();
+
+                // Créer une transition de fondu pour la nouvelle scène
+                FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+                fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
+                fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
+
+                // Démarrer la transition de fondu
+                fadeTransition.play();
+
+                // Afficher la nouvelle scène dans une nouvelle fenêtre
+                stage.setScene(new Scene(root));
+                stage.show();
+
+                // Fermer la fenêtre actuelle après la transition
+                //  Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                //fadeTransition.setOnFinished(e -> currentStage.close());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
     }
     @FXML
     public void naviguerVersSuivre(ActionEvent event) {
-        try{
-            Parent root= FXMLLoader.load(getClass().getResource("/Client/Gestion Consommation/SuivreConso.fxml"));
-            button1.getScene().setRoot(root);
-        }
-        catch (IOException ex){
-            System.err.println("Error loading FXML document: " + ex);
-            ex.printStackTrace();
-        }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Client/Gestion Consommation/SuivreConso.fxml"));
+            try {
+                Parent root = loader.load();
+                Stage stage = new Stage();
+
+                // Créer une transition de fondu pour la nouvelle scène
+                FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+                fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
+                fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
+
+                // Démarrer la transition de fondu
+                fadeTransition.play();
+
+                // Afficher la nouvelle scène dans une nouvelle fenêtre
+                stage.setScene(new Scene(root));
+                stage.show();
+
+                // Fermer la fenêtre actuelle après la transition
+                //  Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                //fadeTransition.setOnFinished(e -> currentStage.close());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
     }
     public void addHoverAnimation(Label label) {
         ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), label);

@@ -48,7 +48,8 @@ public class home111 implements Initializable {
 
     @FXML
     void evenement(ActionEvent event) throws IOException {
-
+        VBox  view= FXMLLoader.load((getClass().getResource("/Fxml/EvenementsFront.fxml")));
+        BorderPane.setCenter(view);
     }
 
     @FXML

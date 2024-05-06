@@ -1,5 +1,5 @@
-package edu.evenements.controllers;
-
+package EDU.evenements.controllers;
+import EDU.evenements.controllers.MyConnection;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -13,8 +13,8 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
-import edu.evenements.entities.Evenements;
-import edu.evenements.entities.Partenaire;
+import EDU.evenements.entities.Evenements;
+import EDU.evenements.entities.Partenaire;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -465,7 +465,7 @@ public class PartenaireController implements Initializable {
         Document document = new Document(pdfDocument);
 
         // Ajouter l'image
-        String imagePath = "src/main/resources/css/Images/ecogardien.png";
+        String imagePath = "C:\\Users\\adamh\\IdeaProjects\\GitEcogardienJava\\java-Mad-Lions\\logo.png";
         try {
             com.itextpdf.layout.element.Image img = new com.itextpdf.layout.element.Image(ImageDataFactory.create(imagePath));
             img.setAutoScale(true);

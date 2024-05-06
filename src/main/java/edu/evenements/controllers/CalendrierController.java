@@ -1,7 +1,7 @@
-package edu.evenements.controllers;
+package EDU.evenements.controllers;
 
-import edu.evenements.controllers.MyConnection;
-import edu.evenements.entities.Evenements;
+import EDU.evenements.controllers.MyConnection;
+import EDU.evenements.entities.Evenements;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

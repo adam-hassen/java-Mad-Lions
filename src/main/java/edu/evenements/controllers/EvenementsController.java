@@ -1,6 +1,6 @@
-package edu.evenements.controllers;
+package EDU.evenements.controllers;
 
-import edu.evenements.entities.Evenements;
+import EDU.evenements.entities.Evenements;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -52,7 +52,6 @@ public class EvenementsController implements Initializable {
 
     @FXML
     private ImageView logo;
-
 
 
     @FXML
@@ -119,7 +118,7 @@ public class EvenementsController implements Initializable {
     public ObservableList<Evenements> getEvenements() {
         ObservableList<Evenements> Evenements = FXCollections.observableArrayList();
         String query = "select * from evenements";
-        con = MyConnection.getInstance().cnx;
+        con = EDU.evenements.controllers.MyConnection.getInstance().cnx;
         try {
             st = con.prepareStatement(query);
             rs = st.executeQuery();
@@ -198,6 +197,7 @@ public class EvenementsController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
     private Evenements selectedEvent;
 
     @FXML
@@ -276,11 +276,11 @@ public class EvenementsController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
     private boolean isDateInPast(LocalDate date) {
         LocalDate currentDate = LocalDate.now();
         return date.isBefore(currentDate);
     }
-
 
 
     @FXML
@@ -344,11 +344,6 @@ public class EvenementsController implements Initializable {
     }
 
 
-
-
-
-
-
     private void executeUpdate(Evenements selectedEvent) {
         String update = "UPDATE evenements SET titre = ?, lieu = ?, date = ?, description = ? WHERE id = ?";
         con = MyConnection.getInstance().cnx;
@@ -380,13 +375,14 @@ public class EvenementsController implements Initializable {
         for (Evenements evenement : listeEvenements) {
             if (evenement.getTitre().equals(nouvelEvenement.getTitre()) &&
                     evenement.getLieu().equals(nouvelEvenement.getLieu()) &&
-                    evenement.getDate().equals(nouvelEvenement.getDate())&&
+                    evenement.getDate().equals(nouvelEvenement.getDate()) &&
                     evenement.getDescription().equals(nouvelEvenement.getDescription())) {
                 return true;
             }
         }
         return false;
     }
+
     @FXML
     void openCalendarPage(ActionEvent event) {
         try {
@@ -408,6 +404,7 @@ public class EvenementsController implements Initializable {
             e.printStackTrace();
         }
     }
+
     @FXML
     void openPartenairePage(ActionEvent event) {
         try {
@@ -431,10 +428,11 @@ public class EvenementsController implements Initializable {
             e.printStackTrace();
         }
     }
+
     private void supprimerEvenementsPasses() {
         ObservableList<Evenements> evenements = table.getItems();
         LocalDate dateActuelle = LocalDate.now();
-        for (Iterator<Evenements> iterator = evenements.iterator(); iterator.hasNext();) {
+        for (Iterator<Evenements> iterator = evenements.iterator(); iterator.hasNext(); ) {
             Evenements evenement = iterator.next();
             LocalDate dateEvenement = evenement.getDate().toLocalDate();
             if (dateEvenement.isBefore(dateActuelle)) {
@@ -445,6 +443,7 @@ public class EvenementsController implements Initializable {
             }
         }
     }
+
     @FXML
     void generateExcel(ActionEvent actionEvent) {
         // Créer un nouveau classeur Excel
@@ -495,10 +494,11 @@ public class EvenementsController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
             showAlert("Erreur", "Impossible d'ouvrir le fichier Excel.");
-        }
+
     }
 
     }
+}
 
 
 

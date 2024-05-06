@@ -1,4 +1,4 @@
-package edu.evenements.entities;
+package EDU.evenements.entities;
 
 import javafx.collections.ObservableList;
 
@@ -52,19 +52,19 @@ public class Partenaire {
         this.evenement_id = evenement_id;
     }
 
-    public Evenements getEvenement() {
+    public EDU.evenements.entities.Evenements getEvenement() {
         return evenement;
     }
 
-    public void setEvenement(Evenements evenement) {
+    public void setEvenement(EDU.evenements.entities.Evenements evenement) {
         this.evenement = evenement;
     }
 
-    public Evenements getEvenementtitre() {
+    public EDU.evenements.entities.Evenements getEvenementtitre() {
         return evenementtitre;
     }
 
-    public void setEvenementtitre(Evenements evenementtitre) {
+    public void setEvenementtitre(EDU.evenements.entities.Evenements evenementtitre) {
         this.evenementtitre = evenementtitre;
     }
 }

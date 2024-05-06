@@ -1,4 +1,4 @@
-package edu.evenements.entities;
+package EDU.evenements.entities;
 
 public class Avis {
     private int id;

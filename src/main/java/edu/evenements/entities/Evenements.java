@@ -1,4 +1,4 @@
-package edu.evenements.entities;
+package EDU.evenements.entities;
 
 import java.util.Date;
 

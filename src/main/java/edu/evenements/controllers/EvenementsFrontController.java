@@ -1,7 +1,7 @@
-package edu.evenements.controllers;
+package EDU.evenements.controllers;
 
-import edu.evenements.entities.Avis;
-import edu.evenements.entities.Evenements;
+import EDU.evenements.entities.Avis;
+import EDU.evenements.entities.Evenements;
 import javafx.animation.TranslateTransition;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -9,6 +9,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;

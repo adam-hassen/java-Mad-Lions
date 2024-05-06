@@ -1,4 +1,4 @@
-package edu.evenements.tests;
+package EDU.evenements.tests;
         import javafx.application.Application;
         import javafx.fxml.FXMLLoader;
         import javafx.scene.Parent;

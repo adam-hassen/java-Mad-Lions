@@ -3,12 +3,9 @@ package com.example.demo;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.AreaBreak;
-import com.itextpdf.layout.element.IBlockElement;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
-import com.itextpdf.layout.properties.TextAlignment;
-import com.itextpdf.layout.properties.VerticalAlignment;
+import com.itextpdf.layout.property.TextAlignment;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -20,11 +17,14 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,13 +33,10 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import com.itextpdf.io.image.ImageDataFactory;
 
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -49,6 +46,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.Date;
+import java.util.List;
 
 public class ProduitController implements Initializable{
 
@@ -1011,7 +1009,7 @@ public class ProduitController implements Initializable{
             //document.setVerticalAlignment(VerticalAlignment.MIDDLE);
 
             // Add logo image (adjust width and height as needed)
-            String imagePath = "logo.png"; // Specify the path to your image file
+            String imagePath = "C:\\Users\\adamh\\IdeaProjects\\GitEcogardienJava\\java-Mad-Lions\\logo.png"; // Specify the path to your image file
             com.itextpdf.layout.element.Image image = new com.itextpdf.layout.element.Image(ImageDataFactory.create(imagePath));
 
             // Set the width and height of the image (in points)
@@ -1071,6 +1069,17 @@ public class ProduitController implements Initializable{
 
             // Close document
             document.close();
+            try {
+                // Récupérez le chemin absolu du PDF généré
+                String pdfFilePath = new File("receipt.pdf").getAbsolutePath();
+                // Créez un objet File pour le PDF
+                File pdfFile = new File(pdfFilePath);
+                // Ouvrez le PDF
+                Desktop.getDesktop().open(pdfFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
 
         }
 }

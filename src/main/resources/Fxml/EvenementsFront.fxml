@@ -7,20 +7,17 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="490.0" prefWidth="690.0" styleClass="table-column" stylesheets="@../css/styles2.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.evenements.controllers.EvenementsFrontController">
+<VBox prefHeight="490.0" prefWidth="690.0" styleClass="table-column" stylesheets="@../CSS/styles2.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.evenements.controllers.EvenementsFrontController">
     <children>
 
-        <ImageView fitHeight="33.0" fitWidth="155.0">
-         <image>
-            <Image url="@../css/Images/ecogardien.png" />
-         </image>
+        <ImageView fitHeight="61.0" fitWidth="107.0">
+         
 
         </ImageView>
         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
