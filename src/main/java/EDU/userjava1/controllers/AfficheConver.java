@@ -1,4 +1,5 @@
 package EDU.userjava1.controllers;
+import EDU.userjava1.interfaces.MyListerner4;
 
 import EDU.userjava1.entities.Conver;
 import EDU.userjava1.interfaces.MyListener3;
@@ -30,6 +31,8 @@ public class AfficheConver {
     @FXML
     private Label nbr_comment;
     private Conver conver;
+    private MyListerner4 myListener4;
+
     private commentaireServices commentaireService; // Injecting commentaireService
 
     private MyListener3 myListener3;
@@ -49,9 +52,11 @@ public class AfficheConver {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/CommentAdd.fxml"));
         Parent root2 = loader.load();
         CommentAdd controller = loader.getController();
-        controller.setSelectedConver(conver); // Pass the selected publication to CommentAdd
+        controller.setSelectedConver(conver);
+        controller.setMyListener4(myListener4); // Set myListener4 in CommentAdd
         Scene scene2 = new Scene(root2);
         Stage stage2 = new Stage();
         stage2.setScene(scene2);
         stage2.show();
-    }}
+    }
+}

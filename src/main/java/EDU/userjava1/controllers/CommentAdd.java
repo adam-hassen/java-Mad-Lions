@@ -27,6 +27,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class CommentAdd implements Initializable {
+    public void setMyListener4(MyListerner4 myListener4) {
+        this.myListener4 = myListener4;
+    }
 
     @FXML
     private TextField comment;
@@ -57,11 +60,10 @@ public class CommentAdd implements Initializable {
         return commentaires;
     }
     private void refreshGrid() {
-        grid.getChildren().clear();
         afficheCommentaire();
     }
     private void afficheCommentaire() {
-        fruits.clear();
+       // fruits.clear();
         fruits.addAll(getData());
 
         try {
@@ -103,14 +105,43 @@ public class CommentAdd implements Initializable {
         comment.clear();
         refreshGrid();
     }
+    @FXML
+    void affiche(ActionEvent event) {
 
+        refreshGrid();
+    }
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        afficheCommentaire();
-        refreshGrid(); // Ajoutez ceci pour rafraîchir la grille lors de l'initialisation
-    }
 
-}
+
+            fruits.addAll(getData());
+
+            try {
+                int column = 0;
+                int row = 1;
+                for (int i = 0; i < fruits.size(); i++) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/showcomment.fxml"));
+
+                    AnchorPane anchorPane = fxmlLoader.load();
+                    Showcomment controller = fxmlLoader.getController();
+                    controller.setData(fruits.get(i), myListener4);
+
+                    grid.add(anchorPane, column, row);
+
+                    column++;
+                    if (column == 1) {
+                        column = 0;
+                        row++;
+                    }
+
+                    GridPane.setMargin(anchorPane, new Insets(10));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }  }
+
