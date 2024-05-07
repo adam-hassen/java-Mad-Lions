@@ -69,8 +69,17 @@ public class Workshop {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "Workshop{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", type='" + type + '\'' +
+                ", date=" + date +
+                ", heure=" + heure +
+                ", cours='" + cours + '\'' +
+                '}';
+    }
 
     public String getCours() {
         return cours;

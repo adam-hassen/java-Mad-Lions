@@ -7,4 +7,5 @@ public interface WorkshopService <E>{
     public  boolean supprimerWorkshop(E e);
     public boolean modifierWorkshop(E e,int id);
     public List<E> listeDesWorkshop();
+
 }

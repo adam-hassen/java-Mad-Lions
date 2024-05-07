@@ -17,7 +17,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -27,10 +27,11 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.entity.Test;
+import org.example.entity.Workshop;
 import org.example.interfaces.MyListener2;
 import org.example.service.testMethode;
 
-
+import javafx.scene.control.CheckBox;
 import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -49,6 +50,32 @@ public class quiz  implements Initializable {
 
     @FXML
     private VBox chosenFruitCard;
+    @FXML
+    private CheckBox c1;
+
+    @FXML
+    private CheckBox c2;
+
+    @FXML
+    private CheckBox c3;
+
+    @FXML
+    private CheckBox c4;
+
+    @FXML
+    private CheckBox c5;
+
+    @FXML
+    private CheckBox c6;
+
+    @FXML
+    private CheckBox c7;
+
+    @FXML
+    private CheckBox c8;
+
+    @FXML
+    private CheckBox c9;
 
     @FXML
     private GridPane grid;
@@ -89,7 +116,15 @@ public class quiz  implements Initializable {
     @FXML
     private Label reponse_7;
 
+private Workshop workshopselectionner;
 
+    public Workshop getWorkshopselectionner() {
+        return workshopselectionner;
+    }
+
+    public void setWorkshopselectionner(Workshop workshopselectionner) {
+        this.workshopselectionner = workshopselectionner;
+    }
 
     @FXML
     void profile(ActionEvent event) {
@@ -122,14 +157,14 @@ public class quiz  implements Initializable {
 
 
     @FXML
-    private java.util.List<Test> fruits = new ArrayList<>();
+    private List<Test> fruits = new ArrayList<>();
     private Image image;
     private MyListener2 myListener2;
     testMethode gs = new testMethode();
     Test id_test=null;
-    private java.util.List<Test> getData() {
+    private List<Test> getData() {
         List<Test> fruits = new ArrayList<>();
-        fruits = gs.listeDestest();
+        fruits = gs.listeDestest_workshop(workshopselectionner.getId());
         return fruits;
     }
 
@@ -152,7 +187,15 @@ public class quiz  implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        miseajourtable();
+        c1.setOnAction(event -> handleCheckboxSelection(c1, "group1"));
+        c2.setOnAction(event -> handleCheckboxSelection(c2, "group1"));
+        c3.setOnAction(event -> handleCheckboxSelection(c3, "group1"));
+        c4.setOnAction(event -> handleCheckboxSelection(c4, "group2"));
+        c5.setOnAction(event -> handleCheckboxSelection(c5, "group2"));
+        c6.setOnAction(event -> handleCheckboxSelection(c6, "group2"));
+        c7.setOnAction(event -> handleCheckboxSelection(c7, "group3"));
+        c8.setOnAction(event -> handleCheckboxSelection(c8, "group3"));
+        c9.setOnAction(event -> handleCheckboxSelection(c9, "group3"));
     }
     public void miseajourtable(){
         ObservableList<Node> children = grid.getChildren();
@@ -220,7 +263,7 @@ public class quiz  implements Initializable {
             canvas.fill();
 
             // Load and position the logo
-            com.itextpdf.text.Image logo = com.itextpdf.text.Image.getInstance("src/main/resources/img/Sanstitre-1.png");
+            Image logo = Image.getInstance("src/main/resources/img/Sanstitre-1.png");
             float logoWidth = 400;
             float logoHeight = logoWidth * logo.getScaledHeight() / logo.getScaledWidth();
             logo.scaleAbsolute(logoWidth, logoHeight);
@@ -303,6 +346,46 @@ public class quiz  implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+    private void handleCheckboxSelection(CheckBox checkBox, String group) {
+        // Incrémenter ou décrémenter le compteur en fonction de la sélection/désélection
+        int selectedCountGroup1 = 0;
+        int selectedCountGroup2 = 0;
+        int selectedCountGroup3 = 0;
+        if (checkBox.isSelected()) {
+            switch (group) {
+                case "group1":
+                    selectedCountGroup1++;
+                    break;
+                case "group2":
+                    selectedCountGroup2++;
+                    break;
+                case "group3":
+                    selectedCountGroup3++;
+                    break;
+            }
+        } else {
+            switch (group) {
+                case "group1":
+                    selectedCountGroup1--;
+                    break;
+                case "group2":
+                    selectedCountGroup2--;
+                    break;
+                case "group3":
+                    selectedCountGroup3--;
+                    break;
+            }
+        }
+
+        // Vérifier si 3 réponses sont sélectionnées dans chaque groupe
+        if (selectedCountGroup1 == 3 && selectedCountGroup2 == 3 && selectedCountGroup3 == 3) {
+            // Activer le bouton pour valider le quiz ou passer à la question suivante
+
+        } else {
+            // Désactiver le bouton s'il n'y a pas exactement 3 réponses sélectionnées dans chaque groupe
+            // Exemple : buttonValider.setDisable(true);
         }
     }
 

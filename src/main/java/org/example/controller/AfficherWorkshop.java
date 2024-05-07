@@ -1,8 +1,12 @@
 package org.example.controller;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Pagination;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -52,9 +56,16 @@ public class AfficherWorkshop  implements Initializable {
         @FXML
         private Button modifier;
 
+        @FXML
+        void recherche(KeyEvent event) {
+
+        }
 
         @FXML
+        private Pagination pagination;
+        @FXML
         private Button suprimer;
+
 
 
         @FXML
@@ -105,13 +116,19 @@ id_workshop= fruit;
 
         @Override
         public void initialize(URL location, ResourceBundle resources) {
-               miseajourtable();
+                miseajourtable();
+
         }
-public void miseajourtable(){
+
+
+
+        public void miseajourtable(){
         ObservableList<Node> children = grid.getChildren();
+
         grid.getChildren().clear();
         fruits.clear();
         fruits.addAll(getData());
+
         if (fruits.size() > 0) {
                 setChosenFruit(fruits.get(0));
                 myListener = new MyListener() {
@@ -123,41 +140,69 @@ public void miseajourtable(){
                         }
                 };
         }
-        int column = 0;
-        int row = 1;
-        try {
-                for (int i = 0; i < fruits.size(); i++) {
-                        FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setLocation(getClass().getResource("/Workshop/items.fxml"));
 
 
-                        AnchorPane anchorPane = fxmlLoader.load();
+                int pageCount = (int) Math.ceil((double) fruits.size() / 2);
+                System.out.println("data"+fruits.size());
+                System.out.println("pageCount"+pageCount);
+                pagination.setPageCount(pageCount);
+                pagination.setCurrentPageIndex(0);
+                final ListView<Workshop> listView = new ListView<>();
 
-                        ItemController itemController = fxmlLoader.getController();
-                        itemController.setData(fruits.get(i), myListener);
-                        fxmlLoader.getController();
-                        if (column == 3) {
-                                column = 0;
-                                row++;
+                pagination.setPageFactory(pageIndex -> {
+                        grid.getChildren().clear();
+                        int column = 0;
+                        int row = 1;
+                        int fromIndex = pageIndex * 2;
+                        int toIndex = Math.min(fromIndex + 2, fruits.size());
+                        List<Workshop> sublist = fruits.subList(fromIndex, toIndex);
+
+                        listView.setItems(FXCollections.observableArrayList(sublist));
+                        System.out.println("list"+listView.getItems());
+
+                        for (Workshop item : listView.getItems()) {
+
+                                System.out.println("item"+item);
+                                AnchorPane anchorPane= null;
+                                try {
+                                FXMLLoader fxmlLoader = new FXMLLoader();
+                                fxmlLoader.setLocation(getClass().getResource("/Workshop/items.fxml"));
+
+
+                                 anchorPane = fxmlLoader.load();
+
+                                ItemController itemController = fxmlLoader.getController();
+                                itemController.setData(item, myListener);
+                                fxmlLoader.getController();
+                        } catch (IOException e) {
+                                e.printStackTrace();
                         }
+                                if (column == 3) {
+                                        column = 0;
+                                        row++;
+                                }
 
-                        grid.add(anchorPane, column++, row); //(child,column,row)
-                        //set grid width
-                        grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                        grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                        grid.setMaxWidth(Region.USE_PREF_SIZE);
+                                grid.add(anchorPane, column++, row); //(child,column,row)
+                                //set grid width
+                                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                                grid.setMaxWidth(Region.USE_PREF_SIZE);
 
-                        //set grid height
-                        grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                        grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                        grid.setMaxHeight(Region.USE_PREF_SIZE);
+                                //set grid height
+                                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                                grid.setMaxHeight(Region.USE_PREF_SIZE);
 
-                        GridPane.setMargin(anchorPane, new Insets(10));
-                }
-        } catch (IOException e) {
-                e.printStackTrace();
-        }
+                                GridPane.setMargin(anchorPane, new Insets(10));
+                        }
+                        return listView;
+                });
+
+                System.out.println("list"+listView.getItems());
+
+
 }
+
         @FXML
         void profile(ActionEvent event) {
 

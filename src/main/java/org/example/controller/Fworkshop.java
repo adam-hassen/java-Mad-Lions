@@ -47,6 +47,15 @@ public class Fworkshop implements Initializable {
     private List<Workshop> fruits = new ArrayList<>();
     private MyListener myListener;
     private WorkshopMethode gs = new WorkshopMethode();
+private Workshop workshopselectionner;
+
+    public Workshop getWorkshopselectionner() {
+        return workshopselectionner;
+    }
+
+    public void setWorkshopselectionner(Workshop workshopselectionner) {
+        this.workshopselectionner = workshopselectionner;
+    }
 
     private List<Workshop> getData() {
         return gs.listeDesWorkshop();
@@ -75,10 +84,13 @@ public class Fworkshop implements Initializable {
                 @Override
                 public void onClickListener(Workshop w) {
                     setChosenFruit(w);
-                    System.out.println("ttttt");
+                   workshopselectionner= w;
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Workshop/quiz.fxml"));
                         Parent root = loader.load();
+                        quiz controllor=loader.getController();
+                        controllor.setWorkshopselectionner(w);
+                        controllor.miseajourtable();
                         Stage stage = new Stage();  // Create a new stage for the new scene
                         stage.setScene(new Scene(root));
                         stage.show();

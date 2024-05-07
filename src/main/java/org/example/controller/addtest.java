@@ -2,6 +2,7 @@ package org.example.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,17 +13,19 @@ import org.example.entity.Question;
 import org.example.entity.Reponse;
 import org.example.entity.Test;
 import org.example.entity.Workshop;
+import org.example.service.WorkshopMethode;
 import org.example.service.testMethode;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
 
-public class addtest {
+public class addtest implements Initializable {
 
     @FXML
     private Label LoginMessageLabel1;
@@ -70,7 +73,7 @@ public class addtest {
     private TextField reponce3_3;
 
     @FXML
-    private ComboBox<?> workshop;
+    private ComboBox<String > workshop;
     @FXML
     void liste(MouseEvent event) {
 
@@ -113,7 +116,9 @@ public class addtest {
 
         Test test = new Test();
         test.setScore(20);
-        test.SetId_workshop(45);
+        int selectedIndex = workshop.getSelectionModel().getSelectedIndex();
+        Workshop workshopcombo=listeDesWorkshop.get(selectedIndex);
+        test.SetId_workshop(workshopcombo.getId());
         testMethode testMethode= new testMethode();
 
         Question question1=new Question();
@@ -185,6 +190,17 @@ public class addtest {
     @FXML
     void login(ActionEvent event) {
 
+    }
+private List<Workshop> listeDesWorkshop ;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        WorkshopMethode w =new WorkshopMethode();
+        listeDesWorkshop = w.listeDesWorkshop();
+        System.out.println("aloo");
+        for (Workshop workshop1: listeDesWorkshop) {
+            System.out.println(workshop1);
+            workshop.getItems().add(workshop1.getNom());
+        }
     }
 }
 

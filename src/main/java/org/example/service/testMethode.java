@@ -187,12 +187,106 @@ public class testMethode implements testService<Test> {
                 indice++;
 
                 //listeTest.add(test);
-
-                System.out.println("rs"+rs.getString("response_content"));
+               // System.out.println(indice-1+" "+test.getId());
+              //  System.out.println("rs"+rs.getString("response_content"));
             }
+
+            test.setQuestion_1(question1);
+            test.setQuestion_3(question3);
+            test.setQuestion_2(question2);
+            test.setReponse_1(reponses1);
+            test.setReponse_2(reponses2);
+            test.setReponse_3(reponses3);
+            listeTest.add(test);
         } catch (SQLException e) {
             System.out.println("Erreur lors de la récupération de la liste des test : " + e.getMessage());
         }
+
+        return listeTest;
+    }
+
+    public List<Test> listeDestest_workshop(int id_workshop) {
+
+        List<Test> listeTest = new ArrayList<>();
+
+        String requete = "SELECT test.id AS id, test.workshop_id AS workshop_id, test.score AS score," +
+                "       question.id AS question_id, question.reponse_correct_id AS response_correct_id," +
+                "       question.contenu AS question_content," +
+                "       reponse.id AS response_id, reponse.question_id AS response_question_id," +
+                "       reponse.contenu AS response_content" +
+                " FROM test" +
+                " JOIN question ON test.id = question.test_id" +
+                " JOIN reponse ON question.id = reponse.question_id where test.workshop_id= ?;";
+        int indice =0;
+        try {
+            PreparedStatement pst = MyConnection.getInsatance().getCnx().prepareStatement(requete);
+pst.setInt(1,id_workshop);
+            ResultSet rs = pst.executeQuery();
+            Test test = new Test();
+            Question question1=new Question();
+            Question question2=new Question();
+            Question question3=new Question();
+            Reponse[]reponses1=new Reponse[3];
+            Reponse[]reponses2=new Reponse[3];
+            Reponse[]reponses3=new Reponse[3];
+            while (rs.next()) {
+                if(test.getId()!=null&&test.getId()!=rs.getInt("id")){
+                    test.setQuestion_1(question1);
+                    test.setQuestion_3(question3);
+                    test.setQuestion_2(question2);
+                    test.setReponse_1(reponses1);
+                    test.setReponse_2(reponses2);
+                    test.setReponse_3(reponses3);
+                    listeTest.add(test);
+                    test=new Test();
+                    question1=new Question();
+                    question2=new Question();
+                    question3=new Question();
+                    reponses1=new Reponse[3];
+                    reponses2=new Reponse[3];
+                    reponses3=new Reponse[3];
+                    indice=0;
+                }
+                test.setId(rs.getInt("id"));
+                test.SetId_workshop(rs.getInt("workshop_id"));
+                test.setScore(rs.getInt("score"));
+                Question question=new Question();
+                question.setid(rs.getInt("question_id"));
+                question.setTest_id(rs.getInt("id"));
+                question.setContenu(rs.getString("question_content"));
+                Reponse reponse =new Reponse();
+                reponse.setId(rs.getInt("response_id"));
+                reponse.setQuestion_id(rs.getInt("response_question_id"));
+                reponse.setContenu(rs.getString("response_content"));
+                if(indice<3){
+                    question1=question;
+                    reponses1[indice]=reponse;
+                }else if (indice<6){
+                    question2=question;
+                    reponses2[indice%reponses2.length]=reponse;
+                }else{
+                    question3=question;
+                    reponses3[indice%reponses3.length]=reponse;
+                }
+                indice++;
+
+                //listeTest.add(test);
+
+                System.out.println("rs"+rs.getString("response_content"));
+            }
+
+            test.setQuestion_1(question1);
+            test.setQuestion_3(question3);
+            test.setQuestion_2(question2);
+            test.setReponse_1(reponses1);
+            test.setReponse_2(reponses2);
+            test.setReponse_3(reponses3);
+            listeTest.add(test);
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération de la liste des test : " + e.getMessage());
+        }
+
+        System.out.println("finished");
 
         return listeTest;
     }

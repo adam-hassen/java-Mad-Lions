@@ -203,15 +203,15 @@
                         <Font name="Cambria" size="20.0" />
                     </font>
                 </Label>
-                <CheckBox layoutX="324.0" layoutY="122.0" mnemonicParsing="false" />
-                <CheckBox layoutX="324.0" layoutY="182.0" mnemonicParsing="false" />
-                <CheckBox layoutX="324.0" layoutY="233.0" mnemonicParsing="false" />
-                <CheckBox layoutX="325.0" layoutY="331.0" mnemonicParsing="false" />
-                <CheckBox layoutX="325.0" layoutY="382.0" mnemonicParsing="false" />
-                <CheckBox layoutX="326.0" layoutY="427.0" mnemonicParsing="false" />
-                <CheckBox layoutX="326.0" layoutY="533.0" mnemonicParsing="false" />
-                <CheckBox layoutX="326.0" layoutY="588.0" mnemonicParsing="false" />
-                <CheckBox layoutX="326.0" layoutY="645.0" mnemonicParsing="false" />
+                <CheckBox fx:id="c1" layoutX="324.0" layoutY="122.0" mnemonicParsing="false" />
+                <CheckBox fx:id="c2" layoutX="324.0" layoutY="182.0" mnemonicParsing="false" />
+                <CheckBox fx:id="c3" layoutX="324.0" layoutY="233.0" mnemonicParsing="false" />
+                <CheckBox fx:id="c4" layoutX="325.0" layoutY="331.0" mnemonicParsing="false" />
+                <CheckBox fx:id="c5" layoutX="325.0" layoutY="382.0" mnemonicParsing="false" />
+                <CheckBox fx:id="c6" layoutX="326.0" layoutY="427.0" mnemonicParsing="false" />
+                <CheckBox fx:id="c7" layoutX="326.0" layoutY="533.0" mnemonicParsing="false" />
+                <CheckBox fx:id="c8" layoutX="326.0" layoutY="588.0" mnemonicParsing="false" />
+                <CheckBox fx:id="c9" layoutX="326.0" layoutY="645.0" mnemonicParsing="false" />
             </children>
         </AnchorPane>
     </children>

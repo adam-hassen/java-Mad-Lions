@@ -88,9 +88,9 @@ int i=0;
                 }
         );
 
-        crud.addtest(test);
+        //crud.addtest(test);
 
-        crud.supprimertest(test);
+        //crud.supprimertest(test);
 
 
 
@@ -100,7 +100,7 @@ int i=0;
     }
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Home.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/index.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setTitle("Hello!");
         primaryStage.setScene(scene);

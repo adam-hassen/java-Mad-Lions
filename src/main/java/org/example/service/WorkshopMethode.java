@@ -120,4 +120,14 @@ pst.setInt(6,x);
         return listeWorkshop;
 
     }
+
+    public Workshop getWorkshopByName(String name, List<Workshop> workshops) {
+        for (Workshop workshop : workshops) {
+            if (workshop.getNom().equalsIgnoreCase(name)) {
+                return workshop;
+            }
+        }
+        return null;
+    }
+
 }

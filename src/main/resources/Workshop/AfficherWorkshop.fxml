@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -63,9 +64,10 @@
                                         <Pane prefHeight="84.0" prefWidth="96.0" />
                                         <Pane prefHeight="84.0" prefWidth="96.0" HBox.hgrow="ALWAYS">
                                             <children>
-                                                <TextField layoutX="-32.0" layoutY="37.0" prefHeight="25.0" prefWidth="202.0" styleClass="button-with-shadow" stylesheets="@../style/style.css" />
+                                                <TextField fx:id="searchField" layoutX="-32.0" layoutY="37.0" onKeyReleased="#recherche" prefHeight="25.0" prefWidth="202.0" styleClass="button-with-shadow" stylesheets="@../style/style.css" />
                                                 <Button layoutX="207.0" layoutY="37.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: green;" styleClass="button-with-shadow" stylesheets="@../style/style.css" text="Search" textFill="WHITE" />
-                                                <Button layoutX="444.0" mnemonicParsing="false" onAction="#profile" prefHeight="26.0" prefWidth="154.0" style="-fx-background-color: green;" styleClass="button-with-shadow" stylesheets="@../style/style.css" text="Mon profile" textFill="#eae7e7" />
+                                    <Pagination fx:id="pagination" layoutX="308.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="62.0" prefWidth="224.0" />
+
                                             </children>
                                         </Pane>
                                         <Pane prefHeight="84.0" prefWidth="96.0" />
@@ -144,6 +146,7 @@
                         <Font name="Cambria" size="20.0" />
                     </font>
                 </Label>
+
             </children>
         </AnchorPane>
     </children>

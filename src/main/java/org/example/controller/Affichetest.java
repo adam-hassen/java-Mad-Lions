@@ -139,6 +139,7 @@ public class Affichetest  implements Initializable {
                 fruits.clear();
                 fruits.addAll(getData());
                 if (fruits.size() > 0) {
+                        System.out.println("fruit size ="+fruits.size());
                         setChosenFruit(fruits.get(0));
                         myListener2 = new MyListener2() {
 
