@@ -208,7 +208,9 @@ private Workshop workshopselectionner;
             if (checkedGroup1 <= 1 && checkedGroup2 <= 1 && checkedGroup3 <= 1) {
                 // Calculer la note en fonction des cases cochées
                 score = calculateNote(checkedGroup1, checkedGroup2, checkedGroup3);
-
+                System.out.println("g1"+checkedGroup1);
+                System.out.println("g2"+checkedGroup2);
+                System.out.println("g3"+checkedGroup3);
                 // Vérifier si le score est supérieur ou égal à 10 pour générer le certificat
                 if (score >= 10) { Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Succès !");
@@ -251,15 +253,19 @@ private Workshop workshopselectionner;
 
     @FXML
     private double calculateNote(int checkedGroup1, int checkedGroup2, int checkedGroup3) {
-        double score = 10; // Initialisez la note à 0
-        if (checkedGroup1 == 1 && checkedGroup2 == 0 && checkedGroup3 == 0) {
+        double score = 0; // Initialisez la note à 0
+        if (c1.isSelected()) {
             score += 6.66; // Incrémentez la note de 6.66 si c1 est cochée
         }
-        if (checkedGroup2 == 1 && checkedGroup1 == 0 && checkedGroup3 == 0) {
+        if (c4.isSelected()) {
             score += 6.66; // Incrémentez la note de 6.66 si c4 est cochée
         }
-        if (checkedGroup3 == 1 && checkedGroup1 == 0 && checkedGroup2 == 0) {
+        if (c7.isSelected()) {
             score += 6.66; // Incrémentez la note de 6.66 si c7 est cochée
+        }
+        if (c1.isSelected()&& c4.isSelected()&& c7.isSelected())
+        {
+            score= 20;
         }
         return score;
     }
