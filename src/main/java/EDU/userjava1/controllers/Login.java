@@ -1,9 +1,11 @@
 package EDU.userjava1.controllers;
 
 import EDU.userjava1.entities.User1;
+import EDU.userjava1.services.RememberMeManager;
 import EDU.userjava1.services.UserServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 
 import javafx.fxml.FXMLLoader;
@@ -16,8 +18,10 @@ import javafx.stage.Stage;
 //import javax.mail.MessagingException;
 import javax.mail.MessagingException;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class Login {
+public class Login implements Initializable {
     public static User1 v = new User1();
     public static String az;
     @FXML
@@ -42,11 +46,20 @@ public class Login {
     private Hyperlink forget1;
 
     @FXML
-    private CheckBox showPasswordCheckbox1;
+    private CheckBox rememberMeCheckbox;
 
     @FXML
     private AnchorPane side_ankerpane1;
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        String[] credentials = RememberMeManager.loadCredentials();
+        boolean rememberMe = RememberMeManager.loadRememberMe();
+        if (credentials != null && rememberMe) {
+            EmailLabel1.setText(credentials[0]);
+            PasswordLabel1.setText(credentials[1]);
+            rememberMeCheckbox.setSelected(true);
+        }
+    }
     @FXML
     void LoginButtonOnAction(ActionEvent event) throws IOException {
         User1 u = new User1();
@@ -89,7 +102,11 @@ public class Login {
             alert.setContentText("Verifier vos données ");
             alert.showAndWait();
         }
-
+        if (rememberMeCheckbox.isSelected()) {
+            RememberMeManager.saveCredentials(EmailLabel1.getText(), PasswordLabel1.getText(), true);
+        } else {
+            RememberMeManager.clearCredentials();
+        }
 
     }
 

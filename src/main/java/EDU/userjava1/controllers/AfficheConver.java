@@ -1,7 +1,6 @@
 package EDU.userjava1.controllers;
 
 import EDU.userjava1.entities.Conver;
-import EDU.userjava1.entities.commentaire;
 import EDU.userjava1.interfaces.MyListener3;
 import EDU.userjava1.services.commentaireServices;
 import javafx.event.ActionEvent;
@@ -12,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -54,7 +54,4 @@ public class AfficheConver {
         Stage stage2 = new Stage();
         stage2.setScene(scene2);
         stage2.show();
-    }
- 
-
-}
+    }}
