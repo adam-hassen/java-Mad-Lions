@@ -116,6 +116,7 @@ public class quiz  implements Initializable {
     @FXML
     private Label reponse_7;
 
+
 private Workshop workshopselectionner;
 
     public Workshop getWorkshopselectionner() {
@@ -185,18 +186,99 @@ private Workshop workshopselectionner;
 
     }
 
+    private double score;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        c1.setOnAction(event -> handleCheckboxSelection(c1, "group1"));
-        c2.setOnAction(event -> handleCheckboxSelection(c2, "group1"));
-        c3.setOnAction(event -> handleCheckboxSelection(c3, "group1"));
-        c4.setOnAction(event -> handleCheckboxSelection(c4, "group2"));
-        c5.setOnAction(event -> handleCheckboxSelection(c5, "group2"));
-        c6.setOnAction(event -> handleCheckboxSelection(c6, "group2"));
-        c7.setOnAction(event -> handleCheckboxSelection(c7, "group3"));
-        c8.setOnAction(event -> handleCheckboxSelection(c8, "group3"));
-        c9.setOnAction(event -> handleCheckboxSelection(c9, "group3"));
+
     }
+    @FXML
+    void valider(ActionEvent event) {
+        CheckBox[] group1 = {c1, c2, c3};
+        CheckBox[] group2 = {c4, c5, c6};
+        CheckBox[] group3 = {c7, c8, c9};
+
+        // Compter le nombre de cases cochées dans chaque groupe
+        int checkedGroup1 = countChecked(group1);
+        int checkedGroup2 = countChecked(group2);
+        int checkedGroup3 = countChecked(group3);
+
+        // Vérifier si au moins une case est cochée dans chaque groupe
+        if (checkedGroup1 > 0 && checkedGroup2 > 0 && checkedGroup3 > 0) {
+            // Vérifier qu'au maximum une case est cochée par groupe
+            if (checkedGroup1 <= 1 && checkedGroup2 <= 1 && checkedGroup3 <= 1) {
+                // Calculer la note en fonction des cases cochées
+                score = calculateNote(checkedGroup1, checkedGroup2, checkedGroup3);
+
+                // Vérifier si le score est supérieur ou égal à 10 pour générer le certificat
+                if (score >= 10) { Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Succès !");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Votre note est de " + score);
+                    alert.showAndWait();
+
+                    generateCertificate(event);
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("failed !");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Votre note est de " + score);
+                    alert.showAndWait();
+                    // Afficher un message d'erreur si le score est inférieur à 10
+                    displayError("Votre score est inférieur à 10. Vous devez avoir un score de 10 ou plus pour générer le certificat.");
+                }
+            } else {
+                // Plus d'une case est cochée dans au moins un groupe, afficher un message d'erreur
+                displayError("Vous ne pouvez choisir qu'une seule réponse par question.");
+            }
+        } else {
+            // Au moins un groupe n'a aucune case cochée, afficher un message d'erreur
+            displayError("Vous devez choisir au moins une réponse dans chaque question.");
+        }
+    }
+
+
+    // Méthode pour compter le nombre de cases cochées dans un groupe
+   @FXML
+    private int countChecked(CheckBox[] group) {
+        int count = 0;
+        for (CheckBox checkBox : group) {
+            if (checkBox.isSelected()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    @FXML
+    private double calculateNote(int checkedGroup1, int checkedGroup2, int checkedGroup3) {
+        double score = 10; // Initialisez la note à 0
+        if (checkedGroup1 == 1 && checkedGroup2 == 0 && checkedGroup3 == 0) {
+            score += 6.66; // Incrémentez la note de 6.66 si c1 est cochée
+        }
+        if (checkedGroup2 == 1 && checkedGroup1 == 0 && checkedGroup3 == 0) {
+            score += 6.66; // Incrémentez la note de 6.66 si c4 est cochée
+        }
+        if (checkedGroup3 == 1 && checkedGroup1 == 0 && checkedGroup2 == 0) {
+            score += 6.66; // Incrémentez la note de 6.66 si c7 est cochée
+        }
+        return score;
+    }
+
+
+
+
+    // Méthode pour afficher un message d'erreur
+    private void displayError(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur !");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+
+
+
     public void miseajourtable(){
         ObservableList<Node> children = grid.getChildren();
         grid.getChildren().clear();
@@ -348,46 +430,7 @@ private Workshop workshopselectionner;
             }
         }
     }
-    private void handleCheckboxSelection(CheckBox checkBox, String group) {
-        // Incrémenter ou décrémenter le compteur en fonction de la sélection/désélection
-        int selectedCountGroup1 = 0;
-        int selectedCountGroup2 = 0;
-        int selectedCountGroup3 = 0;
-        if (checkBox.isSelected()) {
-            switch (group) {
-                case "group1":
-                    selectedCountGroup1++;
-                    break;
-                case "group2":
-                    selectedCountGroup2++;
-                    break;
-                case "group3":
-                    selectedCountGroup3++;
-                    break;
-            }
-        } else {
-            switch (group) {
-                case "group1":
-                    selectedCountGroup1--;
-                    break;
-                case "group2":
-                    selectedCountGroup2--;
-                    break;
-                case "group3":
-                    selectedCountGroup3--;
-                    break;
-            }
-        }
 
-        // Vérifier si 3 réponses sont sélectionnées dans chaque groupe
-        if (selectedCountGroup1 == 3 && selectedCountGroup2 == 3 && selectedCountGroup3 == 3) {
-            // Activer le bouton pour valider le quiz ou passer à la question suivante
-
-        } else {
-            // Désactiver le bouton s'il n'y a pas exactement 3 réponses sélectionnées dans chaque groupe
-            // Exemple : buttonValider.setDisable(true);
-        }
-    }
 
 
 }
