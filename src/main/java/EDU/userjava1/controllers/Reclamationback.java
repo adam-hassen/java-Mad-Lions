@@ -1,5 +1,7 @@
 package EDU.userjava1.controllers;
 
+import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import EDU.userjava1.entities.Reclamation;
@@ -28,12 +30,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class Reclamationback implements Initializable {
+    @FXML
+    private PieChart pieChart;
     @FXML
     private Button envoyer;
 
@@ -63,6 +66,10 @@ public class Reclamationback implements Initializable {
 
     @FXML
     private Pagination pagination;
+
+
+    @FXML
+    private Button statisticsButton; // Bouton pour afficher les statistiques sur le type de réclamation
 
     private final reclamationService gs = new reclamationService();
     private final ObservableList<Reclamation> allReclamations = FXCollections.observableArrayList();
@@ -173,4 +180,26 @@ public class Reclamationback implements Initializable {
         }
     }
 
+    // Méthode pour trier les réclamations par date
+
+
+    // Méthode pour afficher les statistiques sur le type de réclamation
+    @FXML
+    void showStatistics(ActionEvent event) {
+        // Calcul des statistiques sur le type de réclamation
+        Map<String, Integer> statistics = new HashMap<>();
+        for (Reclamation reclamation : allReclamations) {
+            String type = reclamation.getType();
+            statistics.put(type, statistics.getOrDefault(type, 0) + 1);
+        }
+
+        // Création des données pour le graphique PieChart
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        for (Map.Entry<String, Integer> entry : statistics.entrySet()) {
+            pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue()));
+        }
+
+        // Affichage du graphique PieChart
+        pieChart.setData(pieChartData);
+    }
 }
