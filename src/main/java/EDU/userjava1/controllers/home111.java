@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -53,7 +54,9 @@ public class home111 implements Initializable {
     }
 
     @FXML
-    void produit(ActionEvent event) {
+    void produit(ActionEvent event) throws IOException {
+        StackPane view= FXMLLoader.load((getClass().getResource("/com/example/demo/menu.fxml")));
+        BorderPane.setCenter(view);
 
     }
 

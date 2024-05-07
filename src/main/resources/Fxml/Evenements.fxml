@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="479.0" prefWidth="686.0" stylesheets="@../CSS/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.evenements.controllers.EvenementsController">
+<AnchorPane prefHeight="768.0" prefWidth="1068.0" stylesheets="@../CSS/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.evenements.controllers.EvenementsController">
    <children>
-      <VBox layoutX="33.0" layoutY="35.0" prefHeight="100.0" prefWidth="300.0" spacing="5.0" AnchorPane.bottomAnchor="99.0" AnchorPane.rightAnchor="357.0" AnchorPane.topAnchor="100.0">
+      <VBox layoutX="21.0" layoutY="196.0" prefHeight="586.0" prefWidth="440.0" spacing="5.0" AnchorPane.bottomAnchor="-13.600000000000023" AnchorPane.rightAnchor="662.4000000000001" AnchorPane.topAnchor="196.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="Titre de l'evenement" wrappingWidth="190.3359375" />
             <TextField fx:id="tTitre" promptText="Écrivez ici le titre de votre événement" />
@@ -26,17 +26,17 @@
             <TextArea fx:id="tDescription" prefHeight="69.0" prefWidth="300.0" promptText="Écrivez ici la description de votre événement" />
          </children>
       </VBox>
-      <TableView fx:id="table" layoutX="368.0" layoutY="111.0" onMouseClicked="#getData" prefHeight="267.0" prefWidth="300.0" AnchorPane.topAnchor="120.0">
+      <TableView fx:id="table" layoutX="609.0" layoutY="196.0" onMouseClicked="#getData" prefHeight="350.0" prefWidth="514.0" AnchorPane.topAnchor="196.0">
         <columns>
-          <TableColumn fx:id="colTitre" prefWidth="62.0" text="Titre" />
-          <TableColumn fx:id="colLieu" prefWidth="74.0" text="Lieu" />
-            <TableColumn fx:id="colDate" prefWidth="67.0" text="Date" />
-            <TableColumn fx:id="colDescription" prefWidth="97.0" text="Description" />
+          <TableColumn fx:id="colTitre" prefWidth="92.0" text="Titre" />
+          <TableColumn fx:id="colLieu" prefWidth="131.20001220703125" text="Lieu" />
+            <TableColumn fx:id="colDate" minWidth="0.0" prefWidth="141.60009765625" text="Date" />
+            <TableColumn fx:id="colDescription" prefWidth="113.59991455078125" text="Description" />
         </columns>
       </TableView>
-      <ButtonBar layoutX="10.0" layoutY="409.0" prefHeight="38.0" prefWidth="658.0">
+      <ButtonBar layoutX="6.0" layoutY="666.0" prefHeight="48.0" prefWidth="1054.0">
         <buttons>
-            <Button fx:id="btnEnregistrer" mnemonicParsing="false" onAction="#createEvenement" prefHeight="47.0" text="Enregistrer">
+            <Button fx:id="btnEnregistrer" mnemonicParsing="false" onAction="#createEvenement" prefHeight="48.0" text="Enregistrer">
                 <graphic>
                     <Label style="-fx-font-size: 16px; -fx-text-fill: white;" text="💾" />
                 </graphic>
@@ -72,7 +72,7 @@
                 </graphic>
             </Button>
 
-            <Button fx:id="btnExcel" layoutX="30.0" layoutY="18.0" onAction="#generateExcel" text="Excel">
+            <Button fx:id="btnExcel" layoutX="30.0" layoutY="18.0" onAction="#generateExcel" prefHeight="48.0" text="Excel">
                 <graphic>
                     <Label style="-fx-font-size: 16px; -fx-text-fill: white;" text="🤝" />
                 </graphic>
@@ -81,6 +81,6 @@
 
         </buttons>
       </ButtonBar>
-      <Label layoutX="247.0" layoutY="25.0" prefHeight="62.0" prefWidth="230.0" styleClass="title-label" text="Evenements" />
+      <Label layoutX="404.0" layoutY="28.0" prefHeight="63.0" prefWidth="237.0" style="-fx-background-color: #2E714A;" styleClass="title-label" text="Evenements" textAlignment="CENTER" />
    </children>
 </AnchorPane>

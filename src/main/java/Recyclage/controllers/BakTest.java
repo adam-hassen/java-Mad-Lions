@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -58,8 +59,10 @@ public class BakTest {
     private HBox hboxButtons;
 
     @FXML
-    void initialize() {
+    void initialize() throws IOException {
         hboxButtons.setVisible(false);
+        StackPane view= FXMLLoader.load((getClass().getResource("/com/example/demo/dashboard.fxml")));
+        BorderPane.setCenter(view);
    
     }
     @FXML
@@ -113,7 +116,9 @@ public class BakTest {
     }
 
     @FXML
-    void produit(ActionEvent event) {
+    void produit(ActionEvent event) throws IOException {
+        StackPane view= FXMLLoader.load((getClass().getResource("/com/example/demo/inventory.fxml")));
+        BorderPane.setCenter(view);
         hboxButtons.setVisible(false);
     }
 
@@ -123,7 +128,9 @@ public class BakTest {
         hboxButtons.setVisible(false);
     }
     @FXML
-    void home(ActionEvent event) {
+    void home(ActionEvent event) throws IOException {
+        StackPane view= FXMLLoader.load((getClass().getResource("/com/example/demo/dashboard.fxml")));
+        BorderPane.setCenter(view);
 
     }
     @FXML

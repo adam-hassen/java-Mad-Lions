@@ -9,13 +9,13 @@ and open the template in the editor.
 */
 
 .header{
-    -fx-background-color: linear-gradient(to bottom right, #0ad100, #286155,#f6ff00);
+    -fx-background-color: #2E714A;
     -fx-border-color: #fff;
     -fx-border-width: 0 0 .8px 0;
 }
 
 .nav-form{
-    -fx-background-color: linear-gradient(to bottom right, #0ad100, #286155,#f6ff00);
+    -fx-background-color: #2E714A;
 }
 
 .nav-btn{
@@ -60,12 +60,12 @@ and open the template in the editor.
 .table-view{
     -fx-background-color: transparent;
     -fx-padding: 0;
-    -fx-border-color: linear-gradient(to bottom right, #0ad100, #286155,#f6ff00);
+    -fx-border-color: #2E714A;
     -fx-border-radius: 5px;
     -fx-border-width: 1.5px;
 }
 .table-view .column-header-background{
-    -fx-background-color: linear-gradient(to bottom right, #0ad100, #286155,#f6ff00);
+    -fx-background-color: #2E714A;
     -fx-background-radius: 5px 5px 0 0;
     -fx-background-insets: 0 0 0 0;
 }
@@ -78,7 +78,7 @@ and open the template in the editor.
 }
 
 .btn{
-    -fx-background-color: linear-gradient(to bottom right, #098c53, #0ad000);
+    -fx-background-color: #2E714A;
     -fx-cursor: hand;
     -fx-text-fill: #fff;
     -fx-font-size: 14px;

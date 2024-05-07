@@ -10,6 +10,7 @@ import com.twilio.Twilio;
 import com.twilio.exception.ApiException;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;*/
+import EDU.userjava1.controllers.Login;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
@@ -35,6 +36,7 @@ import sportify.edu.entities.Terrain;
 import sportify.edu.services.TerrainService;*/
 
 //import java.awt.*;
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -131,9 +133,8 @@ public class Success_pageController implements Initializable {
 
     }
     public void generatePDF() throws FileNotFoundException, MalformedURLException, SQLException {
-        customerID();
         ObservableList<produit> listData = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM produit_command WHERE customer_id = " + cID;
+        String sql = "SELECT * FROM produit_command WHERE customer_id = " + Login.v.getId();
 
         Statement st = MyConnection.getInstance().getCnx().createStatement();
         ResultSet rs = st.executeQuery(sql);
@@ -156,7 +157,7 @@ public class Success_pageController implements Initializable {
         //document.setVerticalAlignment(VerticalAlignment.MIDDLE);
 
         // Add logo image (adjust width and height as needed)
-        String imagePath = "logo.png"; // Specify the path to your image file
+        String imagePath = "C:\\Users\\adamh\\IdeaProjects\\GitEcogardienJava\\java-Mad-Lions\\logo.png"; // Specify the path to your image file
         com.itextpdf.layout.element.Image image = new com.itextpdf.layout.element.Image(ImageDataFactory.create(imagePath));
 
         // Set the width and height of the image (in points)
@@ -180,7 +181,7 @@ public class Success_pageController implements Initializable {
         document.add(date);
 
         // Add customer ID with larger font size
-        Paragraph customerID = new Paragraph("Customer ID: " + cID)
+        Paragraph customerID = new Paragraph("Customer ID: " + Login.v.getId())
                 .setFontSize(20); // Set font size to 20
         document.add(customerID);
 
@@ -216,6 +217,17 @@ public class Success_pageController implements Initializable {
 
         // Close document
         document.close();
+        try {
+            // Récupérez le chemin absolu du PDF généré
+            String pdfFilePath = new File("receipt.pdf").getAbsolutePath();
+            // Créez un objet File pour le PDF
+            File pdfFile = new File(pdfFilePath);
+            // Ouvrez le PDF
+            Desktop.getDesktop().open(pdfFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 

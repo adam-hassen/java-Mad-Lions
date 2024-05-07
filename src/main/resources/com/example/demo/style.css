@@ -8,21 +8,16 @@ and open the template in the editor.
     Author     : WALID
 */
 
-/* Define fonts */
-@font-face {
-    font-family: 'Sofia Sans Condensed SemiBold';
-    src: url('SofiaSansCondensed-SemiBold.ttf');
 
-}
 /* Apply styles to all containers */
 .root {
-    -fx-background-color: linear-gradient(to bottom right, #0ad100, #286155,#f6ff00);
+    -fx-background-color: #2E714A;
     -fx-font-family: 'Sofia Sans Condensed SemiBold', sans-serif;
     -fx-font-size: 18px;
 }
 /* Apply styles to buttons */
 .button {
-    -fx-background-color:#48b79f;
+    -fx-background-color: #2E714A;
     -fx-background-radius: 10px;
     -fx-text-fill: #ffffff;
     -fx-font-size: 16px;
@@ -31,12 +26,12 @@ and open the template in the editor.
 }
 
 .button:hover {
-    -fx-background-color:  #286155;
+    -fx-background-color: #2E714A;
 }
 
 /* Apply styles to text fields */
 .text-field {
-    -fx-background-color: #48b79f;
+    -fx-background-color: #2E714A;
     -fx-text-fill: #ffffff;
     -fx-font-size: 16px;
     -fx-padding: 8px;
@@ -48,7 +43,7 @@ and open the template in the editor.
 }
 /* Apply styles to labels */
 .label {
-    -fx-text-fill: #48b79f;
+    -fx-text-fill:  #2E714A;
     -fx-font-size: 19px;
 }
 
@@ -72,7 +67,7 @@ and open the template in the editor.
 
 /* Apply styles to progress bars */
 .progress-bar {
-    -fx-accent: #2ecc71;
+    -fx-accent:  #2E714A
 }
 
 /* Apply styles to sliders */

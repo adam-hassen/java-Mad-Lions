@@ -23,7 +23,7 @@
 .label {
     -fx-font-size: 24px; /* Taille de police */
     -fx-font-weight: bold; /* Texte en gras */
-    -fx-text-fill: #333333; /* Couleur du texte */
+    -fx-text-fill: white; /* Couleur du texte */
 }
 
 /* Styles pour les tableaux */

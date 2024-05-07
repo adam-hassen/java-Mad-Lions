@@ -1,26 +1,26 @@
 /* Style pour le champ de texte */
 .text-field {
     -fx-background-color: #fff; /* Couleur de fond */
-    -fx-text-fill: #333; /* Couleur du texte */
+    -fx-text-fill:  #2E714A; /* Couleur du texte */
     -fx-font-size: 14px; /* Taille de la police */
     -fx-padding: 8px; /* Espacement interne */
-    -fx-border-color: #2c3e31; /* Couleur de la bordure */
+    -fx-border-color:  #2E714A; /* Couleur de la bordure */
     -fx-border-radius: 5px; /* Bord arrondi */
 }
 
 /* Style pour le bouton */
 .button {
-    -fx-background-color: #2c3e31; /* Couleur de fond */
+    -fx-background-color:  #2E714A; /* Couleur de fond */
     -fx-text-fill: #fff; /* Couleur du texte */
     -fx-font-size: 14px; /* Taille de la police */
     -fx-padding: 10px 20px; /* Espacement interne */
-    -fx-border-color: #4a6351; /* Couleur de la bordure */
+    -fx-border-color:  #2E714A; /* Couleur de la bordure */
     -fx-border-radius: 5px; /* Bord arrondi */
 }
 
 /* Style pour le label */
 .label {
-    -fx-text-fill: #2c3e31; /* Couleur du texte */
+    -fx-text-fill: #2E714A; /* Couleur du texte */
     -fx-font-size: 16px; /* Taille de la police */
 }
 
@@ -40,7 +40,7 @@
     -fx-text-fill: #333; /* Couleur du texte */
     -fx-font-size: 14px; /* Taille de la police */
     -fx-padding: 8px; /* Espacement interne */
-    -fx-border-color: #2c3e31; /* Couleur de la bordure */
+    -fx-border-color: #2E714A; /* Couleur de la bordure */
     -fx-border-radius: 5px; /* Bord arrondi */
 }
 
@@ -59,12 +59,12 @@
 
 /* Style pour la barre de défilement */
 .scroll-bar {
-    -fx-background-color: #2c3e31; /* Couleur de fond */
+    -fx-background-color: #2E714A; /* Couleur de fond */
 }
 
 /* Style pour la barre de défilement (hover) */
 .scroll-bar:hover {
-    -fx-background-color: #4a6351; /* Couleur de fond au survol */
+    -fx-background-color: #2E714A; /* Couleur de fond au survol */
 }
 /* Style pour le titre */
 .title-label {
@@ -72,7 +72,7 @@
     -fx-font-size: 28px; /* Taille de la police */
     -fx-font-family: "Arial Black", sans-serif; /* Police de caractères */
     -fx-padding: 10px 20px; /* Espacement interne */
-    -fx-background-color: #2c3e31; /* Couleur de fond verte sombre */
+    -fx-background-color: #2E714A; /* Couleur de fond verte sombre */
     -fx-border-radius: 5px; /* Bord arrondi */
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,2,2 ); /* Ombre portée */
 }

@@ -5,6 +5,7 @@
  */
 package com.example.demo;
 
+import EDU.userjava1.controllers.Login;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -148,7 +149,7 @@ public class cardProductController implements Initializable {
                             + "(customer_id, prod_id, prod_name, quantity, price, date) "
                             + "VALUES(?,?,?,?,?,?)";
                     prepare = connect.prepareStatement(insertData);
-                    prepare.setString(1, String.valueOf(data.cID));
+                    prepare.setString(1, String.valueOf(Login.v.getId()));
                     prepare.setString(2, prodID);
                     prepare.setString(3, prod_name.getText());
                     prepare.setString(4, String.valueOf(qty));
@@ -165,7 +166,7 @@ public class cardProductController implements Initializable {
 
 
                     //System.out.println("Date: " + prod_date);
-                    System.out.println(data.cID);
+                    System.out.println(Login.v.getId());
                     System.out.println(prodID);
                     System.out.println(prod_name);
                     System.out.println(qty);
