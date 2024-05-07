@@ -387,7 +387,27 @@ public class UserServices implements Userinterface {
     }
 
 
+    public String getPhoneNumberByEmail(String email) {
+        String phoneNumber = null;
+        String query = "SELECT numero FROM user1 WHERE username = ?";
 
+        try (PreparedStatement statement = cnx.prepareStatement(query)) {
+            statement.setString(1, email);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    // Récupérer le numéro de téléphone
+                    phoneNumber = resultSet.getString("numero");
+                    // Nettoyer le numéro de téléphone
+                    phoneNumber = phoneNumber.replaceAll("[^\\d]", "");
+                    // Ajouter le préfixe "+216"
+                    phoneNumber = "+216" + phoneNumber;
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return phoneNumber;
+    }
 
 
 }

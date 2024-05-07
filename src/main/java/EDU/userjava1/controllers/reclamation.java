@@ -1,5 +1,4 @@
 package EDU.userjava1.controllers;
-
 import EDU.userjava1.entities.Reclamation;
 import EDU.userjava1.services.reclamationService;
 import com.modernmt.text.profanity.ProfanityFilter;
@@ -22,6 +21,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class reclamation {
 
     @FXML
@@ -36,6 +38,47 @@ public class reclamation {
     private ProfanityFilter profanityFilter = new ProfanityFilter();
 
     private int profanityCount = 0;
+
+    // Définissez vos types prédéfinis avec leurs mots-clés associés
+    private static final Map<String, String[]> TYPE_KEYWORDS = new HashMap<>();
+    static {
+        TYPE_KEYWORDS.put("gestion user", new String[]{"utilisateur", "client", "compte utilisateur" , "mot de passe" , "profile"});
+        TYPE_KEYWORDS.put("gestion evenement", new String[]{"événement", "manifestation", "célébration"});
+        TYPE_KEYWORDS.put("gestion consomation", new String[]{"consommation", "achat", "dépense"});
+        TYPE_KEYWORDS.put("gestion recyclage", new String[]{"recyclage", "revalorisation", "tri" , "depot"});
+        TYPE_KEYWORDS.put("gestion workshope", new String[]{"atelier", "séminaire", "formation" , "certificat"});
+        TYPE_KEYWORDS.put("gestion produit", new String[]{"produit", "article", "marchandise"});
+    }
+
+    @FXML
+    public void initialize() {
+        // Ajouter un écouteur de texte au champ de saisie de la réclamation
+        reclamation.textProperty().addListener((observable, oldValue, newValue) -> {
+            String matchedType = null;
+            // Vérifier si le nouveau texte contient l'un des mots-clés associés à chaque type prédéfini
+            for (Map.Entry<String, String[]> entry : TYPE_KEYWORDS.entrySet()) {
+                String type = entry.getKey();
+                String[] keywords = entry.getValue();
+                for (String keyword : keywords) {
+                    if (newValue.toLowerCase().contains(keyword)) {
+                        // Si le mot-clé est détecté, associer le type correspondant
+                        matchedType = type;
+                        break;
+                    }
+                }
+                if (matchedType != null) {
+                    break; // Pas besoin de continuer à vérifier les autres types
+                }
+            }
+            // Remplir ou vider le champ type en fonction du type détecté
+            if (matchedType != null) {
+                this.type.setText(matchedType);
+            } else {
+                this.type.clear(); // Vider le champ type si aucun mot-clé correspondant n'est trouvé
+            }
+        });
+    }
+
 
     @FXML
     void ajouter(ActionEvent event) throws IOException {
@@ -136,7 +179,6 @@ public class reclamation {
             });
         }, 5, TimeUnit.MINUTES);
     }
-
 
     @FXML
     void back(ActionEvent event) throws IOException {

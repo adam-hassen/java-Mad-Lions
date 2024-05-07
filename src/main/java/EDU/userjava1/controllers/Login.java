@@ -20,6 +20,11 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+import com.twilio.Twilio;
+
+import javax.mail.MessagingException;
 
 public class Login implements Initializable {
     public static User1 v = new User1();
@@ -120,11 +125,36 @@ public class Login implements Initializable {
         stage1.show();
 
     }
+    private static final String ACCOUNT_SID = "ACdc24d9b8bf13cf17597cc0e081556562";
+    private static final String AUTH_TOKEN = "da573e05e2870dc280d553c3b297bc37";
+    private static final String FROM_NUMBER = "+12176991497";
 
+    static {
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+    }
     @FXML
     void openForgetPassword(ActionEvent event) throws MessagingException {
 
+        UserServices GS = new UserServices();
+        String phoneNumber = GS.getPhoneNumberByEmail(EmailLabel1.getText());
 
+        if (phoneNumber != null && !phoneNumber.isEmpty()) {
+            try {
+                Message message = Message.creator(
+                                new PhoneNumber(phoneNumber),
+                                new PhoneNumber(FROM_NUMBER),
+                                "Votre message de réinitialisation de mot de passe ici.")
+                        .create();
+
+                System.out.println("Message SID: " + message.getSid());
+                // Ajoutez ici le code pour afficher une notification ou un message de succès à l'utilisateur
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                // Ajoutez ici le code pour afficher une notification ou un message d'erreur à l'utilisateur
+            }
+        } else {
+            // Ajoutez ici le code pour informer l'utilisateur que l'adresse e-mail n'est pas associée à un numéro de téléphone
+        }
     }
 
 

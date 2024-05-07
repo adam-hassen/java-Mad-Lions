@@ -15,6 +15,7 @@ module userjava1 {
     requires java.mail;
     requires org.apache.httpcomponents.httpcore;
     requires org.apache.httpcomponents.httpclient;
+    requires twilio;
     //  requires javax.mail;
 
 
