@@ -1,59 +1,75 @@
-/*package EDU.userjava1.controllers;
+package EDU.userjava1.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import okhttp3.*;
+import org.apache.http.HttpHeaders;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.HttpResponse;
+import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+
 public class ChatGPTController {
 
+    private static final String API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyBvuWtcVuCkSj2HSy4bDBH0JSn-IY3KGGg"; // Replace with the actual API endpoint
+    private static final String API_KEY = "AIzaSyBvuWtcVuCkSj2HSy4bDBH0JSn-IY3KGGg"; // Replace with your actual API key
 
+    @FXML
+    private TextField inputField;
 
+    @FXML
+    private Button submitButton;
 
-        private static final String OPENAI_API_KEY = "sk-proj-Q6PYzoqNenuvs9l7N7LQT3BlbkFJqiYRSyDJKvkACDTXLuYd";
-    private static final String model = "gpt-3.5-turbo"; // current model of chatgpt api
+    @FXML
+    private TextArea chatArea;
 
-        @FXML
-        private TextField inputField;
+    @FXML
+    void handleSubmit(ActionEvent event) {
+        String userInput = inputField.getText().trim();
+        if (!userInput.isEmpty()) {
+            try {
+                CloseableHttpClient httpClient = HttpClients.createDefault();
+                HttpPost request = new HttpPost(API_URL);
+                request.setHeader(HttpHeaders.AUTHORIZATION, "Bearer " + API_KEY);
+                request.setHeader(HttpHeaders.CONTENT_TYPE, "application/json");
 
-        @FXML
-        private Button submitButton;
+                // Construct JSON payload
+                StringEntity jsonEntity = new StringEntity("{\"text\":\"" + userInput + "\"}");
+                request.setEntity(jsonEntity);
 
-        @FXML
-        private TextArea chatArea;
+                // Send the request
+                HttpResponse response = httpClient.execute(request);
 
-        @FXML
-        void handleSubmit(ActionEvent event) {
-            String question = inputField.getText();
-            if (!question.isEmpty()) {
-                try {
-                    String response = getChatGPTResponse(question);
-                    chatArea.appendText("User: " + question + "\n");
-                    chatArea.appendText("ChatGPT: " + response + "\n\n");
-                } catch (IOException e) {
-                    e.printStackTrace();
+                // Process the response
+                int statusCode = response.getStatusLine().getStatusCode();
+                if (statusCode == 200) {
+                    String responseBody = EntityUtils.toString(response.getEntity());
+                    // Handle the response, update chatArea or perform other actions
+                    chatArea.appendText("Response from Gemini: " + responseBody + "\n");
+                } else {
+                    // Handle error response
+                    chatArea.appendText("Error: Failed to get response from Gemini API\n");
                 }
-                inputField.clear();
+
+                httpClient.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Handle exception
+                chatArea.appendText("Error: Failed to communicate with Gemini API\n");
             }
-        }
-
-    private static String getChatGPTResponse(String prompt) throws IOException {
-        OkHttpClient client = new OkHttpClient();
-        MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create(mediaType, "{\"prompt\": \"" + prompt + "\", \"max_tokens\": 50,\"model\": \"" + model + "\"}");
-        Request request = new Request.Builder()
-                .url("https://api.openai.com/v1/completions")
-                .post(body)
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Authorization", "Bearer " + OPENAI_API_KEY)
-                .build();
-
-        try (Response response = client.newCall(request).execute()) {
-            return response.body().string();
+        } else {
+            // Alert user to enter text
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter some text");
+            alert.showAndWait();
         }
     }
-
-}*/
-
+}

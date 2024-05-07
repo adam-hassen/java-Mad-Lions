@@ -3,8 +3,31 @@ import EDU.userjava1.entities.RolesConverter;
 import EDU.userjava1.tools.MyConnexion;
 import EDU.userjava1.interfaces.Userinterface;
 import EDU.userjava1.entities.User1;
-import com.twilio.Twilio;
-import com.twilio.type.PhoneNumber;
+import at.favre.lib.crypto.bcrypt.BCrypt;
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.util.Properties;
+import at.favre.lib.crypto.bcrypt.BCrypt;
+
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
+
+
+import javax.mail.Authenticator;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Message;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.Transport;
+import javax.mail.MessagingException;
+import java.util.Properties;
+
+
+
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -13,6 +36,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+
+import java.util.Properties;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -210,46 +235,57 @@ public class UserServices implements Userinterface {
 
     @Override
     public int Login(String email, String password) {
-        String mdp_enc = EncryptMdp(password);
-        System.out.println("Mot de passe encodé : " + mdp_enc);
-        int id = -1; // Initialisez à une valeur par défaut
-        String req = "SELECT * FROM user1 WHERE username ='" + email + "' AND password ='" + mdp_enc + "' AND roles = '[\"ROLE_USER\"]'";
-        System.out.println("Requête SQL : " + req);
+        String req = "SELECT * FROM user1 WHERE username = ? AND roles = '[\"ROLE_USER\"]'";
         try {
-            ste = cnx.createStatement();
-            ResultSet rs = ste.executeQuery(req);
-            if (rs.next()) { // Vérifiez s'il y a des résultats
-                id = rs.getInt(1); // Extrait l'ID seulement si des résultats sont trouvés
-                System.out.println("Connexion réussie pour l'utilisateur avec l'ID : " + id);
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String hashedPassword = rs.getString("password");
+                if (BCrypt.verifyer().verify(password.toCharArray(), hashedPassword).verified) {
+                    // Mot de passe correct, retournez l'ID de l'utilisateur
+                    return rs.getInt("id");
+                } else {
+                    // Mot de passe incorrect
+                    return -1;
+                }
             } else {
-                System.out.println("Aucun utilisateur correspondant trouvé.");
+                // Aucun utilisateur correspondant trouvé
+                return -1;
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
         }
-        return id;
     }
 
 
 
 
     public int Login1(String email, String password) {
-        String mdp_enc = EncryptMdp(password);
-        int id1 = -1; // Initialisez à une valeur par défaut
-        String req = "SELECT * FROM user1 WHERE username ='" + email + "' AND password ='" + mdp_enc + "' AND roles = '[\"ROLE_ADMIN\"]'";
+        String req = "SELECT * FROM user1 WHERE username = ? AND roles = '[\"ROLE_ADMIN\"]'";
         try {
-            ste = cnx.createStatement();
-            ResultSet rs = ste.executeQuery(req);
-            if (rs.next()) { // Vérifiez s'il y a des résultats
-                id1 = rs.getInt(1); // Extrait l'ID seulement si des résultats sont trouvés
-                System.out.println(id1);
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String hashedPassword = rs.getString("password");
+                if (BCrypt.verifyer().verify(password.toCharArray(), hashedPassword).verified) {
+                    // Mot de passe correct, retournez l'ID de l'administrateur
+                    return rs.getInt("id");
+                } else {
+                    // Mot de passe incorrect
+                    return -1;
+                }
+            } else {
+                // Aucun administrateur correspondant trouvé
+                return -1;
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
         }
-        return id1;
     }
-
 
 
     public User1 getbyemail_user(String a) {
@@ -268,25 +304,127 @@ public class UserServices implements Userinterface {
         return c;
     }
 
-    public String EncryptMdp (String mdp_input)
-    {
+    /*  public String EncryptMdp (String mdp_input)
+      {
 
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-            messageDigest. update(mdp_input.getBytes());
-            byte[] resultByteArray = messageDigest.digest();
-            StringBuilder sb = new StringBuilder();
-            for (byte b : resultByteArray)
-            {
-                sb.append (String.format("%02x", b));
-            }
-            return sb.toString();
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return "";
+          try {
+              MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+              messageDigest. update(mdp_input.getBytes());
+              byte[] resultByteArray = messageDigest.digest();
+              StringBuilder sb = new StringBuilder();
+              for (byte b : resultByteArray)
+              {
+                  sb.append (String.format("%02x", b));
+              }
+              return sb.toString();
+          } catch (NoSuchAlgorithmException ex) {
+              Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          return "";
 
+      }*/
+    public String EncryptMdp (String mdp_input){
+        int strength = 13; // You can adjust the strength as needed
+
+        // Hash the password using BCrypt
+        String hashedPassword = BCrypt.withDefaults().hashToString(strength, mdp_input.toCharArray());
+
+        return hashedPassword;
     }
 
-}
+    public class PasswordUtils {
 
+        public static boolean checkPassword(String plainPassword, String hashedPassword) {
+            return BCrypt.verifyer().verify(plainPassword.toCharArray(), hashedPassword).verified;
+        }
+    }
+
+
+    public static void sendEmail(String to, String subject, String body) {
+        // SMTP server configuration for Gmail
+        String host = "smtp.gmail.com";
+        String username  = "techwork414@gmail.com";
+        String password = "pacrvzlvscatwwkb";
+
+        // Email properties
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", "587"); // Gmail SMTP port
+
+        // Create a Session with authentication
+        Session session = Session.getInstance(props, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+
+        try {
+            // Create a MimeMessage object
+            Message message = new MimeMessage(session);
+
+            // Set From: header field
+            message.setFrom(new InternetAddress(username));
+
+            // Set To: header field
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+
+            // Set Subject: header field
+            message.setSubject(subject);
+
+            // Set email body
+            message.setText(body);
+
+            // Send message
+            Transport.send(message);
+
+            System.out.println("Email sent successfully!");
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateTemporaryPassword(String email, String temporaryPassword) {
+        String hashedPassword = EncryptMdp(temporaryPassword);
+        String query = "UPDATE user1 SET password = ? WHERE username = ?";
+        try (PreparedStatement statement = cnx.prepareStatement(query)) {
+            statement.setString(1, hashedPassword);
+            statement.setString(2, email);
+            int rowsUpdated = statement.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Temporary password updated successfully for user: " + email);
+            } else {
+                System.out.println("Failed to update temporary password for user: " + email);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error updating temporary password: " + ex.getMessage());
+        }
+    }
+
+
+    public String getPhoneNumberByEmail(String email) {
+        String phoneNumber = null;
+        String query = "SELECT numero FROM user1 WHERE username = ?";
+
+        try (PreparedStatement statement = cnx.prepareStatement(query)) {
+            statement.setString(1, email);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    // Récupérer le numéro de téléphone
+                    phoneNumber = resultSet.getString("numero");
+                    // Nettoyer le numéro de téléphone
+                    phoneNumber = phoneNumber.replaceAll("[^\\d]", "");
+                    // Ajouter le préfixe "+216"
+                    phoneNumber = "+216" + phoneNumber;
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return phoneNumber;
+    }
+
+
+}

@@ -3,7 +3,6 @@ package EDU.userjava1.controllers;
 import EDU.userjava1.entities.User1;
 import EDU.userjava1.interfaces.MyListener;
 import EDU.userjava1.services.UserServices;
-import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,14 +24,19 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Table;
 
+import java.io.FileNotFoundException;
+import java.util.List;
 public class userliste implements Initializable {
     @FXML
     private TextField recherche;
@@ -136,50 +140,23 @@ public class userliste implements Initializable {
 
     @FXML
     void profile(ActionEvent event) throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/profilAdmin.fxml"));
-        try {
-            Parent root = loader.load();
-            Stage stage = new Stage();
 
-            // Créer une transition de fondu pour la nouvelle scène
-            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
-            fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
-            fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
+        Parent root2 = FXMLLoader.load(getClass().getResource("/profilAdmin.fxml"));
+        Scene scene2 = new Scene(root2);
+        Stage stage2 = new Stage();
+        stage2.setScene(scene2);
+        stage2.show();
 
-            // Démarrer la transition de fondu
-            fadeTransition.play();
-
-            // Afficher la nouvelle scène dans une nouvelle fenêtre
-            stage.setScene(new Scene(root));
-            stage.show();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @FXML
-    void reclamationbutton(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/reclamationBack.fxml"));
-        try {
-            Parent root = loader.load();
-            Stage stage = new Stage();
-
-            // Créer une transition de fondu pour la nouvelle scène
-            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
-            fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
-            fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
-
-            // Démarrer la transition de fondu
-            fadeTransition.play();
-
-            // Afficher la nouvelle scène dans une nouvelle fenêtre
-            stage.setScene(new Scene(root));
-            stage.show();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    void reclamationbutton(ActionEvent event) throws IOException{
+        Parent root1 = FXMLLoader.load(getClass().getResource("/reclamationback.fxml"));
+        Scene scene1 = new Scene(root1);
+        Stage stage1;
+        stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage1.setScene(scene1);
+        stage1.show();
     }
 
 
