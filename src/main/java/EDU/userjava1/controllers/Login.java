@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
@@ -80,7 +81,7 @@ public class Login implements Initializable {
             v = GS.getbyemail_user(EmailLabel1.getText().toString());
 
             System.out.println(v);
-           // GS.sendEmail("ncib.yasmine@esprit.tn","aa","aa") ;
+            // GS.sendEmail("ncib.yasmine@esprit.tn","aa","aa") ;
             Parent root2 = FXMLLoader.load(getClass().getResource("/home222.fxml"));
             Scene scene2 = new Scene(root2);
             Stage stage2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -133,31 +134,47 @@ public class Login implements Initializable {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
     }
     @FXML
-    void openForgetPassword(ActionEvent event) throws MessagingException {
-
+    void openForgetPassword(ActionEvent event) throws MessagingException, IOException {
         UserServices GS = new UserServices();
         String phoneNumber = GS.getPhoneNumberByEmail(EmailLabel1.getText());
-
         if (phoneNumber != null && !phoneNumber.isEmpty()) {
+            // Générer le code aléatoire
+            String code = generateRandomCode();
+
+            // Stocker le code aléatoire comme mot de passe temporaire dans la base de données
+            GS.updateTemporaryPassword(EmailLabel1.getText(), code);
+            Parent root2 = FXMLLoader.load(getClass().getResource("/changerMotDePasse.fxml"));
+            Scene scene2 = new Scene(root2);
+            Stage stage2 = new Stage();
+            stage2.setScene(scene2);
+            stage2.show();
+            // Envoyer le code par SMS avec Twilio
             try {
                 Message message = Message.creator(
                                 new PhoneNumber(phoneNumber),
                                 new PhoneNumber(FROM_NUMBER),
-                                "Votre message de réinitialisation de mot de passe ici.")
+                                "Votre code de réinitialisation de mot de passe : " + code)
                         .create();
-
                 System.out.println("Message SID: " + message.getSid());
                 // Ajoutez ici le code pour afficher une notification ou un message de succès à l'utilisateur
             } catch (Exception ex) {
                 ex.printStackTrace();
                 // Ajoutez ici le code pour afficher une notification ou un message d'erreur à l'utilisateur
             }
+
         } else {
             // Ajoutez ici le code pour informer l'utilisateur que l'adresse e-mail n'est pas associée à un numéro de téléphone
         }
+
     }
 
 
+    public String generateRandomCode() {
+        // Générer un code aléatoire de 6 chiffres
+        Random random = new Random();
+        int code = 100000 + random.nextInt(900000);
+        return String.valueOf(code);
+    }
 
 
     @FXML

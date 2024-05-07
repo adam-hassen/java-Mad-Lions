@@ -30,7 +30,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Table;
 
+import java.io.FileNotFoundException;
+import java.util.List;
 public class userliste implements Initializable {
     @FXML
     private TextField recherche;

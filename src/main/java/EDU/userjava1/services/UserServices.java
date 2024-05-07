@@ -304,33 +304,33 @@ public class UserServices implements Userinterface {
         return c;
     }
 
-  /*  public String EncryptMdp (String mdp_input)
-    {
+    /*  public String EncryptMdp (String mdp_input)
+      {
 
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-            messageDigest. update(mdp_input.getBytes());
-            byte[] resultByteArray = messageDigest.digest();
-            StringBuilder sb = new StringBuilder();
-            for (byte b : resultByteArray)
-            {
-                sb.append (String.format("%02x", b));
-            }
-            return sb.toString();
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return "";
+          try {
+              MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+              messageDigest. update(mdp_input.getBytes());
+              byte[] resultByteArray = messageDigest.digest();
+              StringBuilder sb = new StringBuilder();
+              for (byte b : resultByteArray)
+              {
+                  sb.append (String.format("%02x", b));
+              }
+              return sb.toString();
+          } catch (NoSuchAlgorithmException ex) {
+              Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          return "";
 
-    }*/
- public String EncryptMdp (String mdp_input){
-      int strength = 13; // You can adjust the strength as needed
+      }*/
+    public String EncryptMdp (String mdp_input){
+        int strength = 13; // You can adjust the strength as needed
 
-      // Hash the password using BCrypt
-      String hashedPassword = BCrypt.withDefaults().hashToString(strength, mdp_input.toCharArray());
+        // Hash the password using BCrypt
+        String hashedPassword = BCrypt.withDefaults().hashToString(strength, mdp_input.toCharArray());
 
-      return hashedPassword;
-  }
+        return hashedPassword;
+    }
 
     public class PasswordUtils {
 
@@ -386,6 +386,23 @@ public class UserServices implements Userinterface {
         }
     }
 
+    public void updateTemporaryPassword(String email, String temporaryPassword) {
+        String hashedPassword = EncryptMdp(temporaryPassword);
+        String query = "UPDATE user1 SET password = ? WHERE username = ?";
+        try (PreparedStatement statement = cnx.prepareStatement(query)) {
+            statement.setString(1, hashedPassword);
+            statement.setString(2, email);
+            int rowsUpdated = statement.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Temporary password updated successfully for user: " + email);
+            } else {
+                System.out.println("Failed to update temporary password for user: " + email);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error updating temporary password: " + ex.getMessage());
+        }
+    }
+
 
     public String getPhoneNumberByEmail(String email) {
         String phoneNumber = null;
@@ -411,6 +428,3 @@ public class UserServices implements Userinterface {
 
 
 }
-
-
-
