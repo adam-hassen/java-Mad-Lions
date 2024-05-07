@@ -143,7 +143,7 @@ public class Login implements Initializable {
 
             // Stocker le code aléatoire comme mot de passe temporaire dans la base de données
             GS.updateTemporaryPassword(EmailLabel1.getText(), code);
-            Parent root2 = FXMLLoader.load(getClass().getResource("/changerMotDePasse.fxml"));
+            Parent root2 = FXMLLoader.load(getClass().getResource("/changerMDP.fxml"));
             Scene scene2 = new Scene(root2);
             Stage stage2 = new Stage();
             stage2.setScene(scene2);

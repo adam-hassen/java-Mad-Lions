@@ -73,8 +73,8 @@ public class inscrire implements Initializable {
         stage1.show();
 
     }
-@Override
-public void initialize (URL url , ResourceBundle resourceBundle){
+    @Override
+    public void initialize (URL url , ResourceBundle resourceBundle){
         Combobox.setItems(FXCollections.observableArrayList("femme","homme"));}
 
     @FXML

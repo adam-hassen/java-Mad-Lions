@@ -29,7 +29,7 @@
       <Separator layoutX="781.0" layoutY="146.0" orientation="VERTICAL" prefHeight="487.0" prefWidth="6.0" style="-fx-background-color: #2E714A;" />
       <Separator layoutX="259.0" layoutY="632.0" prefHeight="0.0" prefWidth="522.0" style="-fx-background-color: #2E714A;" />
       <Separator layoutX="256.0" layoutY="147.0" orientation="VERTICAL" prefHeight="487.0" prefWidth="0.0" style="-fx-background-color: #2E714A;" />
-      <Label layoutX="286.0" layoutY="14.0" prefHeight="98.0" prefWidth="471.0" text="Ajouter EcoDepot" textAlignment="CENTER" textFill="#ea1212">
+      <Label layoutX="286.0" layoutY="14.0" prefHeight="98.0" prefWidth="471.0" text="Ajouter EcoDepot" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>

@@ -1,6 +1,7 @@
 package EDU.evenements.controllers;
 
 import EDU.evenements.entities.Evenements;
+import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -407,25 +408,27 @@ public class EvenementsController implements Initializable {
 
     @FXML
     void openPartenairePage(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/Partenaire.fxml"));
         try {
-            // Charger le fichier FXML de la page Partenaire
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Partenaire.fxml"));
-            Parent root = loader.load();
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
 
-            // Créer la scène
-            Scene scene = new Scene(root);
+            // Créer une transition de fondu pour la nouvelle scène
+            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+            fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
+            fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
 
-            // Obtenir la fenêtre actuelle
-            Stage stage = (Stage) btnPagePartenaire.getScene().getWindow();
+            // Démarrer la transition de fondu
+            fadeTransition.play();
 
-            // Remplacer la scène de la fenêtre actuelle par la nouvelle scène
-            stage.setScene(scene);
-            stage.setTitle("Page Partenaire");
-
-            // Afficher la fenêtre
+            // Afficher la nouvelle scène dans une nouvelle fenêtre
+            stage.setScene(new Scene(root));
             stage.show();
+
+            // Fermer la fenêtre actuelle après la transition
+
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

@@ -8,7 +8,8 @@ module GestionRecyclage {
     requires com.gluonhq.maps;
     requires javafx.web;
     requires jdk.jsobject;
-    requires twilio; // Ajout de la bibliothèque net.glxn.qrgen
+    requires java.mail;
+    requires twilio;
     requires com.google.gson;
     requires java.persistence;
     requires profanity.filter;
@@ -16,7 +17,6 @@ module GestionRecyclage {
     requires bcrypt;
     requires org.jfree.jfreechart;
     requires org.jfree.chart.fx;
-    requires javax.mail.api;
     requires okhttp3;
     requires stripe.java;
     requires AnimateFX;
@@ -29,6 +29,8 @@ module GestionRecyclage {
     requires org.apache.poi.poi;
     requires org.apache.poi.ooxml;
     requires json.simple;
+    requires org.apache.httpcomponents.httpcore;
+    requires org.apache.httpcomponents.httpclient;
     exports EDU.evenements.entities;
     exports EDU.evenements.controllers;
     opens com.example.demo to javafx.fxml;

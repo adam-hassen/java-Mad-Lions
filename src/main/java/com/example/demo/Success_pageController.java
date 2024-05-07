@@ -24,6 +24,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -233,16 +234,14 @@ public class Success_pageController implements Initializable {
 
     @FXML
     private void redirectToListReservation(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
-            Parent root = loader.load();
-            //UPDATE The Controller with Data :
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) back_btn.getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+        Node source = (Node) event.getSource();
+        // Obtenez la scène à partir de la source
+        Scene scene = source.getScene();
+        // Obtenez la fenêtre à partir de la scène
+        Stage stage = (Stage) scene.getWindow();
+
+        // Fermez la fenêtre
+        stage.close();
     }
 
 

@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="483.0" prefWidth="688.0" stylesheets="@../CSS/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.evenements.controllers.PartenaireController">
+<AnchorPane prefHeight="601.0" prefWidth="855.0" stylesheets="@../CSS/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.evenements.controllers.PartenaireController">
    <children>
-      <AnchorPane prefHeight="493.0" prefWidth="695.0">
+      <AnchorPane prefHeight="601.0" prefWidth="855.0">
          <children>
-            <VBox layoutX="33.0" layoutY="35.0" prefHeight="100.0" prefWidth="300.0" spacing="5.0" AnchorPane.bottomAnchor="99.0" AnchorPane.rightAnchor="357.0" AnchorPane.topAnchor="100.0">
+            <VBox layoutX="25.0" layoutY="116.0" prefHeight="100.0" prefWidth="300.0" spacing="5.0" AnchorPane.bottomAnchor="83.19999999999993" AnchorPane.rightAnchor="530.2" AnchorPane.topAnchor="116.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="Nom du partenaire" wrappingWidth="190.3359375" />
                   <TextField fx:id="tNom" promptText="Écrivez ici le titre de votre événement" />
@@ -37,7 +37,7 @@
                    <ChoiceBox fx:id="tEvenement" prefHeight="30.0" prefWidth="306.0" />
                </children>
             </VBox>
-            <TableView fx:id="table1" layoutX="368.0" layoutY="111.0" onMouseClicked="#getData1" prefHeight="267.0" prefWidth="300.0" AnchorPane.topAnchor="120.0">
+            <TableView fx:id="table1" layoutX="519.0" layoutY="116.0" onMouseClicked="#getData1" prefHeight="282.0" prefWidth="314.0" AnchorPane.topAnchor="116.0">
                <columns>
                   <TableColumn fx:id="colNom" prefWidth="65.0" text="Nom" />
                   <TableColumn fx:id="colEmail" prefWidth="76.0" text="Email" />
@@ -45,7 +45,7 @@
                   <TableColumn fx:id="colEvenement" prefWidth="90.0" text="Evenement" />
                </columns>
             </TableView>
-            <ButtonBar layoutX="61.0" layoutY="400.0" prefHeight="42.0" prefWidth="579.0">
+            <ButtonBar layoutX="80.0" layoutY="471.0" prefHeight="48.0" prefWidth="694.0">
                <buttons>
                    <Button fx:id="btnEnregistrer1" mnemonicParsing="false" onAction="#createPartenaire" text="Enregistrer">
                        <graphic>
@@ -77,15 +77,9 @@
                        </graphic>
                    </Button>
 
-                   <Button fx:id="btnPageEvenements" mnemonicParsing="false" onAction="#goToEvenementsPage" text="Evenements">
-                       <graphic>
-                           <Label style="-fx-font-size: 16px; -fx-text-fill: white;" text="🤝" />
-                       </graphic>
-                   </Button>
-
                </buttons>
             </ButtonBar>
-            <Label layoutX="247.0" layoutY="25.0" prefHeight="62.0" prefWidth="230.0" styleClass="title-label" text="Partenaires" />
+            <Label layoutX="300.0" layoutY="21.0" prefHeight="62.0" prefWidth="230.0" styleClass="title-label" text="Partenaires" />
          </children>
       </AnchorPane>
    </children>
