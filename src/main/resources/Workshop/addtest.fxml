@@ -99,11 +99,17 @@
                         <Font name="Century Gothic Bold" size="17.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="workshop" layoutX="700.0" layoutY="56.0" prefWidth="150.0" promptText="workshop" />
+                  <ComboBox fx:id="workshop" layoutX="700.0" layoutY="56.0" prefWidth="150.0" promptText="workshop" styleClass="combo-box" stylesheets="@../CSS/Home.css" />
                     </children>
                 </AnchorPane>
-                <Button fx:id="ajoutertest" layoutX="726.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#inscrire" prefHeight="44.0" prefWidth="150.0" style="-fx-background-color: ffff;" styleClass="btn_workbench11" stylesheets="@../style/style.css" text="Ajouter" />
-            <Button fx:id="login111" layoutX="545.0" layoutY="10.0" mnemonicParsing="false" onAction="#test" onMouseClicked="#liste" prefHeight="44.0" prefWidth="143.0" style="-fx-background-color: ffff;" styleClass="btn_workbench11" stylesheets="@../style/style.css" text="liste" />
+                <Button fx:id="ajoutertest" layoutX="726.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#inscrire" prefHeight="44.0" prefWidth="150.0" style="-fx-background-color: ffff;" styleClass="btn_workbench11" stylesheets="@../style/style.css" text="Ajouter">
+               <font>
+                  <Font size="16.0" />
+               </font></Button>
+            <Button fx:id="login111" layoutX="557.0" layoutY="11.0" mnemonicParsing="false" onAction="#test" onMouseClicked="#liste" prefHeight="44.0" prefWidth="143.0" style="-fx-background-color: ffff;" styleClass="button-with-shadow" stylesheets="@../style/style.css" text="Liste">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
             <ImageView fitHeight="65.0" fitWidth="181.0" layoutX="74.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/Sanstitre-1.png" />
