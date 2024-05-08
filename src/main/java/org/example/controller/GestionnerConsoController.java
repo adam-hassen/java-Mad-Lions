@@ -38,6 +38,8 @@ import EDU.userjava1.services.UserServices;
 public class GestionnerConsoController {
     @FXML
     public HBox containerView;
+    @FXML
+    public Button Home;
 
     private ActionService query;
     private TypeNameService query2;
@@ -220,5 +222,14 @@ public class GestionnerConsoController {
             scaleTransition.play();
         });
     }
-
+    public void handleHome(){
+        try{
+            Parent root= FXMLLoader.load(getClass().getResource("/Client/Gestion Consommation/HomeGestionAction.fxml"));
+            Home.getScene().setRoot(root);
+        }
+        catch (IOException ex){
+            System.err.println("Error loading FXML document: " + ex);
+            ex.printStackTrace();
+        }
+    }
 }

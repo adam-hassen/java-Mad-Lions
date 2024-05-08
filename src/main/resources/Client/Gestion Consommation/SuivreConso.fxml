@@ -28,11 +28,19 @@
                <ScrollPane prefHeight="570.0" prefWidth="1069.0" styleClass="scroll-gestion" stylesheets="@../../CSS/Home.css">
                   <content>
 
+
                      <VBox alignment="CENTER" prefHeight="556.0" prefWidth="966.0" spacing="20.0" styleClass="middle-container">
                         <children>
-                           <ImageView fitHeight="42.0" fitWidth="41.0">
-                              <Image url="@../../CSS/Images/home.png" />
-                           </ImageView>
+                           <AnchorPane prefHeight="82.0" prefWidth="926.0">
+                              <children>
+                                 <Button fx:id="Home" styleClass="button-home" layoutX="770.0" mnemonicParsing="false" onAction="#handleHome" prefHeight="42.0" prefWidth="127.0" text="Home" />
+                                 <ImageView fitHeight="28.0" fitWidth="27.0" layoutX="786.0" layoutY="7.0">
+                                    <image>
+                                       <Image url="@../../CSS/Images/home.png" />
+                                    </image>
+                                 </ImageView>
+                              </children>
+                           </AnchorPane>
                            <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="darkgreen" strokeWidth="2.0" />
                            <Label styleClass="suivre-label" text="CONSOMMATION D'AUJOURD'HUI :" />
                            <Line endX="600.0" endY="0.0" startX="0.0" startY="0.0" stroke="darkgreen" strokeWidth="2.0" />

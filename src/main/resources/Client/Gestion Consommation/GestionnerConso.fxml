@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
@@ -15,9 +16,16 @@
                     <children>
                             <VBox alignment="TOP_RIGHT" prefHeight="556.0" prefWidth="966.0" spacing="20.0" styleClass="middle-container">
                                 <children>
-                              <ImageView fitHeight="42.0" fitWidth="41.0">
-                                  <Image url="@../../CSS/Images/home.png" />
-                              </ImageView>
+                                    <AnchorPane prefHeight="82.0" prefWidth="926.0">
+                                         <children>
+                                            <Button fx:id="Home" layoutX="770.0" mnemonicParsing="false" onAction="#handleHome" prefHeight="42.0" prefWidth="127.0" styleClass="button-home" text="Home" />
+                                            <ImageView fitHeight="28.0" fitWidth="27.0" layoutX="777.0" layoutY="10.0">
+                                               <image>
+                                                  <Image url="@../../CSS/Images/home.png" />
+                                               </image>
+                                            </ImageView>
+                                         </children>
+                                    </AnchorPane>
                                     <VBox alignment="CENTER">
                                         <Line endX="140.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />
                                         <Label styleClass="Titre" text="Cela presente Vos Actions !" />

@@ -27,7 +27,7 @@
                               <Button fx:id="button1" layoutX="159.0" layoutY="372.0" styleClass="button-home" text="Suivre Vos Consommation" />
                               <Line endX="672.4000244140625" endY="0.0" layoutX="190.0" layoutY="356.0" startX="-105.20001983642578" startY="0.0" stroke="WHITE" strokeWidth="2.0" />
                               <Line endX="672.4000244140625" endY="0.0" layoutX="189.0" layoutY="439.0" startX="-105.20001983642578" startY="0.0" stroke="WHITE" strokeWidth="2.0" />
-                              <Label layoutX="210.0" layoutY="484.0" text="Voici des propositions pour limiter les conommations en danger!" style="-fx-text-fill: white;-fx-font-size: 20px;" />
+                              <Label layoutX="210.0" layoutY="484.0" style="-fx-text-fill: white;-fx-font-size: 20px;" text="Voici des propositions pour limiter les conommations en danger!" />
                               <WebView fx:id="webview" layoutX="40.0" layoutY="551.0" prefHeight="401.0" prefWidth="854.0" />
                               <AnchorPane layoutX="37.0" layoutY="62.0" prefHeight="239.0" prefWidth="773.0" styleClass="user_conso">
                                  <children>
@@ -46,9 +46,6 @@
                                     <Label layoutX="79.0" layoutY="-28.0" style="-fx-text-fill: white;-fx-padding: 50px 0;-fx-text-fill: white;-fx-font-size: 20px;-fx-font-weight: bold;" text="Nom:" /> <Text fx:id="Nom" layoutX="131.0" layoutY="41.0" style="-fx-text-fill: white;-fx-font-size: 17px;" wrappingWidth="160.00011444091797" />
                                  </children>
                               </AnchorPane>
-                              <ImageView fitHeight="42.0" fitWidth="41.0" layoutX="870.0" layoutY="14.0">
-                                 <Image url="@../../CSS/Images/home.png" />
-                              </ImageView>
                            </children>
                         </AnchorPane>
                      </content>

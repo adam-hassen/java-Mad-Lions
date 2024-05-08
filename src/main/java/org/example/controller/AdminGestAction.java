@@ -33,6 +33,8 @@ public class AdminGestAction {
     @FXML
     public TextField Quantite;
     @FXML
+    public TextField  nomChercher;
+    @FXML
     public Button ValiderAction;
     @FXML
     public ComboBox<Integer>  secondComboBox;
@@ -68,6 +70,8 @@ public class AdminGestAction {
     private Button ModifierAction;
     @FXML
     private VBox vboxside;
+    @FXML
+    public Button Home;
     @FXML
     public void initialize() {
         //home.setOnAction(this::naviguerVersHome);
@@ -440,5 +444,21 @@ public class AdminGestAction {
         Type.setValue(null);
         Description.setText(null);
         Type.getSelectionModel().clearSelection();
+    }
+    public void handlechercheruser(){
+        List<Action> actionList = query.chercherByUser(nomChercher.getText());
+        ObservableList<Action> observableList = FXCollections.observableArrayList(actionList);
+        tableView.setItems(observableList);
+        tableView.refresh();
+    }
+    public void handleHome(){
+        try{
+            Parent root= FXMLLoader.load(getClass().getResource("/Client/Gestion Consommation/HomeGestionAction.fxml"));
+            Home.getScene().setRoot(root);
+        }
+        catch (IOException ex){
+            System.err.println("Error loading FXML document: " + ex);
+            ex.printStackTrace();
+        }
     }
 }
