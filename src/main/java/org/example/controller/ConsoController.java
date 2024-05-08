@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import EDU.userjava1.controllers.Login;
+import com.google.gson.Gson;
 import javafx.animation.ScaleTransition;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
@@ -16,9 +17,15 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
 import netscape.javascript.JSObject;
-import java.io.IOException;
-import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -26,6 +33,7 @@ import EDU.userjava1.entities.User1;
 import EDU.userjava1.interfaces.MyListener;
 import EDU.userjava1.interfaces.MyListener1;
 import EDU.userjava1.services.UserServices;
+import okhttp3.*;
 import org.example.service.ActionService;
 
 public class ConsoController {
@@ -51,7 +59,7 @@ public class ConsoController {
     private VBox vboxside;
     private ActionService query;
     @FXML
-    public void initialize() throws UnsupportedEncodingException {
+    public void initialize() throws IOException {
         query = new ActionService();
         button.setOnAction(this::naviguerVersGestion);
         button1.setOnAction(this::naviguerVersSuivre);
@@ -60,40 +68,43 @@ public class ConsoController {
         Email.setText(Login.v.getUsername());
         Nom.setText(Login.v.getName());
         Address.setText(Login.v.getAdress());
-        double dang=query.moyenneDanger(Login.v.getId());
-        if (dang< 2){
-            Danger.setText("Vous ne presentez pas de danger");
+        double dang = query.moyenneDanger(Login.v.getId());
+        if (dang < 2) {
+            Danger.setText("Vous ne présentez pas de danger");
+        } else if (dang <= 4) {
+            Danger.setText("Niveau de danger moyen");
+        } else {
+            Danger.setText("Vous présentez un danger !");
         }
-        else if ((dang<=2) && (dang<= 4)){
-            Danger.setText("Niveau de danger Moyen");
-        }
-        else if (dang>4){
-            Danger.setText("Vous presentez un danger!");
-        }
-        //Search
-        String queryy ="Comment limiter l'utilisation du";
+
+        // Search
+        String queryy = "Comment limiter l'utilisation du";
         String dangerList = query.ListeDanger(Login.v);
-        if (dangerList != null && dangerList.contains("plastique")){
-            queryy += " plastique ";
+        if (dangerList != null && dangerList.contains("plastique")) {
+            queryy += " plastique";
         }
-        if (dangerList != null && dangerList.contains("carburant")){
-            queryy += " ,carburant ";
+        if (dangerList != null && dangerList.contains("carburant")) {
+            queryy += " carburant";
         }
-        if (dangerList != null && dangerList.contains("gaz")){
-            queryy += " ,gaz ";
+        if (dangerList != null && dangerList.contains("gaz")) {
+            queryy += " gaz";
         }
-        if (dangerList != null && dangerList.contains("electrique")){
-            queryy += " ,electrique ";
+        if (dangerList != null && dangerList.contains("électrique")) {
+            queryy += " électrique";
+        } else {
+            queryy = "null";
         }
-        else{
-            queryy="null";
-        }
+
         WebEngine webEngine = webview.getEngine();
         System.out.println(queryy);
         String encodedQuery = java.net.URLEncoder.encode(queryy, "UTF-8");
         String url = "https://www.google.com/search?q=" + encodedQuery;
         webEngine.load(url);
+
+
     }
+
+
     @FXML
     public void naviguerVersGestion(ActionEvent event) {
         try{

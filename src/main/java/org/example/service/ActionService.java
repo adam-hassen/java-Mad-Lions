@@ -446,4 +446,37 @@ public class ActionService {
         }
         return null;
     }
+    public List<Action> chercherByUser(String nom){
+        List<Action> ListeAct = new ArrayList<>();
+        try {
+            String requete = "SELECT a.* FROM ACTION a " +
+                    "JOIN USER1 u ON a.user_id = u.id " +
+                    "WHERE u.name = ?";
+            PreparedStatement pst = cn.prepareStatement(requete);
+            pst.setString(1,  nom);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Action act = new Action();
+                act.setId(rs.getInt("id"));
+                int a = rs.getInt("type_id");
+                TypeNameService typenameService = new TypeNameService();
+                TypeName tp = typenameService.cherchertypename(a);
+                act.setType_id(tp);
+                act.setUser_id(rs.getInt("user_id"));
+                act.setQuantite(rs.getDouble("quantite"));
+                act.setAction_score(rs.getDouble("action_score"));
+                act.setNiveau_danger(rs.getInt("niveau_danger"));
+                int b = rs.getInt("location_id");
+                ActionLocation loc = this.chercherLocation(b);
+                act.setLocation_id(loc);
+                act.setDescription(rs.getString("description"));
+                act.setDate(rs.getDate("date").toLocalDate());
+                ListeAct.add(act);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return ListeAct;
+    }
 }

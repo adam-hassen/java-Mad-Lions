@@ -171,6 +171,7 @@ public class SuivreConsoController {
             System.out.println("WebView Error: " + event.getMessage());
         });
         //end leaflet api
+
     }
 
     private static class ModernColorGenerator {

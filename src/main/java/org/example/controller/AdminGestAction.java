@@ -33,6 +33,8 @@ public class AdminGestAction {
     @FXML
     public TextField Quantite;
     @FXML
+    public TextField  nomChercher;
+    @FXML
     public Button ValiderAction;
     @FXML
     public ComboBox<Integer>  secondComboBox;
@@ -440,5 +442,11 @@ public class AdminGestAction {
         Type.setValue(null);
         Description.setText(null);
         Type.getSelectionModel().clearSelection();
+    }
+    public void handlechercheruser(){
+        List<Action> actionList = query.chercherByUser(nomChercher.getText());
+        ObservableList<Action> observableList = FXCollections.observableArrayList(actionList);
+        tableView.setItems(observableList);
+        tableView.refresh();
     }
 }
