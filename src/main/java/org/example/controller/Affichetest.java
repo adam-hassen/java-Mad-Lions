@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -84,6 +85,8 @@ public class Affichetest  implements Initializable {
                 session2.test=id_test;
 
                 Scene scene2 = new Scene(root2.load());
+                updatetest controller=root2.getController();
+                controller.loader(id_test);
                 Stage stage2;
                 stage2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage2.setScene(scene2);
