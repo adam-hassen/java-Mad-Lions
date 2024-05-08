@@ -13,17 +13,35 @@ import EDU.userjava1.entities.User1;
 import EDU.userjava1.interfaces.MyListener;
 import EDU.userjava1.interfaces.MyListener1;
 import EDU.userjava1.services.UserServices;
+import javafx.scene.text.Text;
+import org.example.service.ActionService;
+
 public class AdminGestConso {
+    @FXML
+    public Text Email;
+    @FXML
+    public Text Address;
+    @FXML
+    public Text Danger;
+    @FXML
+    public Text LastActionDate;
+    @FXML
+    public Text Nom;
     @FXML
     private Button button;
     @FXML
     private Button button1;
     @FXML
     private VBox vboxside;
+    private ActionService query;
     @FXML
     public void initialize() {
+        query = new ActionService();
         button.setOnAction(this::naviguerVersAction);
         button1.setOnAction(this::naviguerVersTypeAction);
+        Email.setText(Login.v.getUsername());
+        Nom.setText(Login.v.getName());
+        Address.setText(Login.v.getAdress());
     }
 
     @FXML
@@ -48,4 +66,5 @@ public class AdminGestConso {
             ex.printStackTrace();
         }
     }
+
 }

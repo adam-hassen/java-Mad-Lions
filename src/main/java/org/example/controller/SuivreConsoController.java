@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.chart.ScatterChart;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -57,6 +58,8 @@ import EDU.userjava1.interfaces.MyListener;
 import EDU.userjava1.interfaces.MyListener1;
 import EDU.userjava1.services.UserServices;
 public class SuivreConsoController {
+    @FXML
+    public Button Home;
     private ActionService query;
     private TypeNameService query2;
     @FXML
@@ -288,4 +291,14 @@ public class SuivreConsoController {
            e.printStackTrace();
        }
    }
+    public void handleHome(){
+        try{
+            Parent root= FXMLLoader.load(getClass().getResource("/Client/Gestion Consommation/HomeGestionAction.fxml"));
+            Home.getScene().setRoot(root);
+        }
+        catch (IOException ex){
+            System.err.println("Error loading FXML document: " + ex);
+            ex.printStackTrace();
+        }
+    }
 }

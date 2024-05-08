@@ -71,6 +71,8 @@ public class AdminGestAction {
     @FXML
     private VBox vboxside;
     @FXML
+    public Button Home;
+    @FXML
     public void initialize() {
         //home.setOnAction(this::naviguerVersHome);
         query2 = new TypeNameService();
@@ -448,5 +450,15 @@ public class AdminGestAction {
         ObservableList<Action> observableList = FXCollections.observableArrayList(actionList);
         tableView.setItems(observableList);
         tableView.refresh();
+    }
+    public void handleHome(){
+        try{
+            Parent root= FXMLLoader.load(getClass().getResource("/Client/Gestion Consommation/HomeGestionAction.fxml"));
+            Home.getScene().setRoot(root);
+        }
+        catch (IOException ex){
+            System.err.println("Error loading FXML document: " + ex);
+            ex.printStackTrace();
+        }
     }
 }

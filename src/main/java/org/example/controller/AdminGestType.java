@@ -60,6 +60,8 @@ public class AdminGestType {
     @FXML
     private VBox vboxside;
     @FXML
+    public Button Home;
+    @FXML
     public void initialize() {
         //home.setOnAction(this::naviguerVersHome);
         query2 = new TypeNameService();
@@ -299,6 +301,16 @@ public class AdminGestType {
                 items.remove(selectedRow);
                 tableView.refresh();
             }
+        }
+    }
+    public void handleHome(){
+        try{
+            Parent root= FXMLLoader.load(getClass().getResource("/Admin/Gestion Consommation/AdminGestConso.fxml"));
+            Home.getScene().setRoot(root);
+        }
+        catch (IOException ex){
+            System.err.println("Error loading FXML document: " + ex);
+            ex.printStackTrace();
         }
     }
 }

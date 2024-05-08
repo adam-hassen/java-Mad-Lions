@@ -36,6 +36,8 @@ import EDU.userjava1.services.UserServices;
 import okhttp3.*;
 import org.example.service.ActionService;
 
+import javax.swing.text.html.ImageView;
+
 public class ConsoController {
     @FXML
     public Text LastActionDate;
@@ -49,6 +51,8 @@ public class ConsoController {
     public Text Danger;
     @FXML
     public WebView webview;
+    @FXML
+    public Button Home;
     @FXML
     private Button button;
     @FXML
@@ -64,7 +68,10 @@ public class ConsoController {
         button.setOnAction(this::naviguerVersGestion);
         button1.setOnAction(this::naviguerVersSuivre);
         System.out.println("djo" + Login.v.getId());
-        LastActionDate.setText(String.valueOf(query.lastAction(Login.v.getId()).getDate()));
+        if (String.valueOf(query.lastAction(Login.v.getId()).getDate()) != null){
+            LastActionDate.setText(String.valueOf(query.lastAction(Login.v.getId()).getDate()));
+        }
+        else LastActionDate.setText("Vous n'avez pas d'actions");
         Email.setText(Login.v.getUsername());
         Nom.setText(Login.v.getName());
         Address.setText(Login.v.getAdress());
@@ -144,4 +151,5 @@ public class ConsoController {
             scaleTransition.play();
         });
     }
+
 }
