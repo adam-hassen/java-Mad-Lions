@@ -62,6 +62,45 @@
 .table-row-cell:hover {
     -fx-background-color: #f0f0f0; /* Couleur de fond gris clair au survol */
 }
+.text-area {
+    -fx-background-color: #fff; /* Couleur de fond */
+    -fx-text-fill: #333; /* Couleur du texte */
+    -fx-font-size: 14px; /* Taille de la police */
+    -fx-padding: 8px; /* Espacement interne */
+    -fx-border-color: #2c3e31; /* Couleur de la bordure */
+    -fx-border-radius: 5px; /* Bord arrondi */
+}
+.text-field {
+    -fx-background-color: #fff; /* Couleur de fond */
+    -fx-text-fill:  #2E714A; /* Couleur du texte */
+    -fx-font-size: 14px; /* Taille de la police */
+    -fx-padding: 8px; /* Espacement interne */
+    -fx-border-color:  #2E714A; /* Couleur de la bordure */
+    -fx-border-radius: 5px; /* Bord arrondi */
+}
+/* Style pour le texte */
+.text {
+    color: #333; /* Couleur du texte */
+    font-size: 16px; /* Taille de la police */
+    font-family: Arial, sans-serif; /* Police de caractères */
+    line-height: 1.5; /* Hauteur de ligne */
+    text-align: left; /* Alignement du texte */
+}
+/* Style pour le label */
+
+
+/* Style pour la zone de texte (TextArea) */
+
+
+/* Style pour la liste déroulante (ComboBox) */
+.combo-box {
+    -fx-background-color: #fff; /* Couleur de fond */
+    -fx-text-fill: #333; /* Couleur du texte */
+    -fx-font-size: 14px; /* Taille de la police */
+    -fx-padding: 8px; /* Espacement interne */
+    -fx-border-color: #2E714A; /* Couleur de la bordure */
+    -fx-border-radius: 5px; /* Bord arrondi */
+}
 
 
 .chart {

@@ -1,15 +1,19 @@
 package org.example.controller;
 
 import EDU.userjava1.controllers.Login;
+import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.example.entity.Action;
 import org.example.entity.TypeName;
 import org.example.service.ActionService;
@@ -77,45 +81,6 @@ public class AdminGestAction {
         //home.setOnAction(this::naviguerVersHome);
         query2 = new TypeNameService();
         query = new ActionService();
-        ObservableList<Integer> hours = FXCollections.observableArrayList();
-        for (int i = 0; i < 24; i++) {
-            hours.add(i);
-        }
-        hourComboBox.setItems(hours);
-        ObservableList<Integer> minutes = FXCollections.observableArrayList();
-        for (int i = 0; i < 60; i++) {
-            minutes.add(i);
-        }
-        minuteComboBox.setItems(minutes);
-        ObservableList<Integer> seconds = FXCollections.observableArrayList();
-        for (int i = 0; i < 60; i++) {
-            seconds.add(i);
-        }
-        secondComboBox.setItems(seconds);
-      //  ValiderAction.setOnAction(this::AjouterAction);
-        ModifierAction.setOnAction(this::handleModifierAct);
-        showtypes();
-        //toggle quantite
-      /*  toggleGroup = new ToggleGroup();
-        timeToggle.setToggleGroup(toggleGroup);
-        quantiteToggle.setToggleGroup(toggleGroup);*/
-        // reset show quantity type
-        timeLabel.setVisible(false);
-        quantiteToggle.setVisible(false);
-        timeToggle.setVisible(false);
-        hourComboBox.setVisible(false);
-        minuteComboBox.setVisible(false);
-        secondComboBox.setVisible(false);
-        quantiteLabel.setVisible(false);
-        Quantite.setVisible(false);
-        /*if (isUpdatePage) {
-            ModifierAction.setVisible(true);
-            ValiderAction.setVisible(false);
-        } else {
-            ModifierAction.setVisible(false);
-            ValiderAction.setVisible(true);
-        }*/
-        //show tables of actions
         showAction();
     }
     @FXML
@@ -356,7 +321,7 @@ public class AdminGestAction {
 
     }
     public void showAction() {
-        List<Action> actionList = query.afficherActions(1);
+        List<Action> actionList = query.afficherTous();
         ObservableList<Action> observableList = FXCollections.observableArrayList(actionList);
         ColTypeName.setCellValueFactory(new PropertyValueFactory<Action,Integer>("type_id"));
         ColDanger.setCellValueFactory(new PropertyValueFactory<Action,Integer>("niveau_danger"));
@@ -452,13 +417,28 @@ public class AdminGestAction {
         tableView.refresh();
     }
     public void handleHome(){
-        try{
-            Parent root= FXMLLoader.load(getClass().getResource("/Client/Gestion Consommation/HomeGestionAction.fxml"));
-            Home.getScene().setRoot(root);
-        }
-        catch (IOException ex){
-            System.err.println("Error loading FXML document: " + ex);
-            ex.printStackTrace();
-        }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Admin/Gestion Consommation/AdminGerTypeAction.fxml"));
+            try {
+                Parent root = loader.load();
+                Stage stage = new Stage();
+
+                // Créer une transition de fondu pour la nouvelle scène
+                FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+                fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
+                fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
+
+                // Démarrer la transition de fondu
+                fadeTransition.play();
+
+                // Afficher la nouvelle scène dans une nouvelle fenêtre
+                stage.setScene(new Scene(root));
+                stage.show();
+
+                // Fermer la fenêtre actuelle après la transition
+                //  Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                //fadeTransition.setOnFinished(e -> currentStage.close());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
     }
 }

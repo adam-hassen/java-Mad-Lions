@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1068.0" stylesheets="@../CSS/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.evenements.controllers.EvenementsController">
+<AnchorPane prefHeight="768.0" prefWidth="1068.0" stylesheets="@../CSS/AfficherEcodepot.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.evenements.controllers.EvenementsController">
    <children>
       <VBox layoutX="21.0" layoutY="196.0" prefHeight="586.0" prefWidth="440.0" spacing="5.0" AnchorPane.bottomAnchor="-13.600000000000023" AnchorPane.rightAnchor="662.4000000000001" AnchorPane.topAnchor="196.0">
          <children>
@@ -26,12 +26,12 @@
             <TextArea fx:id="tDescription" prefHeight="69.0" prefWidth="300.0" promptText="Écrivez ici la description de votre événement" />
          </children>
       </VBox>
-      <TableView fx:id="table" layoutX="609.0" layoutY="196.0" onMouseClicked="#getData" prefHeight="350.0" prefWidth="514.0" AnchorPane.topAnchor="196.0">
+      <TableView fx:id="table" layoutX="556.0" layoutY="164.0" onMouseClicked="#getData" prefHeight="382.0" prefWidth="567.0" AnchorPane.topAnchor="164.0">
         <columns>
           <TableColumn fx:id="colTitre" prefWidth="92.0" text="Titre" />
           <TableColumn fx:id="colLieu" prefWidth="131.20001220703125" text="Lieu" />
             <TableColumn fx:id="colDate" minWidth="0.0" prefWidth="141.60009765625" text="Date" />
-            <TableColumn fx:id="colDescription" prefWidth="113.59991455078125" text="Description" />
+            <TableColumn fx:id="colDescription" prefWidth="195.2000732421875" text="Description" />
         </columns>
       </TableView>
       <ButtonBar layoutX="6.0" layoutY="666.0" prefHeight="48.0" prefWidth="1054.0">
@@ -81,6 +81,6 @@
 
         </buttons>
       </ButtonBar>
-      <Label layoutX="404.0" layoutY="28.0" prefHeight="63.0" prefWidth="237.0" style="-fx-background-color: #2E714A;" styleClass="title-label" text="Evenements" textAlignment="CENTER" />
+      <Label alignment="CENTER" layoutX="404.0" layoutY="28.0" prefHeight="63.0" prefWidth="237.0" style="-fx-background-color: #2E714A;" styleClass="title-label" text="Evenements" textAlignment="CENTER" textFill="#f2f0f0" />
    </children>
 </AnchorPane>

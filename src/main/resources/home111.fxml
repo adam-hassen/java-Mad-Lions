@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="694.0" prefWidth="1227.0" style="-fx-background-color: #229954;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.home111">
+<AnchorPane prefHeight="726.0" prefWidth="1320.0" style="-fx-background-color: #229954;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.home111">
    <children>
-      <BorderPane fx:id="BorderPane" layoutX="32.0" layoutY="-68.0" prefHeight="794.0" prefWidth="1263.0">
+      <BorderPane fx:id="BorderPane" layoutX="7.0" layoutY="-51.0" prefHeight="794.0" prefWidth="1244.0">
          <top>
-            <HBox alignment="CENTER" prefHeight="109.0" prefWidth="1226.0" style="-fx-background-color: #229954;" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="90.0" prefWidth="1303.0" style="-fx-background-color: #229954;" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="122.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="51.0" fitWidth="289.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@img/logo.png" />
                      </image>
@@ -43,13 +43,14 @@
                         <Button mnemonicParsing="false" onAction="#produit" prefHeight="40.0" prefWidth="154.0" styleClass="root" stylesheets="@style/BoutonHome.css" text="produit" />
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="108.0" prefWidth="272.0">
+                  <VBox alignment="CENTER" prefHeight="110.0" prefWidth="170.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#pub" prefHeight="40.0" prefWidth="154.0" style="-fx-background-color: #D42633;" styleClass="root" stylesheets="@style/BoutonHome.css" text="PUB" />
+                        <Button mnemonicParsing="false" onAction="#pub" prefHeight="40.0" prefWidth="113.0" style="-fx-background-color: #D42633;" styleClass="root" stylesheets="@style/BoutonHome.css" text="PUB" />
                      </children></VBox>
-                  <VBox alignment="CENTER" prefHeight="108.0" prefWidth="138.0">
+                  <VBox prefHeight="110.0" prefWidth="194.0" />
+                  <VBox alignment="CENTER" prefHeight="96.0" prefWidth="146.0">
                      <children>
-                        <Button fx:id="email" mnemonicParsing="false" onAction="#profile" prefHeight="26.0" prefWidth="146.0" style="-fx-background-color: #8fca63;" stylesheets="@style/style.css" text="useremail">
+                        <Button fx:id="email" mnemonicParsing="false" onAction="#profile" prefHeight="27.0" prefWidth="75.0" style="-fx-background-color: #8fca63;" stylesheets="@style/style.css" text="useremail">
                            <styleClass>
                               <String fx:value="parent" />
                               <String fx:value="button-with-shadow" />

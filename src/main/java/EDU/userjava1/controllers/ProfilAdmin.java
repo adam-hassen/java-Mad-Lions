@@ -114,6 +114,8 @@ public class ProfilAdmin implements Initializable {
         Stage stage2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage2.setScene(scene2);
         stage2.show();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 
     public void rafraichirInformations(User1 admin) {

@@ -3,6 +3,7 @@ package EDU.userjava1.controllers;
 import EDU.userjava1.entities.User1;
 import EDU.userjava1.interfaces.MyListener;
 import EDU.userjava1.services.UserServices;
+import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,6 +35,7 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Table;
+import javafx.util.Duration;
 
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -151,12 +153,29 @@ public class userliste implements Initializable {
 
     @FXML
     void reclamationbutton(ActionEvent event) throws IOException{
-        Parent root1 = FXMLLoader.load(getClass().getResource("/reclamationback.fxml"));
-        Scene scene1 = new Scene(root1);
-        Stage stage1;
-        stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage1.setScene(scene1);
-        stage1.show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/reclamationback.fxml"));
+        try {
+            Parent root = loader.load();
+            Stage stage = new Stage();
+
+            // Créer une transition de fondu pour la nouvelle scène
+            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+            fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
+            fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
+
+            // Démarrer la transition de fondu
+            fadeTransition.play();
+
+            // Afficher la nouvelle scène dans une nouvelle fenêtre
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Fermer la fenêtre actuelle après la transition
+            //  Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            //fadeTransition.setOnFinished(e -> currentStage.close());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

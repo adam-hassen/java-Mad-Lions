@@ -10,25 +10,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
 <VBox alignment="CENTER" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../CSS/Home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.AdminGestType">
     <children>
         <HBox alignment="CENTER" prefHeight="528.0" prefWidth="1000.0" spacing="20.0">
             <children>
                 <VBox alignment="CENTER" prefHeight="553.0" prefWidth="970.0" stylesheets="@../../CSS/Home.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
                     <children>
-                        <AnchorPane prefHeight="586.0" prefWidth="898.0" styleClass="middle-container">
-                            <AnchorPane prefHeight="82.0" prefWidth="926.0">
-                                <children>
-                                    <Button fx:id="Home" layoutX="770.0" mnemonicParsing="false" onAction="#handleHome" prefHeight="42.0" prefWidth="127.0" styleClass="button-home" text="Home" />
-                                    <ImageView fitHeight="28.0" fitWidth="27.0" layoutX="777.0" layoutY="10.0">
-                                        <image>
-                                            <Image url="@../../CSS/Images/home.png" />
-                                        </image>
-                                    </ImageView>
-                                </children>
-                            </AnchorPane>
+                        <AnchorPane prefHeight="586.0" prefWidth="1002.0" styleClass="middle-container">
+                            <AnchorPane prefHeight="82.0" prefWidth="926.0" />
                             <Label layoutX="20.0" layoutY="20.0" text="Nom:" />
                             <TextField fx:id="nomField" layoutX="120.0" layoutY="20.0" promptText="Enter Nom" />
 
@@ -44,25 +33,25 @@
                             <Label layoutX="20.0" layoutY="226.0" text="Util Max:" />
                             <TextField fx:id="utilMaxField" layoutX="120.0" layoutY="230.0" promptText="Enter Util Max" />
 
-                            <Button fx:id="ValiderTypeAction" layoutX="376.0" layoutY="16.0" onAction="#AjouterTypeAction" prefHeight="40.0" prefWidth="115.0" styleClass="button-home" text="Ajouter" />
-                            <Button fx:id="ModifierValiderTypeAction" layoutX="376.0" layoutY="60.0" onAction="#handleModifierAct" prefHeight="40.0" prefWidth="115.0" styleClass="button-home" text="Modifier" />
-                            <Button fx:id="réinitialisationButton" layoutX="376.0" layoutY="105.0" prefHeight="40.0" prefWidth="115.0" styleClass="button-home" text="Réinitialisation" />
-                            <TableView fx:id="tableView" layoutX="14.0" layoutY="300.0" prefHeight="246.0" prefWidth="724.0">
+                            <Button fx:id="ValiderTypeAction" layoutX="376.0" layoutY="8.0" onAction="#AjouterTypeAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #2E714A;" styleClass="button-home" text="Ajouter" />
+                            <Button fx:id="ModifierValiderTypeAction" layoutX="376.0" layoutY="79.0" onAction="#handleModifierAct" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #2E714A;" styleClass="button-home" text="Modifier" />
+                            <Button fx:id="réinitialisationButton" layoutX="376.0" layoutY="144.0" prefHeight="51.0" prefWidth="163.0" style="-fx-background-color: #2E714A;" styleClass="button-home" text="Réinitialisation" />
+                            <TableView fx:id="tableView" layoutX="14.0" layoutY="300.0" prefHeight="292.0" prefWidth="1000.0">
                                 <columns>
                                     <TableColumn fx:id="colId" prefWidth="55.2000093460083" text="ID" />
-                                    <TableColumn fx:id="colActionTypeId" prefWidth="90.39999389648438" text="Action Type ID" />
-                                    <TableColumn fx:id="colNom" prefWidth="174.40005493164062" text="Nom" />
+                                    <TableColumn fx:id="colActionTypeId" prefWidth="146.39999389648438" text="Action Type ID" />
+                                    <TableColumn fx:id="colNom" prefWidth="139.1999969482422" text="Nom" />
                                     <TableColumn fx:id="colScore" minWidth="6.4000244140625" prefWidth="85.60003662109375" text="Score" />
                                     <TableColumn fx:id="colMateriel" prefWidth="83.199951171875" text="Materiel" />
-                                    <TableColumn fx:id="colType" prefWidth="68.0" text="Type" />
-                                    <TableColumn fx:id="colUtilMax" prefWidth="365.5999755859375" text="Util Max" />
+                                    <TableColumn fx:id="colType" prefWidth="194.39996337890625" text="Type" />
+                                    <TableColumn fx:id="colUtilMax" prefWidth="262.4000244140625" text="Util Max" />
                                 </columns>
                         <columnResizePolicy>
                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                         </columnResizePolicy>
                             </TableView>
-                            <Button fx:id="modifierButton" layoutX="505.0" layoutY="210.0" onAction="#handleModifierButton" prefHeight="40.0" prefWidth="115.0" styleClass="button-home" text="Modifier" />
-                            <Button fx:id="supprimerButton" layoutX="628.0" layoutY="210.0" onAction="#handleSupprimerButton" prefHeight="40.0" prefWidth="115.0" styleClass="button-home" text="Supprimer" />
+                            <Button fx:id="modifierButton" layoutX="505.0" layoutY="210.0" onAction="#handleModifierButton" prefHeight="51.0" prefWidth="134.0" style="-fx-background-color: #2E714A;" styleClass="button-home" text="Modifier" />
+                            <Button fx:id="supprimerButton" layoutX="658.0" layoutY="210.0" onAction="#handleSupprimerButton" prefHeight="51.0" prefWidth="133.0" style="-fx-background-color: #A7001E;" styleClass="button-home" text="Supprimer" />
                         </AnchorPane>
                     </children>
                 </VBox>

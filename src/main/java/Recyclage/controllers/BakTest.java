@@ -1,8 +1,7 @@
 package Recyclage.controllers;
+import EDU.userjava1.controllers.Login;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Insets;
-import Recyclage.entities.ProduitRecyclable;
-import Recyclage.services.ProduitRecyclableMethodes;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,19 +9,19 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.Label;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.awt.*;
+//import java.awt.*;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 
-public class BakTest {
+public class BakTest  {
     @FXML
     private Button home;
     @FXML
@@ -44,6 +43,9 @@ public class BakTest {
     private Button Utilisateur;
 
     @FXML
+    private Label idUser;
+
+    @FXML
     private Button consommation;
 
     @FXML
@@ -60,6 +62,7 @@ public class BakTest {
 
     @FXML
     void initialize() throws IOException {
+        idUser.setText(Login.v.getName());
         hboxButtons.setVisible(false);
         StackPane view= FXMLLoader.load((getClass().getResource("/com/example/demo/dashboard.fxml")));
         BorderPane.setCenter(view);
@@ -104,7 +107,9 @@ public class BakTest {
         hboxButtons.setVisible(false);
     }
     @FXML
-    void consommation(ActionEvent event) {
+    void consommation(ActionEvent event) throws IOException {
+        VBox view= FXMLLoader.load((getClass().getResource("/Admin/Gestion Consommation/AdminGerAction.fxml")));
+        BorderPane.setCenter(view);
         hboxButtons.setVisible(false);
     }
 
@@ -159,4 +164,5 @@ public class BakTest {
             throw new RuntimeException(e);
         }
     }
+
 }
