@@ -1,0 +1,53 @@
+/* alerte.css */
+
+/* Style de l'arrière-plan de l'alerte */
+.root {
+    -fx-background-color: rgba(0, 0, 0, 0.4); /* Fond semi-transparent */
+}
+
+/* Style de la boîte de dialogue de l'alerte */
+.alert {
+    -fx-background-color: #fff; /* Fond blanc */
+    -fx-border-radius: 10px; /* Coins arrondis */
+    -fx-padding: 20px; /* Espacement intérieur */
+}
+
+/* Style du titre de l'alerte */
+.alert .header-panel {
+    -fx-background-color: #7AA95C; /* Fond bleu */
+    -fx-border-radius: 10px 10px 0 0; /* Coins arrondis (haut) */
+    -fx-padding: 10px; /* Espacement intérieur */
+}
+
+/* Style du texte du titre de l'alerte */
+.alert .header-panel .label {
+    -fx-text-fill: #fff; /* Couleur du texte en blanc */
+    -fx-font-size: 24px; /* Taille de la police */
+    -fx-font-weight: bold; /* Texte en gras */
+    -fx-alignment: center; /* Centrer le texte */
+}
+
+/* Style du contenu de l'alerte */
+.alert .content-panel {
+    -fx-padding: 20px; /* Espacement intérieur */
+}
+
+/* Style des boutons de l'alerte */
+.alert .button-bar {
+    -fx-background-color: transparent; /* Fond transparent */
+    -fx-border-color: transparent; /* Bordure transparente */
+    -fx-padding: 10px 0; /* Espacement intérieur */
+    -fx-alignment: center; /* Centrer les boutons */
+}
+
+/* Style des boutons de l'alerte (hover) */
+.alert .button-bar .button:hover {
+    -fx-background-color: #f0f0f0; /* Fond gris clair au survol */
+}
+
+/* Style du texte des boutons */
+.alert .button-bar .button .text {
+    -fx-font-size: 18px; /* Taille de la police */
+    -fx-font-weight: bold; /* Texte en gras */
+    -fx-text-fill: #3498db; /* Couleur du texte bleu */
+}

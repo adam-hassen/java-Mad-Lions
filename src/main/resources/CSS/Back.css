@@ -1,0 +1,30 @@
+/* Style pour le bouton "Home" */
+#home {
+    -fx-cursor: pointer; /* Définir le curseur sur pointer */
+    -fx-background-color: #2C3E50; /* Couleur de fond par défaut */
+}
+
+/* Changer la couleur du bouton lorsqu'il est appuyé */
+#home:pressed {
+    -fx-background-color: #34495E; /* Nouvelle couleur de fond lorsqu'il est appuyé */
+}
+
+/* Appliquer les mêmes styles pour les autres boutons */
+#Utilisateur,
+#Recyclage,
+#consommation,
+#workshop,
+#produit,
+#evenemment {
+    -fx-cursor: pointer; /* Définir le curseur sur pointer */
+}
+
+/* Changer la couleur du bouton lorsqu'il est appuyé */
+#Utilisateur:pressed,
+#Recyclage:pressed,
+#consommation:pressed,
+#workshop:pressed,
+#produit:pressed,
+#evenemment:pressed {
+    -fx-background-color: #2C3E50; /* Nouvelle couleur de fond */
+}

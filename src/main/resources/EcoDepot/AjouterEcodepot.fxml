@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1103.0" style="-fx-background-color: #D9D9D9;" stylesheets="@../CSS/AjouterEcoDepot.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Recyclage.controllers.AjouterEcodepot">
+   <children>
+      <TextField fx:id="nomTF" layoutX="380.0" layoutY="177.0" prefHeight="58.0" prefWidth="226.0" promptText="nom" />
+      <TextField fx:id="adresseTF" layoutX="381.0" layoutY="237.0" prefHeight="40.0" promptText="adresse" />
+      <TextField fx:id="capaciteStockageTF" layoutX="379.0" layoutY="360.0" prefHeight="40.0" promptText="capacite_stockage " />
+      <Button layoutX="428.0" layoutY="500.0" mnemonicParsing="false" onAction="#AjouterEcodepot" prefHeight="46.0" prefWidth="110.0" style="-fx-background-color: #2E714A;" text="Ajouter">
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../CSS/Images/images-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <ComboBox fx:id="ComboBoxTF" layoutX="378.0" layoutY="296.0" prefHeight="46.0" prefWidth="201.0" promptText="type" />
+      <ComboBox fx:id="ComboBoxTF1" layoutX="378.0" layoutY="426.0" prefHeight="46.0" prefWidth="202.0" promptText="statut_point_collecte" />
+      <Separator layoutX="256.0" layoutY="145.0" prefHeight="3.0" prefWidth="530.0" style="-fx-background-color: #2E714A;" />
+      <Separator layoutX="781.0" layoutY="146.0" orientation="VERTICAL" prefHeight="487.0" prefWidth="6.0" style="-fx-background-color: #2E714A;" />
+      <Separator layoutX="259.0" layoutY="632.0" prefHeight="0.0" prefWidth="522.0" style="-fx-background-color: #2E714A;" />
+      <Separator layoutX="256.0" layoutY="147.0" orientation="VERTICAL" prefHeight="487.0" prefWidth="0.0" style="-fx-background-color: #2E714A;" />
+      <Label layoutX="286.0" layoutY="14.0" prefHeight="98.0" prefWidth="471.0" text="Ajouter EcoDepot" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

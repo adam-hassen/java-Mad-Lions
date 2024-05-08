@@ -30,7 +30,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Table;
 
+import java.io.FileNotFoundException;
+import java.util.List;
 public class userliste implements Initializable {
     @FXML
     private TextField recherche;
@@ -134,12 +140,13 @@ public class userliste implements Initializable {
 
     @FXML
     void profile(ActionEvent event) throws IOException{
-        Parent root1 = FXMLLoader.load(getClass().getResource("/profilAdmin.fxml"));
-        Scene scene1 = new Scene(root1);
-        Stage stage1;
-        stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage1.setScene(scene1);
-        stage1.show();
+
+        Parent root2 = FXMLLoader.load(getClass().getResource("/profilAdmin.fxml"));
+        Scene scene2 = new Scene(root2);
+        Stage stage2 = new Stage();
+        stage2.setScene(scene2);
+        stage2.show();
+
     }
 
     @FXML

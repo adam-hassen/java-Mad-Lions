@@ -1,0 +1,87 @@
+.root {
+    -fx-background-color: #f9f9f9; /* Couleur de fond gris clair */
+}
+
+/* Styles pour les boutons */
+.button {
+    -fx-background-color:  #2E714A; /* Couleur de fond verte */
+    -fx-text-fill: white; /* Couleur du texte blanc */
+    -fx-font-weight: bold; /* Texte en gras */
+    -fx-padding: 10px 20px; /* Espacement intérieur */
+    -fx-border-radius: 30px; /* Coins plus arrondis */
+    -fx-cursor: pointer; /* Curseur de la souris */
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 10,0,0,1 ); /* Effet d'ombre */
+    -fx-transition: all 0.3s; /* Animation de transition */
+}
+
+.button:hover {
+    -fx-background-color:  #2E714A; /* Changement de couleur au survol */
+    -fx-translate-y: -5px; /* Animation de translation */
+}
+
+/* Styles pour les titres */
+.label {
+    -fx-font-size: 24px; /* Taille de police */
+    -fx-font-weight: bold; /* Texte en gras */
+    -fx-text-fill: white; /* Couleur du texte */
+}
+
+/* Styles pour les tableaux */
+.table-view {
+    -fx-background-color: #ffffff; /* Couleur de fond blanc */
+    -fx-border-color:  #2E714A; /* Couleur de la bordure */
+    -fx-border-width: 2px; /* Largeur de la bordure */
+    -fx-border-radius: 10px; /* Coins arrondis */
+}
+
+.table-view .column-header-background {
+    -fx-background-color:  #2E714A; /* Couleur de fond verte pour l'en-tête de colonne */
+    -fx-background-radius: 10px 10px 0px 0px; /* Coins arrondis */
+    -fx-transition: all 0.3s; /* Animation de transition */
+}
+
+.table-view .column-header:hover {
+    -fx-background-color:  #2E714A; /* Changement de couleur au survol */
+    -fx-translate-y: -5px; /* Animation de translation */
+}
+
+.table-view .column-header {
+    -fx-background-color:  #2E714A; /* Couleur de fond verte pour l'en-tête de colonne */
+    -fx-text-fill: white; /* Couleur du texte blanc */
+    -fx-font-weight: bold; /* Texte en gras */
+}
+
+.table-view .table-cell {
+    -fx-background-color: transparent; /* Couleur de fond semi-transparente pour les cellules */
+    -fx-border-color:  #2E714A; /* Couleur de la bordure */
+    -fx-border-width: 0px 0px 2px 0px; /* Largeur de la bordure (bas) */
+    -fx-padding: 15px; /* Espacement intérieur */
+    -fx-text-fill: #333333; /* Couleur du texte */
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #f0f0f0; /* Couleur de fond gris clair au survol */
+}
+
+
+.chart {
+    -fx-background-color: transparent; /* Couleur de fond blanc */
+    -fx-border-color:  #2E714A; /* Couleur de la bordure */
+    -fx-border-width: 2px; /* Largeur de la bordure */
+    -fx-border-radius: 10px; /* Coins arrondis */
+}
+
+.chart-legend {
+    -fx-background-color: transparent; /* Couleur de fond blanc */
+    -fx-border-color:  #2E714A; /* Couleur de la bordure */
+    -fx-border-width: 2px; /* Largeur de la bordure */
+    -fx-border-radius: 10px; /* Coins arrondis */
+}
+
+.chart-legend-item-symbol {
+    -fx-background-color:  #2E714A; /* Couleur des symboles de légende */
+}
+
+.chart-legend-item-text {
+    -fx-text-fill: #333333; /* Couleur du texte de légende */
+}

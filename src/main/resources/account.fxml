@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.profile">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.profile">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="636.0" prefWidth="1230.0" style="-fx-background-color: edf5eb;">
          <left>
@@ -33,7 +33,7 @@
                               <Image url="@img/banner-01.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="email" prefHeight="27.0" prefWidth="310.0" text="                        email" textFill="#f2f5e9">
+                        <Label fx:id="email" prefHeight="27.0" prefWidth="228.0" text="                        email" textFill="#f2f5e9">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -140,15 +140,7 @@
          <center>
             <VBox prefHeight="662.0" prefWidth="880.0" style="-fx-background-color: edf5eb;" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="TOP_RIGHT" prefHeight="42.0" prefWidth="880.0" style="-fx-background-color: edf5eb;">
-                     <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@img/Sans%20titre-1.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </HBox>
+                  <HBox alignment="TOP_RIGHT" prefHeight="42.0" prefWidth="880.0" style="-fx-background-color: edf5eb;" />
                   <HBox alignment="CENTER" prefHeight="80.0" prefWidth="880.0" style="-fx-background-color: edf5eb;">
                      <children>
                         <Label text="Bienvenue!  " textFill="#757647">
@@ -172,7 +164,7 @@
                      <children>
                         <VBox prefHeight="246.0" prefWidth="250.0" style="-fx-background-color: edf5eb;">
                            <children>
-                              <Pane fx:id="pane_131" prefHeight="94.0" prefWidth="245.0" style="-fx-background-color: #afc885;" styleClass="pane_11" stylesheets="@style/style.css">
+                              <Pane fx:id="pane_131" prefHeight="85.0" prefWidth="250.0" style="-fx-background-color: #afc885;" styleClass="pane_11" stylesheets="@style/style.css">
                                  <children>
                                     <Label fx:id="num" layoutX="91.0" layoutY="26.0" text="Event 2" textFill="WHITE">
                                        <font>
@@ -195,11 +187,11 @@
                            </children>
                         </VBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: edf5eb;" />
-                        <VBox prefHeight="287.0" prefWidth="435.0">
+                        <VBox prefHeight="169.0" prefWidth="458.0">
                            <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="146.0" prefWidth="389.0" style="-fx-background-color: edf5eb;">
+                              <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="431.0" style="-fx-background-color: edf5eb;">
                                  <children>
-                                    <Pane fx:id="pane_1311" prefHeight="93.0" prefWidth="246.0" style="-fx-background-color: #afc885;" styleClass="pane_11" stylesheets="@style/style.css">
+                                    <Pane fx:id="pane_1311" prefHeight="98.0" prefWidth="246.0" style="-fx-background-color: #afc885;" styleClass="pane_11" stylesheets="@style/style.css">
                                        <children>
                                           <Label fx:id="genre" layoutX="98.0" layoutY="24.0" text="Event 3" textFill="WHITE">
                                              <font>
@@ -211,7 +203,7 @@
                                                 <Image url="@img/family-dress.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="41.0" fitWidth="35.0" layoutX="211.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="41.0" fitWidth="35.0" layoutX="197.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@img/location-crosshairs.png" />
                                              </image>
@@ -237,12 +229,12 @@
                                        </cursor>
                                     </Button>
                                  </children></HBox>
-                              <HBox prefHeight="81.0" prefWidth="353.0" />
+                              <HBox prefHeight="0.0" prefWidth="435.0" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
-                  <ScrollPane fx:id="scroll" prefHeight="680.0" prefWidth="950.0" styleClass="transparent" stylesheets="@../../../../../Desktop/trocit-Gestionuser/values/style.css">
+                  <ScrollPane fx:id="scroll" prefHeight="511.0" prefWidth="901.0" styleClass="transparent" stylesheets="@../../../../../Desktop/trocit-Gestionuser/values/style.css">
                      <content>
                         <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
                            <rowConstraints>

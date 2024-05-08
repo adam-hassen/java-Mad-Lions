@@ -2,6 +2,7 @@ package EDU.userjava1.controllers;
 
 import EDU.userjava1.entities.Reclamation;
 import EDU.userjava1.interfaces.MyListener1;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -48,5 +49,18 @@ public class AfficheReclamationFront {
         // Translate message and response
 
 
-    }}
+    }
+
+    @FXML
+    void traduction(ActionEvent event) {
+     /*   String originalMessage = reclamation1.getText();
+
+        // Attempt translation from Arabic to English
+        Translator translator = new Translator();
+        String translatedMessage = translator.translate(originalMessage, "fr", "en");
+
+        // Update the label with the translated message
+        reclamation1.setText(translatedMessage);*/
+    }
+}
 

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="540.0" prefWidth="1048.0" stylesheets="@../CSS/AjouterProduitRecyclable.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Recyclage.controllers.AjouterProduitRecyclable">
+   <children>
+      <TextField fx:id="nomTFP" layoutX="754.0" layoutY="67.0" prefHeight="40.0" promptText="nom" />
+      <TextField fx:id="DiscriptionTFP" layoutX="754.0" layoutY="125.0" prefHeight="40.0" promptText="Discription" />
+      <TextField fx:id="quantiteTFP" layoutX="753.0" layoutY="179.0" prefHeight="40.0" promptText="Quantiter" />
+      <Button layoutX="714.0" layoutY="420.0" mnemonicParsing="false" onAction="#AjouterProduitRecyclable" prefHeight="49.0" prefWidth="131.0" text="Ajouter">
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../CSS/Images/images-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <ComboBox fx:id="ComboBoxTFP" layoutX="752.0" layoutY="234.0" prefHeight="46.0" prefWidth="201.0" promptText="type" />
+      <ComboBox fx:id="ComboBoxTF1P" layoutX="751.0" layoutY="355.0" onAction="#onEcoDepotSelected" prefHeight="46.0" prefWidth="202.0" promptText="EcoDepot" />
+      <DatePicker fx:id="dateP" disable="true" layoutX="752.0" layoutY="301.0" prefHeight="32.0" prefWidth="202.0" />
+      <ImageView fitHeight="40.0" fitWidth="213.0" layoutX="846.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/logo.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="869.0" layoutY="422.0" mnemonicParsing="false" onAction="#réinitialiser" prefHeight="46.0" prefWidth="145.0" style="-fx-background-color: #955149;" text="réinitialiser">
+         <graphic>
+            <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../CSS/Images/2618245.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <ProgressBar fx:id="progressBar" layoutX="957.0" layoutY="369.0" prefHeight="18.0" prefWidth="85.0" progress="0.0" />
+      <Label fx:id="pourcentageLabel" layoutX="958.0" layoutY="346.0" prefHeight="18.0" prefWidth="94.0">
+         <font>
+            <Font size="1.0" />
+         </font>
+      </Label>
+      <Button layoutY="5.0" mnemonicParsing="false" onAction="#Home" prefHeight="44.0" prefWidth="64.0" style="-fx-background-color: transparent;" />
+   </children>
+</AnchorPane>

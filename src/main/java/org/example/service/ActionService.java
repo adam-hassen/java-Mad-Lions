@@ -37,7 +37,7 @@ public class ActionService {
             pst.setString(6, act.getQuantite_time());
             pst.setDouble(7, act.getAction_score());
             pst.setInt(8,act.getNiveau_danger());
-            pst.setInt(9,59);
+            pst.setInt(9,27);
             pst.executeUpdate();
             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
             successAlert.setTitle("Gestion De Consommation Alert!");
@@ -444,7 +444,8 @@ public class ActionService {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return null;
+        Action a = new Action();
+        return a;
     }
     public List<Action> chercherByUser(String nom){
         List<Action> ListeAct = new ArrayList<>();

@@ -1,0 +1,119 @@
+/* styles.css */
+
+/* Style de fond de la racine */
+.root {
+    -fx-background-image: url('Images/back.jpg');
+    -fx-background-size: cover; /* Ajustez la taille de l'image pour couvrir toute la zone */
+    -fx-background-position: center; /* Centrez l'image */
+    -fx-background-repeat: no-repeat; /* Ne pas répéter l'image */
+
+}
+
+/* Style des étiquettes */
+.label {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-text-fill:#4B5943; /* Couleur de texte gris foncé */
+}
+
+/* Style des champs de texte */
+.text-field {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 16px;
+    -fx-prompt-text-fill: #999; /* Couleur de texte gris clair pour l'invite */
+    -fx-background-color: #fff; /* Fond blanc */
+    -fx-background-radius: 25px; /* Coins arrondis */
+    -fx-border-color: #ccc; /* Bordure gris clair */
+    -fx-border-width: 1px; /* Épaisseur de la bordure */
+    -fx-border-radius: 25px; /* Coins arrondis */
+}
+
+/* Style des boutons */
+.button {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 16px;
+    -fx-text-fill: #fff; /* Texte blanc */
+    -fx-background-color: #4CAF50; /* Fond vert */
+    -fx-background-radius: 25px; /* Coins arrondis */
+    -fx-border: none; /* Pas de bordure */
+    -fx-cursor: hand; /* Curseur de la main au survol */
+    -fx-padding: 10px 20px; /* Ajout de marge interne */
+}
+
+/* Style des boutons au survol */
+.button:hover {
+    -fx-background-color: #45A049; /* Fond vert légèrement plus foncé */
+}
+
+/* Style des listes déroulantes */
+.combo-box {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 16px;
+    -fx-background-color: #fff; /* Fond blanc */
+    -fx-background-radius: 25px; /* Coins arrondis */
+    -fx-border-color: #ccc; /* Bordure gris clair */
+    -fx-border-width: 1px; /* Épaisseur de la bordure */
+    -fx-border-radius: 25px; /* Coins arrondis */
+}
+
+/* Style des options de la liste déroulante */
+.combo-box .list-cell {
+    -fx-text-fill: #555; /* Texte gris foncé */
+}
+
+/* Style des options de la liste déroulante au survol */
+.combo-box .list-cell:hover {
+    -fx-background-color: #f0f0f0; /* Fond gris très clair au survol */
+}
+
+/* Animation du bouton */
+.button {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+    /* Ombre portée légère */
+}
+
+.button:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0); /* Ombre portée légère au survol */
+}
+/* Style pour les DatePicker */
+/* Style pour les DatePicker */
+.date-picker .date-cell {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333; /* Couleur de texte gris */
+}
+
+/* Style pour les éléments de date sélectionnés */
+.date-picker .selected-date-cell {
+    -fx-background-color: #4CAF50; /* Fond vert pour les dates sélectionnées */
+    -fx-text-fill: #fff; /* Texte blanc pour les dates sélectionnées */
+}
+/* Style de la ProgressBar */
+/* Style de la ProgressBar */
+.progress-bar {
+    -fx-background-color: transparent; /* Couleur de fond transparente */
+}
+
+/* Style de la piste de la ProgressBar */
+.progress-bar .track {
+        -fx-background-color: #f0f0f0; /* Couleur de la piste */
+    -fx-background-insets: 0;
+}
+
+/* Style de la barre de progression de la ProgressBar */
+.progress-bar .bar {
+    -fx-background-color: linear-gradient(to right, #4CAF50, #45A049); /* Dégradé de couleur pour la barre de progression */
+    -fx-background-insets: 0;
+}
+
+/* Animation de la barre de progression */
+.progress-bar .bar {
+    -fx-background-color: linear-gradient(to right, #4CAF50, #45A049); /* Dégradé de couleur initial */
+    -fx-background-insets: 0;
+    -fx-transition: background-color 0.5s ease-in-out; /* Animation de la couleur de fond */
+}
+
+/* Effet d'ombre pour une apparence 3D */
+.progress-bar .bar {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0); /* Ombre portée légère */
+}
+

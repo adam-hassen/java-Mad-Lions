@@ -1,0 +1,77 @@
+.table-view {
+    -fx-background-color: rgba(245, 245, 245, 0.9); /* Couleur de fond semi-transparente */
+    -fx-padding: 20px;
+}
+
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent; /* Couleur de fond gris clair */
+}
+
+.table-view .corner {
+    -fx-background-color: transparent; /* Couleur de fond gris clair */
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #7DC2A5; /* Couleur de fond vert pour l'en-tête de colonne */
+    -fx-background-radius: 10px 10px 0px 0px; /* Coins arrondis */
+    -fx-padding: 10px 0px; /* Augmente la marge intérieure */
+}
+
+.table-view .column-header {
+    -fx-background-color: #7DC2A5; /* Couleur de fond vert pour l'en-tête de colonne */
+    -fx-text-fill: #ffffff; /* Couleur du texte blanc */
+    -fx-font-weight: bold; /* Texte en gras */
+}
+
+.table-view .table-cell {
+    -fx-background-color: transparent; /* Couleur de fond semi-transparente pour les cellules */
+    -fx-border-color: #d1d1d1; /* Couleur de la bordure gris clair */
+    -fx-padding: 10px 15px; /* Augmente la marge intérieure */
+    -fx-text-fill: #333333; /* Couleur du texte gris foncé */
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #eaf5e0; /* Couleur de fond vert clair au survol */
+}
+
+.table-row-cell:odd {
+    -fx-background-color: transparent; /* Couleur de fond blanche pour les rangées impaires */
+}
+
+.table-row-cell:even {
+    -fx-background-color: transparent; /* Couleur de fond gris clair pour les rangées paires */
+}
+
+.table-view .virtual-flow .scroll-bar:vertical .thumb {
+    -fx-background-color: #F0F0F0; /* Couleur verte pour la barre de défilement verticale */
+}
+
+.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color: #F0F0F0; /* Couleur verte pour la barre de défilement horizontale */
+}
+.button {
+    fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #4CAF50; /* Couleur de fond */
+    -fx-text-fill: white; /* Couleur du texte */
+    -fx-font-weight: bold; /* Texte en gras */
+    -fx-padding: 10px 20px; /* Espacement intérieur */
+    -fx-border-radius: 5px; /* Coins arrondis */
+    -fx-cursor: hand; /* Curseur de la souris */
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 10,0,0,1 ); /* Effet d'ombre */
+    -fx-transition: all 0.3s; /* Animation de transition */
+    -fx-border: none; /* Pas de bordure */
+    -fx-background-radius: 25px;
+}
+.button:hover {
+    -fx-background-color: #45a049; /* Changement de couleur au survol */
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 10,0,0,1 ); /* Effet d'ombre */
+
+}
+.button {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0); /* Ombre portée légère */
+}
+
+.button:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0); /* Ombre portée légère au survol */
+}
+

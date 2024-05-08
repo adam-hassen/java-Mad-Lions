@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="601.0" prefWidth="855.0" stylesheets="@../CSS/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.evenements.controllers.PartenaireController">
+   <children>
+      <AnchorPane prefHeight="601.0" prefWidth="855.0">
+         <children>
+            <VBox layoutX="25.0" layoutY="116.0" prefHeight="100.0" prefWidth="300.0" spacing="5.0" AnchorPane.bottomAnchor="83.19999999999993" AnchorPane.rightAnchor="530.2" AnchorPane.topAnchor="116.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="Nom du partenaire" wrappingWidth="190.3359375" />
+                  <TextField fx:id="tNom" promptText="Écrivez ici le titre de votre événement" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="Email du partenaire" />
+                  <TextField fx:id="tEmail" prefHeight="25.0" prefWidth="252.0" promptText="Écrivez ici le lieu de votre événement" />
+                   <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="Type du partenaire" />
+                   <ChoiceBox fx:id="tType" prefHeight="30.0" prefWidth="334.0">
+                       <items>
+                           <FXCollections fx:factory="observableArrayList">
+                               <String fx:value="Organisateur" />
+                               <String fx:value="Sponsor" />
+                           </FXCollections>
+                       </items>
+                   </ChoiceBox>
+
+                   <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="Evenement du partenaire" />
+                   <ChoiceBox fx:id="tEvenement" prefHeight="30.0" prefWidth="306.0" />
+               </children>
+            </VBox>
+            <TableView fx:id="table1" layoutX="519.0" layoutY="116.0" onMouseClicked="#getData1" prefHeight="282.0" prefWidth="314.0" AnchorPane.topAnchor="116.0">
+               <columns>
+                  <TableColumn fx:id="colNom" prefWidth="65.0" text="Nom" />
+                  <TableColumn fx:id="colEmail" prefWidth="76.0" text="Email" />
+                  <TableColumn fx:id="colType" prefWidth="69.0" text="Type" />
+                  <TableColumn fx:id="colEvenement" prefWidth="90.0" text="Evenement" />
+               </columns>
+            </TableView>
+            <ButtonBar layoutX="80.0" layoutY="471.0" prefHeight="48.0" prefWidth="694.0">
+               <buttons>
+                   <Button fx:id="btnEnregistrer1" mnemonicParsing="false" onAction="#createPartenaire" text="Enregistrer">
+                       <graphic>
+                           <Label style="-fx-font-size: 16px; -fx-text-fill: white;" text="💾" />
+                       </graphic>
+                   </Button>
+
+                   <Button fx:id="btnModifier1" mnemonicParsing="false" onAction="#updatePartenaire" text="Modifier">
+                       <graphic>
+                           <Label style="-fx-font-size: 16px; -fx-text-fill: white;" text="✏" />
+                       </graphic>
+                   </Button>
+
+                   <Button fx:id="btnSupprimer1" mnemonicParsing="false" onAction="#deletePartenaire" text="Supprimer">
+                       <graphic>
+                           <Label style="-fx-font-size: 16px; -fx-text-fill: white;" text="🗑" />
+                       </graphic>
+                   </Button>
+
+                   <Button fx:id="btnEffacer1" mnemonicParsing="false" onAction="#clearField1" text="Effacer">
+                       <graphic>
+                           <Label style="-fx-font-size: 16px; -fx-text-fill: white;" text="🔄" />
+                       </graphic>
+                   </Button>
+
+                   <Button fx:id="btnPdf" mnemonicParsing="false" onAction="#generatePDF" text="Pdf">
+                       <graphic>
+                           <Label style="-fx-font-size: 16px; -fx-text-fill: white;" text="📥" />
+                       </graphic>
+                   </Button>
+
+               </buttons>
+            </ButtonBar>
+            <Label layoutX="300.0" layoutY="21.0" prefHeight="62.0" prefWidth="230.0" styleClass="title-label" text="Partenaires" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

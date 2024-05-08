@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="735.0" prefWidth="1152.0" style="-fx-background-color: #D9D9D9;" stylesheets="@../CSS/AfficherEcodepot.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Recyclage.controllers.AfficherEcoDepot">
+   <children>
+      <TableView fx:id="tableView" layoutX="147.0" layoutY="56.0" onMouseClicked="#getData" prefHeight="414.0" prefWidth="874.0" style="-fx-background-color: transparent;" stylesheets="@../CSS/AfficherEcodepot.css">
+        <columns>
+          <TableColumn fx:id="nomCol" prefWidth="124.79999089241028" text="Nom" />
+          <TableColumn fx:id="adresseCol" prefWidth="104.79998779296875" text="Adresse" />
+            <TableColumn fx:id="typeCol" prefWidth="122.40000915527344" text="Type" />
+            <TableColumn fx:id="capaciteStockageCol" prefWidth="220.79998779296875" text="capacite_stockage" />
+            <TableColumn fx:id="statutPointCollecteCol" prefWidth="266.4000244140625" text="statut_point_collecte" />
+            <TableColumn fx:id="idCol" minWidth="0.0" prefWidth="0.0" />
+        </columns>
+      </TableView>
+      <PieChart fx:id="PieChart" layoutX="18.0" layoutY="482.0" prefHeight="242.0" prefWidth="516.0" />
+      <BarChart fx:id="BarChart" layoutX="615.0" layoutY="482.0" prefHeight="242.0" prefWidth="516.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+   </children>
+</AnchorPane>

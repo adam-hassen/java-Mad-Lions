@@ -1,11 +1,14 @@
 package EDU.userjava1.controllers;
 
+import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import EDU.userjava1.entities.Reclamation;
 import EDU.userjava1.services.reclamationService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,16 +21,22 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.scene.control.Pagination;
 
+import java.awt.*;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class Reclamationback implements Initializable {
+    @FXML
+    private PieChart pieChart;
     @FXML
     private Button envoyer;
 
@@ -50,31 +59,38 @@ public class Reclamationback implements Initializable {
     private TableColumn<Reclamation, String> TYPE;
 
     @FXML
-    private TableView<Reclamation> table; // Correction du type de TableView
-    reclamationService gs = new reclamationService();
+    private TableView<Reclamation> table;
 
-    private List<Reclamation> getAllReclamations() {
-        List<Reclamation> reclamations = new ArrayList<>();
-        reclamations = gs.getAllReclamations(); // Modifier la méthode pour récupérer les réclamations par ID utilisateur
-        return reclamations;
-    }
+    @FXML
+    private Button exportButton;
 
-    // Méthode pour récupérer et afficher les réclamations dans la TableView
-    public void showReclamation() {
-        List<Reclamation> reclamationsList = getAllReclamations();
-        ObservableList<Reclamation> list = FXCollections.observableList(reclamationsList);
-        table.setItems(list);
-        RECLAMATION.setCellValueFactory(new PropertyValueFactory<>("message")); // Utilisation des noms de propriétés
-        EMAIL.setCellValueFactory(new PropertyValueFactory<>("userName"));
-        DATE.setCellValueFactory(new PropertyValueFactory<>("date"));
-        REPONSE.setCellValueFactory(new PropertyValueFactory<>("reponse"));
-        TYPE.setCellValueFactory(new PropertyValueFactory<>("type")); // Utilisation des noms de propriétés
+    @FXML
+    private Pagination pagination;
 
-    }
+
+    @FXML
+    private Button statisticsButton; // Bouton pour afficher les statistiques sur le type de réclamation
+
+    private final reclamationService gs = new reclamationService();
+    private final ObservableList<Reclamation> allReclamations = FXCollections.observableArrayList();
+    private static final int ROWS_PER_PAGE = 10;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Affichage des événements existants lors du chargement de la page
-        showReclamation();
+        loadAllReclamations();
+
+        // Pagination
+        int pageCount = (int) Math.ceil((double) allReclamations.size() / ROWS_PER_PAGE);
+        pagination.setPageCount(pageCount);
+        pagination.setCurrentPageIndex(0);
+
+        pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
+            int pageIndex = newIndex.intValue();
+            int fromIndex = pageIndex * ROWS_PER_PAGE;
+            int toIndex = Math.min(fromIndex + ROWS_PER_PAGE, allReclamations.size());
+            table.setItems(FXCollections.observableArrayList(allReclamations.subList(fromIndex, toIndex)));
+        });
 
         // Ajout d'un EventHandler pour détecter les sélections d'éléments dans la TableView
         table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -82,33 +98,108 @@ public class Reclamationback implements Initializable {
                 // Afficher les détails de la réclamation sélectionnée
                 System.out.println("Réclamation sélectionnée : " + newSelection.getId());
             }
-        });        ;
-
+        });
     }
+
+    private void loadAllReclamations() {
+        allReclamations.addAll(gs.getAllReclamations());
+        showReclamation(0);
+    }
+
+    public void showReclamation(int pageIndex) {
+        int fromIndex = pageIndex * ROWS_PER_PAGE;
+        int toIndex = Math.min(fromIndex + ROWS_PER_PAGE, allReclamations.size());
+        table.setItems(FXCollections.observableArrayList(allReclamations.subList(fromIndex, toIndex)));
+        RECLAMATION.setCellValueFactory(new PropertyValueFactory<>("message"));
+        EMAIL.setCellValueFactory(new PropertyValueFactory<>("userName"));
+        DATE.setCellValueFactory(new PropertyValueFactory<>("date"));
+        REPONSE.setCellValueFactory(new PropertyValueFactory<>("reponse"));
+        TYPE.setCellValueFactory(new PropertyValueFactory<>("type"));
+    }
+
     @FXML
     void envoyer(ActionEvent event) {
-        // Récupérer la réclamation sélectionnée
         Reclamation selectedReclamation = table.getSelectionModel().getSelectedItem();
         if (selectedReclamation != null) {
-            // Répondre à la réclamation sélectionnée
-            String response = reponse.getText(); // Récupérer la réponse à partir d'un champ de texte
+            String response = reponse.getText();
             gs.repondreReclamation(selectedReclamation.getId(), response);
-
-            // Mettre à jour la TableView pour afficher la nouvelle réponse
             selectedReclamation.setReponse(response);
             table.refresh();
-            reponse.clear();// Rafraîchir la TableView pour afficher les changements
+            reponse.clear();
         } else {
             System.out.println("Aucune réclamation sélectionnée.");
         }
     }
+
     @FXML
     void back(ActionEvent event) throws IOException {
-        Parent root1 = FXMLLoader.load(getClass().getResource("/userliste.fxml"));
+        Parent root1 = FXMLLoader.load(getClass().getResource("/BackTest.fxml"));
         Scene scene1 = new Scene(root1);
-        Stage stage1;
-        stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage1.setScene(scene1);
         stage1.show();
+    }
+
+    @FXML
+    void exportToExcel(ActionEvent event) {
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Reclamations");
+        ObservableList<Reclamation> reclamationsList = table.getItems();
+        Row headerRow = sheet.createRow(0);
+        headerRow.createCell(0).setCellValue("Date");
+        headerRow.createCell(1).setCellValue("Email");
+        headerRow.createCell(2).setCellValue("Reclamation");
+        headerRow.createCell(3).setCellValue("Reponse");
+        headerRow.createCell(4).setCellValue("Type");
+        int rowNum = 1;
+        for (Reclamation reclamation : reclamationsList) {
+            Row row = sheet.createRow(rowNum++);
+            row.createCell(0).setCellValue(reclamation.getDate().toString());
+            row.createCell(1).setCellValue(reclamation.getUserName());
+            row.createCell(2).setCellValue(reclamation.getMessage());
+            row.createCell(3).setCellValue(reclamation.getReponse());
+            row.createCell(4).setCellValue(reclamation.getType());
+        }
+        for (int i = 0; i < 5; i++) {
+            sheet.autoSizeColumn(i);
+        }
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Excel File");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files", "*.xlsx"));
+        File file = fileChooser.showSaveDialog(null);
+        if (file != null) {
+            try (FileOutputStream fileOut = new FileOutputStream(file)) {
+                workbook.write(fileOut);
+                System.out.println("Excel file exported successfully.");
+
+                // Ouvrir le fichier Excel avec l'application par défaut
+                Desktop.getDesktop().open(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    // Méthode pour trier les réclamations par date
+
+
+    // Méthode pour afficher les statistiques sur le type de réclamation
+    @FXML
+    void showStatistics(ActionEvent event) {
+        // Calcul des statistiques sur le type de réclamation
+        Map<String, Integer> statistics = new HashMap<>();
+        for (Reclamation reclamation : allReclamations) {
+            String type = reclamation.getType();
+            statistics.put(type, statistics.getOrDefault(type, 0) + 1);
+        }
+
+        // Création des données pour le graphique PieChart
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        for (Map.Entry<String, Integer> entry : statistics.entrySet()) {
+            pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue()));
+        }
+
+        // Affichage du graphique PieChart
+        pieChart.setData(pieChartData);
     }
 }

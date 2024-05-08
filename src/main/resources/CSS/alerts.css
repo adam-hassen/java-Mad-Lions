@@ -1,0 +1,38 @@
+.dialog-pane {
+    -fx-font-family: Arial;
+}
+
+.button {
+    -fx-background-color: #4CAF50; /* Couleur de fond du bouton Soumettre */
+    -fx-text-fill: white; /* Couleur du texte du bouton Soumettre */
+    -fx-font-size: 14px; /* Taille de la police pour les boutons */
+    -fx-font-weight: bold; /* Police en gras pour les boutons */
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 10,0,0,1 );
+}
+
+#dialog-pane {
+    -fx-background-color: linear-gradient(#f2f2f2, #ccc); /* Dégradé de fond de la boîte de dialogue */
+    -fx-padding: 20px; /* Ajouter un espace autour du contenu */
+    -fx-border-color: #ddd; /* Couleur de la bordure */
+    -fx-border-width: 2px; /* Épaisseur de la bordure */
+    -fx-border-radius: 10px; /* Bordure arrondie */
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 10,0,0,1 );
+}
+
+#dialog-pane .label {
+    -fx-font-size: 18px; /* Taille de la police pour le texte de l'alerte */
+    -fx-font-weight: bold; /* Police en gras pour le texte de l'alerte */
+    -fx-text-fill: #333; /* Couleur du texte de l'alerte */
+}
+
+#dialog-pane .button {
+    -fx-font-size: 14px; /* Taille de la police pour les boutons */
+    -fx-font-weight: bold; /* Police en gras pour les boutons */
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,0,1 );
+    -fx-background-color: linear-gradient(#72c142, #4CAF50); /* Dégradé de couleur pour le bouton */
+}
+
+#dialog-pane .button:hover {
+    -fx-background-color: linear-gradient(#4CAF50, #72c142); /* Changement de couleur au survol */
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 5,0,0,1 );
+}

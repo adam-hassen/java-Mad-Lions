@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.DriverManager;
 
 public class connexion {
-    private static final String URL = "jdbc:mysql://localhost:3306/ecogardienfinal";
+    private static final String URL = "jdbc:mysql://localhost:3306/ecogardienintegrationfinale";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "";
     Connection cn;

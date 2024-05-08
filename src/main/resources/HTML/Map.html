@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Maps JavaScript API Example</title>
+    <style>
+        /* Styling for the map container */
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+        #addressLabel {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            background-color: white;
+            padding: 5px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h1>Ma carte de localisation</h1>
+<div id="addressLabel"></div> <!-- Ajout de cet élément pour afficher l'adresse -->
+
+<div id="map"></div>
+
+<script>
+    var mymap;
+    // Initialize and display the map
+    function initMap() {
+        // Coordinates for the initial map center (Tunisia)
+        var initialPosition = {lat: 33.8869, lng: 9.5375};
+
+        // Create a new map object
+        mymap = new google.maps.Map(document.getElementById('map'), {
+            center: initialPosition,
+            zoom: 7 // Initial zoom level
+        });
+    }
+    var markers = [];
+
+    // Function to clear markers
+    function clearMarkers() {
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(null);
+        }
+        markers = [];
+    }
+
+    function searchEcoDepotAddress(address) {
+        if (address.trim() !== '') {
+            var geocoder = new google.maps.Geocoder();
+
+            geocoder.geocode({ 'address': address }, function (results, status) {
+                if (status === 'OK') {
+                    var location = results[0].geometry.location;
+
+                    // Clear any existing markers on the map
+                    clearMarkers();
+
+                    // Add a marker at the found location with a custom color
+                    var marker = new google.maps.Marker({
+                        map: mymap,
+                        position: location,
+                        title: address,
+                        icon: {
+                            url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png', // URL de l'icône du marqueur
+                            scaledSize: new google.maps.Size(70, 70)
+                        }
+                    });
+
+                    // Center the map on the found location
+                    mymap.setCenter(location);
+                    mymap.setZoom(12);
+                    // Afficher l'adresse sous le marqueur
+                    var addressLabel = document.getElementById('addressLabel');
+                    addressLabel.innerText = 'Centre de ' + address;
+                    addressLabel.style.top = marker.getPosition().toUrlValue(0) + 'px';
+                    addressLabel.style.left = marker.getPosition().toUrlValue(1) + 'px';
+
+                } else {
+                    alert('La recherche d\'adresse a échoué : ' + status);
+                }
+            });
+        }
+    }
+</script>
+
+<!-- Load the Google Maps JavaScript API with your API key -->
+<script src="js/mapsJavaScriptAPI.js"></script>
+</body>
+</html>

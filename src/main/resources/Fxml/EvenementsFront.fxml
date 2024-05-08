@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="490.0" prefWidth="690.0" styleClass="table-column" stylesheets="@../CSS/styles2.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.evenements.controllers.EvenementsFrontController">
+    <children>
+
+        <ImageView fitHeight="61.0" fitWidth="107.0">
+         
+
+        </ImageView>
+        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+         <children>
+
+             <VBox fx:id="weatherBox" alignment="CENTER" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: rgba(135, 206, 235, 0.3); -fx-padding: 5px; -fx-border-color: #ddd; -fx-border-width: 1px; -fx-border-radius: 3px;">
+                 <children>
+                     <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #218d00;" text="Meteo ☀" />
+                     <HBox alignment="CENTER" spacing="10">
+                         <Label fx:id="weatherInfoLabel" text="" />
+                     </HBox>
+                     <Button onAction="#showTemperatureAlert" text="Voir Plus 🌧" />
+                 </children>
+               <HBox.margin>
+                  <Insets bottom="10.0" right="10.0" />
+               </HBox.margin>
+             </VBox>
+                <Label fx:id="MeilleurEvenement" text="Nouveau Design" textFill="#ffffff">
+                    <font>
+                        <Font name="Arial" size="24.0" />
+                    </font>
+                    <style>
+                        -fx-background-color: #4CAF50; /* Couleur de fond */
+                        -fx-text-fill: white; /* Couleur du texte */
+                        -fx-padding: 15px; /* Espacement interne */
+                        -fx-border-color: #388e3c; /* Couleur de la bordure */
+                        -fx-border-width: 3px; /* Largeur de la bordure */
+                        -fx-border-radius: 20px; /* Rayon de la bordure */
+                        -fx-background-radius: 20px; /* Rayon du fond */
+                        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0); /* Ombre portée */
+                    </style>
+                </Label>
+         </children>
+      </HBox>
+        <HBox alignment="CENTER" prefHeight="70.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml">
+            <children>
+
+
+             <TextField fx:id="searchField" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="216.0" promptText="Rechercher par titre...">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </TextField>
+              <ComboBox fx:id="triComboBox" prefHeight="30.0" prefWidth="216.0">
+                  <items>
+                      <FXCollections fx:factory="observableArrayList">
+                          <String fx:value="Date" />
+                          <String fx:value="Titre" />
+                          <String fx:value="Lieu" />
+                      </FXCollections>
+                  </items>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+              </ComboBox>
+            </children>
+        </HBox>
+
+        <FlowPane fx:id="flowPane" prefHeight="239.0" prefWidth="617.0">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+         <padding>
+            <Insets left="65.0" />
+         </padding></FlowPane>
+        <HBox alignment="CENTER">
+            <Button fx:id="prevButton" text="Précédent">
+            <HBox.margin>
+               <Insets right="30.0" />
+            </HBox.margin></Button>
+            <Label fx:id="lblPage" alignment="CENTER" prefHeight="17.0" prefWidth="20.0" text="" textFill="#386523" />
+            <Label fx:id="lblTotalPages" alignment="CENTER" prefHeight="17.0" prefWidth="100.0" text="" textFill="#124d06" />
+            <Button fx:id="nextButton" text="Suivant" />
+        </HBox>
+        <VBox fx:id="vbox" alignment="CENTER" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: rgba(240, 240, 240, 0.2); -fx-padding: 5px; -fx-border-color: #ddd; -fx-border-width: 1px; -fx-border-radius: 3px;">
+            <children>
+                <Label fx:id="lblJoursRestants" text="Un texte long pour tester la longueur de la case" />
+            </children>
+        </VBox>
+
+
+    </children>
+
+</VBox>

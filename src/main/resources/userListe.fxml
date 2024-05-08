@@ -5,8 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -16,25 +14,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.userliste">
+<AnchorPane prefHeight="711.0" prefWidth="1198.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.userliste">
    <children>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0">
+      <AnchorPane layoutX="28.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="691.0" prefWidth="1150.0">
          <children>
-            <BorderPane layoutX="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <BorderPane layoutX="-16.0" layoutY="-11.2" prefHeight="764.0" prefWidth="1170.0" AnchorPane.bottomAnchor="-62.0" AnchorPane.leftAnchor="-16.0" AnchorPane.rightAnchor="-22.0" AnchorPane.topAnchor="-11.0">
                <left>
-                  <VBox prefHeight="842.0" prefWidth="521.0" style="-fx-background-color: green;" styleClass="right-bar" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="764.0" prefWidth="460.0" style="-fx-background-color: #2E714A;" styleClass="right-bar" BorderPane.alignment="CENTER">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0">
-                           <children>
-                              <ImageView fitHeight="113.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@img/Sans%20titre-1.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="113.0" prefWidth="548.0" />
                         <Pane prefHeight="0.0" prefWidth="522.0" VBox.vgrow="ALWAYS" />
-                        <VBox fx:id="chosenFruitCard" alignment="CENTER" prefHeight="538.0" prefWidth="421.0" style="-fx-background-color: #2b4d24;" styleClass="button-with-shadow" stylesheets="@style/style.css">
+                        <VBox fx:id="chosenFruitCard" alignment="CENTER" prefHeight="538.0" prefWidth="301.0" style="-fx-background-color: #2b4d24;" styleClass="button-with-shadow" stylesheets="@style/style.css">
                            <VBox.margin>
                               <Insets left="50.0" right="50.0" />
                            </VBox.margin>
@@ -44,30 +34,32 @@
                   </VBox>
                </left>
                <center>
-                  <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="764.0" prefWidth="714.0" BorderPane.alignment="CENTER">
                      <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
+                        <HBox prefHeight="101.0" prefWidth="617.0">
                            <children>
                               <Pane prefHeight="84.0" prefWidth="96.0">
                                  <children>
-                                    <Button fx:id="reclamationbutton" mnemonicParsing="false" onAction="#reclamationbutton" prefHeight="27.0" prefWidth="136.0" style="-fx-background-color: green;" styleClass="button-with-shadow" stylesheets="@style/style.css" text="liste de reclamatiob" textFill="WHITE" />
+                                    <Button fx:id="reclamationbutton" mnemonicParsing="false" onAction="#reclamationbutton" prefHeight="27.0" prefWidth="136.0" style="-fx-background-color: #2E714A;" styleClass="button-with-shadow" stylesheets="@style/style.css" text="liste de reclamatiob" textFill="WHITE" />
                                  </children></Pane>
                               <Pane prefHeight="84.0" prefWidth="96.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <TextField fx:id="recherche" layoutX="71.0" layoutY="48.0" prefHeight="25.0" prefWidth="202.0" styleClass="button-with-shadow" stylesheets="@style/style.css" />
-                                    <Button layoutX="282.0" layoutY="48.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: green;" styleClass="button-with-shadow" stylesheets="@style/style.css" text="Search" textFill="WHITE" />
-                                    <Button fx:id="profile" layoutX="444.0" mnemonicParsing="false" onAction="#profile" prefHeight="26.0" prefWidth="154.0" style="-fx-background-color: green;" styleClass="button-with-shadow" stylesheets="@style/style.css" text="Mon profile" textFill="#eae7e7" />
+                                    <TextField fx:id="recherche" layoutX="71.0" layoutY="50.0" prefHeight="25.0" prefWidth="202.0" styleClass="button-with-shadow" stylesheets="@style/style.css" />
+                                    <Button layoutX="282.0" layoutY="48.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: #2E714A;" styleClass="button-with-shadow" stylesheets="@style/style.css" text="Search" textFill="WHITE" />
                                  </children>
                               </Pane>
-                              <Pane prefHeight="84.0" prefWidth="96.0" />
+                              <Pane prefHeight="84.0" prefWidth="96.0">
+                                 <children>
+                                    <Button fx:id="profile" layoutX="-83.0" mnemonicParsing="false" onAction="#profile" prefHeight="26.0" prefWidth="154.0" style="-fx-background-color: #2E714A;" styleClass="button-with-shadow" stylesheets="@style/style.css" text="Mon profile" textFill="#eae7e7" />
+                                 </children></Pane>
                            </children>
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="690.0" prefWidth="889.0" VBox.vgrow="ALWAYS">
+                        <HBox alignment="CENTER" prefHeight="658.0" prefWidth="642.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <ScrollPane fx:id="scroll" prefHeight="680.0" prefWidth="950.0" styleClass="transparent" stylesheets="@../../../../../Desktop/trocit-Gestionuser/values/style.css">
+                              <ScrollPane fx:id="scroll" prefHeight="646.0" prefWidth="726.0" styleClass="transparent" stylesheets="@style/style.css">
                                  <content>
                                     <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
                                        <rowConstraints>
@@ -85,52 +77,52 @@
                   </VBox>
                </center>
             </BorderPane>
-            <Label fx:id="prenom" layoutX="250.0" layoutY="500.0" prefHeight="30.0" prefWidth="158.0" text="Label" textFill="WHITE">
+            <Label fx:id="prenom" layoutX="155.0" layoutY="500.0" prefHeight="30.0" prefWidth="158.0" text="Label" textFill="WHITE">
                <font>
                   <Font name="Cambria" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="jeton" layoutX="250.0" layoutY="300.0" text="Label" textFill="WHITE">
+            <Label fx:id="jeton" layoutX="155.0" layoutY="300.0" text="Label" textFill="WHITE">
                <font>
                   <Font name="Cambria" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="nom" layoutX="250.0" layoutY="400.0" text="Label" textFill="WHITE">
+            <Label fx:id="nom" layoutX="155.0" layoutY="400.0" text="Label" textFill="WHITE">
                <font>
                   <Font name="Cambria" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="email" layoutX="250.0" layoutY="600.0" prefHeight="30.0" prefWidth="326.0" text="Label" textFill="WHITE">
+            <Label fx:id="email" layoutX="126.0" layoutY="600.0" prefHeight="30.0" prefWidth="277.0" text="Label" textFill="WHITE">
                <font>
                   <Font name="Cambria" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="role" layoutX="250.0" layoutY="200.0" text="Label" textFill="WHITE">
+            <Label fx:id="role" layoutX="154.0" layoutY="200.0" text="Label" textFill="WHITE">
                <font>
                   <Font name="Cambria" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="100.0" layoutY="200.0" prefHeight="24.0" prefWidth="86.0" text="Role" textFill="WHITE">
+            <Label layoutX="49.0" layoutY="203.0" prefHeight="24.0" prefWidth="86.0" text="Role :" textFill="WHITE">
                <font>
                   <Font name="Cambria" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="100.0" layoutY="300.0" text="numero" textFill="WHITE">
+            <Label layoutX="49.0" layoutY="303.0" prefHeight="24.0" prefWidth="86.0" text="numero :" textFill="WHITE">
                <font>
                   <Font name="Cambria" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="100.0" layoutY="400.0" text="Nom" textFill="WHITE">
+            <Label layoutX="49.0" layoutY="402.0" text="Nom :" textFill="WHITE">
                <font>
                   <Font name="Cambria" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="100.0" layoutY="500.0" text="Prenom" textFill="WHITE">
+            <Label layoutX="49.0" layoutY="502.0" text="Prenom :" textFill="WHITE">
                <font>
                   <Font name="Cambria" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="100.0" layoutY="600.0" text="Email" textFill="WHITE">
+            <Label layoutX="49.0" layoutY="602.0" text="Email :" textFill="WHITE">
                <font>
                   <Font name="Cambria" size="20.0" />
                </font>

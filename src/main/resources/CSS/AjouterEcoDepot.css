@@ -1,0 +1,106 @@
+/* styles.css */
+
+/* Style de fond de la racine */
+.root {
+    -fx-background-color: #9FCDA8; /* Couleur de fond gris très clair */
+
+    -fx-background-position: top right;
+    -fx-background-repeat: no-repeat;
+}
+
+/* Style des étiquettes */
+.label {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 40px; /* Taille de la police */
+    -fx-text-fill: #fff; /* Couleur de texte gris foncé */
+    -fx-font-weight: bold; /* Texte en gras */
+    -fx-padding: 10px; /* Ajout de marge interne */
+    -fx-background-color:  #2E714A; /* Couleur de fond gris clair */
+    -fx-border-color: #ccc; /* Couleur de la bordure grise */
+    -fx-border-width: 2px; /* Épaisseur de la bordure */
+    -fx-border-radius: 5px; /* Rayon des coins de la bordure */
+    -fx-alignment: center; /* Aligner le texte au centre */
+}
+
+/* Style des champs de texte */
+.text-field {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 16px;
+    -fx-prompt-text-fill: #999; /* Couleur de texte gris clair pour l'invite */
+    -fx-background-color: #fff; /* Fond blanc */
+    -fx-background-radius: 25px; /* Coins arrondis */
+    -fx-border-color: #ccc; /* Bordure gris clair */
+    -fx-border-width: 1px; /* Épaisseur de la bordure */
+    -fx-border-radius: 25px; /* Coins arrondis */
+    -fx-pref-width: 300px; /* Largeur préférée */
+    -fx-pref-height: 50px; /* Hauteur préférée */
+}
+.combo-box {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 16px;
+    -fx-background-color: #fff; /* Fond blanc */
+    -fx-background-radius: 25px; /* Coins arrondis */
+    -fx-border-color: #ccc; /* Bordure gris clair */
+    -fx-border-width: 1px; /* Épaisseur de la bordure */
+    -fx-border-radius: 25px; /* Coins arrondis */
+    -fx-pref-width: 300px; /* Largeur préférée */
+    -fx-pref-height: 50px; /* Hauteur préférée */
+}
+
+/* Style des options de la liste déroulante */
+.combo-box .list-cell {
+    -fx-text-fill: #555; /* Texte gris foncé */
+}
+
+/* Style des options de la liste déroulante au survol */
+.combo-box .list-cell:hover {
+    -fx-background-color: #f0f0f0; /* Fond gris très clair au survol */
+}
+/* Style des boutons */
+.button {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 16px;
+    -fx-text-fill: #fff; /* Texte blanc */
+    -fx-background-color:  #2E714A; /* Fond vert */
+    -fx-background-radius: 25px; /* Coins arrondis */
+    -fx-border: none; /* Pas de bordure */
+    -fx-cursor: hand; /* Curseur de la main au survol */
+    -fx-padding: 15px 30px; /* Ajout de marge interne */
+    -fx-pref-width: 200px; /* Largeur préférée */
+    -fx-pref-height: 60px; /* Hauteur préférée */
+}
+
+/* Style des boutons au survol */
+.button:hover {
+    -fx-background-color: #45A049; /* Fond vert légèrement plus foncé */
+}
+
+/* Style des listes déroulantes */
+.combo-box {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 16px;
+    -fx-background-color: #fff; /* Fond blanc */
+    -fx-background-radius: 25px; /* Coins arrondis */
+    -fx-border-color: #ccc; /* Bordure gris clair */
+    -fx-border-width: 1px; /* Épaisseur de la bordure */
+    -fx-border-radius: 25px; /* Coins arrondis */
+}
+
+/* Style des options de la liste déroulante */
+.combo-box .list-cell {
+    -fx-text-fill: #555; /* Texte gris foncé */
+}
+
+/* Style des options de la liste déroulante au survol */
+.combo-box .list-cell:hover {
+    -fx-background-color: #f0f0f0; /* Fond gris très clair au survol */
+}
+
+/* Animation du bouton */
+.button {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0); /* Ombre portée légère */
+}
+
+.button:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0); /* Ombre portée légère au survol */
+}

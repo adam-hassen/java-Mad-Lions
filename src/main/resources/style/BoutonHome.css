@@ -1,0 +1,23 @@
+/* Style de base pour les boutons */
+.button {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 16px;
+    -fx-text-fill: #fff; /* Texte blanc */
+    -fx-background-color: #4CAF50; /* Fond vert */
+    -fx-background-radius: 25px; /* Coins arrondis */
+    -fx-border: none; /* Pas de bordure */
+    -fx-cursor: hand; /* Curseur de la main au survol */
+    -fx-padding: 10px 20px; /* Ajout de marge interne */
+
+}
+
+/* Style pour les boutons lorsqu'ils sont survolés */
+/* Style pour les boutons lorsqu'ils sont survolés */
+.button:hover {
+    -fx-background-color: #45a049; /* Couleur de fond au survol */
+}
+
+/* Style pour les boutons lorsqu'ils sont enfoncés */
+.button:pressed {
+    -fx-background-color: #388e3c; /* Couleur de fond enfoncé */
+}
