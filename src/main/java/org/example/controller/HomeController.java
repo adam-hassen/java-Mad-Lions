@@ -6,11 +6,14 @@ import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import EDU.userjava1.entities.User1;
 import EDU.userjava1.interfaces.MyListener;
@@ -23,6 +26,29 @@ public class HomeController {
     private VBox vboxside;
 
     @FXML
+    private Button test;
+    @FXML
+    private Button workshop;
+    @FXML
+    void test(ActionEvent event) throws IOException {
+            Parent root1 = FXMLLoader.load(getClass().getResource("/Workshop/addtest.fxml"));
+            Scene scene1 = new Scene(root1);
+            Stage stage1;
+            stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage1.setScene(scene1);
+            stage1.show();
+    }
+    @FXML
+    void workshop(ActionEvent event)throws IOException {
+        Parent root1 = FXMLLoader.load(getClass().getResource("/Workshop/AjouterWorkshop.fxml"));
+        Scene scene1 = new Scene(root1);
+        Stage stage1;
+        stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage1.setScene(scene1);
+        stage1.show();
+
+
+    } @FXML
     public void initialize() {
         VBox sidebar = vboxside;
         sidebar.getChildren().forEach(node -> {
