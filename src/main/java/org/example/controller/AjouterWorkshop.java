@@ -67,7 +67,7 @@ public class AjouterWorkshop  implements Initializable {
                 // Get today's date
                 LocalDate today = LocalDate.now();
 // Add 2 years to today's date
-                LocalDate futureDate = today.plusYears(2);
+                LocalDate futureDate = today.plusYears(0);
 // Set the DatePicker value to the future date
                 date.setValue(futureDate);
         }

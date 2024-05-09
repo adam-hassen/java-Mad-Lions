@@ -22,7 +22,7 @@ public class test extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("EcoGardien");
         primaryStage.show();
-        }catch (IOException e){
+        } catch (IOException e){
             throw new RuntimeException(e);
         }
 

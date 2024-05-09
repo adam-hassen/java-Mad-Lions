@@ -29,23 +29,23 @@
                   </ImageView>
                   <VBox alignment="CENTER" prefHeight="113.0" prefWidth="212.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#evenement" prefHeight="40.0" prefWidth="170.0" styleClass="root" stylesheets="@style/BoutonHome.css" text="evenement" />
+                        <Button mnemonicParsing="false" onAction="#evenement" prefHeight="40.0" prefWidth="170.0" styleClass="root" stylesheets="@style/BoutonHome.css" text="Evenement" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="141.0" prefWidth="205.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#consomation" prefHeight="40.0" prefWidth="158.0" styleClass="root" stylesheets="@style/BoutonHome.css" text="consomation" />
+                        <Button mnemonicParsing="false" onAction="#consomation" prefHeight="40.0" prefWidth="158.0" styleClass="root" stylesheets="@style/BoutonHome.css" text="Consomation" />
                      </children>
                   </VBox>
-                  <Button mnemonicParsing="false" onAction="#recyclage" prefHeight="40.0" prefWidth="169.0" styleClass="root" stylesheets="@style/BoutonHome.css" text="recyclage" />
+                  <Button mnemonicParsing="false" onAction="#recyclage" prefHeight="40.0" prefWidth="169.0" styleClass="root" stylesheets="@style/BoutonHome.css" text="Recyclage" />
                   <VBox alignment="CENTER" prefHeight="168.0" prefWidth="195.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#workshop" prefHeight="40.0" prefWidth="142.0" styleClass="root" stylesheets="@style/BoutonHome.css" text="worshop" />
+                        <Button mnemonicParsing="false" onAction="#workshop" prefHeight="40.0" prefWidth="142.0" styleClass="root" stylesheets="@style/BoutonHome.css" text="Worshop" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="167.0" prefWidth="198.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#produit" prefHeight="40.0" prefWidth="154.0" styleClass="root" stylesheets="@style/BoutonHome.css" text="produit" />
+                        <Button mnemonicParsing="false" onAction="#produit" prefHeight="40.0" prefWidth="154.0" styleClass="root" stylesheets="@style/BoutonHome.css" text="Produit" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="110.0" prefWidth="170.0">

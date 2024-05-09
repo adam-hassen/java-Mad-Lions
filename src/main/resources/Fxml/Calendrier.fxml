@@ -17,7 +17,7 @@
                 <!-- Date cells -->
             </children>
         </FlowPane>
-        <HBox alignment="CENTER" layoutX="163.0" layoutY="14.0" prefHeight="44.0" prefWidth="419.0" spacing="5.0">
+        <HBox alignment="CENTER" layoutX="77.0" layoutY="34.0" prefHeight="44.0" prefWidth="419.0" spacing="5.0">
             <children>
                 <ImageView fitHeight="33.0" fitWidth="155.0">
 
@@ -51,8 +51,9 @@
                 <Insets right="9.0" />
             </padding>
         </HBox>
-      <ImageView fitHeight="68.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
-
-      </ImageView>
+      <ImageView fitHeight="59.0" fitWidth="237.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Sanstitre-1.png" />
+         </image></ImageView>
     </children>
 </AnchorPane>
