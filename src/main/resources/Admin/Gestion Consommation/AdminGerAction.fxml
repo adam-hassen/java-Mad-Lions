@@ -23,7 +23,7 @@
                         <AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="middle-container">
                             <AnchorPane prefHeight="82.0" prefWidth="926.0">
                                 <children>
-                                    <Button fx:id="Home" layoutX="770.0" mnemonicParsing="false" onAction="#handleHome" prefHeight="42.0" prefWidth="127.0" styleClass="button-home" text="Home" />
+                                    <Button fx:id="Home" layoutX="770.0" mnemonicParsing="false" onAction="#handleHome" prefHeight="42.0" prefWidth="127.0" styleClass="button-home" text="Type D'action" />
                                     <ImageView fitHeight="28.0" fitWidth="27.0" layoutX="777.0" layoutY="10.0">
                                         <image>
                                             <Image url="@../../CSS/Images/home.png" />
