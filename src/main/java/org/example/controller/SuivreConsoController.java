@@ -1,7 +1,9 @@
 package org.example.controller;
 import EDU.userjava1.controllers.Login;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.control.Button;
@@ -10,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -291,14 +294,8 @@ public class SuivreConsoController {
            e.printStackTrace();
        }
    }
-    public void handleHome(){
-        try{
-            Parent root= FXMLLoader.load(getClass().getResource("/Client/Gestion Consommation/HomeGestionAction.fxml"));
-            Home.getScene().setRoot(root);
-        }
-        catch (IOException ex){
-            System.err.println("Error loading FXML document: " + ex);
-            ex.printStackTrace();
-        }
+    public void handleHome(ActionEvent event){
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
     }
 }

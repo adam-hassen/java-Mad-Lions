@@ -33,7 +33,7 @@
                               <Image url="@img/banner-01.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="email" prefHeight="27.0" prefWidth="228.0" text="                        email" textFill="#f2f5e9">
+                        <Label fx:id="email" prefHeight="27.0" prefWidth="228.0" text="                  email" textFill="#f2f5e9">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>

@@ -68,8 +68,9 @@ public class home111 implements Initializable {
     }
 
     @FXML
-    void workshop(ActionEvent event) {
-
+    void workshop(ActionEvent event) throws IOException {
+        AnchorPane view= FXMLLoader.load((getClass().getResource("/Workshop/Fworkshop.fxml")));
+        BorderPane.setCenter(view);
     }
     @FXML
     void pub(ActionEvent event) throws IOException {

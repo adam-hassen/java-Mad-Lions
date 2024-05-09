@@ -1,11 +1,49 @@
 .root {
-    -fx-background-image: url('Images/back.jpg');
-    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-pref-width: 800px;
+    -fx-pref-height: 500px;
+}
+.table-view {
+    -fx-background-color: #ffffff; /* Couleur de fond blanc */
+    -fx-border-color:  #2E714A; /* Couleur de la bordure */
+    -fx-border-width: 2px; /* Largeur de la bordure */
+    -fx-border-radius: 10px; /* Coins arrondis */
+}
+
+.table-view .column-header-background {
+    -fx-background-color:  #2E714A; /* Couleur de fond verte pour l'en-tête de colonne */
+    -fx-background-radius: 10px 10px 0px 0px; /* Coins arrondis */
+    -fx-transition: all 0.3s; /* Animation de transition */
+}
+
+.table-view .column-header:hover {
+    -fx-background-color:  #2E714A; /* Changement de couleur au survol */
+    -fx-translate-y: -5px; /* Animation de translation */
+}
+
+.table-view .column-header {
+    -fx-background-color:  #2E714A; /* Couleur de fond verte pour l'en-tête de colonne */
+    -fx-text-fill: white; /* Couleur du texte blanc */
+    -fx-font-weight: bold; /* Texte en gras */
+}
+
+.table-view .table-cell {
+    -fx-background-color: transparent; /* Couleur de fond semi-transparente pour les cellules */
+    -fx-border-color:  #2E714A; /* Couleur de la bordure */
+    -fx-border-width: 0px 0px 2px 0px; /* Largeur de la bordure (bas) */
+    -fx-padding: 15px; /* Espacement intérieur */
+    -fx-text-fill: #333333; /* Couleur du texte */
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #f0f0f0; /* Couleur de fond gris clair au survol */
 }
 
 /* side bar */
 .sidebar {
-    -fx-background-color: linear-gradient(to bottom, #8BC34A, #4CAF50);
+    -fx-background-color:  #2E714A;
     -fx-background-radius: 10;
     -fx-pref-height: 300.0;
     -fx-pref-width: 150.0;
@@ -23,7 +61,7 @@
 }
 
 .sidebar-label:hover {
-    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-color:#ffffff;
     -fx-effect: dropshadow(three-pass-box, rgb(169, 169, 169), 10, 0, 0, 0);
 }
 
@@ -54,7 +92,6 @@
 .image-wrapper {
     -fx-background-color: white;
     -fx-background-radius: 10%;
-    -fx-background-image: url('Images/ecogardien.png');
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: contain;

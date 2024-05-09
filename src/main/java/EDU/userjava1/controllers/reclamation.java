@@ -126,11 +126,8 @@ public class reclamation {
         successAlert.setHeaderText(null);
         successAlert.setContentText("Reclamation added successfully!");
         successAlert.showAndWait();
-        Parent root2 = FXMLLoader.load(getClass().getResource("/account.fxml"));
-        Scene scene2 = new Scene(root2);
-        Stage stage2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage2.setScene(scene2);
-        stage2.show();
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
     }
 
     private String findProfanity(String text) {

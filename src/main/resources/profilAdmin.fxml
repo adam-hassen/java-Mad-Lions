@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.ProfilAdmin">
+<AnchorPane prefHeight="690.0" prefWidth="497.0" style="-fx-background-color: #0080ff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.ProfilAdmin">
    <children>
-      <AnchorPane layoutX="-16.0" layoutY="-36.0" prefHeight="670.0" prefWidth="342.0" style="-fx-background-color: #0080ff;">
+      <AnchorPane layoutX="100.0" layoutY="-31.0" prefHeight="704.0" prefWidth="330.0" style="-fx-background-color: #0080ff;">
          <children>
-            <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="331.0" style="-fx-background-color: edf5eb;">
+            <BorderPane layoutY="16.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="719.0" prefWidth="326.0" style="-fx-background-color: edf5 #0080ffeb;">
                <left>
                   <VBox prefHeight="647.0" prefWidth="331.0" style="-fx-background-color: #0080ff;" BorderPane.alignment="CENTER">
                      <children>
@@ -31,7 +31,7 @@
                                     <Image url="@img/banner-01.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="email" prefHeight="27.0" prefWidth="310.0" text="                        email" textFill="#f2f5e9">
+                              <Label fx:id="email" prefHeight="27.0" prefWidth="193.0" text="                        email" textFill="#f2f5e9">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
