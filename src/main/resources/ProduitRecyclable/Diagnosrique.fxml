@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="674.0" fitWidth="1334.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../img/analyse-graphiques-du-marche-boursier-comptabilite-financiere_984420-9497.jpg" />
+            <Image url="@../CSS/Images/environnement-societe-gouvernance-constituent-concept-esgun-bloc-bois-icone-esg-represente_912524-2188.jpg" />
          </image>
       </ImageView>
       <Button layoutX="1127.0" layoutY="585.0" mnemonicParsing="false" onAction="#Affichage" prefHeight="64.0" prefWidth="185.0" style="-fx-background-color: #212E53;" text="Affichage" textFill="WHITE">

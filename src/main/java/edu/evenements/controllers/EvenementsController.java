@@ -243,6 +243,9 @@ public class EvenementsController implements Initializable {
     }
 
     private void deleteSelectedEvent(Evenements selectedEvent) {
+        // Réinitialiser la connexion à la base de données
+        con = MyConnection.getInstance().cnx;
+
         // Supprimer d'abord tous les partenaires associés à cet événement
         String deletePartenairesQuery = "DELETE FROM partenaire WHERE evenement_id = ?";
         try {
@@ -263,8 +266,9 @@ public class EvenementsController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
             // Gérer les exceptions SQL
-            return; // Sortir de la méthode si une erreur se produit lors de la suppression des partenaires
+            return; // Sortir de la méthode si une erreur se produit lors de la suppression des avis
         }
+
         // Ensuite, supprimer l'événement lui-même
         String deleteEvenementQuery = "DELETE FROM evenements WHERE id = ?";
         try {
@@ -277,6 +281,7 @@ public class EvenementsController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
 
     private boolean isDateInPast(LocalDate date) {
         LocalDate currentDate = LocalDate.now();
@@ -408,27 +413,23 @@ public class EvenementsController implements Initializable {
 
     @FXML
     void openPartenairePage(ActionEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/Partenaire.fxml"));
         try {
-            Parent root = fxmlLoader.load();
+            // Charger le fichier FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Partenaire.fxml"));
+            Parent root = loader.load();
+
+            // Créer la scène
+            Scene scene = new Scene(root);
+
+            // Créer une nouvelle fenêtre
             Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Partenaire");
 
-            // Créer une transition de fondu pour la nouvelle scène
-            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
-            fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
-            fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
-
-            // Démarrer la transition de fondu
-            fadeTransition.play();
-
-            // Afficher la nouvelle scène dans une nouvelle fenêtre
-            stage.setScene(new Scene(root));
+            // Afficher la fenêtre
             stage.show();
-
-            // Fermer la fenêtre actuelle après la transition
-
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 

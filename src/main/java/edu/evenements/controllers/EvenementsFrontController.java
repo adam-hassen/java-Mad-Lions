@@ -90,7 +90,7 @@ public class EvenementsFrontController implements Initializable {
         updateJoursRestants();
         afficherMeilleurEvenement(); // Appel pour afficher le meilleur événement
         //getWeather("Tunis");
-        updateWeatherInfo("Ariana");
+        updateWeatherInfo("Tunis");
 
         // Configurez les actions des boutons "Précédent" et "Suivant"
         prevButton.setOnAction(event -> showPreviousPage());
@@ -730,7 +730,7 @@ public class EvenementsFrontController implements Initializable {
 
     @FXML
     private void showTemperatureAlert() {
-        String city = "Ariana"; // Remplacez YOUR_CITY_NAME par le nom de la ville souhaitée
+        String city = "Tunis"; // Remplacez YOUR_CITY_NAME par le nom de la ville souhaitée
         double temperature = getCurrentTemperature(city);
         String description = getWeatherDescription(city);
 
@@ -738,7 +738,7 @@ public class EvenementsFrontController implements Initializable {
         alert.setTitle("Conseils en fonction de la température");
         alert.setHeaderText("La température actuelle à " + city + " est " + String.format("%.2f", temperature) + "°C.");
         alert.setContentText("Description météo : " + description + "\n\n" );
-        String cssPath = getClass().getResource("/css/alerts.css").toExternalForm();
+        String cssPath = getClass().getResource("/CSS/alerts.css").toExternalForm();
         alert.getDialogPane().getStylesheets().add(cssPath);
         alert.showAndWait();
     }
