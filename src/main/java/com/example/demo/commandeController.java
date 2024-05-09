@@ -39,7 +39,7 @@ public class commandeController implements Initializable {
     public ObservableList<commande> customersDataList() {
 
         ObservableList<commande> listData = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM command";
+        String sql = "SELECT * FROM commande";
         connect = database.connectDB();
 
         try {
@@ -50,9 +50,9 @@ public class commandeController implements Initializable {
 
             while (result.next()) {
                 cData = new commande(result.getInt("id"),
-                        result.getInt("customer_id"),
-                        result.getDouble("total"),
-                        result.getDate("date"));
+                        result.getInt("user1_id"),
+                        result.getDouble("montant_totale"),
+                        result.getDate("date_commande"));
 
                 listData.add(cData);
             }

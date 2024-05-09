@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.updatetest">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2E714A;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.updatetest">
     <children>
-        <AnchorPane prefHeight="605.0" prefWidth="881.0" style="-fx-background-color: green;">
+        <AnchorPane prefHeight="605.0" prefWidth="881.0" style="-fx-background-color: #2E714A;">
             <children>
                 <Label layoutX="319.0" layoutY="20.0" prefHeight="54.0" prefWidth="239.0" text="Modifier test" textFill="WHITE">
                     <font>
@@ -19,11 +19,6 @@
                 </Label>
                 <AnchorPane layoutX="-2.0" layoutY="70.0" opacity="0.88" prefHeight="534.0" prefWidth="882.0">
                     <children>
-                  <ImageView fitHeight="525.0" fitWidth="862.0" layoutX="10.0" layoutY="4.0" opacity="0.83" pickOnBounds="true" smooth="false">
-                     <image>
-                        <Image url="@../img/quiz-time-2453148_1920.png" />
-                     </image>
-                  </ImageView>
                         <Label fx:id="LoginMessageLabel1" layoutX="110.0" layoutY="292.0" prefHeight="21.0" prefWidth="284.0" textAlignment="CENTER" textFill="#bf1b1b" />
                         <TextField fx:id="reponce1_1" layoutX="101.0" layoutY="54.0" prefHeight="30.0" prefWidth="570.0" promptText="reponce1" style="-fx-background-color: #f3fafa; -fx-border-color: 0;" styleClass="pane_1111" stylesheets="@../style/style.css" />
                         <Label layoutX="20.0" layoutY="358.0" prefHeight="39.0" prefWidth="119.0" text="Question3:" textAlignment="CENTER" textFill="#100e0e" wrapText="true">

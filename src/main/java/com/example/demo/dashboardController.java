@@ -41,7 +41,7 @@ public class dashboardController implements Initializable {
     private ResultSet result;
     public void dashboardDisplayNC() {
 
-        String sql = "SELECT COUNT(customer_id) FROM command";
+        String sql = "SELECT COUNT(user1_id) FROM commande";
         connect = database.connectDB();
 
         try {
@@ -50,7 +50,7 @@ public class dashboardController implements Initializable {
             result = prepare.executeQuery();
 
             if (result.next()) {
-                nc = result.getInt("COUNT(customer_id)");
+                nc = result.getInt("COUNT(user1_id)");
             }
             dashboard_NC.setText(String.valueOf(nc));
         } catch (Exception e) {
@@ -63,7 +63,7 @@ public class dashboardController implements Initializable {
         Date date = new Date();
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-        String sql = "SELECT SUM(total) FROM command WHERE date = '"
+        String sql = "SELECT SUM(montant_totale) FROM commande WHERE date_commande = '"
                 + sqlDate + "'";
 
         connect = database.connectDB();
@@ -74,7 +74,7 @@ public class dashboardController implements Initializable {
             result = prepare.executeQuery();
 
             if (result.next()) {
-                ti = result.getDouble("SUM(total)");
+                ti = result.getDouble("SUM(montant_totale)");
             }
 
             dashboard_TI.setText("$" + ti);
@@ -85,7 +85,7 @@ public class dashboardController implements Initializable {
     }
 
     public void dashboardTotalI() {
-        String sql = "SELECT SUM(total) FROM command";
+        String sql = "SELECT SUM(montant_totale) FROM commande";
 
         connect = database.connectDB();
 
@@ -95,7 +95,7 @@ public class dashboardController implements Initializable {
             result = prepare.executeQuery();
 
             if (result.next()) {
-                ti = result.getFloat("SUM(total)");
+                ti = result.getFloat("SUM(montant_totale)");
             }
             dashboard_TotalI.setText("$" + ti);
 
@@ -127,7 +127,7 @@ public class dashboardController implements Initializable {
     public void dashboardIncomeChart() {
         dashboard_incomeChart.getData().clear();
 
-        String sql = "SELECT date, SUM(total) FROM command GROUP BY date ORDER BY TIMESTAMP(date)";
+        String sql = "SELECT date_commande, SUM(montant_totale) FROM commande GROUP BY date_commande ORDER BY TIMESTAMP(date_commande)";
         connect = database.connectDB();
         XYChart.Series chart = new XYChart.Series();
         try {

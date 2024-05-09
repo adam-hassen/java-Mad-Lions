@@ -34,7 +34,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="62.0" prefWidth="202.0">
                      <children>
-                        <Button fx:id="gestConso" mnemonicParsing="false" onAction="#Consommation" prefHeight="42.0" prefWidth="132.0" style="-fx-background-color: #00;" stylesheets="@style/BoutonHome.css" text="Consomation" />
+                        <Button fx:id="gestConso" mnemonicParsing="false" onAction="#Consommation" prefHeight="42.0" prefWidth="149.0" style="-fx-background-color: #00;" stylesheets="@style/BoutonHome.css" text="Consomation" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="62.0" prefWidth="184.0">

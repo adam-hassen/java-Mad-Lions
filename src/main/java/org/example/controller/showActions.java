@@ -4,6 +4,9 @@ import EDU.userjava1.controllers.Login;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -12,6 +15,7 @@ import org.example.entity.Action;
 import org.example.service.ActionService;
 import org.example.service.TypeNameService;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import EDU.userjava1.entities.User1;
@@ -61,7 +65,7 @@ public class showActions {
             Label typeNameLabel = new Label("Type Name:");
             TextField typeNameTextField = new TextField();
             typeNameTextField.setId("typeNameTextField");
-            typeNameTextField.setText(action.getType_id().getType());
+            typeNameTextField.setText(action.getType_id().getNom());
             typeNameBox.getChildren().addAll(typeNameLabel, typeNameTextField);
 
             HBox dangerBox = new HBox();
@@ -94,7 +98,9 @@ public class showActions {
             action.setQuantite_time(query.checrherAction(action.getId()).getQuantite_time());
             modifierButton.setOnAction(event -> {
                 gestionnerConsoController.Modification(action);
-                containerView.getChildren().clear();
+                //containerView.getChildren().clear();
+                gestionnerConsoController.showAction(containerView);
+
                 //refreshUI(containerView,observableList);
                 // gestionnerConsoController.handleSupprimerButton(action);
             });

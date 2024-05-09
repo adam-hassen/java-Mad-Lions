@@ -1,8 +1,8 @@
 package org.example.controller;
 
 import EDU.userjava1.controllers.Login;
-import com.google.gson.Gson;
 import javafx.animation.FadeTransition;
+import com.google.gson.Gson;
 import javafx.animation.ScaleTransition;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
@@ -90,19 +90,23 @@ public class ConsoController {
         // Search
         String queryy = "Comment limiter l'utilisation du";
         String dangerList = query.ListeDanger(Login.v);
-        if (dangerList != null && dangerList.contains("plastique")) {
-            queryy += " plastique";
+        System.out.println(dangerList);
+        if ((queryy.contains("plastique")) && (queryy.contains("electrique")) && (queryy.contains("gaz")) && (queryy.contains("carburant")) || dangerList == null){
+            queryy = "Comment Limiter notre dangereuse action contre la nature ? ";
         }
-        if (dangerList != null && dangerList.contains("carburant")) {
-            queryy += " carburant";
-        }
-        if (dangerList != null && dangerList.contains("gaz")) {
-            queryy += " gaz";
-        }
-        if (dangerList != null && dangerList.contains("électrique")) {
-            queryy += " électrique";
-        } else {
-            queryy = "null";
+        else {
+            if (dangerList.contains("plastique")) {
+                queryy += " plastique";
+            }
+            if (dangerList.contains("carburant")) {
+                queryy += " ,carburant";
+            }
+            if (dangerList.contains("gaz")) {
+                queryy += " ,gaz";
+            }
+            if (dangerList.contains("electrique")) {
+                queryy += " ,electrique";
+            }
         }
 
         WebEngine webEngine = webview.getEngine();
@@ -110,7 +114,6 @@ public class ConsoController {
         String encodedQuery = java.net.URLEncoder.encode(queryy, "UTF-8");
         String url = "https://www.google.com/search?q=" + encodedQuery;
         webEngine.load(url);
-
 
     }
 
@@ -147,7 +150,9 @@ public class ConsoController {
             try {
                 Parent root = loader.load();
                 Stage stage = new Stage();
-
+                stage.setWidth(1000);
+                stage.setHeight(600);
+                //Scene scene = new Scene(root, 800, 600);
                 // Créer une transition de fondu pour la nouvelle scène
                 FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
                 fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0

@@ -28,15 +28,6 @@
                   <Label style="-fx-text-fill: white; -fx-font-size: 20;" text="Thank you for doing business with us ." GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <Button fx:id="pdf_btn" layoutX="340.0" layoutY="162.0" mnemonicParsing="false" onAction="#generatePDF" prefHeight="41.0" prefWidth="162.0" text="Get a Receipt">
-               <graphic>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@pdf.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
             <Button fx:id="back_btn" layoutX="340.0" layoutY="220.0" mnemonicParsing="false" onAction="#redirectToListReservation" prefHeight="41.0" prefWidth="162.0" text="Back to list">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">

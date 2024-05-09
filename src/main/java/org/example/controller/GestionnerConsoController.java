@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import EDU.userjava1.controllers.Login;
 import javafx.animation.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -16,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -61,7 +63,7 @@ public class GestionnerConsoController {
         query = new ActionService();
         AjouterAction.setOnAction(this::AjouterAction);
         //modifierButton.setOnAction(this::handleModifierButton);
-        showAction();
+        showAction(containerView);
         //frame animation
             double totalWidth = containerView.getChildren().stream()
                     .mapToDouble(node -> node.getBoundsInLocal().getWidth())
@@ -105,8 +107,7 @@ public class GestionnerConsoController {
             Stage newStage = new Stage();
             newStage.setScene(newScene);
             newStage.show();
-            showAction();
-            showAction();
+            showAction(containerView);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -149,8 +150,6 @@ public class GestionnerConsoController {
             stage.setScene(scene);
             stage.setTitle("Action Details");
             stage.show();
-            showAction();
-            showAction();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -188,17 +187,20 @@ public class GestionnerConsoController {
             }
         }
     }*/
-   public void showAction() {
+   public void showAction(Pane containerView) {
        try {
+           //containerView.getChildren().clear();
            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Client/Gestion Consommation/showAction.fxml"));
            Parent root = loader.load();
            showActions showactioncontroller = loader.getController();
            containerView.getChildren().clear();
            showactioncontroller.showAction(containerView);
+
        } catch (IOException e) {
            e.printStackTrace();
        }
    }
+
     public void addHoverAnimation(Label label) {
         ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), label);
         scaleTransition.setFromX(1.0);

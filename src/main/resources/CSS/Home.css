@@ -83,6 +83,7 @@
     -fx-cursor: hand;
 }
 .middle-container {
+    -fx-background-image: url('Images/back.jpg');
     -fx-background-color: rgba(128, 128, 128, 0.5);
     -fx-padding: 20px 20px;
 }

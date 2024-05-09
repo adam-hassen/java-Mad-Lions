@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="form" stylesheets="@../../CSS/Home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ValiderFormAction">
+<AnchorPane prefHeight="362.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;" styleClass="form" stylesheets="@../../CSS/Home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ValiderFormAction">
     <children>
         <!-- Type Name -->
         <HBox layoutX="10.0" layoutY="10.0" spacing="10.0">

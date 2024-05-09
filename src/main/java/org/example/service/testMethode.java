@@ -202,6 +202,8 @@ public class testMethode implements testService<Test> {
             System.out.println("Erreur lors de la récupération de la liste des test : " + e.getMessage());
         }
 
+        System.out.println("finished");
+
         return listeTest;
     }
 

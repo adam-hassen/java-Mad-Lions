@@ -88,7 +88,7 @@ public class SuivreConsoController {
         ActionService.ChartData chartData = query.firstChart(Login.v.getId());
         List<Double> data2 = chartData.getData();
         List<String> labels2 = chartData.getLabels();
-        if ((data2!=null) && (labels2!=null)){
+        if ((data2.size() != 0) && (labels2.size() != 0)){
             DefaultPieDataset dataset = new DefaultPieDataset();
             for (int i = 0; i < data2.size(); i++) {
                 dataset.setValue(labels2.get(i), data2.get(i));
@@ -107,7 +107,7 @@ public class SuivreConsoController {
         List<Double> data3 = chartData2.getData();
         List<String> labels3 = chartData2.getLabels();
 
-        if (data3 != null && labels3 != null) {
+        if (data3.size() != 0 && labels3.size() != 0) {
             scattercharterror.setVisible(false);
             DefaultXYZDataset dataset = new DefaultXYZDataset();
             double[][] data = new double[3][data3.size()];
@@ -168,7 +168,6 @@ public class SuivreConsoController {
                 //System.out.println("JSON data from Java: " + jsonEscapedData);
                 //System.out.println("Pure Java: " + actionLocs);
                 String script = "var data = JSON.parse('" + jsonEscapedData + "'); processData(data);";
-
                 webEngine.executeScript(script);
             }
         });

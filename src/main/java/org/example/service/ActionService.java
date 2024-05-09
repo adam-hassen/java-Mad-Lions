@@ -54,6 +54,37 @@ public class ActionService {
             successAlert.showAndWait();
         }
     }
+    public List<Action> afficherTous(){
+        List<Action> ListeAct = new ArrayList<>();
+        try {
+            String requete = "SELECT * FROM ACTION ";
+            Statement pst = cn.createStatement();
+            ResultSet rs = pst.executeQuery(requete);
+
+            while (rs.next()) {
+                // Retrieve the data from the result set and create Action objects
+                Action act = new Action();
+                act.setId(rs.getInt("id"));
+                int a = rs.getInt("type_id");
+                TypeNameService typenameService = new TypeNameService();
+                TypeName tp = typenameService.cherchertypename(a);
+                act.setType_id(tp);
+                act.setUser_id(rs.getInt("user_id"));
+                act.setQuantite(rs.getDouble("quantite"));
+                act.setAction_score(rs.getDouble("action_score"));
+                act.setNiveau_danger(rs.getInt("niveau_danger"));
+                int b = rs.getInt("location_id");
+                ActionLocation loc = this.chercherLocation(b);
+                act.setLocation_id(loc);
+                act.setDescription(rs.getString("description"));
+                act.setDate(rs.getDate("date").toLocalDate());
+                ListeAct.add(act);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return ListeAct;
+    }
 
     public List<Action> afficherActions(int id) {
         List<Action> ListeAct = new ArrayList<>();
@@ -117,6 +148,7 @@ public class ActionService {
             pst.setString(7,act.getQuantite_time());
             pst.setInt(8,act.getNiveau_danger());
             pst.setInt(9,act.getLocation_id().getId());
+            pst.setInt(10, act.getId());
             int row = pst.executeUpdate();
             if (row > 0) System.out.println("Modify succeed");
             else System.out.println("Modify Failed Probably infound ID");
@@ -268,29 +300,25 @@ public class ActionService {
         return act;
     }
     public void sendEmail(String recipient, String subject, String body) throws MessagingException {
-        // Set up mail server properties
         Properties properties = new Properties();
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.socketFactory.port", "465");
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
 
-        // Create a mail session
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("youssefbenarous2@gmail.com", "wklk etxr ocab kihn");
+                return new PasswordAuthentication("techwork414@gmail.com", "pacrvzlvscatwwkb");
             }
         });
 
-        // Create a new email message
         Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress("youssefbenarous2@gmail.com"));
+        message.setFrom(new InternetAddress("techwork414@gmail.com"));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
         message.setSubject(subject);
         message.setText(body);
 
-        // Send the email
         Transport.send(message);
     }
     public double moyenneDanger(int id) {
@@ -452,7 +480,7 @@ public class ActionService {
         try {
             String requete = "SELECT a.* FROM ACTION a " +
                     "JOIN USER1 u ON a.user_id = u.id " +
-                    "WHERE u.name = ?";
+                    "WHERE u.username  = ?";
             PreparedStatement pst = cn.prepareStatement(requete);
             pst.setString(1,  nom);
             ResultSet rs = pst.executeQuery();
@@ -480,35 +508,5 @@ public class ActionService {
         }
         return ListeAct;
     }
-    public List<Action> afficherTous(){
-        List<Action> ListeAct = new ArrayList<>();
-        try {
-            String requete = "SELECT * FROM ACTION ";
-            Statement pst = cn.createStatement();
-            ResultSet rs = pst.executeQuery(requete);
 
-            while (rs.next()) {
-                // Retrieve the data from the result set and create Action objects
-                Action act = new Action();
-                act.setId(rs.getInt("id"));
-                int a = rs.getInt("type_id");
-                TypeNameService typenameService = new TypeNameService();
-                TypeName tp = typenameService.cherchertypename(a);
-                act.setType_id(tp);
-                act.setUser_id(rs.getInt("user_id"));
-                act.setQuantite(rs.getDouble("quantite"));
-                act.setAction_score(rs.getDouble("action_score"));
-                act.setNiveau_danger(rs.getInt("niveau_danger"));
-                int b = rs.getInt("location_id");
-                ActionLocation loc = this.chercherLocation(b);
-                act.setLocation_id(loc);
-                act.setDescription(rs.getString("description"));
-                act.setDate(rs.getDate("date").toLocalDate());
-                ListeAct.add(act);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return ListeAct;
-    }
 }

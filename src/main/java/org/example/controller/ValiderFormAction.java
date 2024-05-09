@@ -5,7 +5,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -210,6 +213,7 @@ public class ValiderFormAction {
                 Quantite.setText(Double.toString(action.getQuantite()));
             }
             Description.setText(action.getDescription());
+
     }
     public void ValiderForm(ActionEvent event) {
         int hour = hourComboBox.getValue() != null ? hourComboBox.getValue() : 0;
@@ -272,7 +276,7 @@ public class ValiderFormAction {
 
         if (result.isPresent() && result.get() == buttonTypeYes) {
             act=query.calculerScoreEtDanger(act);
-                String ip = "154.108.39.208 ";
+                //String ip = "144.2.200.163";
                 //act.setLocation_id(LocateUser(ip));
                 //System.out.println(act.getLocation_id());
             //query3.ajouterActionLocation(act.getLocation_id());
@@ -283,14 +287,24 @@ public class ValiderFormAction {
             String ListeDanger=null;
             ListeDanger=query.ListeDanger(Login.v);
             System.out.println(ListeDanger);
+            double dang = query.moyenneDanger(Login.v.getId());
+            String danger="";
+            if (dang < 2) {
+                danger="Vous ne présentez pas de danger";
+            } else if (dang <= 4) {
+                danger="Niveau de danger moyen";
+            } else {
+                danger="Vous êtes considéré un danger !";
+            }
             if (ListeDanger != null) {
                 try {
-                    query.sendEmail("youssefbenarous@gmail.com", "Alerte : Dépassement du seuil de danger pour l'environnement",
+                    query.sendEmail(Login.v.getUsername(), "Alerte : Dépassement du seuil de danger pour l'environnement",
                             "Cher/Chère "+ Login.v.getName()+" ,\n\n" +
                                     "Nos systèmes de surveillance ont détecté une augmentation significative des indicateurs environnementaux, indiquant un dépassement du seuil de danger.\n\n" +
                                     "Nous vous exhortons à agir immédiatement pour faire face à cette situation cruciale. Il est impératif que nous trouvions ensemble des solutions viables afin d'atténuer les défis environnementaux auxquels nous sommes confrontés.\n\n" +
                                     "Merci pour votre attention à cette demande. Nous attendons votre réponse et votre collaboration.\n\n" +
-                                    ListeDanger+
+                                    ListeDanger+ "\n"+
+                                    danger+"\n"+
                                     "Cordialement,\n" +
                                     "EcoGardien");
                     System.out.println("Email sent successfully.");
@@ -351,6 +365,7 @@ public class ValiderFormAction {
                         }
                     } catch (NumberFormatException e) {
                         Alert validationAlert = new Alert(Alert.AlertType.ERROR);
+
                         validationAlert.setTitle("Gestion Consommation :");
                         validationAlert.setHeaderText(null);
                         validationAlert.setContentText("Quantite dois contenir que des nombres strictement positives!");
@@ -358,13 +373,24 @@ public class ValiderFormAction {
                         return;
                     }
                 }
-                query.modifierAction(act.getId(), act);
-                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                successAlert.setTitle("Gestion De Consommation Alert!");
-                successAlert.setHeaderText(null);
-                successAlert.setContentText("Action modifiée avec succès!");
-                successAlert.showAndWait();
-                List<Action> actionList = query.afficherActions(Login.v.getId());
+                    query.modifierAction(act.getId(), act);
+               /* try {
+                    //containerView.getChildren().clear();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Client/Gestion Consommation/showActions.fxml"));
+                    Parent root = loader.load();
+                    showActions showactioncontroller = loader.getController();
+                    //Pane newContent = loader.load();
+                    showactioncontroller.showAction(root);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }*/
+                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                    successAlert.setTitle("Gestion De Consommation Alert!");
+                    successAlert.setHeaderText(null);
+                    successAlert.setContentText("Action modifiée avec succès!");
+                    successAlert.showAndWait();
+                    List<Action> actionList = query.afficherActions(Login.v.getId());
             }
         }
         if (Date.getValue()==null){
