@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class MyConnection {
 
-    private String url= "jdbc:mysql://localhost:3306/ecogardienintegrationfinale";
+    private String url= "jdbc:mysql://localhost:3306/ecogardienfinal";
     private String login= "root";
     private String pwd= "";
     Statement ste;

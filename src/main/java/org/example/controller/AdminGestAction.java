@@ -356,7 +356,7 @@ public class AdminGestAction {
 
     }
     public void showAction() {
-        List<Action> actionList = query.afficherActions(1);
+        List<Action> actionList = query.afficherTous();
         ObservableList<Action> observableList = FXCollections.observableArrayList(actionList);
         ColTypeName.setCellValueFactory(new PropertyValueFactory<Action,Integer>("type_id"));
         ColDanger.setCellValueFactory(new PropertyValueFactory<Action,Integer>("niveau_danger"));
@@ -447,9 +447,18 @@ public class AdminGestAction {
     }
     public void handlechercheruser(){
         List<Action> actionList = query.chercherByUser(nomChercher.getText());
-        ObservableList<Action> observableList = FXCollections.observableArrayList(actionList);
-        tableView.setItems(observableList);
-        tableView.refresh();
+        if (actionList.size() == 0 ){
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Gestion De Consommation Alert!");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Accune action trouvé!");
+            successAlert.showAndWait();
+        }
+        else {
+            ObservableList<Action> observableList = FXCollections.observableArrayList(actionList);
+            tableView.setItems(observableList);
+            tableView.refresh();
+        }
     }
     public void handleHome(){
         try{

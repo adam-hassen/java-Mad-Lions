@@ -83,7 +83,7 @@
                              <Button fx:id="modifierButton" layoutX="365.0" layoutY="496.0" onAction="#handleModifierButton" prefHeight="40.0" prefWidth="118.0" styleClass="button-home" text="Modifier" />
                         <Button fx:id="ModifierAction" layoutX="435.0" layoutY="121.0" prefHeight="40.0" prefWidth="118.0" styleClass="button-home" text="Modifier" />
                      <Label layoutX="752.0" layoutY="258.0" text="Chercher un utilisateur :" />
-                     <TextField fx:id="nomChercher" layoutX="739.0" layoutY="294.0" prefHeight="32.0" prefWidth="214.0" />
+                     <TextField fx:id="nomChercher" layoutX="739.0" layoutY="294.0" prefHeight="32.0" prefWidth="214.0" promptText="exemple@exemple.com"/>
                      <Button fx:id="ChercherUser" layoutX="787.0" layoutY="346.0" onAction="#handlechercheruser" prefHeight="40.0" prefWidth="118.0" styleClass="button-home" text="Chercher" />
                         </AnchorPane>
                     </children>
