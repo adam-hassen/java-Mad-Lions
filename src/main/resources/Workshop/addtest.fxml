@@ -11,21 +11,15 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.addtest">
     <children>
-        <AnchorPane prefHeight="605.0" prefWidth="881.0" style="-fx-background-color: green;">
+        <AnchorPane prefHeight="605.0" prefWidth="881.0" style="-fx-background-color: #2E714A;">
             <children>
-                <Label layoutX="297.0" layoutY="20.0" prefHeight="50.0" prefWidth="224.0" text="Ajouter test" textFill="WHITE">
+                <Label layoutX="361.0" layoutY="14.0" prefHeight="50.0" prefWidth="224.0" text="Ajouter test" textFill="WHITE">
                     <font>
                         <Font name="Century Gothic Bold" size="34.0" />
                     </font>
                 </Label>
-                <Button fx:id="cancelButton1" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="15.0" prefWidth="34.0" style="-fx-background-color: #dc3545;" styleClass="btn_workbench11" stylesheets="@../style/style.css" text="X" />
                 <AnchorPane layoutX="-2.0" layoutY="70.0" opacity="0.88" prefHeight="534.0" prefWidth="882.0">
                     <children>
-                  <ImageView fitHeight="521.0" fitWidth="873.0" layoutX="6.0" layoutY="8.0" nodeOrientation="INHERIT" opacity="0.86" pickOnBounds="true" smooth="false">
-                     <image>
-                        <Image url="@../img/quiz-time-2453148_1920.png" />
-                     </image>
-                  </ImageView>
                         <Label fx:id="LoginMessageLabel1" layoutX="110.0" layoutY="292.0" prefHeight="21.0" prefWidth="284.0" textAlignment="CENTER" textFill="#bf1b1b" />
                         <TextField fx:id="reponce1_1" layoutX="101.0" layoutY="54.0" prefHeight="30.0" prefWidth="570.0" promptText="reponce1" style="-fx-background-color: #f3fafa; -fx-border-color: 0;" styleClass="pane_1111" stylesheets="@../style/style.css" />
                         <Label layoutX="20.0" layoutY="358.0" prefHeight="39.0" prefWidth="119.0" text="Question3:" textAlignment="CENTER" textFill="#100e0e" wrapText="true">
@@ -99,18 +93,15 @@
                         <Font name="Century Gothic Bold" size="17.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="workshop" layoutX="700.0" layoutY="56.0" prefWidth="150.0" promptText="workshop" styleClass="combo-box" stylesheets="@../CSS/Home.css" />
+                  <ComboBox fx:id="workshop" layoutX="698.0" layoutY="14.0" prefWidth="150.0" promptText="workshop" styleClass="combo-box" stylesheets="@../CSS/Home.css" />
+                      <Button fx:id="ajoutertest" layoutX="724.0" layoutY="482.0" mnemonicParsing="false" onMouseClicked="#inscrire" prefHeight="44.0" prefWidth="150.0" style="-fx-background-color: ffff;" styleClass="btn_workbench11" stylesheets="@../style/style.css" text="Ajouter">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
                     </children>
                 </AnchorPane>
-                <Button fx:id="ajoutertest" layoutX="726.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#inscrire" prefHeight="44.0" prefWidth="150.0" style="-fx-background-color: ffff;" styleClass="btn_workbench11" stylesheets="@../style/style.css" text="Ajouter">
-               <font>
-                  <Font size="16.0" />
-               </font></Button>
-            <Button fx:id="login111" layoutX="557.0" layoutY="11.0" mnemonicParsing="false" onAction="#test" onMouseClicked="#liste" prefHeight="44.0" prefWidth="143.0" style="-fx-background-color: ffff;" styleClass="button-with-shadow" stylesheets="@../style/style.css" text="Liste">
-               <font>
-                  <Font size="18.0" />
-               </font></Button>
-            <ImageView fitHeight="65.0" fitWidth="181.0" layoutX="74.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="72.0" fitWidth="275.0" layoutX="-2.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/Sanstitre-1.png" />
                </image>

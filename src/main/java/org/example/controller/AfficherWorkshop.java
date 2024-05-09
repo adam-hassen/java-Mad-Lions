@@ -1,7 +1,9 @@
 package org.example.controller;
+import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Pagination;
@@ -19,6 +21,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.example.entity.Workshop;
 import org.example.interfaces.MyListener;
 import org.example.service.WorkshopMethode;
@@ -71,13 +74,30 @@ public class AfficherWorkshop  implements Initializable {
 
         @FXML
         void modifier(MouseEvent event) throws IOException {
-                FXMLLoader root2 = new  FXMLLoader(getClass().getResource("/Workshop/modifierWorkshop.fxml"));
-                session.workshop=id_workshop;
-                Scene scene2 = new Scene(root2.load());
-                Stage stage2;
-                stage2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage2.setScene(scene2);
-                stage2.show();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Workshop/modifierWorkshop.fxml"));
+                try {
+                        session.workshop=id_workshop;
+                        Parent root = loader.load();
+                        Stage stage = new Stage();
+
+                        // Créer une transition de fondu pour la nouvelle scène
+                        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+                        fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
+                        fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
+
+                        // Démarrer la transition de fondu
+                        fadeTransition.play();
+
+                        // Afficher la nouvelle scène dans une nouvelle fenêtre
+                        stage.setScene(new Scene(root));
+                        stage.show();
+
+                        // Fermer la fenêtre actuelle après la transition
+                        //  Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        //fadeTransition.setOnFinished(e -> currentStage.close());
+                } catch (IOException e) {
+                        throw new RuntimeException(e);
+                }
                }
         @FXML
         void suprimer(MouseEvent event) {
@@ -121,11 +141,11 @@ id_workshop= fruit;
                         myListener = u -> setChosenFruit(u);
                 }
                 miseajourtable(fruits);
-                searchField.setOnKeyReleased(event -> {
-                        String searchText = searchField.getText();
-                        List<Workshop> searchResults = gs.recherche_user(searchText);
-                        miseajourtable(searchResults);
-                });
+               // searchField.setOnKeyReleased(event -> {
+                 //       String searchText = searchField.getText();
+                   //     List<Workshop> searchResults = gs.recherche_user(searchText);
+                     //   miseajourtable(searchResults);
+                //});
 
         }
 
@@ -211,14 +231,87 @@ id_workshop= fruit;
 
 
 }
+@FXML
+        void ajouterTest(ActionEvent event) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Workshop/addtest.fxml"));
+                try {
+                        Parent root = loader.load();
+                        Stage stage = new Stage();
+
+                        // Créer une transition de fondu pour la nouvelle scène
+                        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+                        fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
+                        fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
+
+                        // Démarrer la transition de fondu
+                        fadeTransition.play();
+
+                        // Afficher la nouvelle scène dans une nouvelle fenêtre
+                        stage.setScene(new Scene(root));
+                        stage.show();
+
+                        // Fermer la fenêtre actuelle après la transition
+                        //  Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        //fadeTransition.setOnFinished(e -> currentStage.close());
+                } catch (IOException e) {
+                        throw new RuntimeException(e);
+                }
+        }
 
         @FXML
-        void profile(ActionEvent event) {
+        void ajouterW(ActionEvent event) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Workshop/AjouterWorkshop.fxml"));
+                try {
+                        Parent root = loader.load();
+                        Stage stage = new Stage();
+
+                        // Créer une transition de fondu pour la nouvelle scène
+                        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+                        fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
+                        fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
+
+                        // Démarrer la transition de fondu
+                        fadeTransition.play();
+
+                        // Afficher la nouvelle scène dans une nouvelle fenêtre
+                        stage.setScene(new Scene(root));
+                        stage.show();
+
+                        // Fermer la fenêtre actuelle après la transition
+                        //  Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        //fadeTransition.setOnFinished(e -> currentStage.close());
+                } catch (IOException e) {
+                        throw new RuntimeException(e);
+                }
 
         }
 
+        @FXML
+        void test(ActionEvent event) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Workshop/Affichetest.fxml"));
+                try {
+                        Parent root = loader.load();
+                        Stage stage = new Stage();
 
+                        // Créer une transition de fondu pour la nouvelle scène
+                        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+                        fadeTransition.setFromValue(0.0); // Définir la transparence initiale à 0
+                        fadeTransition.setToValue(1.0); // Définir la transparence finale à 1
 
+                        // Démarrer la transition de fondu
+                        fadeTransition.play();
+
+                        // Afficher la nouvelle scène dans une nouvelle fenêtre
+                        stage.setScene(new Scene(root));
+                        stage.show();
+
+                        // Fermer la fenêtre actuelle après la transition
+                        //  Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        //fadeTransition.setOnFinished(e -> currentStage.close());
+                } catch (IOException e) {
+                        throw new RuntimeException(e);
+                }
+        }
 
 
 }

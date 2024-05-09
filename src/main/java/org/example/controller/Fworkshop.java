@@ -34,12 +34,14 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Image;
+import javafx.scene.control.TextField;
 
 public class Fworkshop implements Initializable {
 
     @FXML
     private VBox chosenFruitCard;
-
+    @FXML
+    private TextField recherche;
 
     @FXML
     private GridPane grid;
@@ -56,7 +58,9 @@ private Workshop workshopselectionner;
     public void setWorkshopselectionner(Workshop workshopselectionner) {
         this.workshopselectionner = workshopselectionner;
     }
-
+    private void loadFruits() {
+        fruits.addAll(gs.listeDesWorkshop());
+    }
     private List<Workshop> getData() {
         return gs.listeDesWorkshop();
     }
@@ -69,10 +73,20 @@ private Workshop workshopselectionner;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        miseajourtable();
+        loadFruits();
+        if (fruits.size() > 0) {
+            setChosenFruit(fruits.get(0));
+            myListener = u -> setChosenFruit(u);
+        }
+        miseajourtable(fruits);
+      //  recherche.setOnKeyReleased(event -> {
+        //    String searchText = recherche.getText();
+          //  List<Workshop> searchResults = gs.recherche_user(searchText);
+            //miseajourtable(searchResults);
+        //});
     }
 
-    public void miseajourtable(){
+    public void miseajourtable(List<Workshop> fruits){
         ObservableList<Node> children = grid.getChildren();
         grid.getChildren().clear();
         fruits.clear();
@@ -100,6 +114,7 @@ private Workshop workshopselectionner;
                 }
 
             };
+
         }
         int column = 0;
         int row = 1;

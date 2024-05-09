@@ -12,14 +12,13 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.AjouterWorkshop">
     <children>
-        <AnchorPane prefHeight="605.0" prefWidth="881.0" style="-fx-background-color: green;">
+        <AnchorPane prefHeight="605.0" prefWidth="881.0" style="-fx-background-color: #2E714A;">
             <children>
                 <AnchorPane fx:id="side_ankerpane1" layoutX="460.0" layoutY="-1.0" prefHeight="606.0" prefWidth="425.0" style="-fx-background-color: #f3fafa;" styleClass="side_ankerpane">
                     <stylesheets>
                         <URL value="@../style/style.css" />
                     </stylesheets>
                     <children>
-                        <Button fx:id="login111" layoutX="147.0" layoutY="537.0" mnemonicParsing="false" onAction="#login" onMouseClicked="#liste" prefHeight="44.0" prefWidth="143.0" style="-fx-background-color: ffff;" styleClass="btn_workbench11" stylesheets="@../style/style.css" text="liste" />
                         <ImageView fitHeight="354.0" fitWidth="345.0" layoutX="39.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/wz.png" />
@@ -37,7 +36,6 @@
                         <Font name="Century Gothic Bold" size="34.0" />
                     </font>
                 </Label>
-                <Button fx:id="cancelButton1" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="15.0" prefWidth="34.0" style="-fx-background-color: #dc3545;" styleClass="btn_workbench11" stylesheets="@../style/style.css" text="X" />
                 <AnchorPane layoutX="25.0" layoutY="97.0" opacity="0.88" prefHeight="507.0" prefWidth="434.0">
                     <children>
                         <Label fx:id="LoginMessageLabel1" layoutX="61.0" layoutY="321.0" prefHeight="21.0" prefWidth="284.0" textAlignment="CENTER" textFill="#bf1b1b" />

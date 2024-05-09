@@ -22,7 +22,7 @@
             <children>
                 <BorderPane layoutX="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <left>
-                        <VBox prefHeight="842.0" prefWidth="521.0" style="-fx-background-color: green;" styleClass="right-bar" BorderPane.alignment="CENTER">
+                        <VBox prefHeight="842.0" prefWidth="521.0" style="-fx-background-color: #2E714A;" styleClass="right-bar" BorderPane.alignment="CENTER">
                             <children>
                                 <HBox alignment="CENTER" prefHeight="63.0" prefWidth="522.0">
                                     <children>
@@ -34,7 +34,7 @@
                                     </children>
                                 </HBox>
                                 <Pane prefHeight="0.0" prefWidth="522.0" VBox.vgrow="ALWAYS" />
-                                <VBox fx:id="chosenFruitCard" alignment="CENTER" prefHeight="670.0" prefWidth="421.0" style="-fx-background-color: #2b4d24;" styleClass="button-with-shadow" stylesheets="@../style/style.css">
+                                <VBox fx:id="chosenFruitCard" alignment="CENTER" prefHeight="670.0" prefWidth="421.0" style="-fx-background-color: #00334A;" styleClass="button-with-shadow" stylesheets="@../style/style.css">
                                     <VBox.margin>
                                         <Insets left="50.0" right="50.0" />
                                     </VBox.margin>
@@ -64,8 +64,7 @@
                                         <Pane prefHeight="84.0" prefWidth="96.0" HBox.hgrow="ALWAYS">
                                             <children>
                                                 <TextField layoutX="-32.0" layoutY="37.0" prefHeight="25.0" prefWidth="202.0" styleClass="button-with-shadow" stylesheets="@../style/style.css" />
-                                                <Button layoutX="207.0" layoutY="37.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: green;" styleClass="button-with-shadow" stylesheets="@../style/style.css" text="Search" textFill="WHITE" />
-                                                <Button layoutX="444.0" mnemonicParsing="false" onAction="#profile" prefHeight="26.0" prefWidth="154.0" style="-fx-background-color: green;" styleClass="button-with-shadow" stylesheets="@../style/style.css" text="Mon profile" textFill="#eae7e7" />
+                                                <Button layoutX="207.0" layoutY="37.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: #2E714A;" styleClass="button-with-shadow" stylesheets="@../style/style.css" text="Search" textFill="WHITE" />
                                             </children>
                                         </Pane>
                                         <Pane prefHeight="84.0" prefWidth="96.0" />

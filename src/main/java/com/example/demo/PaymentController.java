@@ -221,7 +221,7 @@ public class PaymentController implements Initializable {
                     alert.showAndWait();
                 } else {
                     menuGetTotal();
-                    String insertPay = "INSERT INTO command (customer_id, total, date) "
+                    String insertPay = "INSERT INTO commande (user1_id, date_commande, montant_totale) "
                             + "VALUES(?,?,?)";
 
                     connect = database.connectDB();
@@ -237,12 +237,12 @@ public class PaymentController implements Initializable {
                             menuGetTotal();
                             prepare = connect.prepareStatement(insertPay);
                             prepare.setString(1, String.valueOf(Login.v.getId()));
-                            prepare.setString(2, String.valueOf(totalP));
+                            prepare.setString(3, String.valueOf(totalP));
 
                             Date date = new Date();
                             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-                            prepare.setString(3, String.valueOf(sqlDate));
+                            prepare.setString(2, String.valueOf(sqlDate));
 
                             prepare.executeUpdate();
 

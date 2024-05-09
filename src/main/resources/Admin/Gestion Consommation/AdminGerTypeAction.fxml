@@ -50,7 +50,7 @@
                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                         </columnResizePolicy>
                             </TableView>
-                            <Button fx:id="modifierButton" layoutX="505.0" layoutY="210.0" onAction="#handleModifierButton" prefHeight="51.0" prefWidth="134.0" style="-fx-background-color: #2E714A;" styleClass="button-home" text="Modifier" />
+                            <Button fx:id="modifierButton" layoutX="497.0" layoutY="210.0" onAction="#handleModifierButton" prefHeight="51.0" prefWidth="142.0" style="-fx-background-color: #2E714A;" styleClass="button-home" text="sélectionner" />
                             <Button fx:id="supprimerButton" layoutX="658.0" layoutY="210.0" onAction="#handleSupprimerButton" prefHeight="51.0" prefWidth="133.0" style="-fx-background-color: #A7001E;" styleClass="button-home" text="Supprimer" />
                         </AnchorPane>
                     </children>

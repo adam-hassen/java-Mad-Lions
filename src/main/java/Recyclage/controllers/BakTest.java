@@ -128,8 +128,10 @@ public class BakTest  {
     }
 
     @FXML
-    void workshop(ActionEvent event) {
-
+    void workshop(ActionEvent event) throws IOException {
+        AnchorPane view = FXMLLoader.load(getClass().getResource("/Workshop/AfficherWorkshop.fxml"));
+        BorderPane.setCenter(view);
+        hboxButtons.setVisible(false);
         hboxButtons.setVisible(false);
     }
     @FXML

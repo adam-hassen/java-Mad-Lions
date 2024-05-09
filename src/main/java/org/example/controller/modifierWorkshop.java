@@ -126,12 +126,8 @@ public class modifierWorkshop  implements Initializable {
 
 
         System.out.println("Done!");
-        Parent root2 = FXMLLoader.load(getClass().getResource("/Workshop/AfficherWorkshop.fxml"));
-        Scene scene2 = new Scene(root2);
-        Stage stage2;
-        stage2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage2.setScene(scene2);
-        stage2.show();
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
 
     }
 
