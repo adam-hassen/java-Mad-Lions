@@ -2,7 +2,6 @@ package org.example.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Pagination;
@@ -29,10 +28,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.scene.control.TextField;
 
 
 public class AfficherWorkshop  implements Initializable {
-
+        @FXML
+        private TextField searchField;
         @FXML
         private VBox chosenFruitCard;
 
@@ -55,7 +56,7 @@ public class AfficherWorkshop  implements Initializable {
         private Label type;
         @FXML
         private Button modifier;
-
+        private List<Workshop> fruits = new ArrayList<>();
         @FXML
         void recherche(KeyEvent event) {
 
@@ -83,14 +84,10 @@ public class AfficherWorkshop  implements Initializable {
 if (id_workshop!=null){
         WorkshopMethode wm=new WorkshopMethode();
         wm.supprimerWorkshop(id_workshop);
-        miseajourtable();
+        miseajourtable(fruits);
         id_workshop=null;
 }
         }
-
-
-        @FXML
-        private java.util.List<Workshop> fruits = new ArrayList<>();
         private Image image;
         private MyListener myListener;
         WorkshopMethode gs = new WorkshopMethode();
@@ -113,24 +110,36 @@ id_workshop= fruit;
 
 
         }
-
+        private void loadFruits() {
+                fruits.addAll(gs.listeDesWorkshop());
+        }
         @Override
         public void initialize(URL location, ResourceBundle resources) {
-                miseajourtable();
+                loadFruits();
+                if (fruits.size() > 0) {
+                        setChosenFruit(fruits.get(0));
+                        myListener = u -> setChosenFruit(u);
+                }
+                miseajourtable(fruits);
+                searchField.setOnKeyReleased(event -> {
+                        String searchText = searchField.getText();
+                        List<Workshop> searchResults = gs.recherche_user(searchText);
+                        miseajourtable(searchResults);
+                });
 
         }
 
 
 
-        public void miseajourtable(){
+        public void miseajourtable(List<Workshop> fruits){
         ObservableList<Node> children = grid.getChildren();
 
         grid.getChildren().clear();
-        fruits.clear();
-        fruits.addAll(getData());
+        this.fruits.clear();
+        this.fruits.addAll(getData());
 
-        if (fruits.size() > 0) {
-                setChosenFruit(fruits.get(0));
+        if (this.fruits.size() > 0) {
+                setChosenFruit(this.fruits.get(0));
                 myListener = new MyListener() {
 
                         @Override
@@ -142,8 +151,8 @@ id_workshop= fruit;
         }
 
 
-                int pageCount = (int) Math.ceil((double) fruits.size() / 2);
-                System.out.println("data"+fruits.size());
+                int pageCount = (int) Math.ceil((double) this.fruits.size() / 2);
+                System.out.println("data"+ this.fruits.size());
                 System.out.println("pageCount"+pageCount);
                 pagination.setPageCount(pageCount);
                 pagination.setCurrentPageIndex(0);
@@ -154,8 +163,8 @@ id_workshop= fruit;
                         int column = 0;
                         int row = 1;
                         int fromIndex = pageIndex * 2;
-                        int toIndex = Math.min(fromIndex + 2, fruits.size());
-                        List<Workshop> sublist = fruits.subList(fromIndex, toIndex);
+                        int toIndex = Math.min(fromIndex + 2, this.fruits.size());
+                        List<Workshop> sublist = this.fruits.subList(fromIndex, toIndex);
 
                         listView.setItems(FXCollections.observableArrayList(sublist));
                         System.out.println("list"+listView.getItems());

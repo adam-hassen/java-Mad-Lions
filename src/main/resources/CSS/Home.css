@@ -1,6 +1,9 @@
 .root {
-
-    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-pref-width: 800px;
+    -fx-pref-height: 500px;
 }
 .table-view {
     -fx-background-color: #ffffff; /* Couleur de fond blanc */

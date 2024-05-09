@@ -13,6 +13,11 @@
 
 <AnchorPane prefHeight="726.0" prefWidth="1320.0" style="-fx-background-color: #229954;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EDU.userjava1.controllers.home111">
    <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@CSS/Images/depositphotos_689044314-stock-photo-hand-human-holding-green-leaf.jpg" />
+         </image>
+      </ImageView>
       <BorderPane fx:id="BorderPane" layoutX="7.0" layoutY="-51.0" prefHeight="794.0" prefWidth="1244.0">
          <top>
             <HBox alignment="CENTER" prefHeight="90.0" prefWidth="1303.0" style="-fx-background-color: #229954;" BorderPane.alignment="CENTER">
@@ -45,7 +50,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="110.0" prefWidth="170.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#pub" prefHeight="40.0" prefWidth="113.0" style="-fx-background-color: #D42633;" styleClass="root" stylesheets="@style/BoutonHome.css" text="PUB" />
+                        <Button mnemonicParsing="false" onAction="#pub" prefHeight="40.0" prefWidth="113.0" style="-fx-background-color: #18534F;" styleClass="root" stylesheets="@style/BoutonHome.css" text="PUB" />
                      </children></VBox>
                   <VBox prefHeight="110.0" prefWidth="194.0" />
                   <VBox alignment="CENTER" prefHeight="96.0" prefWidth="146.0">

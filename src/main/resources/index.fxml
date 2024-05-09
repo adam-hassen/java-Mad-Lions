@@ -3,15 +3,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="600.0" prefWidth="1000.0" stylesheets="@/CSS/Home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.HomeController">
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="1000.0" stylesheets="@CSS/Home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.HomeController">
     <children>
         <HBox alignment="CENTER_LEFT" prefHeight="400.0" prefWidth="800.0" spacing="20.0">
             <children>
@@ -59,21 +57,11 @@
                             <Line endX="140.0" endY="0.0" startX="0.0" startY="0.0" stroke="white" strokeWidth="2.0" />
                         </VBox>
                         <VBox alignment="CENTER" styleClass="image-container">
-                            <StackPane styleClass="image-wrapper">
-                                <ImageView>
-                                    <image>
-                                        <Image url="@CSS/Images/ecogardien.png" />
-
-                                    </image>
-                                    <fitHeight>130.0</fitHeight>
-                                    <fitWidth>130.0</fitWidth>
-                                    <preserveRatio>true</preserveRatio>
-                                </ImageView>
-                            </StackPane>
+                            <StackPane styleClass="image-wrapper" />
                         </VBox>
                     </children>
                 </VBox>
-                <VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" stylesheets="@/CSS/Home.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+                <VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" stylesheets="@CSS/Home.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
                     <children>
                         <VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" styleClass="middle-container">
                      <children>

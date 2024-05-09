@@ -1,6 +1,8 @@
 
 package org.example.controller;
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import EDU.userjava1.controllers.Login;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
@@ -337,6 +339,9 @@ private Workshop workshopselectionner;
     }
     @FXML
     void generateCertificate(ActionEvent event) {
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedDate = currentDate.format(formatter);
         try {
             // Create the PDF document
             Document document = new Document();
@@ -351,7 +356,7 @@ private Workshop workshopselectionner;
             canvas.fill();
 
             // Load and position the logo
-            Image logo = Image.getInstance("src/main/resources/img/Sanstitre-1.png");
+            Image logo = Image.getInstance("C:\\Users\\adamh\\IdeaProjects\\GitEcogardienJava\\java-Mad-Lions\\src\\main\\resources\\img\\Sanstitre-1.png");
             float logoWidth = 400;
             float logoHeight = logoWidth * logo.getScaledHeight() / logo.getScaledWidth();
             logo.scaleAbsolute(logoWidth, logoHeight);
@@ -381,17 +386,17 @@ private Workshop workshopselectionner;
             certificateText.setAlignment(Element.ALIGN_JUSTIFIED);
             certificateText.setSpacingAfter(80);
             certificateText.add(new Chunk("Ceci est à certifier que ", normalFont).setGenericTag("name"));document.add(new Paragraph("\n"));
-            certificateText.add(new Chunk("adam", boldFont).setGenericTag("name"));
+            certificateText.add(new Chunk(Login.v.getName(), boldFont).setGenericTag("name"));
             certificateText.add(new Chunk(" a participé avec succès à l'atelier sur compostage et de niveau Avancé.\n", normalFont));
             certificateText.add(new Chunk("Organisé par : ", normalFont));
             certificateText.add(new Chunk("ecogardien\n", boldFont));
             certificateText.add(new Chunk("Date de l atelier : ", normalFont));
-            certificateText.add(new Chunk("2024-03-03\n\n", boldFont));
-            certificateText.add(new Chunk("Ce certificat atteste que adam  a satisfait aux exigences nécessaires pour obtenir la certification avec succès, démontrant ainsi son engagement et son expertise dans ce domaine.", normalFont));
+            certificateText.add(new Chunk(formattedDate + "\n\n", boldFont));
+            certificateText.add(new Chunk("Ce certificat atteste que "+Login.v.getName()+"  a satisfait aux exigences nécessaires pour obtenir la certification avec succès, démontrant ainsi son engagement et son expertise dans ce domaine.", normalFont));
             document.add(certificateText);
 
             // Add decorative footer
-            Paragraph footer = new Paragraph("Presented on this 5th day of May, 2024", normalFont);
+            Paragraph footer = new Paragraph("Presented on this " + formattedDate, normalFont);
             footer.setAlignment(Element.ALIGN_CENTER);
             footer.setSpacingBefore(30);
             document.add(footer);

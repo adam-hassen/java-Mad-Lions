@@ -31,6 +31,7 @@ module GestionRecyclage {
     requires json.simple;
     requires org.apache.httpcomponents.httpcore;
     requires org.apache.httpcomponents.httpclient;
+    requires itextpdf;
     exports EDU.evenements.entities;
     exports EDU.evenements.controllers;
     opens com.example.demo to javafx.fxml;

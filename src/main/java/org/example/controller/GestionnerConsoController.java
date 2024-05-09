@@ -93,14 +93,8 @@ public class GestionnerConsoController {
 
     @FXML
     public void naviguerVersHome(ActionEvent event) {
-        try{
-            Parent root= FXMLLoader.load(getClass().getResource("/Client/Gestion Consommation/HomeGestionAction.fxml"));
-            home.getScene().setRoot(root);
-        }
-        catch (IOException ex){
-            System.err.println("Error loading FXML document: " + ex);
-            ex.printStackTrace();
-        }
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
     }
     public void AjouterAction(ActionEvent event){
         try {
@@ -222,14 +216,8 @@ public class GestionnerConsoController {
             scaleTransition.play();
         });
     }
-    public void handleHome(){
-        try{
-            Parent root= FXMLLoader.load(getClass().getResource("/Client/Gestion Consommation/HomeGestionAction.fxml"));
-            Home.getScene().setRoot(root);
-        }
-        catch (IOException ex){
-            System.err.println("Error loading FXML document: " + ex);
-            ex.printStackTrace();
-        }
+    public void handleHome(ActionEvent event){
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
     }
 }

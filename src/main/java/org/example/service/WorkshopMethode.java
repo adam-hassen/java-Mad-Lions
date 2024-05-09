@@ -1,5 +1,7 @@
 package org.example.service;
 
+import EDU.userjava1.entities.User1;
+import EDU.userjava1.services.UserServices;
 import javafx.scene.control.Alert;
 import org.example.entity.Workshop;
 import org.example.interfaces.WorkshopService;
@@ -10,6 +12,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class WorkshopMethode implements WorkshopService<Workshop> {
     @Override
@@ -128,6 +132,29 @@ pst.setInt(6,x);
             }
         }
         return null;
+    }
+    public List<Workshop> recherche_user(String nom) {
+        List<Workshop> personnes = new ArrayList<>();
+        String request = "SELECT * FROM workshop WHERE nom LIKE '%" + nom + "%'";
+        // Utilisation de LIKE avec le nom pour rechercher des correspondances partielles
+
+        try {
+            PreparedStatement pst = MyConnection.getInsatance().getCnx().prepareStatement(request);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String type = rs.getString("type");
+                LocalTime heure = rs.getTime("heure").toLocalTime();
+                LocalDate date = rs.getDate("date").toLocalDate();
+                String cours = rs.getString("cours");
+
+                Workshop workshop = new Workshop(id,nom,type,date,heure,cours);
+                personnes.add(workshop);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return personnes;
     }
 
 }
